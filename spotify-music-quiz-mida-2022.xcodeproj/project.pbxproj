@@ -7,13 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0AD17C4D2950AC3B003FEE73 /* spotify_music_quiz_mida_2022App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4C2950AC3B003FEE73 /* spotify_music_quiz_mida_2022App.swift */; };
-		0AD17C4F2950AC3B003FEE73 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4E2950AC3B003FEE73 /* ContentView.swift */; };
+		0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */; };
+		0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4E2950AC3B003FEE73 /* HomeView.swift */; };
 		0AD17C512950AC3E003FEE73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C502950AC3E003FEE73 /* Assets.xcassets */; };
 		0AD17C542950AC3E003FEE73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C532950AC3E003FEE73 /* Preview Assets.xcassets */; };
 		0AD17C5E2950AC40003FEE73 /* spotify_music_quiz_mida_2022Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C5D2950AC40003FEE73 /* spotify_music_quiz_mida_2022Tests.swift */; };
 		0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */; };
 		0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */; };
+		0AD8DC9329BA06FA009EE067 /* Gotham-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */; };
+		0AD8DC9429BA06FD009EE067 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */; };
+		0AD8DC9529BA06FF009EE067 /* Gotham-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */; };
+		0AD8DC9629BA0704009EE067 /* Gotham-UltraItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8729BA048F009EE067 /* Gotham-UltraItalic.otf */; };
+		0AD8DC9729BA0704009EE067 /* Gotham-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8D29BA0490009EE067 /* Gotham-Thin.otf */; };
+		0AD8DC9829BA0704009EE067 /* Gotham-XLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8629BA048F009EE067 /* Gotham-XLight.otf */; };
+		0AD8DC9929BA0704009EE067 /* Gotham-XLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8F29BA0491009EE067 /* Gotham-XLightItalic.otf */; };
+		0AD8DC9A29BA0704009EE067 /* Gotham-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */; };
+		0AD8DC9B29BA0704009EE067 /* Gotham-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8829BA048F009EE067 /* Gotham-ThinItalic.otf */; };
+		0AD8DCA029BB9CA7009EE067 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */; };
+		0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +46,8 @@
 
 /* Begin PBXFileReference section */
 		0AD17C492950AC3B003FEE73 /* spotify-music-quiz-mida-2022.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spotify-music-quiz-mida-2022.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AD17C4C2950AC3B003FEE73 /* spotify_music_quiz_mida_2022App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022App.swift; sourceTree = "<group>"; };
-		0AD17C4E2950AC3B003FEE73 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyMusicQuizApp.swift; sourceTree = "<group>"; };
+		0AD17C4E2950AC3B003FEE73 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0AD17C502950AC3E003FEE73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AD17C532950AC3E003FEE73 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0AD17C592950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +55,18 @@
 		0AD17C632950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITests.swift; sourceTree = "<group>"; };
 		0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
+		0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Light.otf"; sourceTree = "<group>"; };
+		0AD8DC8629BA048F009EE067 /* Gotham-XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLight.otf"; sourceTree = "<group>"; };
+		0AD8DC8729BA048F009EE067 /* Gotham-UltraItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-UltraItalic.otf"; sourceTree = "<group>"; };
+		0AD8DC8829BA048F009EE067 /* Gotham-ThinItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-ThinItalic.otf"; sourceTree = "<group>"; };
+		0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Black.otf"; sourceTree = "<group>"; };
+		0AD8DC8D29BA0490009EE067 /* Gotham-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Thin.otf"; sourceTree = "<group>"; };
+		0AD8DC8F29BA0491009EE067 /* Gotham-XLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLightItalic.otf"; sourceTree = "<group>"; };
+		0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BookItalic.otf"; sourceTree = "<group>"; };
+		0AD8DC9C29BA2AEB009EE067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../../Images.xcassets; sourceTree = "<group>"; };
+		0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyle.swift; path = ../../../../../TextStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +117,11 @@
 		0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */ = {
 			isa = PBXGroup;
 			children = (
-				0AD17C4C2950AC3B003FEE73 /* spotify_music_quiz_mida_2022App.swift */,
-				0AD17C4E2950AC3B003FEE73 /* ContentView.swift */,
+				0AD8DC9E29BB9C45009EE067 /* Style */,
+				0AD8DC9C29BA2AEB009EE067 /* Info.plist */,
+				0AD8DC6D29BA037E009EE067 /* Resources */,
+				0AD8DC6C29B9F572009EE067 /* App */,
+				0AD8DC6B29B9F55D009EE067 /* UI */,
 				0AD17C502950AC3E003FEE73 /* Assets.xcassets */,
 				0AD17C522950AC3E003FEE73 /* Preview Content */,
 			);
@@ -125,6 +151,55 @@
 				0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022UITests";
+			sourceTree = "<group>";
+		};
+		0AD8DC6B29B9F55D009EE067 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		0AD8DC6C29B9F572009EE067 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		0AD8DC6D29BA037E009EE067 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0AD8DC6E29BA03E2009EE067 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0AD8DC6E29BA03E2009EE067 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */,
+				0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */,
+				0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */,
+				0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */,
+				0AD8DC8D29BA0490009EE067 /* Gotham-Thin.otf */,
+				0AD8DC8829BA048F009EE067 /* Gotham-ThinItalic.otf */,
+				0AD8DC8729BA048F009EE067 /* Gotham-UltraItalic.otf */,
+				0AD8DC8629BA048F009EE067 /* Gotham-XLight.otf */,
+				0AD8DC8F29BA0491009EE067 /* Gotham-XLightItalic.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0AD8DC9E29BB9C45009EE067 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */,
+				0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +306,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD8DC9629BA0704009EE067 /* Gotham-UltraItalic.otf in Resources */,
+				0AD8DC9729BA0704009EE067 /* Gotham-Thin.otf in Resources */,
+				0AD8DC9529BA06FF009EE067 /* Gotham-BookItalic.otf in Resources */,
+				0AD8DC9429BA06FD009EE067 /* Gotham-Bold.otf in Resources */,
+				0AD8DC9A29BA0704009EE067 /* Gotham-Light.otf in Resources */,
 				0AD17C542950AC3E003FEE73 /* Preview Assets.xcassets in Resources */,
+				0AD8DC9929BA0704009EE067 /* Gotham-XLightItalic.otf in Resources */,
+				0AD8DC9B29BA0704009EE067 /* Gotham-ThinItalic.otf in Resources */,
+				0AD8DC9829BA0704009EE067 /* Gotham-XLight.otf in Resources */,
+				0AD8DCA029BB9CA7009EE067 /* Images.xcassets in Resources */,
+				0AD8DC9329BA06FA009EE067 /* Gotham-Black.otf in Resources */,
 				0AD17C512950AC3E003FEE73 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD17C4F2950AC3B003FEE73 /* ContentView.swift in Sources */,
-				0AD17C4D2950AC3B003FEE73 /* spotify_music_quiz_mida_2022App.swift in Sources */,
+				0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */,
+				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
+				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +507,7 @@
 				DEVELOPMENT_TEAM = KQZX4895TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "spotify-music-quiz-mida-2022/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.trivia-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -455,6 +542,7 @@
 				DEVELOPMENT_TEAM = KQZX4895TL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "spotify-music-quiz-mida-2022/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.trivia-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
