@@ -7,16 +7,32 @@
 
 import SwiftUI
 
+let name = "Antony"
+
 struct HomeView: View {
     var body: some View {
         ScrollView {
-            VStack {
-                Text("Hi Antony!")
-                    .font(.init(UIFont.homeTitle()))
+            HStack {
+                Text("Hi \(name)!")
+                    .font(TextStyle.homeTitle())
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
+                    .foregroundColor(.white)
+                Spacer()
+                Image(systemName: "bell")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+                    .frame(width: 50, height: 50)
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(width: 50, height: 50)
+                }
+                .navigationTitle("Settings")
             }
         }
+        .background(Color("Black"))
     }
 }
 

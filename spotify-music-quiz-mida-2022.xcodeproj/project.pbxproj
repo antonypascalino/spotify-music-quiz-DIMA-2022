@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0ABA735829BC987A00DC0A4C /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA735729BC987A00DC0A4C /* colors.xcassets */; };
+		0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */; };
 		0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */; };
 		0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C4E2950AC3B003FEE73 /* HomeView.swift */; };
 		0AD17C512950AC3E003FEE73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C502950AC3E003FEE73 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0ABA735729BC987A00DC0A4C /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = colors.xcassets; path = ../../../../../colors.xcassets; sourceTree = "<group>"; };
+		0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ../../../../../SettingsView.swift; sourceTree = "<group>"; };
 		0AD17C492950AC3B003FEE73 /* spotify-music-quiz-mida-2022.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spotify-music-quiz-mida-2022.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyMusicQuizApp.swift; sourceTree = "<group>"; };
 		0AD17C4E2950AC3B003FEE73 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
+				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */,
+				0ABA735729BC987A00DC0A4C /* colors.xcassets */,
 				0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */,
 			);
 			path = Style;
@@ -307,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD8DC9629BA0704009EE067 /* Gotham-UltraItalic.otf in Resources */,
+				0ABA735829BC987A00DC0A4C /* colors.xcassets in Resources */,
 				0AD8DC9729BA0704009EE067 /* Gotham-Thin.otf in Resources */,
 				0AD8DC9529BA06FF009EE067 /* Gotham-BookItalic.otf in Resources */,
 				0AD8DC9429BA06FD009EE067 /* Gotham-Bold.otf in Resources */,
@@ -343,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */,
+				0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */,
 				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
 			);

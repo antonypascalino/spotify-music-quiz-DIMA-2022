@@ -33,7 +33,7 @@ struct spotify_music_quiz_mida_2022App: App {
                     Image(systemName: "info.circle")
                     Text("About us")
                 }
-            }
+            }.navigationTitle("Home")
         }
     }
 }
