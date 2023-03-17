@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug spotify-music-quiz-mida-2022",
+            "program": "${workspaceFolder:spotify-music-quiz-mida-2022}\\.build/debug/spotify-music-quiz-mida-2022",
+            "args": [],
+            "cwd": "${workspaceFolder:spotify-music-quiz-mida-2022}",
+            "preLaunchTask": "swift: Build Debug spotify-music-quiz-mida-2022"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Release spotify-music-quiz-mida-2022",
+            "program": "${workspaceFolder:spotify-music-quiz-mida-2022}\\.build/release/spotify-music-quiz-mida-2022",
+            "args": [],
+            "cwd": "${workspaceFolder:spotify-music-quiz-mida-2022}",
+            "preLaunchTask": "swift: Build Release spotify-music-quiz-mida-2022"
+        }
+    ]
+}
