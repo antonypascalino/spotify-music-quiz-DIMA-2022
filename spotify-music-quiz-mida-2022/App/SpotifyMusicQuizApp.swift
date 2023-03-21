@@ -11,29 +11,7 @@ import SwiftUI
 struct spotify_music_quiz_mida_2022App: App {
     var body: some Scene {
         WindowGroup {
-            TabView {
-                NavigationView {
-                    HomeView()
-                }
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                }
-                NavigationView {
-                    //SearchView()
-                }
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
-                NavigationView {
-                    //AboutUsView()
-                }
-                .tabItem {
-                    Image(systemName: "info.circle")
-                    Text("About us")
-                }
-            }.navigationTitle("Home")
+            LoginView()
         }
     }
 }
