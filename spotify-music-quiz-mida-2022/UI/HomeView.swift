@@ -12,7 +12,6 @@ let score = 257
 
 struct HomeView: View {
     var body: some View {
-        
             VStack {
                 HStack {
                     Text("Hi \(name)!")
