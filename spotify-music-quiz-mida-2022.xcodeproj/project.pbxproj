@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */; };
 		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
+		0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BC29CB47D20073ACE0 /* Question.swift */; };
+		0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BE29CB651A0073ACE0 /* QuestionText.swift */; };
+		0A3908C129CB6DD90073ACE0 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908C029CB6DD90073ACE0 /* Answer.swift */; };
 		0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9CAEE29C929D200871B2B /* LoginView.swift */; };
 		0ABA735829BC987A00DC0A4C /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA735729BC987A00DC0A4C /* colors.xcassets */; };
 		0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */; };
@@ -53,6 +56,9 @@
 /* Begin PBXFileReference section */
 		0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeaderboardView.swift; path = ../../../../../LeaderboardView.swift; sourceTree = "<group>"; };
 		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Friend.swift; path = ../../../../../Friend.swift; sourceTree = "<group>"; };
+		0A3908BC29CB47D20073ACE0 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Question.swift; path = ../../../../../Question.swift; sourceTree = "<group>"; };
+		0A3908BE29CB651A0073ACE0 /* QuestionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionText.swift; path = ../../../../../QuestionText.swift; sourceTree = "<group>"; };
+		0A3908C029CB6DD90073ACE0 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Answer.swift; path = ../../../../../Answer.swift; sourceTree = "<group>"; };
 		0AB9CAEE29C929D200871B2B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0ABA735729BC987A00DC0A4C /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = colors.xcassets; path = ../../../../../colors.xcassets; sourceTree = "<group>"; };
 		0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ../../../../../SettingsView.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				0A3908BA29CB0B640073ACE0 /* Friend.swift */,
+				0A3908BC29CB47D20073ACE0 /* Question.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +189,8 @@
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
 				0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */,
+				0A3908BE29CB651A0073ACE0 /* QuestionText.swift */,
+				0A3908C029CB6DD90073ACE0 /* Answer.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -369,9 +378,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */,
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
 				0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */,
 				0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */,
+				0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */,
+				0A3908C129CB6DD90073ACE0 /* Answer.swift in Sources */,
 				0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */,
 				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,

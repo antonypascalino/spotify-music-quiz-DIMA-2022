@@ -58,7 +58,7 @@ struct HomeView: View {
                 RadialGradient(gradient: Gradient(colors: [Color("Green"), Color("Black")]),
                                center: UnitPoint(x: 0.50, y: 0.35),
                                startRadius: 20,
-                               endRadius: 380)
+                               endRadius: 280)
                 
             )
             .navigationTitle("Home")
