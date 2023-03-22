@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */; };
+		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
 		0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9CAEE29C929D200871B2B /* LoginView.swift */; };
 		0ABA735829BC987A00DC0A4C /* colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABA735729BC987A00DC0A4C /* colors.xcassets */; };
 		0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeaderboardView.swift; path = ../../../../../LeaderboardView.swift; sourceTree = "<group>"; };
+		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Friend.swift; path = ../../../../../Friend.swift; sourceTree = "<group>"; };
 		0AB9CAEE29C929D200871B2B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0ABA735729BC987A00DC0A4C /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = colors.xcassets; path = ../../../../../colors.xcassets; sourceTree = "<group>"; };
 		0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = ../../../../../SettingsView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3908B929CB09480073ACE0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A3908BA29CB0B640073ACE0 /* Friend.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		0AD17C402950AC3B003FEE73 = {
 			isa = PBXGroup;
 			children = (
@@ -126,10 +138,11 @@
 			isa = PBXGroup;
 			children = (
 				0AD8DC9C29BA2AEB009EE067 /* Info.plist */,
+				0A3908B929CB09480073ACE0 /* Models */,
 				0AD17C502950AC3E003FEE73 /* Assets.xcassets */,
 				0AD8DC9E29BB9C45009EE067 /* Style */,
 				0AD8DC6D29BA037E009EE067 /* Resources */,
-				0AD8DC6C29B9F572009EE067 /* App */,
+				0AD8DC6C29B9F572009EE067 /* Application */,
 				0AD8DC6B29B9F55D009EE067 /* UI */,
 				0AD17C522950AC3E003FEE73 /* Preview Content */,
 			);
@@ -168,16 +181,17 @@
 				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
+				0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		0AD8DC6C29B9F572009EE067 /* App */ = {
+		0AD8DC6C29B9F572009EE067 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */,
 			);
-			path = App;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		0AD8DC6D29BA037E009EE067 /* Resources */ = {
@@ -358,9 +372,11 @@
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
 				0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */,
 				0ABF2A9229BCCE5B0097B7FA /* SettingsView.swift in Sources */,
+				0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */,
 				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
 				0AD99A2A29C4E885000EAF39 /* GameView.swift in Sources */,
+				0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
