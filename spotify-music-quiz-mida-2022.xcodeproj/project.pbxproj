@@ -64,7 +64,7 @@
 		0AABD71629CE11AB00D819BB /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
 		0AABD71829CE343800D819BB /* GameControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
 		0AB9CAEE29C929D200871B2B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		0ABA735729BC987A00DC0A4C /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = colors.xcassets; path = ../../../../../colors.xcassets; sourceTree = "<group>"; };
+		0ABA735729BC987A00DC0A4C /* colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colors.xcassets; sourceTree = "<group>"; };
 		0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0AD17C492950AC3B003FEE73 /* spotify-music-quiz-mida-2022.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spotify-music-quiz-mida-2022.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD17C4C2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyMusicQuizApp.swift; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 		0AD8DC8F29BA0491009EE067 /* Gotham-XLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLightItalic.otf"; sourceTree = "<group>"; };
 		0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BookItalic.otf"; sourceTree = "<group>"; };
 		0AD8DC9C29BA2AEB009EE067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../../../../../Images.xcassets; sourceTree = "<group>"; };
-		0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextStyle.swift; path = ../../../../../TextStyle.swift; sourceTree = "<group>"; };
+		0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		0AD99A2929C4E885000EAF39 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
