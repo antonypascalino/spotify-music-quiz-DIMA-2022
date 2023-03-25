@@ -29,13 +29,11 @@ struct GameControls: View {
             })
             
             
-            Button(action: {
-                
-            }, label: {
+            NavigationLink(destination: GameView()) {
                 Image(systemName: "forward.end.fill")
                     .foregroundColor(.white)
                     .font(.system(size: 45, weight: .ultraLight))
-            })
+            }
             Spacer()
         }
     }
