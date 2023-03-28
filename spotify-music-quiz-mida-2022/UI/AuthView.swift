@@ -22,13 +22,13 @@ struct WebView: UIViewRepresentable {
         print("Called makeUIView")
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
-        webView.load(URLRequest(url: url))
         return webView
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
         print("Called updateUIView")
         webView.load(URLRequest(url: url))
+        
     }
     
     class Coordinator: NSObject, WKNavigationDelegate {
@@ -41,9 +41,20 @@ struct WebView: UIViewRepresentable {
                 print("Authentication failed: No code found in callback URL")
                 return
             }
+            webView.isHidden = true
+            
+            print("Code : \(code)")
+            AuthManager.shared.exchangeCodeForToken(code: code){ _ in /*[weak self] success in
+                                                                       DispatchQueue.main.async {
+                                                                       self?.navigationController?.popToRootViewController(animated: true)
+                                                                       self?.completionHandler?(success)*/
+            }
+            
         }
     }
+    
 }
+
 
 
 
