@@ -23,7 +23,11 @@ struct TextStyle {
     }
     
     static func LoginTitle() -> Font {
-        return Font.custom("Gotham-Black", size: 80)
+        return Font.custom("Gotham-Black", size: 90)
+    }
+    
+    static func LoginSubtitle() -> Font {
+        return Font.custom("Gotham-Black", size: 45)
     }
     
     static func LoginElement() -> Font {
