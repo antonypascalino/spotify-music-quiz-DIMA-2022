@@ -11,7 +11,7 @@ import SwiftUI
 struct spotify_music_quiz_mida_2022App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }
