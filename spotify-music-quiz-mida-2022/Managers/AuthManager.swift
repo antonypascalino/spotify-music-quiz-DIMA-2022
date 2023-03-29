@@ -29,6 +29,8 @@ class AuthManager {
         let string = "\(base)?response_type=code&client_id=\(AuthManager.Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         return URL(string: string)
     }
+
+    private var refreshingToken: Bool = false
     
     var isSignedIn: Bool {
         return accessToken != nil
@@ -96,7 +98,7 @@ class AuthManager {
             
             do{
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                self.cacheToken(result: result)
+                self?.cacheToken(result: result)
                 completion(true)
             }catch{
                 print(error.localizedDescription)
@@ -105,9 +107,34 @@ class AuthManager {
         }
         task.resume()
     }
+
+    private var onRefreshBlock = [((String)->Void)]()
+
+     public func withValidToken(completion: @escaping ((String)->Void)){
+        guard !refreshingToken else{
+            onRefreshBlock.append(completion)
+            return
+        }
+        
+        if shouldRefreshToken{
+            shouldRefreshIfNeeded {[weak self] success in
+                if let token = self?.accessToken, success{
+                    completion(token)
+                }
+            }
+        } else if let token = accessToken{
+            completion(token)
+        }
+    }
+
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void){
+
+        guard !refreshingToken else {
+            return
+        }
+
         guard shouldRefreshToken else {
-            completion(true)
+            completion?(true)
             return
         }
         guard let refreshToken = self.refreshToken else { return }
@@ -161,7 +188,8 @@ class AuthManager {
     
     private func cacheToken(result: AuthResponse){
         UserDefaults.standard.set(result.access_token,
-                                  forKey: "access _token")
+                                  forKey: "access_token")
+                                  
         if let refresh_token = result.refresh_token {
             UserDefaults.standard.set(result.refresh_token,
                                       forKey: "refresh_token")
