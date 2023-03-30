@@ -56,57 +56,6 @@ class AuthManager {
         let fiveMinutes: TimeInterval = 300
         return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
     }
-    
-    
-    public func exchangeCodeForToken(
-        code : String,
-        completion: @escaping ((Bool)->Void)
-    ){
-        guard let url = URL(string: Constants.tokenAPIURL) else { return }
-        
-        var components = URLComponents()
-        components.queryItems = [
-            URLQueryItem(name : "grant_type",
-                         value : "authorization_code"),
-            URLQueryItem(name : "code",
-                         value : code),
-            URLQueryItem(name : "redirect_uri",
-                         value : Constants.redirectURI),
-            
-        ]
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField : "Content-Type")
-        request.httpBody = components.query?.data(using: .utf8)
-        
-        let basicToken = Constants.clientID + ":" + Constants.clientSecret
-        let data = basicToken.data(using: .utf8)
-        guard let base64String = data?.base64EncodedString() else {
-            print("failure")
-            completion(false)
-            return
-        }
-        
-        request.setValue("Basic \(base64String)", forHTTPHeaderField : "Authorization")
-        
-        let task = URLSession.shared.dataTask(with : request) { data, URLResponse, error in
-            guard let data = data, error == nil else {
-                completion(false)
-                return
-            }
-            
-            
-            do{
-                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                self?.cacheToken(result: result)
-                completion(true)
-            }catch{
-                print(error.localizedDescription)
-                completion(false)
-            }
-        }
-        task.resume()
-    }
 
     private var onRefreshBlock = [((String)->Void)]()
 
@@ -117,7 +66,7 @@ class AuthManager {
         }
         
         if shouldRefreshToken{
-            shouldRefreshIfNeeded {[weak self] success in
+            refreshIfNeeded {[weak self] success in
                 if let token = self?.accessToken, success{
                     completion(token)
                 }
@@ -184,6 +133,59 @@ class AuthManager {
         }
         task.resume()
     }
+    
+    
+    public func exchangeCodeForToken(
+        code : String,
+        completion: @escaping ((Bool)->Void)
+    ){
+        guard let url = URL(string: Constants.tokenAPIURL) else { return }
+        
+        var components = URLComponents()
+        components.queryItems = [
+            URLQueryItem(name : "grant_type",
+                         value : "authorization_code"),
+            URLQueryItem(name : "code",
+                         value : code),
+            URLQueryItem(name : "redirect_uri",
+                         value : Constants.redirectURI),
+            
+        ]
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField : "Content-Type")
+        request.httpBody = components.query?.data(using: .utf8)
+        
+        let basicToken = Constants.clientID + ":" + Constants.clientSecret
+        let data = basicToken.data(using: .utf8)
+        guard let base64String = data?.base64EncodedString() else {
+            print("failure")
+            completion(false)
+            return
+        }
+        
+        request.setValue("Basic \(base64String)", forHTTPHeaderField : "Authorization")
+        
+        let task = URLSession.shared.dataTask(with : request) { data, URLResponse, error in
+            guard let data = data, error == nil else {
+                completion(false)
+                return
+            }
+            
+            
+            do{
+                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
+                self?.cacheToken(result: result)
+                completion(true)
+            }catch{
+                print(error.localizedDescription)
+                completion(false)
+            }
+        }
+        task.resume()
+    }
+
+    
     
     
     private func cacheToken(result: AuthResponse){

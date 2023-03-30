@@ -14,6 +14,7 @@ final class APICaller{
         case failedToGetData
     }
     
+    /*
     public func getAlbumsDetails(for album: Album, completion: @escaping ((Result<AlbumDetailsResponse,Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/albums/\(album.id)"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -31,7 +32,7 @@ final class APICaller{
             
             task.resume()
         }
-    }
+    }*/
     
     public func getUserAlbums(completion: @escaping ((Result<[Album],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/albums"), type: .GET) { request in
