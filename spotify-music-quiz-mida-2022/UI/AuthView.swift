@@ -6,8 +6,8 @@
 //
 
 //import SwiftUI
-/*
-import WebKit
+
+/*import WebKit
 
 struct WebView: UIViewRepresentable {
     
@@ -54,8 +54,8 @@ struct WebView: UIViewRepresentable {
         }
     }
     
-}
-*/
+}*/
+
 import SwiftUI
 import WebKit
 
@@ -64,12 +64,46 @@ struct AuthView: View {
 
     @State private var webView = WKWebView()
     @State private var code: String? = nil
+    @State private var isLoading = false
+    @State private var error: Error?
 
     var body: some View {
         VStack {
             if let code = code {
                 Text("Code: \(code)")
+                Button(action: {
+                                isLoading = true
+                                error = nil
+                                
+                                AuthManager.shared.exchangeCodeForToken(code: code) { result in
+                                    isLoading = false
+                                    
+                                    switch result {
+                                    case .success(let response):
+                                        // TODO: Handle successful token exchange
+                                        print("Access token: \(response.access_token)")
+                                        print("Refresh token: \(response.refresh_token)")
+                                        
+                                    case .failure(let error):
+                                        self.error = error
+                                    }
+                                }
+                            }) {
+                                if isLoading {
+                                    ProgressView()
+                                } else {
+                                    Text("Exchange")
+                                }
+                            }
+                            .padding()
+                            
+                            if let error = error {
+                                Text("Error: \(error.localizedDescription)")
+                                    .foregroundColor(.red)
+                                    .padding()
+                            }
             } else {
+                Text("Suca")
                 WebView(webView: $webView, url: authURL)
                     .onAppear {
                         webView.load(URLRequest(url: authURL))
@@ -89,8 +123,7 @@ struct AuthView: View {
         }
     }
 }
-
-struct AuthView: UIViewRepresentable {
+struct WebView: UIViewRepresentable {
     @Binding var webView: WKWebView
     let url: URL
 
@@ -107,30 +140,19 @@ struct AuthView: UIViewRepresentable {
         Coordinator()
     }
 
-    class Coordinator: NSObject, WKNavigationDelegate, UIViewController {
+    class Coordinator: NSObject, WKNavigationDelegate {
         func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-             AuthManager.shared.exchangeCodeForToken(code: code){ [weak self] success in
-                                                                       DispatchQueue.main.async {
-                                                                       self?.navigationController?.popToRootViewController(animated: true)
-                                                                       self?.completionHandler?(success)
-            }
+//             AuthManager.shared.exchangeCodeForToken(code: code){ [weak self] success in
+//                                                                       DispatchQueue.main.async {
+//                                                                       self?.navigationController?.popToRootViewController(animated: true)
+//                                                                       self?.completionHandler?(success)
+//            }
             decisionHandler(.allow)
         }
-    }
+    
 
     }
 }
-
-
-/*
-struct AuthView: View  {
-    var body: some View {
-        //print("Call to WebView")
-        WebView(url: AuthManager.shared.signInURL!)
-        //print("Closed WebView")
-    }
-}
-*/
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {

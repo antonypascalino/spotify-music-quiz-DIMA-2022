@@ -83,7 +83,7 @@ class AuthManager {
         }
 
         guard shouldRefreshToken else {
-            completion?(true)
+            //completion?(true)
             return
         }
         guard let refreshToken = self.refreshToken else { return }
@@ -137,8 +137,8 @@ class AuthManager {
     
     public func exchangeCodeForToken(
         code : String,
-        completion: @escaping ((Bool)->Void)
-    ){
+        completion: @escaping (Result<TokenResponse, Error>) -> Void)
+    {
         guard let url = URL(string: Constants.tokenAPIURL) else { return }
         
         var components = URLComponents()
@@ -160,26 +160,28 @@ class AuthManager {
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("failure")
-            completion(false)
+            completion(.failure(NSError(domain: "com.yourapp", code: 1, userInfo: [NSLocalizedDescriptionKey: "No data in response"])))
             return
         }
         
         request.setValue("Basic \(base64String)", forHTTPHeaderField : "Authorization")
         
-        let task = URLSession.shared.dataTask(with : request) { data, URLResponse, error in
+        let task = URLSession.shared.dataTask(with : request) { data, response, error in
             guard let data = data, error == nil else {
-                completion(false)
+                completion(.failure(NSError(domain: "com.yourapp", code: 1, userInfo: [NSLocalizedDescriptionKey: "No data in response"])))
+                                
                 return
             }
             
             
             do{
-                let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                self?.cacheToken(result: result)
-                completion(true)
+                let result = try JSONDecoder().decode(TokenResponse.self, from: data)
+                //self?.cacheToken(result: result)
+                //self.cacheToken(result: result)
+                completion(.success(result))
             }catch{
                 print(error.localizedDescription)
-                completion(false)
+                completion(.failure(error))
             }
         }
         task.resume()
@@ -199,5 +201,10 @@ class AuthManager {
         
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)),
                                        forKey: "expirationDate")
+    }
+    
+    struct TokenResponse: Codable {
+        let access_token: String
+        let refresh_token: String
     }
 }
