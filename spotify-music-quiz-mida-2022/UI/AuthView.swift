@@ -70,7 +70,7 @@ struct AuthView: View {
             if let code = code {
                 Text("Code: \(code)")
             } else {
-                WebView(webView: $webView, url: authURL)
+                webView(webView: $webView, url: authURL)
                     .onAppear {
                         webView.load(URLRequest(url: authURL))
                     }
