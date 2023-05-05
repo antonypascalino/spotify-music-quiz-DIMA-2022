@@ -91,6 +91,7 @@ final class APICaller{
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
+                    print("\nDATA: \(data)")
                     completion(.failure(error))
                 }
             }
