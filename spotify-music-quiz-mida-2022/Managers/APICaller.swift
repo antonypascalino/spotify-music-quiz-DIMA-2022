@@ -79,19 +79,20 @@ final class APICaller{
     public func getUserProfile(completion: @escaping ((Result<UserProfile,Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
-            let task = URLSession.shared.dataTask(with: baseRequest) { data, _, error in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
                 guard let data = data, error == nil else{
                     print("Failure to Get data")
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
-                    let result = try JSONDecoder().decode(UserProfile.self, from: data)
+                    let result = try JSONDecoder().decode(from: data, options: .allowFragments)
+                    print("RESULT: \(result) ")
                     completion(.success(result))
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
-                    print("\nDATA: \(data)")
+                    print("\n DATA: \(data)")
                     completion(.failure(error))
                 }
             }

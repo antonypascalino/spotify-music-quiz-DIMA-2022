@@ -17,9 +17,9 @@ class AuthManager {
         static let clientSecret = "d4d235cc683942778dcd68a445935671"
         static let tokenAPIURL = "https://accounts.spotify.com/api/token"
         static let redirectURI = "https://localhost:8888/callback"
-        static let scopes = "user-read-private"
-        //static let scopes =
-        // "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read"
+        //static let scopes = "user-read-private"
+        static let scopes =
+         "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read"
     }
     
     private init() {}
