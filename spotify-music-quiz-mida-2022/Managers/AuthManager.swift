@@ -59,7 +59,9 @@ class AuthManager {
 
     private var onRefreshBlock = [((String)->Void)]()
 
-     public func withValidToken(completion: @escaping ((String)->Void)){
+
+
+    public func withValidToken(completion: @escaping ((String)->Void)){
         guard !refreshingToken else{
             onRefreshBlock.append(completion)
             return
