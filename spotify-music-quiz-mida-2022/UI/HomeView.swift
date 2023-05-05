@@ -8,28 +8,13 @@
 import SwiftUI
 
 
-var name = "Antony"
+var name = "Ant"
 let score = 257
 
 
 
 struct HomeView: View {
-
-    
-//    APICaller.shared.getUserProfile {[weak self] result in
-//        DispatchQueue.main.async {
-//            switch result{
-//                case .success(let model):
-//                    //self?.updateUI(with: model)
-//                    name = model.display_name
-//                    break
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                    //self?.failedToGetProfile()
-//            }
-//        }
-//    }
-    
+ 
     var body: some View {
             VStack {
                 HStack {
@@ -82,7 +67,27 @@ struct HomeView: View {
             )
             .navigationTitle("Home")
             .foregroundColor(.white)
+            .onAppear{
+                loadData()
+            }
     }
+
+    func loadData() {
+        APICaller.shared.getUserProfile {[weak self] result in
+        DispatchQueue.main.async {
+                switch result{
+                    case .success(let model):
+                        //self?.updateUI(with: model)
+                        name = model.display_name
+                        break
+                   case .failure(let error):
+                        print(error.localizedDescription)
+                        //self?.failedToGetProfile()
+                }
+            }
+        }
+    }
+
 }
     
 

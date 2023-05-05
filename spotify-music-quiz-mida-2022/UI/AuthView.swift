@@ -17,43 +17,14 @@ struct AuthView: View {
 
     @State private var webView = WKWebView()
     @State private var code: String? = nil
-    @State private var isLoading = false
     @State private var error: Error?
     
     var body: some View {
         VStack {
             if let code = code {
-                Text("Code: \(code)")
-                Button(action: {
-                                isLoading = true
-                                error = nil
-                                
-                                AuthManager.shared.exchangeCodeForToken(code: code) { result in
-                                    isLoading = false
-                                    
-                                    switch result {
-                                    case true:
-                                        self.completionHandler?(true)
-                                    case false:
-                                        self.error = error
-                                    }
-                                }
-                            }) {
-                                if isLoading {
-                                    ProgressView()
-                                } else {
-                                    Text("Exchange")
-                                }
-                            }
-                            .padding()
-                            
-                            if let error = error {
-                                Text("Error: \(error.localizedDescription)")
-                                    .foregroundColor(.red)
-                                    .padding()
-                            }
+                                loadAuth()
             } else {
-                Text("Suca")
+                
                 WebView(webView: $webView, url: authURL)
                     .onAppear {
                         webView.load(URLRequest(url: authURL))
@@ -72,7 +43,22 @@ struct AuthView: View {
             }
         }
     }
+
+    func loadAuth() {
+        error = nil
+        
+         AuthManager.shared.exchangeCodeForToken(code: code) { result in
+                        switch result {
+                            case true:
+                                self.completionHandler?(true)
+                            case false:
+                                self.error = error
+                                    }
+                    }
+        if let error = error { Text("Error: \(error.localizedDescription)") }
+    }
 }
+
 struct WebView: UIViewRepresentable {
     @Binding var webView: WKWebView
     let url: URL
