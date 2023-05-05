@@ -8,11 +8,12 @@
 import SwiftUI
 import WebKit
 
-public var completionHandler: ((Bool) ->Void)?
+
 
 
 struct AuthView: View {
     let authURL = AuthManager.shared.signInURL!
+    public var completionHandler: ((Bool) ->Void)?
 
     @State private var webView = WKWebView()
     @State private var code: String? = nil
@@ -32,7 +33,7 @@ struct AuthView: View {
                                     
                                     switch result {
                                     case true:
-                                        self.?completionHandler?(true) 
+                                        self.completionHandler?(true)
                                     case false:
                                         self.error = error
                                     }

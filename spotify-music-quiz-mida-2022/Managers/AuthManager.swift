@@ -85,7 +85,7 @@ class AuthManager {
         }
 
         guard shouldRefreshToken else {
-            completion?(true)
+            completion(true)
             return
         }
         guard let refreshToken = self.refreshToken else { return }
@@ -177,8 +177,9 @@ class AuthManager {
             
             do{
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                self?.cacheToken(result: result)
+                self.cacheToken(result: result)
                 completion(true)
+                print("TOKEN: \(result)")
             }catch{
                 print(error.localizedDescription)
                 completion(false)
