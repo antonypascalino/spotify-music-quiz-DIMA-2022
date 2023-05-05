@@ -22,7 +22,21 @@ struct AuthView: View {
     var body: some View {
         VStack {
             if let code = code {
-                                loadAuth()
+                Button {
+                    error = nil
+                    
+                     AuthManager.shared.exchangeCodeForToken(code: code) { result in
+                                    switch result {
+                                        case true:
+                                            self.completionHandler?(true)
+                                        case false:
+                                            self.error = error
+                                                }
+                                }
+                    if let error = error { Text("Error: \(error.localizedDescription)") }
+                } label: {
+                    Text("Exchange")
+                }
             } else {
                 
                 WebView(webView: $webView, url: authURL)
@@ -42,20 +56,6 @@ struct AuthView: View {
                     )
             }
         }
-    }
-
-    func loadAuth() {
-        error = nil
-        
-         AuthManager.shared.exchangeCodeForToken(code: code) { result in
-                        switch result {
-                            case true:
-                                self.completionHandler?(true)
-                            case false:
-                                self.error = error
-                                    }
-                    }
-        if let error = error { Text("Error: \(error.localizedDescription)") }
     }
 }
 
