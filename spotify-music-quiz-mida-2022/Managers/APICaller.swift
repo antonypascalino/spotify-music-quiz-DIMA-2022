@@ -100,6 +100,28 @@ final class APICaller{
         }
     }
     
+    public func getFollowedArtists(completion: @escaping ((Result<Artists,Error>) ->Void)){
+        let url = "\(Constants.baseAPIURL)/me/following?type=artist"
+        createRequest(with: URL(string: url), type: .GET) { baseRequest in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
+                guard let data = data, error == nil else{
+                    print("Failure to Get data")
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(Artists.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
     
     enum HTTPMethod: String{
         case GET

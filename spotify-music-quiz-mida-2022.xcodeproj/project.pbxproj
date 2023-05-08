@@ -13,6 +13,9 @@
 		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
 		0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BC29CB47D20073ACE0 /* Question.swift */; };
 		0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BE29CB651A0073ACE0 /* QuestionText.swift */; };
+		0A3B57672A090BCE00B49FBB /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B57662A090BCE00B49FBB /* Artist.swift */; };
+		0A3B57692A090EEC00B49FBB /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B57682A090EEC00B49FBB /* Artists.swift */; };
+		0A3B576B2A09106600B49FBB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B576A2A09106600B49FBB /* Item.swift */; };
 		0A4C49FA29CF6D9800204644 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C49F929CF6D9800204644 /* Answer.swift */; };
 		0A52972129D327FB0036915A /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A52972029D327FB0036915A /* AuthResponse.swift */; };
 		0A65599B2A0508E6007ACBFC /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65599A2A0508E6007ACBFC /* APICaller.swift */; };
@@ -72,6 +75,9 @@
 		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0A3908BC29CB47D20073ACE0 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		0A3908BE29CB651A0073ACE0 /* QuestionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionText.swift; sourceTree = "<group>"; };
+		0A3B57662A090BCE00B49FBB /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Artist.swift; path = ../../../../../Artist.swift; sourceTree = "<group>"; };
+		0A3B57682A090EEC00B49FBB /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Artists.swift; path = ../../../../../Artists.swift; sourceTree = "<group>"; };
+		0A3B576A2A09106600B49FBB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../../../../../Item.swift; sourceTree = "<group>"; };
 		0A4C49F929CF6D9800204644 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		0A52972029D327FB0036915A /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		0A65599A2A0508E6007ACBFC /* APICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
@@ -157,6 +163,9 @@
 				0A3908BA29CB0B640073ACE0 /* Friend.swift */,
 				0A3908BC29CB47D20073ACE0 /* Question.swift */,
 				0A52972029D327FB0036915A /* AuthResponse.swift */,
+				0A3B57662A090BCE00B49FBB /* Artist.swift */,
+				0A3B57682A090EEC00B49FBB /* Artists.swift */,
+				0A3B576A2A09106600B49FBB /* Item.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -428,6 +437,8 @@
 				0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */,
 				0A6559AD2A05099F007ACBFC /* APIImage.swift in Sources */,
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
+				0A3B57672A090BCE00B49FBB /* Artist.swift in Sources */,
+				0A3B57692A090EEC00B49FBB /* Artists.swift in Sources */,
 				0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */,
 				0A4C49FA29CF6D9800204644 /* Answer.swift in Sources */,
 				0A6559A92A050994007ACBFC /* LibraryAlbumResponse.swift in Sources */,
@@ -440,6 +451,7 @@
 				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
 				0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
+				0A3B576B2A09106600B49FBB /* Item.swift in Sources */,
 				0AD99A2A29C4E885000EAF39 /* GameView.swift in Sources */,
 				0A6559AB2A05099A007ACBFC /* Playlist.swift in Sources */,
 				0A65599B2A0508E6007ACBFC /* APICaller.swift in Sources */,
