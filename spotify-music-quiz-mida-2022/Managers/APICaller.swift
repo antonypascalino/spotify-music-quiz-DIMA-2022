@@ -55,6 +55,28 @@ final class APICaller{
             task.resume()
         }
     }
+
+    public func getArtistRelatedArtists( for artist: Artist , completion: @escaping ((Result<[Artist],Error>)->Void)){
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)}/related-artists"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(LibraryArtistResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
+                    completion(.success(result.items.compactMap({
+                        $0.artist // o il modo classico?
+                    })))
+                }catch{
+                    completion(.failure(error))
+                }
+            }
+            
+            task.resume()
+        }
+    }
     
     
     public func getCurrentUserPlaylist(completion: @escaping ((Result<[Playlist],Error>)->Void)) {
@@ -65,7 +87,7 @@ final class APICaller{
                     return
                 }
                 do{
-                    let result = try JSONDecoder().decode(LibraryPlaylistsResponse.self, from: data) // o Playlist
+                    let result = try JSONDecoder().decode(LibraryPlaylistsResponse.self, from: data) 
                     completion(.success(result.items))
                 }catch{
                     completion(.failure(error))
@@ -100,7 +122,7 @@ final class APICaller{
         }
     }
     
-    public func getFollowedArtists(completion: @escaping ((Result<Artists,Error>) ->Void)){
+    public func getFollowedArtists(completion: @escaping ((Result<LibraryArtistResponse,Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/following?type=artist"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
             let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
@@ -121,7 +143,98 @@ final class APICaller{
             task.resume()
         }
     }
+
+    public func getTopArtists(completion: @escaping ((Result<[Artist],Error>) ->Void)){
+        let url = "\(Constants.baseAPIURL)/me/top/artists"
+        createRequest(with: URL(string: url), type: .GET) { baseRequest in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
+                guard let data = data, error == nil else{
+                    print("Failure to Get data")
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(LibraryArtistResponse.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+
+    public func getTopTracks(completion: @escaping ((Result<[Track],Error>) ->Void)){
+        let url = "\(Constants.baseAPIURL)/me/top/tracks"
+        createRequest(with: URL(string: url), type: .GET) { baseRequest in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
+                guard let data = data, error == nil else{
+                    print("Failure to Get data")
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+
+    public func getTrack(for track: Track, completion: @escaping ((Result<Track,Error>) ->Void)){
+        let url = "\(Constants.baseAPIURL)/me/tracks/\(track.id)"
+        createRequest(with: URL(string: url), type: .GET) { baseRequest in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
+                guard let data = data, error == nil else{
+                    print("Failure to Get data")
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(Track.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
     
+
+    public func getRecommendation(genres: Set<String>,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
+        let seeds = genres.joined(separator: ",")
+        createRequest(
+            with: URL(string: "\(Constants.baseAPIURL)/recommendations?limit=40&seed_genres=\(seeds)"),
+            type: .GET)
+        { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    let result = try JSONDecoder().decode(RecommendationsResponse.self, from: data)
+                    completion(.success(result))
+                }
+                catch{
+                    print("Error Fetch Recommendations \(error.localizedDescription)")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+        
+    }
     
     enum HTTPMethod: String{
         case GET
