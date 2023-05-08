@@ -7,55 +7,64 @@
 
 import SwiftUI
 
-
-var name = ""
 let score = 257
 
 
-
 struct HomeView: View {
- 
+    
+    @State var userProfile : UserProfile?
+    @State var isLoading = false
+    @State private var error: Error?
+    @State private var profileImage: UIImage?
+    
     var body: some View {
         VStack {
-            HStack {
-                Text("Hi \(name)!")
-                    .font(TextStyle.homeTitle())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
-                    .foregroundColor(.white)
-                Spacer()
-                NavigationLink(destination: LeaderboardView()) {
-                    Image(systemName: "list.number")
-                        .font(.system(size: 25, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(width: 50, height: 50)
-                }
-                NavigationLink(destination: SettingsView()) {
-                    Image(systemName: "gearshape")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.white)
-                        .frame(width: 50, height: 50)
-                }
+            if isLoading {
+                ProgressView()
             }
-            Spacer()
-            Image("Profilo1")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 250.0, height: 250.0)
-                .clipShape(Circle())
-            Spacer()
-            Text("Your highscore:")
-                .font(TextStyle.scoreTitle())
-                .foregroundColor(Color("Green"))
-                .padding(.bottom)
-            Text(String(score))
-                .font(TextStyle.score())
-                .foregroundColor(Color("Green"))
-                .padding(.bottom, 40.0)
-            NavigationLink(destination: GameView()) {
-                Image("GreenPlay")
-                    .resizable()
-                    .frame(width: 100.0, height: 100.0)
+            else if let userProfile = userProfile {
+                HStack {
+                    Text("Hi \(userProfile.display_name)!")
+                        .font(TextStyle.homeTitle())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .foregroundColor(.white)
+                    Spacer()
+                    NavigationLink(destination: LeaderboardView()) {
+                        Image(systemName: "list.number")
+                            .font(.system(size: 25, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                    }
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                    }
+                }
+                Spacer()
+                if let image = profileImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 250.0, height: 250.0)
+                        .clipShape(Circle())
+                }
+                Spacer()
+                Text("Your highscore:")
+                    .font(TextStyle.scoreTitle())
+                    .foregroundColor(Color("Green"))
+                    .padding(.bottom)
+                Text(String(score))
+                    .font(TextStyle.score())
+                    .foregroundColor(Color("Green"))
+                    .padding(.bottom, 40.0)
+                NavigationLink(destination: GameView()) {
+                    Image("GreenPlay")
+                        .resizable()
+                        .frame(width: 100.0, height: 100.0)
+                }
             }
         }
         .background(
@@ -69,28 +78,51 @@ struct HomeView: View {
         .foregroundColor(.white)
         .onAppear{
             loadData()
+            fetchImage(url: URL(string: (userProfile?.images?.first!.url))!)
         }
     }
-
+            
+    
     func loadData() {
+        
+        isLoading = true
+        
         APICaller.shared.getUserProfile {result in
-        DispatchQueue.main.async {
-                switch result{
-                    case .success(let model):
-                        //self?.updateUI(with: model)
-                        name = model.display_name
-                        print("NOME: \(name)")
-                        print("NOME: \(model.display_name)")
-                        break
-                   case .failure(let error):
-                        print(error.localizedDescription)
-                        //self?.failedToGetProfile()
-                }
+            switch result{
+                case .success(let model):
+                    self.userProfile = model
+                    self.isLoading = false
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    self.isLoading = false
+                    //self?.failedToGetProfile()
             }
+            
         }
     }
-
+    func fetchImage(url: URL) {
+            isLoading = true
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                isLoading = false
+                
+                guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
+                    self.error = error ?? URLError(.unknown)
+                    return
+                }
+                
+                guard response.statusCode == 200 else {
+                    self.error = URLError(.badServerResponse)
+                    return
+                }
+                
+                self.profileImage = UIImage(data: data)
+            }.resume()
+        }
 }
+
+
     
 
 struct HomeView_Previews: PreviewProvider {

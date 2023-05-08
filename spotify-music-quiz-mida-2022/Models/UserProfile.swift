@@ -9,12 +9,13 @@ struct UserProfile: Codable{
     let external_urls: [String: String]
     let id: String
     let product: String
-    let images: [APIImage]
+    let images: [APIImage]?
 }
 
-/*
+
 struct User : Codable{
     let display_name:String
     let external_urls: [String: String]
     let id: String
-}*/
+}
+

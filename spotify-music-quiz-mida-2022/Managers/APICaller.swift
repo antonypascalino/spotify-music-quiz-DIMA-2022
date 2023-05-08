@@ -86,13 +86,13 @@ final class APICaller{
                     return
                 }
                 do{
-                    let result = try JSONDecoder().decode(from: data, options: .allowFragments)
+                    let result = try JSONDecoder().decode(UserProfile.self, from: data)
+//                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments )
                     print("RESULT: \(result) ")
                     completion(.success(result))
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
-                    print("\n DATA: \(data)")
                     completion(.failure(error))
                 }
             }
