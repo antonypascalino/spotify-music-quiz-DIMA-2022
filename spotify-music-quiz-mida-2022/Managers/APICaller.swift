@@ -77,6 +77,28 @@ final class APICaller{
             task.resume()
         }
     }
+
+    public func getArtistTopTracks( for artist: Artist , completion: @escaping ((Result<[Track],Error>)->Void)){
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)}/top-tracks"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
+                    completion(.success(result.items.compactMap({
+                        $0.artist // o il modo classico?
+                    })))
+                }catch{
+                    completion(.failure(error))
+                }
+            }
+            
+            task.resume()
+        }
+    }
     
     
     public func getCurrentUserPlaylist(completion: @escaping ((Result<[Playlist],Error>)->Void)) {
@@ -211,10 +233,10 @@ final class APICaller{
     }
     
 
-    public func getRecommendation(genres: Set<String>,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
-        let seeds = genres.joined(separator: ",")
+    public func getRecommendation(songs: Set<String>,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
+        let seeds = songs.joined(separator: ",")
         createRequest(
-            with: URL(string: "\(Constants.baseAPIURL)/recommendations?limit=40&seed_genres=\(seeds)"),
+            with: URL(string: "\(Constants.baseAPIURL)/recommendations?limit=3&seed_tracks=\(seeds)"),
             type: .GET)
         { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in

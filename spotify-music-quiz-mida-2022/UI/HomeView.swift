@@ -16,6 +16,8 @@ struct HomeView: View {
     @State var isLoading = false
     @State private var error: Error?
     @State private var profileImage: UIImage?
+
+    @StateObject private var gameManager = GameManager.shared
     
     var body: some View {
         VStack {
@@ -64,6 +66,8 @@ struct HomeView: View {
                     Image("GreenPlay")
                         .resizable()
                         .frame(width: 100.0, height: 100.0)
+                }.onAppear {
+                    gameManager.startGame()
                 }
             }
         }

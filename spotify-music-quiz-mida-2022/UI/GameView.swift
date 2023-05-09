@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct GameView: View {
-    
+
+    @StateObject private var gameManager = GameManager.shared
+    //gameManager.getNextQuestion()
+
     var question = Question(question: "Who sings the song Bohemian Rapsody?", rightAns: "The Queen", wrongAns1: "Lady Gaga", wrongAns2: "Rolling Stones", wrongAns3: "Post Malone")
     
     
@@ -26,7 +29,7 @@ struct GameView: View {
                 .padding(.leading)
 
             
-            Text(question.question)
+            Text(question.question) //gameManager.getNextQuestion()
                 .font(TextStyle.LoginTitle())
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                 .frame(width: 360.0, height: 60, alignment: .leading)
