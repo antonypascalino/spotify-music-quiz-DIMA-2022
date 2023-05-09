@@ -11,8 +11,7 @@ class GameManager: ObservableObject {
     private init() {}
     
     func startGame() { 
-         
-
+        
         questions = generateRandomQuestions()
 
         currentQuestionIndex = 0
@@ -139,7 +138,7 @@ func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> 
     let songsBySameArtist = apiCaller.getArtistTopTracks(artist: originalArtist)
     
     let filteredSongs = songsBySameArtist.filter { $0.release_date != originalYear } //potrebbe non funzionare: in questo caso prendere la prima canzone e tramite apiCaller.getTrack(id) ricavarci l'anno
-    
+
     
     if let randomSong = filteredSongs.randomElement() {
         return randomSong.releaseYear
