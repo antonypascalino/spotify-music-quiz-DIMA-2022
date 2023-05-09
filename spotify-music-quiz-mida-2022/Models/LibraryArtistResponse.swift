@@ -1,5 +1,5 @@
 import Foundation
 
-struct LibraryArtisResponse: Codable {
+struct LibraryArtistResponse: Codable {
     let items: [Artist]
 }

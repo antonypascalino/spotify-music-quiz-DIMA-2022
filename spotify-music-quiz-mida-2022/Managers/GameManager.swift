@@ -1,7 +1,10 @@
+import Foundation
+import SwiftUI
+
 class GameManager: ObservableObject {
     static let shared = GameManager()
     
-    @Published var questions: [Question] = []
+    @Published var questions: [Question2] = []
     @Published var currentQuestionIndex = 0
     @Published var correctAnswersCount = 0
     @State var userProfile : UserProfile?
@@ -12,7 +15,7 @@ class GameManager: ObservableObject {
     
     func startGame() { 
         
-        questions = generateRandomQuestions()
+        generateRandomQuestions()
 
         currentQuestionIndex = 0
         correctAnswersCount = 0
@@ -20,7 +23,7 @@ class GameManager: ObservableObject {
 
     }
     
-    func getNextQuestion() -> Question? {
+    func getNextQuestion() -> Question2? {
         guard currentQuestionIndex < questions.count else {
             return nil
         }
@@ -59,8 +62,8 @@ class GameManager: ObservableObject {
         questions.shuffle()
     }
 
-    private func generateArtistQuestions() -> [Question] {
-        var questions: [Question] = []
+    private func generateArtistQuestions() -> [Question2] {
+        var questions: [Question2] = []
 
         let topTracks = apiCaller.getTopTracks() //costrutto result in  da utilizzare?
 
@@ -70,7 +73,7 @@ class GameManager: ObservableObject {
 
             let similarArtists = apiCaller.getArtistRelatedArtists(artist: track.artist.first)
 
-            let question = Question(questionText: "Who sings the song \(track.name)?",
+            let question = Question2(questionText: "Who sings the song \(track.name)?",
                                     correctAnswer: correctAnswer,
                                     wrongAnswers: similarArtists)
             questions.append(question)
@@ -79,8 +82,8 @@ class GameManager: ObservableObject {
         return questions
     }
 
-    private func generateAlbumQuestions() -> [Question] {
-        var questions: [Question] = []
+    private func generateAlbumQuestions() -> [Question2] {
+        var questions: [Question2] = []
 
         let savedAlbums = apiCaller.getUserAlbums()
 
@@ -89,7 +92,7 @@ class GameManager: ObservableObject {
 
             let similarDates = generateRandomDates(originalYear: album.release_date, originalArtist : album.artists.first)
 
-            let question = Question(questionText: "What year was the album \(album.name) released?",
+            let question = Question2(questionText: "What year was the album \(album.name) released?",
                                     correctAnswer: correctAnswer,
                                     wrongAnswers: similarDates)
             questions.append(question)
@@ -98,21 +101,21 @@ class GameManager: ObservableObject {
         return questions
     }
 
-    private func generateReleaseYearQuestions() -> [Question] {
-        var questions: [Question] = []
+    private func generateReleaseYearQuestions() -> [Question2] {
+        var questions: [Question2] = []
 
         let topTracks = apiCaller.getTopTracks() 
 
         for track in topTracks {
             let correctAnswer = track.release_date
 
-            let question = Question(questionText: "What year was the song \(track.name) released?",
+            let question = Question2(questionText: "What year was the song \(track.name) released?",
                                     correctAnswer: correctAnswer,
                                     wrongAnswers: [])
             questions.append(question)
         }
 
-        return
+        return questions
     }
     
     func generateRandomDates(originalYear: String, originalArtist : Artist) -> [String] {
@@ -155,7 +158,7 @@ func getRandomYearInRange(startYear: Int, endYear: Int) -> Int {
 }
 
 
-struct Question {
+struct Question2 {
     let questionText: String
     let correctAnswer: String
     let wrongAnswers: [String]

@@ -89,7 +89,7 @@ final class APICaller{
                     print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
                     completion(.success(result.items.compactMap({
-                        $0.artist // o il modo classico?
+                        $0.artists // o il modo classico?
                     })))
                 }catch{
                     completion(.failure(error))
@@ -155,7 +155,7 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(Artists.self, from: data)
-                    completion(.success(result))
+                    completion(.success(result.artists))
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
@@ -177,7 +177,7 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(LibraryArtistResponse.self, from: data)
-                    completion(.success(result))
+                    completion(.success(result.items))
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
@@ -199,7 +199,7 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data)
-                    completion(.success(result))
+                    completion(.success(result.items))
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
