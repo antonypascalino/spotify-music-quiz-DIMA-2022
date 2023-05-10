@@ -43,7 +43,7 @@ final class APICaller{
                     return
                 }
                 do{
-                    print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                   // print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(LibraryAlbumResponse.self, from: data) //o Album
                     completion(.success(result.items.compactMap({
                         $0.album
@@ -59,16 +59,16 @@ final class APICaller{
 
     //Da verificare altrimenti cambiare con le cose commentate in completion
     public func getArtistRelatedArtists( for artist: Artist , completion: @escaping ((Result<[Artist],Error>)->Void)){
-        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)}/related-artists"), type: .GET) { request in
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/related-artists"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else{
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
-                    print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
-                    let result = try JSONDecoder().decode(LibraryArtistResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
-                    completion(.success(result.items)) //LibraryArtistResponse è corretto con items o ha senso result.artists
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(RelatedArtistResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
+                    completion(.success(result.artists)) //LibraryArtistResponse è corretto con items o ha senso result.artists
                 }catch{
                     completion(.failure(error))
                 }
@@ -109,9 +109,11 @@ final class APICaller{
                     return
                 }
                 do{
+                   // print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(LibraryPlaylistsResponse.self, from: data) 
                     completion(.success(result.items))
                 }catch{
+                    print("\nError Playlist")
                     completion(.failure(error))
                 }
             }
@@ -178,12 +180,13 @@ final class APICaller{
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
+
                 do{
                     let result = try JSONDecoder().decode(LibraryArtistResponse.self, from: data)
                     completion(.success(result.items))
                 }
                 catch {
-                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    print("Error Fetch UserProfile, Top Artists \(error.localizedDescription)")
                     completion(.failure(error))
                 }
             }
@@ -195,18 +198,19 @@ final class APICaller{
     public func getTopTracks(completion: @escaping ((Result<[Track],Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/top/tracks"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
-            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse , error in
                 guard let data = data, error == nil else{
                     print("Failure to Get data")
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data)
                     completion(.success(result.items))
                 }
                 catch {
-                    print("Error Fetch UserProfile \(error.localizedDescription)")
+                    print("Error Fetch UserProfile, Top Tracks \(error.localizedDescription)")
                     completion(.failure(error))
                 }
             }

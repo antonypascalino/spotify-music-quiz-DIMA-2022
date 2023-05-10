@@ -12,12 +12,12 @@ struct GameView: View {
     @StateObject private var gameManager = GameManager.shared
     //gameManager.getNextQuestion()
 
-    var question = Question(question: "Who sings the song Bohemian Rapsody?", rightAns: "The Queen", wrongAns1: "Lady Gaga", wrongAns2: "Rolling Stones", wrongAns3: "Post Malone")
+    
     
     
     
     var body: some View {
-        
+        var question = Question(question: gameManager.getNextQuestion()?.questionText ?? <#default value#>, rightAns: gameManager.getNextQuestion()?.correctAnswer ?? <#default value#>, wrongAns1: "Lady Gaga", wrongAns2: "Rolling Stones", wrongAns3: "Post Malone")
         let score = 23
         
         VStack(alignment: .leading, spacing: 30) {
@@ -29,7 +29,7 @@ struct GameView: View {
                 .padding(.leading)
 
             
-            Text((gameManager.getNextQuestion()?.questionText)!) 
+            Text("Ciao")
                 .font(TextStyle.LoginTitle())
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                 .frame(width: 360.0, height: 60, alignment: .leading)
