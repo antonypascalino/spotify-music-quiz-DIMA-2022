@@ -65,13 +65,37 @@ class GameManager: ObservableObject {
     private func generateArtistQuestions() -> [Question2] {
         var questions: [Question2] = []
 
-        let topTracks = apiCaller.getTopTracks() //costrutto result in  da utilizzare?
+        var topTracks : [Track] = [] 
+        
+        apiCaller.getTopTracks {result in
+            switch result{
+                case .success(let model):
+                    self.topTracks = model
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    //self?.failedToGetProfile()
+            }
+            
+        }
+
 
         for track in topTracks {
 
             let correctAnswer = track.artists.first
 
-            let similarArtists = apiCaller.getArtistRelatedArtists(artist: track.artist.first)
+            var similarArtists : [Artist] = [] 
+        
+                apiCaller.getArtistRelatedArtists(for : correctAnswer) {result in
+                    switch result{
+                        case .success(let model):
+                            self.similarArtists = model
+                            break
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                            //self?.failedToGetProfile()
+                    }  
+                }
 
             let question = Question2(questionText: "Who sings the song \(track.name)?",
                                     correctAnswer: correctAnswer,
@@ -85,7 +109,20 @@ class GameManager: ObservableObject {
     private func generateAlbumQuestions() -> [Question2] {
         var questions: [Question2] = []
 
-        let savedAlbums = apiCaller.getUserAlbums()
+        var savedAlbums : [Album] = []
+
+         apiCaller.getUserAlbums {result in
+            switch result{
+                case .success(let model):
+                    self.savedAlbums = model
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    //self?.failedToGetProfile()
+            }
+            
+        }
+
 
         for album in savedAlbums {
             let correctAnswer = album.release_date
@@ -104,7 +141,19 @@ class GameManager: ObservableObject {
     private func generateReleaseYearQuestions() -> [Question2] {
         var questions: [Question2] = []
 
-        let topTracks = apiCaller.getTopTracks() 
+         var topTracks : [Track] = [] 
+        
+        apiCaller.getTopTracks {result in
+            switch result{
+                case .success(let model):
+                    self.topTracks = model
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    //self?.failedToGetProfile()
+            }
+            
+        }
 
         for track in topTracks {
             let correctAnswer = track.release_date
@@ -138,7 +187,19 @@ class GameManager: ObservableObject {
 
 func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> Int {
     
-    let songsBySameArtist = apiCaller.getArtistTopTracks(artist: originalArtist)
+    var songsBySameArtist : [Track] = [] 
+        
+        apiCaller.getArtistTopTracks(for : originalArtist) {result in
+            switch result{
+                case .success(let model):
+                    self.songsBySameArtist = model
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    //self?.failedToGetProfile()
+            }
+            
+        }
     
     let filteredSongs = songsBySameArtist.filter { $0.release_date != originalYear } //potrebbe non funzionare: in questo caso prendere la prima canzone e tramite apiCaller.getTrack(id) ricavarci l'anno
 
