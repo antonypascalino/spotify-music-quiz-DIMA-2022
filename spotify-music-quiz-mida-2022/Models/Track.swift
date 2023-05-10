@@ -5,5 +5,5 @@ struct Track: Codable {
     let id : String
     let release_date : String
     var album : Album?
-    let artists : [Artists]
+    let artists : [Artist]
 }

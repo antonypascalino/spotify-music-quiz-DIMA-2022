@@ -70,7 +70,7 @@ class GameManager: ObservableObject {
         apiCaller.getTopTracks {result in
             switch result{
                 case .success(let model):
-                    self.topTracks = model
+                    topTracks = model
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -82,24 +82,29 @@ class GameManager: ObservableObject {
 
         for track in topTracks {
 
-            let correctAnswer = track.artists.first
+            let correctAnswer = track.artists.first!.name
 
-            var similarArtists : [Artist] = [] 
+            var similarArtists : [Artist] = []
+            var similarArtistsNames : [String] = []
         
-                apiCaller.getArtistRelatedArtists(for : correctAnswer) {result in
+            apiCaller.getArtistRelatedArtists(for : track.artists.first!) {result in
                     switch result{
                         case .success(let model):
-                            self.similarArtists = model
+                            similarArtists = model
                             break
                         case .failure(let error):
                             print(error.localizedDescription)
                             //self?.failedToGetProfile()
                     }  
                 }
+            for artist in similarArtists {
+                similarArtistsNames.append(artist.name)
+            }
+            
 
             let question = Question2(questionText: "Who sings the song \(track.name)?",
                                     correctAnswer: correctAnswer,
-                                    wrongAnswers: similarArtists)
+                                    wrongAnswers: similarArtistsNames)
             questions.append(question)
         }
 
@@ -114,7 +119,7 @@ class GameManager: ObservableObject {
          apiCaller.getUserAlbums {result in
             switch result{
                 case .success(let model):
-                    self.savedAlbums = model
+                    savedAlbums = model
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -127,7 +132,7 @@ class GameManager: ObservableObject {
         for album in savedAlbums {
             let correctAnswer = album.release_date
 
-            let similarDates = generateRandomDates(originalYear: album.release_date, originalArtist : album.artists.first)
+            let similarDates = generateRandomDates(originalYear: album.release_date, originalArtist : album.artists.first!)
 
             let question = Question2(questionText: "What year was the album \(album.name) released?",
                                     correctAnswer: correctAnswer,
@@ -146,7 +151,7 @@ class GameManager: ObservableObject {
         apiCaller.getTopTracks {result in
             switch result{
                 case .success(let model):
-                    self.topTracks = model
+                    topTracks = model
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -175,7 +180,7 @@ class GameManager: ObservableObject {
     }
     
     let randomYearFromSameArtist = getRandomYearFromSameArtist(originalYear: originalYearInt, originalArtist : originalArtist)
-    randomYears.append(String(randomYearFromSameArtist))
+    randomYears.append(randomYearFromSameArtist)
     
     let randomYear2 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10)
     let randomYear3 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10)
@@ -185,14 +190,14 @@ class GameManager: ObservableObject {
     return randomYears
 }
 
-func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> Int {
+func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> String {
     
     var songsBySameArtist : [Track] = [] 
         
         apiCaller.getArtistTopTracks(for : originalArtist) {result in
             switch result{
                 case .success(let model):
-                    self.songsBySameArtist = model
+                    songsBySameArtist = model
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -201,14 +206,14 @@ func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> 
             
         }
     
-    let filteredSongs = songsBySameArtist.filter { $0.release_date != originalYear } //potrebbe non funzionare: in questo caso prendere la prima canzone e tramite apiCaller.getTrack(id) ricavarci l'anno
+    let filteredSongs = songsBySameArtist.filter { ($0.release_date).components(separatedBy: "-").first != String(originalYear) } //potrebbe non funzionare: in questo caso prendere la prima canzone e tramite apiCaller.getTrack(id) ricavarci l'anno
 
     
     if let randomSong = filteredSongs.randomElement() {
-        return randomSong.releaseYear
+        return randomSong.release_date.components(separatedBy: "-").first!
     }
     
-    return getRandomYearInRange(startYear: originalYear - 10, endYear: originalYear + 10)
+    return String(getRandomYearInRange(startYear: originalYear - 10, endYear: originalYear + 10))
 }
 
 func getRandomYearInRange(startYear: Int, endYear: Int) -> Int {
@@ -220,7 +225,7 @@ func getRandomYearInRange(startYear: Int, endYear: Int) -> Int {
 
 
 struct Question2 {
-    let questionText: String
+    let questionText: String?
     let correctAnswer: String
     let wrongAnswers: [String]
     

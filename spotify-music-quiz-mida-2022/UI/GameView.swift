@@ -29,7 +29,7 @@ struct GameView: View {
                 .padding(.leading)
 
             
-            Text(gameManager.getNextQuestion()) 
+            Text((gameManager.getNextQuestion()?.questionText)!) 
                 .font(TextStyle.LoginTitle())
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                 .frame(width: 360.0, height: 60, alignment: .leading)

@@ -82,7 +82,6 @@ struct HomeView: View {
         .foregroundColor(.white)
         .onAppear{
             loadData()
-            fetchImage(url: URL(string: (userProfile?.images?.first!.url))!)
         }
     }
             
