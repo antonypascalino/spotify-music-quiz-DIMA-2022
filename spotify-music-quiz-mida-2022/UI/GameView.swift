@@ -9,15 +9,17 @@ import SwiftUI
 
 struct GameView: View {
 
+    @StateObject private var model = GameViewModel()
+    
     @StateObject private var gameManager = GameManager.shared
-    //gameManager.getNextQuestion()
+    @State var userProfile : UserProfile?
+    @State var isLoading = false
+    @State private var error: Error?
 
     
     
-    
-    
     var body: some View {
-        var question = Question(question: gameManager.getNextQuestion()?.questionText ?? <#default value#>, rightAns: gameManager.getNextQuestion()?.correctAnswer ?? <#default value#>, wrongAns1: "Lady Gaga", wrongAns2: "Rolling Stones", wrongAns3: "Post Malone")
+        var question = model.getNextQuestion()
         let score = 23
         
         VStack(alignment: .leading, spacing: 30) {
@@ -37,11 +39,12 @@ struct GameView: View {
                 .foregroundColor(.white)
                 .padding([.leading, .bottom])
 
-            
-            Answer(question: question, index: 0)
-            Answer(question: question, index: 1)
-            Answer(question: question, index: 2)
-            Answer(question: question, index: 3)
+            let answers = question.getAnswers()
+            Answer(answer: answers[0], isCorrect: question.isCorrect(answers[0]))
+            Answer(answer: answers[1], isCorrect: question.isCorrect(answers[1]))
+            Answer(answer: answers[2], isCorrect: question.isCorrect(answers[2]))
+            Answer(answer: answers[3], isCorrect: question.isCorrect(answers[3]))
+
             
             HStack {
                 Spacer()
@@ -53,10 +56,15 @@ struct GameView: View {
            GameControls()
         }
         .background(Color("Black"))
-        
-        
+        .navigationBarHidden(true)
+    }
+    
+    init() {
+        model.startGame()
     }
 }
+
+
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {

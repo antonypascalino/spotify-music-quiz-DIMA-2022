@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55DF2A0BA27F0067504D /* TestView.swift */; };
 		0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */; };
+		0A1A55E52A0BFA650067504D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E42A0BFA650067504D /* GameViewModel.swift */; };
 		0A24F24329D1FA1000841B43 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24F24229D1FA1000841B43 /* AuthManager.swift */; };
 		0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24F24629D1FB7200841B43 /* AuthView.swift */; };
 		0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */; };
@@ -78,6 +79,7 @@
 /* Begin PBXFileReference section */
 		0A1A55DF2A0BA27F0067504D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedArtistResponse.swift; sourceTree = "<group>"; };
+		0A1A55E42A0BFA650067504D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		0A24F24229D1FA1000841B43 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0A24F24629D1FB7200841B43 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1A55E32A0BFA350067504D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0A1A55E42A0BFA650067504D /* GameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0A24F24129D1F9F500841B43 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +223,7 @@
 		0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */ = {
 			isa = PBXGroup;
 			children = (
+				0A1A55E32A0BFA350067504D /* ViewModel */,
 				0A24F24129D1F9F500841B43 /* Managers */,
 				0AD8DC9C29BA2AEB009EE067 /* Info.plist */,
 				0A3908B929CB09480073ACE0 /* Models */,
@@ -476,6 +487,7 @@
 				0AABD71929CE343800D819BB /* GameControls.swift in Sources */,
 				0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */,
 				0AD17C4F2950AC3B003FEE73 /* HomeView.swift in Sources */,
+				0A1A55E52A0BFA650067504D /* GameViewModel.swift in Sources */,
 				0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
 				0A3B576B2A09106600B49FBB /* Item.swift in Sources */,

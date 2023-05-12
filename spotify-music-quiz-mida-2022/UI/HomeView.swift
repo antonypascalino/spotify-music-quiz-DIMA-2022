@@ -16,8 +16,6 @@ struct HomeView: View {
     @State var isLoading = false
     @State private var error: Error?
     @State private var profileImage: UIImage?
-
-    @StateObject private var gameManager = GameManager.shared
     
     var body: some View {
         VStack {
@@ -66,8 +64,6 @@ struct HomeView: View {
                     Image("GreenPlay")
                         .resizable()
                         .frame(width: 100.0, height: 100.0)
-                }.onAppear {
-                    gameManager.startGame()
                 }
             }
         }
@@ -79,12 +75,34 @@ struct HomeView: View {
             
         )
         .navigationTitle("Home")
+        .navigationBarHidden(true)
         .foregroundColor(.white)
         .onAppear{
             loadData()
         }
     }
             
+    
+    
+//    func fetchImage(url: URL) {
+//            isLoading = true
+//
+//            URLSession.shared.dataTask(with: url) { data, response, error in
+//                isLoading = false
+//
+//                guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
+//                    self.error = error ?? URLError(.unknown)
+//                    return
+//                }
+//
+//                guard response.statusCode == 200 else {
+//                    self.error = URLError(.badServerResponse)
+//                    return
+//                }
+//
+//                self.profileImage = UIImage(data: data)
+//            }.resume()
+//        }
     
     func loadData() {
         
@@ -104,25 +122,6 @@ struct HomeView: View {
             
         }
     }
-    func fetchImage(url: URL) {
-            isLoading = true
-            
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                isLoading = false
-                
-                guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
-                    self.error = error ?? URLError(.unknown)
-                    return
-                }
-                
-                guard response.statusCode == 200 else {
-                    self.error = URLError(.badServerResponse)
-                    return
-                }
-                
-                self.profileImage = UIImage(data: data)
-            }.resume()
-        }
 }
 
 

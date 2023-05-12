@@ -7,57 +7,41 @@
 
 import SwiftUI
 
-var question = Question(question: "Who sings the song Bohemian Rapsody?", rightAns: "The Queen", wrongAns1: "Lady Gaga", wrongAns2: "Rolling Stones", wrongAns3: "Post Malone")
 
 struct Answer: View {
     
-    var question : Question
-    var index: Int
+    var answer : String
+    var isCorrect : Bool
+    @State private var isSelected = false
     
     var body: some View {
-    
-//        VStack {
-//            Button(
-//                action: {
-//
-//                },
-//                label: {
-//                    HStack {
-//                        Image(systemName: "circle.fill")
-//                            .foregroundColor(Color("Green"))
-//                            .padding(.leading)
-//                        Text(question.answers[index])
-//                            .font(TextStyle.answer())
-//                            .foregroundColor(Color("Green"))
-//                    }
-//                })
-//            .frame(width: 300.0, height: 60.0, alignment: .leading)
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 100)
-//                    .stroke(Color("Green"), lineWidth: 4)
-//        )
-            Button(
-                action: {
-                    
-                },
-                label: {
-                    HStack {
-                        Image(systemName: "circle.fill")
-                            .foregroundColor(Color("Green"))
-                            .padding(.leading)
-                        Text(question.answers[index])
-                            .font(TextStyle.answer())
-                            .foregroundColor(Color(.white))
-                    }
-                })
-            .frame(width: 300.0, height: 60.0, alignment: .leading)
+        Button(
+            action: {
+                
+            },
+            label: {
+                HStack {
+                    Image(systemName: "circle.fill")
+                        .foregroundColor(Color(isSelected ? "Black" : "Green"))
+                        .padding(.leading)
+                    Text(answer)
+                        .font(TextStyle.answer())
+                        .foregroundColor(Color(isSelected ? "Black" : "White"))
+                }
+            })
+        .frame(width: 300.0, height: 60.0, alignment: .leading)
+        .background(Color(isSelected ? (isCorrect ? "Green" : "Red") : "Black"))
+        .cornerRadius(100)
+        .onTapGesture {
+            isSelected = true
         }
+    }
 }
 
 struct Answer_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        Answer(question: question, index: 0)
+        Answer(answer: "Freddy Mercury", isCorrect: true)
             .background(Color("Black"))
     }
 }

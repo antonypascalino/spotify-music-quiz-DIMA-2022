@@ -18,7 +18,7 @@ class GameManager: ObservableObject {
     
     private let apiCaller = APICaller.shared
     
-    private init() {}
+    init() {}
     
     func startGame() {
          
@@ -262,6 +262,15 @@ struct Question2 {
     
     func isCorrect(_ answer: String) -> Bool {
         return answer == correctAnswer
+    }
+    
+    func getAnswers() -> [String] {
+        var answers : [String] = []
+        answers.append(correctAnswer)
+        answers.append(contentsOf: wrongAnswers)
+        answers.shuffle()
+        
+        return answers
     }
 }
 
