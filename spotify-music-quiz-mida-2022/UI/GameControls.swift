@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameControls: View {
+    
+    @EnvironmentObject var gameManager : GameManager
+    
     var body: some View {
         HStack {
             Spacer()
@@ -26,14 +29,21 @@ struct GameControls: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 25.0)
                     .font(.system(size: 80, weight: .ultraLight))
+                    .opacity(!gameManager.answerSelected ? 50 : 100)
             })
+            .disabled(!gameManager.answerSelected)
             
             
-            NavigationLink(destination: GameView()) {
+            
+            Button(action: {
+                gameManager.setNextQuestion()
+            }, label: {
                 Image(systemName: "forward.end.fill")
-                    .foregroundColor(.white)
-                    .font(.system(size: 45, weight: .ultraLight))
-            }
+                .foregroundColor(.white)
+                .font(.system(size: 45, weight: .ultraLight))
+                .opacity(!gameManager.answerSelected ? 50 : 100)
+            })
+            .disabled(!gameManager.answerSelected)
             Spacer()
         }
     }
@@ -43,5 +53,6 @@ struct GameControls_Previews: PreviewProvider {
     static var previews: some View {
         GameControls()
             .background(Color("Black"))
+            .environmentObject(GameManager())
     }
 }

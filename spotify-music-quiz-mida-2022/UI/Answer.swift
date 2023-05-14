@@ -13,6 +13,7 @@ struct Answer: View {
     var answer : String
     var isCorrect : Bool
     @State private var isSelected = false
+    @EnvironmentObject var gameManager : GameManager
     
     var body: some View {
         Button(
@@ -30,10 +31,14 @@ struct Answer: View {
                 }
             })
         .frame(width: 300.0, height: 60.0, alignment: .leading)
-        .background(Color(isSelected ? (isCorrect ? "Green" : "Red") : "Black"))
+        .background(Color(gameManager.answerSelected ? (isCorrect ? "Green" : "Red") : "Black"))
         .cornerRadius(100)
         .onTapGesture {
-            isSelected = true
+            print("Button pressed")
+            if !gameManager.answerSelected {
+                isSelected = true
+                gameManager.selectAnswer(isCorrect)
+            }
         }
     }
 }
@@ -43,5 +48,6 @@ struct Answer_Previews: PreviewProvider {
     static var previews: some View {
         Answer(answer: "Freddy Mercury", isCorrect: true)
             .background(Color("Black"))
+            .environmentObject(GameManager())
     }
 }

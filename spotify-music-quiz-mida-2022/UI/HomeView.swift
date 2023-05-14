@@ -18,67 +18,69 @@ struct HomeView: View {
     @State private var profileImage: UIImage?
     
     var body: some View {
-        VStack {
-            if isLoading {
-                ProgressView()
-            }
-            else if let userProfile = userProfile {
-                HStack {
-                    Text("Hi \(userProfile.display_name)!")
-                        .font(TextStyle.homeTitle())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
-                        .foregroundColor(.white)
+        NavigationView {
+            VStack {
+                if isLoading {
+                    ProgressView()
+                }
+                else if let userProfile = userProfile {
+                    HStack {
+                        Text("Hi \(userProfile.display_name)!")
+                            .font(TextStyle.homeTitle())
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                            .foregroundColor(.white)
+                        Spacer()
+                        NavigationLink(destination: LeaderboardView()) {
+                            Image(systemName: "list.number")
+                                .font(.system(size: 25, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                        }
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "gearshape")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                        }
+                    }
                     Spacer()
-                    NavigationLink(destination: LeaderboardView()) {
-                        Image(systemName: "list.number")
-                            .font(.system(size: 25, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 50, height: 50)
+                    if let image = profileImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 250.0, height: 250.0)
+                            .clipShape(Circle())
                     }
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 50, height: 50)
+                    Spacer()
+                    Text("Your highscore:")
+                        .font(TextStyle.scoreTitle())
+                        .foregroundColor(Color("Green"))
+                        .padding(.bottom)
+                    Text(String(score))
+                        .font(TextStyle.score())
+                        .foregroundColor(Color("Green"))
+                        .padding(.bottom, 40.0)
+                    NavigationLink(destination: GameView()) {
+                        Image("GreenPlay")
+                            .resizable()
+                            .frame(width: 100.0, height: 100.0)
                     }
-                }
-                Spacer()
-                if let image = profileImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 250.0, height: 250.0)
-                        .clipShape(Circle())
-                }
-                Spacer()
-                Text("Your highscore:")
-                    .font(TextStyle.scoreTitle())
-                    .foregroundColor(Color("Green"))
-                    .padding(.bottom)
-                Text(String(score))
-                    .font(TextStyle.score())
-                    .foregroundColor(Color("Green"))
-                    .padding(.bottom, 40.0)
-                NavigationLink(destination: GameView()) {
-                    Image("GreenPlay")
-                        .resizable()
-                        .frame(width: 100.0, height: 100.0)
                 }
             }
+            .background(
+                RadialGradient(gradient: Gradient(colors: [Color("Green"), Color("Black")]),
+                               center: UnitPoint(x: 0.50, y: 0.35),
+                               startRadius: 20,
+                               endRadius: 280)
+                
+            )
+            .navigationTitle("Home")
+            .navigationBarHidden(true)
+            .foregroundColor(.white)
+            .onAppear{
+                loadData()
         }
-        .background(
-            RadialGradient(gradient: Gradient(colors: [Color("Green"), Color("Black")]),
-                           center: UnitPoint(x: 0.50, y: 0.35),
-                           startRadius: 20,
-                           endRadius: 280)
-            
-        )
-        .navigationTitle("Home")
-        .navigationBarHidden(true)
-        .foregroundColor(.white)
-        .onAppear{
-            loadData()
         }
     }
             

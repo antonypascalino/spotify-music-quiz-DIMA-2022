@@ -12,9 +12,9 @@ final class GameViewModel : ObservableObject {
     
 //    @Published private(set) var nextQuestion : Question2()
     
-    func startGame() {
-        GameManager().startGame()
-    }
+//    func startGame() {
+//        GameManager()  )
+//    }
     
     func getNextQuestion() -> Question2 {
         return GameManager().getNextQuestion()!

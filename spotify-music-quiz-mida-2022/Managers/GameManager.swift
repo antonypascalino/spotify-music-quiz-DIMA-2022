@@ -4,9 +4,12 @@ import SwiftUI
 class GameManager: ObservableObject {
     static let shared = GameManager()
     
-    @Published var questions: [Question2] = []
-    @Published var currentQuestionIndex = 0
-    @Published var correctAnswersCount = 0
+    private(set) var questions: [Question2] = []
+    private(set) var currentQuestion : Question2?
+    @Published private(set) var currentQuestionIndex = 0
+    @Published private(set) var correctAnswersCount = 0
+    @Published private(set) var answerSelected = false
+    
     @State var userProfile : UserProfile?
     var topTracks : [Track] = []
     var artists : [Artist] = []
@@ -18,33 +21,52 @@ class GameManager: ObservableObject {
     
     private let apiCaller = APICaller.shared
     
-    init() {}
+    init() {
+        startGame()
+    }
+    
     
     func startGame() {
-         
         questions = generateRandomQuestions()
         //questions.shuffle()
         currentQuestionIndex = 0
         correctAnswersCount = 0
+        currentQuestion = questions[currentQuestionIndex]
+    }
+    
+    func setNextQuestion() {
+        answerSelected = false
         
+        // Only setting next question if index is smaller than the number of questions set
+        if currentQuestionIndex < questions.count {
+            currentQuestionIndex += 1
+            currentQuestion = questions[currentQuestionIndex]
+        } else {
+            //Generate more questions
+        }
         
     }
     
     func getNextQuestion() -> Question2? {
-        print("QuestionCount: \(questions.count)")
-        guard currentQuestionIndex < questions.count else {
-            return nil
-        }
-        let question = questions[currentQuestionIndex]
-        currentQuestionIndex += 1
-        print("\nReturnQuestion: \(question)")
-        print("\nCurrent: \(currentQuestionIndex)")
-        return question
+//        print("QuestionCount: \(questions.count)")
+//        guard currentQuestionIndex < questions.count else {
+//            return nil
+//        }
+//        let question = questions[currentQuestionIndex]
+//        currentQuestionIndex += 1
+//        print("\nReturnQuestion: \(question)")
+//        print("\nCurrent: \(currentQuestionIndex)")
+//        return question
+        return currentQuestion
     }
     
-    func handleAnswer(_ answer: String) {
-        let currentQuestion = questions[currentQuestionIndex - 1]
-        if currentQuestion.isCorrect(answer) {
+    
+    
+    func selectAnswer(_ isCorrect : Bool) {
+        answerSelected = true
+        
+        let currentQuestion = questions[currentQuestionIndex]
+        if isCorrect {
             correctAnswersCount += 1
         }
     }
