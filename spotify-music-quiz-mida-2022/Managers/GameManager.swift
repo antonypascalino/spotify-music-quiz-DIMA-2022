@@ -278,6 +278,7 @@ class GameManager: ObservableObject {
 }
 
 struct Question2 {
+    let id = UUID()
     let questionText: String?
     let correctAnswer: String
     let wrongAnswers: [String]

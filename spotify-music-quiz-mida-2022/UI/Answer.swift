@@ -23,18 +23,18 @@ struct Answer: View {
             label: {
                 HStack {
                     Image(systemName: "circle.fill")
-                        .foregroundColor(Color(isSelected ? "Black" : "Green"))
+                        .foregroundColor(Color(isSelected || (gameManager.answerSelected && isCorrect) ? "Black" : "Green"))
                         .padding(.leading)
                     Text(answer)
                         .font(TextStyle.answer())
-                        .foregroundColor(Color(isSelected ? "Black" : "White"))
+                        .foregroundColor(Color(isSelected || (gameManager.answerSelected && isCorrect) ? "Black" : "White"))
                 }
             })
         .frame(width: 300.0, height: 60.0, alignment: .leading)
-        .background(Color(gameManager.answerSelected ? (isCorrect ? "Green" : "Red") : "Black"))
+        .background(Color(isSelected || (!isSelected && isCorrect && gameManager.answerSelected) ? (isCorrect ? "Green" : "Red") : "Black"))
         .cornerRadius(100)
         .onTapGesture {
-            print("Button pressed")
+            print("\(answer) pressed")
             if !gameManager.answerSelected {
                 isSelected = true
                 gameManager.selectAnswer(isCorrect)

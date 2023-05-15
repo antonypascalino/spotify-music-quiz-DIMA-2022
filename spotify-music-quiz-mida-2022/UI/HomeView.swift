@@ -73,38 +73,15 @@ struct HomeView: View {
                                center: UnitPoint(x: 0.50, y: 0.35),
                                startRadius: 20,
                                endRadius: 280)
-                
             )
-            .navigationTitle("Home")
-            .navigationBarHidden(true)
             .foregroundColor(.white)
             .onAppear{
                 loadData()
+            }
         }
-        }
+        .navigationBarHidden(true)
     }
             
-    
-    
-//    func fetchImage(url: URL) {
-//            isLoading = true
-//
-//            URLSession.shared.dataTask(with: url) { data, response, error in
-//                isLoading = false
-//
-//                guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
-//                    self.error = error ?? URLError(.unknown)
-//                    return
-//                }
-//
-//                guard response.statusCode == 200 else {
-//                    self.error = URLError(.badServerResponse)
-//                    return
-//                }
-//
-//                self.profileImage = UIImage(data: data)
-//            }.resume()
-//        }
     
     func loadData() {
         

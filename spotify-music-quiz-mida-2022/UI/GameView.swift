@@ -13,9 +13,6 @@ struct GameView: View {
 
     var body: some View {
         
-        var question = gameManager.getNextQuestion()
-        let answers = question?.getAnswers()
-        
         VStack(alignment: .leading, spacing: 30) {
             
             Spacer()
@@ -25,7 +22,7 @@ struct GameView: View {
                 .padding(.leading)
 
             
-            Text((question?.questionText)!)
+            Text((gameManager.getNextQuestion()?.questionText)!)
                 .font(TextStyle.LoginTitle())
                 .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
                 .frame(width: 360.0, height: 60, alignment: .leading)
@@ -34,14 +31,18 @@ struct GameView: View {
                 .padding([.leading, .bottom])
 
            
-            Answer(answer: answers![0], isCorrect: question!.isCorrect(answers![0]))
-                .environmentObject(gameManager)
-            Answer(answer: answers![1], isCorrect: question!.isCorrect(answers![1]))
-                .environmentObject(gameManager)
-            Answer(answer: answers![2], isCorrect: question!.isCorrect(answers![2]))
-                .environmentObject(gameManager)
-            Answer(answer: answers![3], isCorrect: question!.isCorrect(answers![3]))
-                .environmentObject(gameManager)
+            ForEach(gameManager.getNextQuestion()!.getAnswers(), id: \.self) { answer in
+                Answer(answer: answer, isCorrect: gameManager.getNextQuestion()!.isCorrect(answer))
+                    .environmentObject(gameManager)
+            }
+                
+//                Answer(answer: answers![1], isCorrect: question!.isCorrect(answers![1]))
+//                    .environmentObject(gameManager)
+//                Answer(answer: answers![2], isCorrect: question!.isCorrect(answers![2]))
+//                    .environmentObject(gameManager)
+//                Answer(answer: answers![3], isCorrect: question!.isCorrect(answers![3]))
+//                    .environmentObject(gameManager)
+            
 
             
             HStack {

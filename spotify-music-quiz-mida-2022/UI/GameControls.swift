@@ -29,9 +29,9 @@ struct GameControls: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 25.0)
                     .font(.system(size: 80, weight: .ultraLight))
-                    .opacity(!gameManager.answerSelected ? 50 : 100)
             })
             .disabled(!gameManager.answerSelected)
+            .opacity(!gameManager.answerSelected ? 50 : 100)
             
             
             
@@ -41,9 +41,9 @@ struct GameControls: View {
                 Image(systemName: "forward.end.fill")
                 .foregroundColor(.white)
                 .font(.system(size: 45, weight: .ultraLight))
-                .opacity(!gameManager.answerSelected ? 50 : 100)
             })
             .disabled(!gameManager.answerSelected)
+            .opacity(!gameManager.answerSelected ? 50 : 100)
             Spacer()
         }
     }
