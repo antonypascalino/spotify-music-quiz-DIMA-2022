@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     
     @StateObject var gameManager = GameManager()
+    
 
     var body: some View {
         
@@ -31,7 +32,7 @@ struct GameView: View {
                 .padding([.leading, .bottom])
 
            
-            ForEach(gameManager.getNextQuestion()!.getAnswers(), id: \.self) { answer in
+            ForEach(gameManager.currentAnswers!, id: \.self) { answer in
                 Answer(answer: answer, isCorrect: gameManager.getNextQuestion()!.isCorrect(answer))
                     .environmentObject(gameManager)
             }

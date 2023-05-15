@@ -6,6 +6,7 @@ class GameManager: ObservableObject {
     
     private(set) var questions: [Question2] = []
     private(set) var currentQuestion : Question2?
+    private(set) var currentAnswers : [String]?
     @Published private(set) var currentQuestionIndex = 0
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
@@ -32,6 +33,7 @@ class GameManager: ObservableObject {
         currentQuestionIndex = 0
         correctAnswersCount = 0
         currentQuestion = questions[currentQuestionIndex]
+        currentAnswers = currentQuestion?.getAnswers()
     }
     
     func setNextQuestion() {
@@ -41,6 +43,7 @@ class GameManager: ObservableObject {
         if currentQuestionIndex < questions.count {
             currentQuestionIndex += 1
             currentQuestion = questions[currentQuestionIndex]
+            currentAnswers = currentQuestion?.getAnswers() ?? [String]()
         } else {
             //Generate more questions
         }
@@ -292,6 +295,7 @@ struct Question2 {
         answers.append(correctAnswer)
         answers.append(contentsOf: wrongAnswers)
         answers.shuffle()
+        print(answers)
         
         return answers
     }
