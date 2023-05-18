@@ -11,6 +11,7 @@ struct TimeBar: View {
     
     let duration: Double
     @State private var progress: CGFloat = 0
+    @EnvironmentObject var gameManager : GameManager
     
     var body: some View {
         
@@ -41,6 +42,7 @@ struct TimeBar: View {
                 Timer.scheduledTimer(withTimeInterval: duration/Double(iterations), repeats: true) { timer in
                     if currentIteration >= iterations {
                         timer.invalidate()
+                        gameManager.selectAnswer(false)
                     } else {
                         self.progress += 1/CGFloat(iterations)
                         currentIteration += 1

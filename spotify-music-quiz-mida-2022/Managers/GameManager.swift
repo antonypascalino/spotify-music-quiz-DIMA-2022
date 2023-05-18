@@ -280,7 +280,7 @@ class GameManager: ObservableObject {
      */
 }
 
-struct Question2 {
+struct Question2 : Equatable {
     let id = UUID()
     let questionText: String?
     let correctAnswer: String
@@ -295,7 +295,6 @@ struct Question2 {
         answers.append(correctAnswer)
         answers.append(contentsOf: wrongAnswers)
         answers.shuffle()
-        print(answers)
         
         return answers
     }

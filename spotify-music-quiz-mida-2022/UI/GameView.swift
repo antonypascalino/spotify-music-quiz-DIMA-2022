@@ -11,8 +11,10 @@ struct GameView: View {
     
     @StateObject var gameManager = GameManager()
     
-
     var body: some View {
+        
+        var currentAnwers = gameManager.currentAnswers!
+        var currentQuestion = gameManager.getNextQuestion()!
         
         VStack(alignment: .leading, spacing: 30) {
             
@@ -21,7 +23,7 @@ struct GameView: View {
                 .font(TextStyle.score())
                 .foregroundColor(Color("Green"))
                 .padding(.leading)
-
+            
             
             Text((gameManager.getNextQuestion()?.questionText)!)
                 .font(TextStyle.LoginTitle())
@@ -30,30 +32,23 @@ struct GameView: View {
                 .minimumScaleFactor(0.1)
                 .foregroundColor(.white)
                 .padding([.leading, .bottom])
-
-           
-            ForEach(gameManager.currentAnswers!, id: \.self) { answer in
-                Answer(answer: answer, isCorrect: gameManager.getNextQuestion()!.isCorrect(answer))
+            
+            
+            ForEach(currentAnwers, id: \.self) { answer in
+                Answer(answer: answer)
                     .environmentObject(gameManager)
             }
-                
-//                Answer(answer: answers![1], isCorrect: question!.isCorrect(answers![1]))
-//                    .environmentObject(gameManager)
-//                Answer(answer: answers![2], isCorrect: question!.isCorrect(answers![2]))
-//                    .environmentObject(gameManager)
-//                Answer(answer: answers![3], isCorrect: question!.isCorrect(answers![3]))
-//                    .environmentObject(gameManager)
             
-
             
             HStack {
                 Spacer()
                 TimeBar(duration: 10)
+                    .environmentObject(gameManager)
                 Spacer()
             }
             .padding(.top, 32)
             
-           GameControls()
+            GameControls()
                 .environmentObject(gameManager)
         }
         .background(Color("Black"))
