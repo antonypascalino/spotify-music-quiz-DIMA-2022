@@ -1,44 +1,32 @@
 //
-//  LeaderboardView.swift
+//  FriendsView.swift
 //  spotify-music-quiz-mida-2022
 //
-//  Created by Antony Pascalino on 22/03/23.
+//  Created by Antony Pascalino on 08/05/23.
 //
-
+//
 import SwiftUI
 
-struct LeaderboardView: View {
-    
-    @StateObject private var model = UserViewModel()
+
+
+struct FriendsView: View {
+
+    @StateObject private var model = FriendsViewModel()
 
     var body: some View {
         NavigationView {
             if #available(iOS 16.0, *) {
-                List(model.users) { user in
+                List(model.friends) { friend in
                     HStack {
-                        if (user.image != "") {
-                            AsyncImage(url: URL(string: user.image)) { image in
-                                image
-                                    .resizable()
-                                    .frame(width: 40, height: 40)
-                                    .scaledToFit()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                        }
-                        else {
-                            Image(systemName: "person.fill")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                        }
-//
-                        
-                        Text(user.display_name)
+                        Image(friend.image)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                        Text(friend.display_name)
                             .font(TextStyle.leaderboardItem())
                             .foregroundColor(.white)
                             .padding(.leading)
                         Spacer()
-                        Text(String(user.highscore))
+                        Text(String(friend.highscore))
                             .font(TextStyle.leaderboardItem())
                             .foregroundColor(.white)
                     }
@@ -65,15 +53,13 @@ struct LeaderboardView: View {
             }
         }
         .task {
-            try? await model.getAllUsers()
+            try? await model.getFriends(currentUserSpotifyID: "11127717417")
         }
     }
-        
-
 }
 
-struct LeaderboardView_Previews: PreviewProvider {
+struct FriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        LeaderboardView()
+        FriendsView()
     }
 }

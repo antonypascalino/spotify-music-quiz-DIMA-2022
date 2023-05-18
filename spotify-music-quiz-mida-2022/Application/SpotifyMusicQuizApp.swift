@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
 struct spotify_music_quiz_mida_2022App: App {
+    
+    init() {
+        FirebaseApp.configure()
+        print("Firebase configured")
+    }
+    
     var body: some Scene {
         WindowGroup {
             LoginView()

@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct UserProfile: Codable{
+struct UserProfile: Codable {
     let display_name: String
     let country: String
     let email: String
@@ -10,12 +10,5 @@ struct UserProfile: Codable{
     let id: String
     let product: String
     let images: [APIImage]?
-}
-
-
-struct User : Codable{
-    let display_name:String
-    let external_urls: [String: String]
-    let id: String
 }
 
