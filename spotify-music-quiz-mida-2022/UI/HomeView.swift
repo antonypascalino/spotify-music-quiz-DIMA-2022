@@ -45,13 +45,25 @@ struct HomeView: View {
                         }
                     }
                     Spacer()
-                    if let image = profileImage {
-                        Image(uiImage: image)
+                    
+                    if !(userProfile.images!.isEmpty) {
+
+                        AsyncImage(url: URL(string: userProfile.images!.first!.url)) { image in
+                            image
+                                .resizable()
+                                .frame(width: 200, height: 200)
+                                .scaledToFit()
+                                .cornerRadius(100)
+                        } placeholder: {
+                            ProgressView()
+                        }
+                    } else {
+                        Image("SpotifyLogoBlack")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 250.0, height: 250.0)
-                            .clipShape(Circle())
+                            .frame(width: 200, height: 200)
+                            .scaledToFit()
                     }
+                    
                     Spacer()
                     Text("Your highscore:")
                         .font(TextStyle.scoreTitle())
