@@ -10,7 +10,9 @@ import SwiftUI
 struct GameView: View {
     
     @StateObject var gameManager = GameManager()
-    
+    @State private var isShowingGuessView = true
+    @State private var userAnswer = ""
+
     var body: some View {
         
         let currentAnwers = gameManager.currentAnswers!
@@ -71,6 +73,15 @@ struct GameView: View {
                     Spacer()
                     TimeBar(duration: 10)
                         .environmentObject(gameManager)
+                    Spacer()
+                }
+                .padding(.top, 32)
+                
+                GameControls()
+                    .environmentObject(gameManager)
+                    Spacer()
+            .background(Color("Black"))
+            .navigationBarHidden(true)
                     Spacer()
                 }
                 .padding(.top, 32)

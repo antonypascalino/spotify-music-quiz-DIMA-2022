@@ -39,16 +39,18 @@ final class APICaller{
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/albums"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else{
+                    print("data problem")
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
-                   // print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(LibraryAlbumResponse.self, from: data) //o Album
                     completion(.success(result.items.compactMap({
                         $0.album
                     })))
                 }catch{
+                    print("\nError Albums")
                     completion(.failure(error))
                 }
             }
@@ -80,17 +82,20 @@ final class APICaller{
 
     //Da verificare altrimenti cambiare con le cose commentate in completion
     public func getArtistTopTracks( for artist: Artist , completion: @escaping ((Result<[Track],Error>)->Void)){
-        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)}/top-tracks"), type: .GET) { request in
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/top-tracks?market=IT"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else{
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
-                    print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
-                    let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
-                    completion(.success(result.items)) //LibraryTrackResponse è corretto con items o ha senso result.tracks?
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(Tracks.self, from: data)
+                    
+                    completion(.success(result.tracks))
+                    
                 }catch{
+                    print("Error: ArtistTopTracks not found")
                     completion(.failure(error))
                 }
             }

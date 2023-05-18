@@ -15,8 +15,10 @@ class GameManager: ObservableObject {
     
     @State var userProfile : UserProfile?
     var topTracks : [Track] = []
+    var albums : [Album] = []
     var artists : [Artist] = []
     var similarArtists : [Artist] = []
+    var songsBySameArtist : [Track] = []
     var isLoading = true
     
     private let apiCaller = APICaller.shared
@@ -28,7 +30,7 @@ class GameManager: ObservableObject {
     
     func startGame() {
         questions = generateRandomQuestions()
-        //questions.shuffle()
+        questions.shuffle()
         currentQuestionIndex = 0
         correctAnswersCount = 0
         currentQuestion = questions[currentQuestionIndex]
@@ -78,22 +80,24 @@ class GameManager: ObservableObject {
     
     func generateRandomQuestions() -> [Question2] {
         // Resetta l'array delle domande
-        var questions2 : [Question2] = []
+        var questionsTemp : [Question2] = []
         
         // Genera domande di tipo "chi cantante canta questa canzone"
         let artistQuestions = generateArtistQuestions()
-        questions2.append(contentsOf: artistQuestions)
+        questionsTemp.append(contentsOf: artistQuestions)
         
         // Genera domande di tipo "in che anno è stato pubblicato quest'album"
-        //let albumQuestions = generateAlbumQuestions()
-        //questions.append(contentsOf: albumQuestions)
+        let albumQuestions = generateAlbumQuestions()
+        questionsTemp.append(contentsOf: albumQuestions)
         
         // Genera domande di tipo "qual è l'anno di pubblicazione di questa canzone?"
-        //let releaseYearQuestions = generateReleaseYearQuestions()
-        //questions.append(contentsOf: releaseYearQuestions)
+        let releaseYearQuestions = generateReleaseYearQuestions()
+        questionsTemp.append(contentsOf: releaseYearQuestions)
         
-        // Randomizza l'ordine delle domande
-        return questions2
+        let listenSongQuestions = generateListenSongQuestions()
+        questionsTemp.append(contentsOf: listenSongQuestions)
+
+        return questionsTemp
     }
     
     private func generateArtistQuestions() -> [Question2] {
@@ -101,10 +105,20 @@ class GameManager: ObservableObject {
         
         
         loadTopTracks()
+//                fetchData(){
+//                    result in
+//                    switch result {
+//                        case true :
+//                            self.isLoading = true
+//                        case false:
+//                            self.isLoading = true
+//                    }
+//                }
         while(isLoading) {
             ProgressView()
         }
         isLoading = true
+        
         
         for track in self.topTracks {
             
@@ -132,6 +146,164 @@ class GameManager: ObservableObject {
         
         return questions
     }
+    
+    private func generateAlbumQuestions() -> [Question2] {
+        var questions: [Question2] = []
+        
+        loadAlbums()
+//        fetchData(){
+//            result in
+//            switch result {
+//                case true :
+//                    self.isLoading = true
+//                case false:
+//                    self.isLoading = false
+//            }
+//        }
+        while(isLoading) {
+            ProgressView()
+        }
+        isLoading = true
+
+        for album in self.albums {
+            let correctAnswer = getOnlyYear(allDate: album.release_date)
+            
+            let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
+            
+            let question = Question2(questionText: "What year was the album \(album.name) released?",
+                                     correctAnswer: correctAnswer,
+                                     wrongAnswers: similarDates)
+            print("Domanda: \(question)")
+            questions.append(question)
+        }
+        
+        return questions
+    }
+    
+    private func generateReleaseYearQuestions() -> [Question2] {
+               var questions: [Question2] = []
+               self.topTracks = []
+               
+               loadTopTracks()
+//               fetchData(){
+//                   result in
+//                   switch result {
+//                       case true :
+//                           self.isLoading = true
+//                       case false:
+//                           self.isLoading = false
+//                   }
+//               }
+        while(isLoading) {
+            ProgressView()
+        }
+        isLoading = true
+        
+               for track in self.topTracks {
+                   let correctAnswer = getOnlyYear(allDate: track.album!.release_date)
+                   
+                   let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate : track.album!.release_date), originalArtist : track.album!.artists.first!)
+
+                   let question = Question2(questionText: "What year was the song \(track.name) released?",
+                                            correctAnswer: correctAnswer,
+                                            wrongAnswers: similarDates)
+                   questions.append(question)
+               }
+               
+           return questions
+       }
+    
+    
+    private func generateListenSongQuestions() -> [Question2]{
+               var questions: [Question2] = []
+               self.topTracks = []
+               print("Shazam")
+               loadTopTracks()
+//               fetchData(){
+//                   result in
+//                   switch result {
+//                       case true :
+//                           self.isLoading = true
+//                       case false:
+//                           self.isLoading = false
+//                   }
+//               }
+        while(isLoading) {
+            ProgressView()
+        }
+        isLoading = true
+        
+               for track in self.topTracks {
+                   let correctAnswer = track.name
+                   if(track.preview_url != nil){
+                       let question = Question2(questionText: "Guess the title of the song!",
+                                                correctAnswer: correctAnswer,
+                                                isShazam : true,
+                                                songUrl : track.preview_url,
+                                                wrongAnswers: [])
+                       questions.append(question)
+                   }
+                   
+               }
+               
+           return questions
+       }
+
+    
+    private func generateRandomDates(originalYear: String, originalArtist : Artist) -> [String] {
+           var randomYears: [String] = []
+        
+           guard let originalYearInt = Int(originalYear) else {
+           return randomYears //aggiungere gestione eccezioni
+           }
+        
+           let randomYearFromSameArtist = getRandomYearFromSameArtist(originalYear: originalYearInt, originalArtist : originalArtist)
+           randomYears.append(randomYearFromSameArtist)
+           
+        let randomYear2 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10 <= Calendar.current.component(.year , from: Date()) ? originalYearInt + 10 : originalYearInt )
+           let randomYear3 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10 <= Calendar.current.component(.year , from: Date()) ? originalYearInt + 10 : originalYearInt)
+           randomYears.append(String(randomYear2))
+           randomYears.append(String(randomYear3))
+        
+           return randomYears
+       }
+    
+    private func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> String {
+
+            loadArtistTopTracks(originalArtist: originalArtist)
+//            fetchData(){
+//                result in
+//                switch result {
+//                    case true :
+//                        self.isLoading = true
+//                    case false:
+//                        self.isLoading = false
+//                }
+//            }
+        while(isLoading) {
+            ProgressView()
+        }
+        isLoading = true
+        
+        
+        
+            let filteredSongs = self.songsBySameArtist.filter { getOnlyYear(allDate: $0.album!.release_date) != String(originalYear) }
+          
+            if let randomSong = filteredSongs.randomElement() {
+                return getOnlyYear(allDate: randomSong.album!.release_date)
+            }
+            
+            return String(getRandomYearInRange(startYear: originalYear - 10, endYear: originalYear + 10 <= Calendar.current.component(.year , from: Date()) ? originalYear + 10 : originalYear))
+        }
+          
+        private func getRandomYearInRange(startYear: Int, endYear: Int) -> Int {
+         return Int.random(in: startYear...endYear)
+        }
+         
+        private func getOnlyYear(allDate : String) -> (String){
+            return allDate.components(separatedBy: "-").first!
+        }
+
     
     private func loadTopTracks(){
         
@@ -163,126 +335,56 @@ class GameManager: ObservableObject {
             }
         }
     }
-    /*
-    private func generateAlbumQuestions() -> [Question2] {
-        var questions: [Question2] = []
-        
-        var savedAlbums : [Album] = []
-        
-        apiCaller.getUserAlbums {result in
-            switch result{
-                case .success(let model):
-                    savedAlbums = model
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
+    
+    private func loadAlbums(){
+            
+             apiCaller.getUserAlbums {result in
+                switch result{
+                    case .success(let model):
+                        self.albums = model
+                        self.isLoading = false
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        //self?.failedToGetProfile()
+                }
+                
             }
-            
         }
-        
-        
-        for album in savedAlbums {
-            let correctAnswer = album.release_date
-            
-            let similarDates = generateRandomDates(originalYear: album.release_date, originalArtist : album.artists.first!)
-            
-            let question = Question2(questionText: "What year was the album \(album.name) released?",
-                                     correctAnswer: correctAnswer,
-                                     wrongAnswers: similarDates)
-            questions.append(question)
+
+        private func loadArtistTopTracks(originalArtist : Artist){
+
+            apiCaller.getArtistTopTracks(for : originalArtist) {result in
+                switch result{
+                    case .success(let model):
+                        self.songsBySameArtist = model
+                        self.isLoading = false
+                        break
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                        //self?.failedToGetProfile()
+                }
+            }
         }
-        
-        return questions
-    }*/
-    /*
-     private func generateReleaseYearQuestions() -> [Question2] {
-     var questions: [Question2] = []
-     
-     var topTracks : [Track] = []
-     
-     apiCaller.getTopTracks {result in
-     switch result{
-     case .success(let model):
-     topTracks = model
-     break
-     case .failure(let error):
-     print(error.localizedDescription)
-     //self?.failedToGetProfile()
-     }
-     
-     }
-     
-     for track in topTracks {
-     let correctAnswer = track.release_date
-     
-     let question = Question2(questionText: "What year was the song \(track.name) released?",
-     correctAnswer: correctAnswer,
-     wrongAnswers: [])
-     questions.append(question)
-     }
-     
-     return questions
-     }
-     
-     func generateRandomDates(originalYear: String, originalArtist : Artist) -> [String] {
-     var randomYears: [String] = []
-     
-     guard let originalYearInt = Int(originalYear) else {
-     return randomYears
-     }
-     
-     let randomYearFromSameArtist = getRandomYearFromSameArtist(originalYear: originalYearInt, originalArtist : originalArtist)
-     randomYears.append(randomYearFromSameArtist)
-     
-     let randomYear2 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10)
-     let randomYear3 = getRandomYearInRange(startYear: originalYearInt - 10, endYear: originalYearInt + 10)
-     randomYears.append(String(randomYear2))
-     randomYears.append(String(randomYear3))
-     
-     return randomYears
-     }
-     
-     
-     func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist) -> String {
-     
-     var songsBySameArtist : [Track] = []
-     
-     apiCaller.getArtistTopTracks(for : originalArtist) {result in
-     switch result{
-     case .success(let model):
-     songsBySameArtist = model
-     break
-     case .failure(let error):
-     print(error.localizedDescription)
-     //self?.failedToGetProfile()
-     }
-     
-     }
-     /*
-      let filteredSongs = songsBySameArtist.filter { ($0.release_date).components(separatedBy: "-").first != String(originalYear) } //potrebbe non funzionare: in questo caso prendere la prima canzone e tramite apiCaller.getTrack(id) ricavarci l'anno
-      */
-     
-     if let randomSong = filteredSongs.randomElement() {
-     return randomSong.release_date.components(separatedBy: "-").first!
-     }
-     
-     return String(getRandomYearInRange(startYear: originalYear - 10, endYear: originalYear + 10))
-     }
-     
-     func getRandomYearInRange(startYear: Int, endYear: Int) -> Int {
-     return Int.random(in: startYear...endYear)
-     }
-     
-     
-     }
-     */
+    
+    private func fetchData(completion: @escaping (Bool) -> Void) {
+            DispatchQueue.global().async {
+                Thread.sleep(forTimeInterval: 5)
+                
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            }
+        }
+   
 }
 
 struct Question2 : Equatable {
     let id = UUID()
     let questionText: String?
     let correctAnswer: String
+    var isShazam = false
+    var songUrl : String? = nil
     let wrongAnswers: [String]
     
     func isCorrect(_ answer: String) -> Bool {
