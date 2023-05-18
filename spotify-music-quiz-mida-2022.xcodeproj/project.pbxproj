@@ -39,6 +39,10 @@
 		0AABD1262A16690E00B26479 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AABD1252A16690E00B26479 /* FirebaseDatabaseSwift */; };
 		0AABD1282A16690E00B26479 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0AABD1272A16690E00B26479 /* FirebaseFirestore */; };
 		0AABD12A2A16690E00B26479 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AABD1292A16690E00B26479 /* FirebaseFirestoreSwift */; };
+		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
+		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
+		0AABD1312A166EBC00B26479 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */; };
+		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
 		0AABD71929CE343800D819BB /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD71829CE343800D819BB /* GameControls.swift */; };
 		0AB9A6132A0AB8D400B0F676 /* LibraryTrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */; };
 		0AB9A6142A0AB8D400B0F676 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */; };
@@ -115,6 +119,10 @@
 		0A809D162A1158050038DC64 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0A809D172A1158050038DC64 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
+		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
+		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
+		0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
+		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
 		0AABD71829CE343800D819BB /* GameControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
 		0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTrackResponse.swift; sourceTree = "<group>"; };
 		0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
@@ -193,10 +201,10 @@
 		0A24F24129D1F9F500841B43 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				0A3DEEB62A1658BF0004BA82 /* Firestore */,
-				0AB9A6182A0AB90800B0F676 /* GameManager.swift */,
 				0A65599A2A0508E6007ACBFC /* APICaller.swift */,
 				0A24F24229D1FA1000841B43 /* AuthManager.swift */,
+				0A3DEEB62A1658BF0004BA82 /* Firestore */,
+				0AB9A6182A0AB90800B0F676 /* GameManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -204,25 +212,25 @@
 		0A3908B929CB09480073ACE0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				0A809D172A1158050038DC64 /* Artist.swift */,
-				0A3DEEBA2A16593C0004BA82 /* User.swift */,
-				0A809D162A1158050038DC64 /* Item.swift */,
-				0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */,
-				0AB9A6122A0AB8D400B0F676 /* LibraryArtistResponse.swift */,
-				0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */,
-				0AB9A6102A0AB8D400B0F676 /* RecommendationsResponse.swift */,
-				0AB9A6112A0AB8D400B0F676 /* Track.swift */,
 				0A6559A22A050989007ACBFC /* Album.swift */,
-				0A6559A62A050992007ACBFC /* LibraryPlaylistsResponse.swift */,
-				0A6559AA2A05099A007ACBFC /* Playlist.swift */,
-				0A6559A82A050994007ACBFC /* LibraryAlbumResponse.swift */,
 				0A6559AC2A05099F007ACBFC /* APIImage.swift */,
-				0A6559AE2A0509A2007ACBFC /* UserProfile.swift */,
-				0A3908BA29CB0B640073ACE0 /* Friend.swift */,
-				0A3908BC29CB47D20073ACE0 /* Question.swift */,
+				0A809D172A1158050038DC64 /* Artist.swift */,
+				0AABD12B2A166EAA00B26479 /* Artists.swift */,
 				0A52972029D327FB0036915A /* AuthResponse.swift */,
+				0A3908BA29CB0B640073ACE0 /* Friend.swift */,
+				0A809D162A1158050038DC64 /* Item.swift */,
+				0A6559A82A050994007ACBFC /* LibraryAlbumResponse.swift */,
+				0AB9A6122A0AB8D400B0F676 /* LibraryArtistResponse.swift */,
+				0A6559A62A050992007ACBFC /* LibraryPlaylistsResponse.swift */,
+				0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */,
+				0A6559AA2A05099A007ACBFC /* Playlist.swift */,
+				0A3908BC29CB47D20073ACE0 /* Question.swift */,
+				0AB9A6102A0AB8D400B0F676 /* RecommendationsResponse.swift */,
 				0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */,
-				0A8BF03C2A128B74007EFA71 /* Artists.swift */,
+				0AB9A6112A0AB8D400B0F676 /* Track.swift */,
+				0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */,
+				0A3DEEBA2A16593C0004BA82 /* User.swift */,
+				0A6559AE2A0509A2007ACBFC /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,10 +256,10 @@
 		0AD17C402950AC3B003FEE73 = {
 			isa = PBXGroup;
 			children = (
+				0AD17C4A2950AC3B003FEE73 /* Products */,
 				0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */,
 				0AD17C5C2950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests */,
 				0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */,
-				0AD17C4A2950AC3B003FEE73 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -312,14 +320,17 @@
 			isa = PBXGroup;
 			children = (
 				0A8BF0682A16141C007EFA71 /* Components */,
+				0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
 				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
-				0AB9CAEE29C929D200871B2B /* LoginView.swift */,
-				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
-				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
+				0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */,
+				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
 				0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */,
+				0AB9CAEE29C929D200871B2B /* LoginView.swift */,
 				0A3908BE29CB651A0073ACE0 /* QuestionText.swift */,
+				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
+				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
 			);
 			path = UI;
@@ -520,8 +531,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A24F24329D1FA1000841B43 /* AuthManager.swift in Sources */,
-				0A8BF03D2A128B74007EFA71 /* Artists.swift in Sources */,
 				0AB9A6142A0AB8D400B0F676 /* Tracks.swift in Sources */,
+				0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */,
 				0AB9A6172A0AB8D400B0F676 /* LibraryArtistResponse.swift in Sources */,
 				0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */,
 				0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */,
@@ -533,7 +544,7 @@
 				0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */,
 				0AB9A6162A0AB8D400B0F676 /* Track.swift in Sources */,
 				0A4C49FA29CF6D9800204644 /* Answer.swift in Sources */,
-				0A8BF0412A129332007EFA71 /* ShazamLikeView.swift in Sources */,
+				0AABD1312A166EBC00B26479 /* AudioPlayerView.swift in Sources */,
 				0A6559A92A050994007ACBFC /* LibraryAlbumResponse.swift in Sources */,
 				0A6559A32A050989007ACBFC /* Album.swift in Sources */,
 				0A3DEEC22A165A140004BA82 /* FriendsViewModel.swift in Sources */,
@@ -543,6 +554,8 @@
 				0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */,
 				0AB9A6192A0AB90800B0F676 /* GameManager.swift in Sources */,
 				0AABD71929CE343800D819BB /* GameControls.swift in Sources */,
+				0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */,
+				0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */,
 				0A3DEEC12A165A140004BA82 /* UserViewModel.swift in Sources */,
 				0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */,
 				0A3DEEBC2A16593C0004BA82 /* User.swift in Sources */,
@@ -553,7 +566,6 @@
 				0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */,
 				0AD17C4D2950AC3B003FEE73 /* SpotifyMusicQuizApp.swift in Sources */,
 				0AD99A2A29C4E885000EAF39 /* GameView.swift in Sources */,
-				0A8BF0432A129332007EFA71 /* AudioPlayerView.swift in Sources */,
 				0A809D192A1158050038DC64 /* Artist.swift in Sources */,
 				0A6559AB2A05099A007ACBFC /* Playlist.swift in Sources */,
 				0A65599B2A0508E6007ACBFC /* APICaller.swift in Sources */,
@@ -561,7 +573,6 @@
 				0A52972129D327FB0036915A /* AuthResponse.swift in Sources */,
 				0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */,
 				0AB9A6152A0AB8D400B0F676 /* RecommendationsResponse.swift in Sources */,
-				0A8BF0422A129332007EFA71 /* GuessTheSongView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

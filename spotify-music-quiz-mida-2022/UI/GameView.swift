@@ -12,7 +12,7 @@ struct GameView: View {
     @StateObject var gameManager = GameManager()
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
-
+    
     var body: some View {
         
         let currentAnwers = gameManager.currentAnswers!
@@ -62,12 +62,22 @@ struct GameView: View {
                     .foregroundColor(.white)
                     .padding([.leading, .bottom])
                 
-                
-                ForEach(currentAnwers, id: \.self) { answer in
-                    Answer(answer: answer)
-                        .environmentObject(gameManager)
+                if(gameManager.getNextQuestion()!.isShazam){
+                    if isShowingGuessView {
+                        GuessTheSongView(url: gameManager.getNextQuestion()!.songUrl!, userAnswer : $userAnswer, isShowingGuessView: $isShowingGuessView)
+                    } else {
+                        
+                        //sicuramente da fixare e creare un'altra struttura per queste risposte
+                        Answer(answer: userAnswer)
+                        
+                    }
+                } else {
+                    
+                    ForEach(currentAnwers, id: \.self) { answer in
+                        Answer(answer: answer)
+                            .environmentObject(gameManager)
+                    }
                 }
-                
                 
                 HStack {
                     Spacer()
@@ -79,20 +89,13 @@ struct GameView: View {
                 
                 GameControls()
                     .environmentObject(gameManager)
-                    Spacer()
-            .background(Color("Black"))
-            .navigationBarHidden(true)
-                    Spacer()
-                }
-                .padding(.top, 32)
-                
-                GameControls()
-                    .environmentObject(gameManager)
             }
+            
             .background(Color("Black"))
             .navigationBarHidden(true)
         }
     }
+    
 }
 
 

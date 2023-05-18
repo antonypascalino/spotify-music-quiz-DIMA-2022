@@ -94,8 +94,8 @@ class GameManager: ObservableObject {
         let releaseYearQuestions = generateReleaseYearQuestions()
         questionsTemp.append(contentsOf: releaseYearQuestions)
         
-        let listenSongQuestions = generateListenSongQuestions()
-        questionsTemp.append(contentsOf: listenSongQuestions)
+        //let listenSongQuestions = generateListenSongQuestions()
+        //questionsTemp.append(contentsOf: listenSongQuestions)
 
         return questionsTemp
     }
