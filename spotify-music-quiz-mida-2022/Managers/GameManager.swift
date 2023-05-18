@@ -7,6 +7,8 @@ class GameManager: ObservableObject {
     private(set) var questions: [Question2] = []
     private(set) var currentQuestion : Question2?
     private(set) var currentAnswers : [String]?
+    private(set) var gameIsOver = false
+    private(set) var playerMiss = false
     @Published private(set) var currentQuestionIndex = 0
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
@@ -16,9 +18,6 @@ class GameManager: ObservableObject {
     var artists : [Artist] = []
     var similarArtists : [Artist] = []
     var isLoading = true
-    
-    
-    
     
     private let apiCaller = APICaller.shared
     
@@ -39,31 +38,29 @@ class GameManager: ObservableObject {
     func setNextQuestion() {
         answerSelected = false
         
-        // Only setting next question if index is smaller than the number of questions set
-        if currentQuestionIndex < questions.count {
-            currentQuestionIndex += 1
-            currentQuestion = questions[currentQuestionIndex]
-            currentAnswers = currentQuestion?.getAnswers() ?? [String]()
+        if (playerMiss) {
+            gameOver()
         } else {
-            //Generate more questions
+            
+            // Only setting next question if index is smaller than the number of questions set
+            if currentQuestionIndex < questions.count {
+                currentQuestionIndex += 1
+                currentQuestion = questions[currentQuestionIndex]
+                currentAnswers = currentQuestion?.getAnswers() ?? [String]()
+            } else {
+                //Generate more questions
+            }
         }
         
     }
     
     func getNextQuestion() -> Question2? {
-//        print("QuestionCount: \(questions.count)")
-//        guard currentQuestionIndex < questions.count else {
-//            return nil
-//        }
-//        let question = questions[currentQuestionIndex]
-//        currentQuestionIndex += 1
-//        print("\nReturnQuestion: \(question)")
-//        print("\nCurrent: \(currentQuestionIndex)")
-//        return question
         return currentQuestion
     }
     
-    
+    func gameOver() {
+        gameIsOver = true
+    }
     
     func selectAnswer(_ isCorrect : Bool) {
         answerSelected = true
@@ -71,6 +68,8 @@ class GameManager: ObservableObject {
         let currentQuestion = questions[currentQuestionIndex]
         if isCorrect {
             correctAnswersCount += 1
+        } else {
+            playerMiss = true
         }
     }
     

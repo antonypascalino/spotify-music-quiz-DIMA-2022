@@ -36,7 +36,6 @@ struct Answer: View {
         .onTapGesture {
             print("\(answer) pressed")
             if !gameManager.answerSelected {
-                print("The parameter IS SELECTED of the answer \(answer) is \(isSelected)")
                 isSelected = true
                 gameManager.selectAnswer(isCorrect)
             }

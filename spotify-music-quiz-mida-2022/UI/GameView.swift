@@ -13,46 +13,74 @@ struct GameView: View {
     
     var body: some View {
         
-        var currentAnwers = gameManager.currentAnswers!
-        var currentQuestion = gameManager.getNextQuestion()!
+        let currentAnwers = gameManager.currentAnswers!
+        let currentQuestion = gameManager.getNextQuestion()!
+        let playerMiss = gameManager.playerMiss
+        let gameIsOver = gameManager.gameIsOver
         
-        VStack(alignment: .leading, spacing: 30) {
-            
-            Spacer()
-            Text("Score: \(gameManager.correctAnswersCount)")
-                .font(TextStyle.score())
-                .foregroundColor(Color("Green"))
-                .padding(.leading)
-            
-            
-            Text((gameManager.getNextQuestion()?.questionText)!)
-                .font(TextStyle.LoginTitle())
-                .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
-                .frame(width: 360.0, height: 60, alignment: .leading)
-                .minimumScaleFactor(0.1)
-                .foregroundColor(.white)
-                .padding([.leading, .bottom])
-            
-            
-            ForEach(currentAnwers, id: \.self) { answer in
-                Answer(answer: answer)
+        
+        if gameIsOver {
+            VStack {
+                Spacer()
+                Text("Oh no!\n Your score is:\n \(gameManager.correctAnswersCount)")
+                    .font(TextStyle.score())
+                    .foregroundColor(Color("Green"))
+                    .padding(.leading)
+                Spacer()
+                HStack {
+                    NavigationLink {
+                        HomeView()
+                    } label: {
+                        Text("Go back to the homepage")
+                    }
+                    NavigationLink {
+                        GameView()
+                    } label: {
+                        Text("Play again!")
+                    }
+                }
+            }
+            .navigationBarHidden(true)
+            .background(Color("Black"))
+        } else {
+            VStack(alignment: .leading, spacing: 30) {
+                
+                Spacer()
+                Text("Score: \(gameManager.correctAnswersCount)")
+                    .font(TextStyle.score())
+                    .foregroundColor(Color(playerMiss ? "Red" : "Green"))
+                    .padding(.leading)
+                
+                
+                Text((gameManager.getNextQuestion()?.questionText)!)
+                    .font(TextStyle.LoginTitle())
+                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .frame(width: 360.0, height: 60, alignment: .leading)
+                    .minimumScaleFactor(0.1)
+                    .foregroundColor(.white)
+                    .padding([.leading, .bottom])
+                
+                
+                ForEach(currentAnwers, id: \.self) { answer in
+                    Answer(answer: answer)
+                        .environmentObject(gameManager)
+                }
+                
+                
+                HStack {
+                    Spacer()
+                    TimeBar(duration: 10)
+                        .environmentObject(gameManager)
+                    Spacer()
+                }
+                .padding(.top, 32)
+                
+                GameControls()
                     .environmentObject(gameManager)
             }
-            
-            
-            HStack {
-                Spacer()
-                TimeBar(duration: 10)
-                    .environmentObject(gameManager)
-                Spacer()
-            }
-            .padding(.top, 32)
-            
-            GameControls()
-                .environmentObject(gameManager)
+            .background(Color("Black"))
+            .navigationBarHidden(true)
         }
-        .background(Color("Black"))
-        .navigationBarHidden(true)
     }
 }
 

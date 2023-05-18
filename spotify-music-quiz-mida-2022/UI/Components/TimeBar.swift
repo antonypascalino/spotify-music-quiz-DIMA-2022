@@ -10,7 +10,9 @@ import SwiftUI
 struct TimeBar: View {
     
     let duration: Double
+    @State private var currentIteration = 0
     @State private var progress: CGFloat = 0
+    
     @EnvironmentObject var gameManager : GameManager
     
     var body: some View {
@@ -18,7 +20,8 @@ struct TimeBar: View {
         let currentSecond = Int(duration * progress)
         let missingSeconds = Int(duration) - currentSecond
         
-        
+        var currentQuestion = gameManager.currentQuestion!
+
         VStack {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
@@ -36,19 +39,12 @@ struct TimeBar: View {
             .frame(width: 355, height: 3)
             .padding(.bottom, 3)
             .onAppear {
-                let iterations = Int(duration / 0.05)
-                var currentIteration = 0
-                
-                Timer.scheduledTimer(withTimeInterval: duration/Double(iterations), repeats: true) { timer in
-                    if currentIteration >= iterations {
-                        timer.invalidate()
-                        gameManager.selectAnswer(false)
-                    } else {
-                        self.progress += 1/CGFloat(iterations)
-                        currentIteration += 1
-                    }
-                }
+                startTimer()
             }
+            .onChange(of: gameManager.currentQuestion) { newValue in
+                startTimer()
+            }
+            
             
             HStack {
                 if (currentSecond < 10) {
@@ -80,8 +76,30 @@ struct TimeBar: View {
                 }
             }
         }
-        
     }
+    
+    func startTimer() {
+        
+        let iterations = Int(duration / 0.05)
+        progress = 0
+        currentIteration = 0
+        
+        Timer.scheduledTimer(withTimeInterval: duration/Double(iterations), repeats: true) { timer in
+            if gameManager.answerSelected {
+                timer.invalidate()
+            } else {
+                if currentIteration >= iterations {
+                    timer.invalidate()
+                    gameManager.selectAnswer(false)
+                } else {
+                    self.progress += 1/CGFloat(iterations)
+                    currentIteration += 1
+                }
+            }
+        }
+    }
+    
+    
 }
 
 struct TimeBar_Previews: PreviewProvider {
