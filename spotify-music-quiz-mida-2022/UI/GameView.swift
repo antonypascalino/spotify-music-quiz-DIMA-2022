@@ -10,6 +10,8 @@ import SwiftUI
 struct GameView: View {
     
     @StateObject var gameManager = GameManager()
+    @State private var isShowingGuessView = true
+    @State private var userAnswer = ""
 
     var body: some View {
         
@@ -30,11 +32,22 @@ struct GameView: View {
                 .foregroundColor(.white)
                 .padding([.leading, .bottom])
 
-           
-            ForEach(gameManager.getNextQuestion()!.getAnswers(), id: \.self) { answer in
-                Answer(answer: answer, isCorrect: gameManager.getNextQuestion()!.isCorrect(answer))
-                    .environmentObject(gameManager)
+            if(gameManager.getNextQuestion()!.isShazam){
+                if isShowingGuessView {
+                    GuessTheSongView(url: gameManager.getNextQuestion()!.songUrl!, userAnswer : $userAnswer, isShowingGuessView: $isShowingGuessView)
+                }else {
+                    
+                    //sicuramente da fixare e creare un'altra struttura per queste risposte
+                    Answer(answer: userAnswer, isCorrect: gameManager.getNextQuestion()!.isCorrect(userAnswer))
+                    
+                }
             }
+            else{
+                    ForEach(gameManager.getNextQuestion()!.getAnswers(), id: \.self) { answer in
+                        Answer(answer: answer, isCorrect: gameManager.getNextQuestion()!.isCorrect(answer))
+                            .environmentObject(gameManager)
+                    }
+                }
                 
 //                Answer(answer: answers![1], isCorrect: question!.isCorrect(answers![1]))
 //                    .environmentObject(gameManager)
