@@ -6,5 +6,5 @@ struct Playlist: Codable{
     let id: String
     let images: [APIImage]
     let name: String
-    let owner: User
+    //let owner: User
 }

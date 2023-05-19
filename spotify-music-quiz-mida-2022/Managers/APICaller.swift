@@ -34,7 +34,7 @@ final class APICaller{
         }
     }*/
     
-    //Dovrebbe funzionare
+    //Funziona
     public func getUserAlbums(completion: @escaping ((Result<[Album],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/albums"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -59,7 +59,7 @@ final class APICaller{
         }
     }
 
-    //Da verificare altrimenti cambiare con le cose commentate in completion
+    //Funziona
     public func getArtistRelatedArtists( for artist: Artist , completion: @escaping ((Result<[Artist],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/related-artists"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -80,7 +80,7 @@ final class APICaller{
         }
     }
 
-    //Da verificare altrimenti cambiare con le cose commentate in completion
+    //Funziona
     public func getArtistTopTracks( for artist: Artist , completion: @escaping ((Result<[Track],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/top-tracks?market=IT"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -119,6 +119,26 @@ final class APICaller{
                     completion(.success(result.items))
                 }catch{
                     print("\nError Playlist")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    public func getPlaylistsTracks(for playlist: Playlist ,completion: @escaping ((Result<PlaylistTracks,Error>)->Void)) {
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/playlists/\(playlist.id)"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(PlaylistTracks.self, from: data)
+                    completion(.success(result))
+                }catch{
+                    print("\nError Single Playlist")
                     completion(.failure(error))
                 }
             }
@@ -199,7 +219,7 @@ final class APICaller{
         }
     }
 
-    //Dovrebbe essere funzionante
+    //Funziona
     public func getTopTracks(completion: @escaping ((Result<[Track],Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/top/tracks"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in

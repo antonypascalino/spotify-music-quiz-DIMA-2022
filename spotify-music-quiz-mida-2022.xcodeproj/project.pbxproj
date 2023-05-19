@@ -41,8 +41,8 @@
 		0AABD12A2A16690E00B26479 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AABD1292A16690E00B26479 /* FirebaseFirestoreSwift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
-		0AABD1312A166EBC00B26479 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */; };
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
+		0AABD1362A17DD9200B26479 /* PlaylistTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */; };
 		0AABD71929CE343800D819BB /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD71829CE343800D819BB /* GameControls.swift */; };
 		0AB9A6132A0AB8D400B0F676 /* LibraryTrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */; };
 		0AB9A6142A0AB8D400B0F676 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */; };
@@ -121,8 +121,8 @@
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
-		0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
+		0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTracks.swift; sourceTree = "<group>"; };
 		0AABD71829CE343800D819BB /* GameControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
 		0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTrackResponse.swift; sourceTree = "<group>"; };
 		0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
@@ -231,6 +231,7 @@
 				0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */,
 				0A3DEEBA2A16593C0004BA82 /* User.swift */,
 				0A6559AE2A0509A2007ACBFC /* UserProfile.swift */,
+				0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -320,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				0A8BF0682A16141C007EFA71 /* Components */,
-				0AABD12E2A166EBB00B26479 /* AudioPlayerView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
 				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
@@ -544,7 +544,6 @@
 				0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */,
 				0AB9A6162A0AB8D400B0F676 /* Track.swift in Sources */,
 				0A4C49FA29CF6D9800204644 /* Answer.swift in Sources */,
-				0AABD1312A166EBC00B26479 /* AudioPlayerView.swift in Sources */,
 				0A6559A92A050994007ACBFC /* LibraryAlbumResponse.swift in Sources */,
 				0A6559A32A050989007ACBFC /* Album.swift in Sources */,
 				0A3DEEC22A165A140004BA82 /* FriendsViewModel.swift in Sources */,
@@ -572,6 +571,7 @@
 				0A3DEEBE2A1659CD0004BA82 /* FriendsView.swift in Sources */,
 				0A52972129D327FB0036915A /* AuthResponse.swift in Sources */,
 				0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */,
+				0AABD1362A17DD9200B26479 /* PlaylistTracks.swift in Sources */,
 				0AB9A6152A0AB8D400B0F676 /* RecommendationsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
