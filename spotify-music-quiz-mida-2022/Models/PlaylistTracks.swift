@@ -13,7 +13,7 @@ struct PlaylistTracks: Codable {
     let name : String
     let id : String
     let images : [APIImage]
-    let tracks: PlaylistTracksResponse
+    var tracks: PlaylistTracksResponse
 }
 
 struct PlaylistTracksResponse: Codable {

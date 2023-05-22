@@ -20,6 +20,8 @@ class GameManager: ObservableObject {
     var similarArtists : [Artist] = []
     var songsBySameArtist : [Track] = []
     var userPlaylists : [Playlist] = []
+    var filteredUserPlaylists : [Playlist] = []
+    var tempTrack : [PlaylistItem] = []
     var isLoading = true
     
     private let apiCaller = APICaller.shared
@@ -30,11 +32,23 @@ class GameManager: ObservableObject {
     
     
     func startGame() {
+        let words = ["lofi", "relax", "cover", "chill"]
         loadPlaylists()
         while(isLoading){
             ProgressView()
         }
         isLoading = true
+        self.filteredUserPlaylists = []
+        self.filteredUserPlaylists = self.userPlaylists.filter{ playlist in
+            return !words.contains { word in
+                    if let range = playlist.name.range(of: word, options: .caseInsensitive) {
+                        return true
+                    }
+                        return false
+                }
+            }
+        
+        
         
         questions = generateRandomQuestions()
         questions.shuffle()
@@ -57,7 +71,14 @@ class GameManager: ObservableObject {
                 currentQuestion = questions[currentQuestionIndex]
                 currentAnswers = currentQuestion?.getAnswers() ?? [String]()
             } else {
-                //Generate more questions
+                questions = []
+                questions = generateRandomQuestions()
+                questions.shuffle()
+            }
+            
+            if currentQuestionIndex == 5 {
+                questions.append(contentsOf: generateRandomQuestionsLv2())
+                questions.shuffle()
             }
         }
         
@@ -86,20 +107,13 @@ class GameManager: ObservableObject {
     
     
     func generateRandomQuestions() -> [Question2] {
-        // Resetta l'array delle domande
         var questionsTemp : [Question2] = []
         
         // Genera domande di tipo "chi cantante canta questa canzone"
         let artistQuestions = generateArtistQuestions()
         questionsTemp.append(contentsOf: artistQuestions)
         
-        // Genera domande di tipo "in che anno è stato pubblicato quest'album"
-//        let albumQuestions = generateAlbumQuestions()
-//        questionsTemp.append(contentsOf: albumQuestions)
         
-        // Genera domande di tipo "qual è l'anno di pubblicazione di questa canzone?"
-//        let releaseYearQuestions = generateReleaseYearQuestions()
-//        questionsTemp.append(contentsOf: releaseYearQuestions)
         
 //        // Genera domande di tipo "a quale album appartiene la canzone 'TITOLO'?"
 //        let albumSongQuestions = generateAlbumSongQuestions()
@@ -111,6 +125,19 @@ class GameManager: ObservableObject {
         return questionsTemp
     }
     
+    func generateRandomQuestionsLv2() -> [Question2] {
+        
+        var questionsTemp : [Question2] = []
+        // Genera domande di tipo "in che anno è stato pubblicato quest'album"
+        let albumQuestions = generateAlbumQuestions()
+        questionsTemp.append(contentsOf: albumQuestions)
+        
+        // Genera domande di tipo "qual è l'anno di pubblicazione di questa canzone?"
+        let releaseYearQuestions = generateReleaseYearQuestions()
+        questionsTemp.append(contentsOf: releaseYearQuestions)
+        
+        return questionsTemp
+    }
     private func generateArtistQuestions() -> [Question2] {
         var questions: [Question2] = []
         self.topTracks = []
@@ -148,7 +175,6 @@ class GameManager: ObservableObject {
             
             if !similarArtists.isEmpty{
                 for i in 0...2{
-                    
                     similarArtistsNames.append(similarArtists[i].name)
                 }
                 
@@ -157,10 +183,10 @@ class GameManager: ObservableObject {
                                          wrongAnswers: similarArtistsNames)
                 questions.append(question)
             }
-            print ("prova, \(correctAnswer)")
+            
             
         }
-        print("\nQuestions: \(questions)")
+       
         
         return questions
     }
@@ -202,10 +228,6 @@ class GameManager: ObservableObject {
         
         loadTracksFromPlaylists()
         
-        while(isLoading){
-            ProgressView()
-        }
-        isLoading = true
         
         self.topTracks.shuffle()
         
@@ -337,10 +359,12 @@ class GameManager: ObservableObject {
         
         apiCaller.getTopTracks { result in
             switch result{
-                case .success(let model):
-                    self.topTracks.append(contentsOf: model)
+                case .success(var model):
+                    model.shuffle()
+                    let firstTenElements = Array(model.prefix(model.count > 10 ? 10 : model.count))
+                    self.topTracks.append(contentsOf: firstTenElements)
                     self.isLoading = false
-                    //print("TOP ARTISTS: \(model)")
+                    
                     break
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -353,7 +377,8 @@ class GameManager: ObservableObject {
     private func loadArtistRelatedArtists(track : Track){
         apiCaller.getArtistRelatedArtists(for : track.artists.first!) {  result in
             switch result{
-                case .success(let model):
+                case .success(var model):
+                    model.shuffle()
                     self.similarArtists = model
                     self.isLoading = false
                     break
@@ -365,31 +390,43 @@ class GameManager: ObservableObject {
     }
     
     private func loadTracksFromPlaylists(){
-        for playlist in self.userPlaylists {
-            loadTracksFromPlaylist(playlist: playlist)
-            while(isLoading){
-                ProgressView()
-            }
-            isLoading = true
-        }
+        self.filteredUserPlaylists.shuffle()
+        
+       // let nrOfPlaylist = self.filteredUserPlaylists.count > 2 ? 2: self.filteredUserPlaylists.count
+            
+//        if(nrOfPlaylist >= 1) {
+//            for i in 0...nrOfPlaylist-1 {
+                self.tempTrack = []
+                loadTracksFromPlaylist(playlist: self.filteredUserPlaylists[0])
+                while(isLoading){
+                    ProgressView()
+                }
+                var trackList : [Track] = []
+                var length = self.tempTrack.count > 10 ? 10 : self.tempTrack.count
+                
+                if(length >= 1){
+                    for i in 0...length-1
+                    {
+                            trackList.append(self.tempTrack[i].track!)
+                    }
+                }
+                    
+                                   
+                self.topTracks.append(contentsOf: trackList)
+                
+                isLoading = true
+//            }
+//        }
+       
     }
     
     private func loadTracksFromPlaylist(playlist : Playlist){
         
         apiCaller.getPlaylistsTracks(for : playlist) {  result in
             switch result{
-                case .success(let model):
-                   
-                    var trackList : [Track] = []
-                    //renderli randomici
-                    for trackItem in model.tracks.items {
-                        if(trackList.count >= 50) {
-                            break
-                        }
-                        trackList.append(trackItem.track!)
-                    }
-                    self.topTracks.append(contentsOf: trackList)
-                    
+                case .success(var model):
+                    model.tracks.items.shuffle()
+                    self.tempTrack = model.tracks.items
                     self.isLoading = false
                     break
                 case .failure(let error):
