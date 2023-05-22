@@ -14,44 +14,61 @@ struct FriendsView: View {
     @StateObject private var model = FriendsViewModel()
 
     var body: some View {
-        NavigationView {
-            if #available(iOS 16.0, *) {
+        VStack {
+            ZStack {
+                Rectangle()
+                    .frame(width: 200.0, height: 200.0)
+                    .foregroundColor(Color(.blue))
+                
+                Image("Podio")
+                    .resizable()
+                    .frame(width: 200.0, height: 200.0)
+                    .scaledToFit()
+            }
+            Text("Look at your friends' highscore. Who knows more about music?")
+            HStack {
+                Spacer()
+                NavigationLink (destination: AddFriendView() ,label: {
+                    Image(systemName: "person.crop.circle.badge.plus")
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(Color.gray)
+                        .padding()
+                        .frame(width: 80.0, height: 80.0)
+                })
+            }
+            if (!model.friends.isEmpty){
                 List(model.friends) { friend in
                     HStack {
-                        Image(friend.image)
-                            .resizable()
-                            .frame(width: 40, height: 40)
+                        ListImage(imageString: friend.image)
                         Text(friend.display_name)
                             .font(TextStyle.leaderboardItem())
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                             .padding(.leading)
                         Spacer()
                         Text(String(friend.highscore))
                             .font(TextStyle.leaderboardItem())
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                     }
-                    .listRowBackground(Color("Black"))
-                    .padding(.bottom)
+                    .listRowBackground(Color.clear)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        HStack {
-                            Text("Leaderboard")
-                                .font(TextStyle.homeTitle())
-                                .foregroundColor(.white)
-                                .padding(.leading, 22.0)
-                            Spacer()
-                        }
-                    }
-                }
-                .foregroundColor(.white)
-                .background(Color("Black"))
-                .scrollContentBackground(.hidden)
+                .listStyle(.plain)
+                .background(Color.clear)
                 
             } else {
-                // Fallback on earlier versions
+                HStack {
+                    Text("You have added no friends yet. Click on ")
+                    Image(systemName: "person.crop.circle.badge.plus")
+                    Text("to add new friends!")
+                }
             }
         }
+        .background(
+            LinearGradient(gradient:
+            Gradient(colors: [Color("Green"),Color("Black")]),
+                           startPoint: UnitPoint(x: 0, y: 0),
+                           endPoint: UnitPoint(x: 1, y: 1))
+        )
         .task {
             try? await model.getFriends(currentUserSpotifyID: "11127717417")
         }

@@ -1,0 +1,38 @@
+//
+//  ListImage.swift
+//  spotify-music-quiz-mida-2022
+//
+//  Created by Antony Pascalino on 19/05/23.
+//
+
+import SwiftUI
+
+struct ListImage: View {
+    
+    var imageString : String
+    
+    var body: some View {
+         
+        if (imageString != "") {
+            AsyncImage(url: URL(string: imageString)) { image in
+                image
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .scaledToFit()
+            } placeholder: {
+                ProgressView()
+            }
+        }
+        else {
+            Image(systemName: "person.crop.circle")
+                .resizable()
+                .frame(width: 40, height: 40)
+        }
+    }
+}
+
+struct ImageToLoad_Previews: PreviewProvider {
+    static var previews: some View {
+        ListImage(imageString: "")
+    }
+}

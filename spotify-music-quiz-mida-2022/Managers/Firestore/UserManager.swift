@@ -18,10 +18,9 @@ class UserManager {
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
     
-    private func userDocument(documentID: String) -> DocumentReference {
+    private func userDocument(documentID: String) async throws -> DocumentReference {
         usersCollection.document(documentID)
     }
-    
     
     func getAllUsers() async throws -> [User] {
         let snapshot = try await usersCollection.getDocuments()
@@ -50,33 +49,50 @@ class UserManager {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
         
+        print (users)
+        
         return users.first!
     }
     
+    func searchUsers(name: String) async throws -> [User] {
+        
+        let nameLowerCase = name.lowercased()
+        let nameUpperCase = name.prefix(1).uppercased() + name.dropFirst()
+        
+        var users = try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameLowerCase).getDocuments(as: User.self)
+        users.append(contentsOf: try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameUpperCase).getDocuments(as: User.self))
+        
+        print(users)
+        return users
+    }
     
-//    func addFriend(currentUserSpotifyID: String, friendSpotifyID: String) {
-//        let currentUser = try await getUser(SpotifyID: currentUserSpotifyID)
-//        let friendRef = try await getUsergetUserFriends(currentUserSpotifyID: friendSpotifyID)
-//
-//        db.collection("users").document(currentUserRef).updateData(["friends" : FieldValue.arrayUnion([friendRef])])
-//        { error in
-//            if error == nil {
-//                print("Document successfully updated")
-//                self.getData()
-//            } else {
-//                print("Error updating document: \(String(describing: error))")
-//            }
-//        }
-//    }
+    
+    func addFriend(currentUserSpotifyID: String, newFriendSpotifyID: String) async throws {
+        
+        let currentUser =  try await getUser(SpotifyID: currentUserSpotifyID)
+        let newFriend = try await getUser(SpotifyID: newFriendSpotifyID)
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        let newFriendReference = try await userDocument(documentID: newFriend.id!)
+        
+        currentUserReference.updateData(["friends" : FieldValue.arrayUnion([newFriendReference])]) { error in
+            if let error = error {
+                print("Error updating Friends array: \(error.localizedDescription)")
+            } else {
+                print("New friend added successfully.")
+            }
+        }
+    }
     
     func getUserFriends(currentUserSpotifyID: String) async throws -> [User] {
+        
         let currentUser = try await getUser(SpotifyID: currentUserSpotifyID)
         var friends : [User] = []
 
-        
         for documentID in currentUser.friends {
             friends.append(try await documentID.getDocument().data(as: User.self))
         }
+        
+        print(friends)
         return friends
     }
     

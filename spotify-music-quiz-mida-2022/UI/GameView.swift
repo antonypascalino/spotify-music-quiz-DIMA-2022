@@ -22,28 +22,8 @@ struct GameView: View {
         
         
         if gameIsOver {
-            VStack {
-                Spacer()
-                Text("Oh no!\n Your score is:\n \(gameManager.correctAnswersCount)")
-                    .font(TextStyle.score())
-                    .foregroundColor(Color("Green"))
-                    .padding(.leading)
-                Spacer()
-                HStack {
-                    NavigationLink {
-                        HomeView()
-                    } label: {
-                        Text("Go back to the homepage")
-                    }
-                    NavigationLink {
-                        GameView()
-                    } label: {
-                        Text("Play again!")
-                    }
-                }
-            }
-            .navigationBarHidden(true)
-            .background(Color("Black"))
+            GameOverView()
+                .environmentObject(GameManager())
         } else {
             VStack(alignment: .leading, spacing: 30) {
                 

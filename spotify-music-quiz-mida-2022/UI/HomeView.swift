@@ -31,7 +31,7 @@ struct HomeView: View {
                             .padding()
                             .foregroundColor(.white)
                         Spacer()
-                        NavigationLink(destination: LeaderboardView()) {
+                        NavigationLink(destination: FriendsView()) {
                             Image(systemName: "list.number")
                                 .font(.system(size: 25, weight: .bold))
                                 .foregroundColor(.white)
