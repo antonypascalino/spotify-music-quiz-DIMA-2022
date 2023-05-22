@@ -22,6 +22,7 @@ class GameManager: ObservableObject {
     var userPlaylists : [Playlist] = []
     var filteredUserPlaylists : [Playlist] = []
     var tempTrack : [PlaylistItem] = []
+    var reccTracks : [Track] = []
     var isLoading = true
     
     private let apiCaller = APICaller.shared
@@ -47,7 +48,11 @@ class GameManager: ObservableObject {
                         return false
                 }
             }
-        
+        loadAlbums()
+        while(isLoading){
+            ProgressView()
+        }
+        isLoading = true
         
         
         questions = generateRandomQuestions()
@@ -285,8 +290,39 @@ class GameManager: ObservableObject {
        }
     
 //    private func generateAlbumSongQuestions() -> [Question2] {
-//        
-//        
+//        var questions: [Question2] = []
+//        self.albums.shuffle()
+//
+//        for var album in self.albums {
+//            album.tracks.items.shuffle()
+//            let correctTrack = album.tracks.items.first!
+//            let correctAnswer = correctTrack.name
+//
+//            self.reccTracks = []
+//            loadRecc(track: correctTrack)
+//            while(isLoading){
+//                ProgressView()
+//            }
+//            isLoading = true
+//
+//            if !similarArtists.isEmpty{
+//                for i in 0...2{
+//                    similarArtistsNames.append(similarArtists[i].name)
+//                }
+//
+//                let question = Question2(questionText: "Who sings the song '\(track.name)'?",
+//                                         correctAnswer: correctAnswer,
+//                                         wrongAnswers: similarArtistsNames)
+//                questions.append(question)
+//            }
+//
+//
+//        }
+//
+//            return questions
+//
+//
+//
 //    }
 
     
@@ -441,7 +477,7 @@ class GameManager: ObservableObject {
             
              apiCaller.getUserAlbums {result in
                 switch result{
-                    case .success(let model):
+                    case .success(var model):
                         self.albums = model
                         self.isLoading = false
                         break
