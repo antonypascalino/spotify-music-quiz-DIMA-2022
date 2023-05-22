@@ -18,8 +18,8 @@ struct TextStyle {
         return Font.custom("Gotham-Black", size: 30)
     }
     
-    static func score() -> Font {
-        return Font.custom("Gotham-Black", size: 60)
+    static func score(_ score: CGFloat) -> Font {
+        return Font.custom("Gotham-Black", size: score)
     }
     
     static func LoginTitle() -> Font {
@@ -43,7 +43,7 @@ struct TextStyle {
     }
     
     static func leaderboardItem() -> Font {
-        return Font.custom("Gotham-Black", size: 15)
+        return Font.custom("Gotham-light", size: 15)
     }
     
     static func answer() -> Font {

@@ -58,7 +58,7 @@ struct HomeView: View {
                         .foregroundColor(Color("Green"))
                         .padding(.bottom)
                     Text(String(score))
-                        .font(TextStyle.score())
+                        .font(TextStyle.score(50))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom, 40.0)
                     NavigationLink(destination: GameView()) {
@@ -69,10 +69,11 @@ struct HomeView: View {
                 }
             }
             .background(
-                RadialGradient(gradient: Gradient(colors: [Color("Green"), Color("Black")]),
-                               center: UnitPoint(x: 0.50, y: 0.35),
-                               startRadius: 20,
-                               endRadius: 280)
+                RadialGradient(
+                    gradient: Gradient(colors: [Color("Green"), Color("Black")]),
+                    center: UnitPoint(x: 0.50, y: 0.35),
+                    startRadius: 20,
+                    endRadius: 280)
             )
             .foregroundColor(.white)
             .onAppear{

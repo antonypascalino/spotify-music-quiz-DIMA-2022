@@ -27,6 +27,7 @@ struct ListImage: View {
             Image(systemName: "person.crop.circle")
                 .resizable()
                 .frame(width: 40, height: 40)
+                .foregroundColor(.white)
         }
     }
 }
@@ -34,5 +35,6 @@ struct ListImage: View {
 struct ImageToLoad_Previews: PreviewProvider {
     static var previews: some View {
         ListImage(imageString: "")
+            .background(.black)
     }
 }

@@ -22,14 +22,13 @@ struct GameView: View {
         
         
         if gameIsOver {
-            GameOverView()
-                .environmentObject(GameManager())
+            GameOverView(score: gameManager.correctAnswersCount)
         } else {
             VStack(alignment: .leading, spacing: 30) {
                 
                 Spacer()
                 Text("Score: \(gameManager.correctAnswersCount)")
-                    .font(TextStyle.score())
+                    .font(TextStyle.score(50))
                     .foregroundColor(Color(playerMiss ? "Red" : "Green"))
                     .padding(.leading)
                 
@@ -75,7 +74,6 @@ struct GameView: View {
             .navigationBarHidden(true)
         }
     }
-    
 }
 
 

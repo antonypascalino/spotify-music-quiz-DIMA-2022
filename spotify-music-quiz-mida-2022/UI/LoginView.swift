@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct LoginView: View {
-
+    
     @State var completeAuth = false
-
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -36,18 +36,16 @@ struct LoginView: View {
                 Spacer()
                 
                 NavigationLink(destination: AuthView( completionHandler: { value in
-                        if value {
-                            completeAuth = true
-                        }
-                    }), label: {
-                    ZStack{
-                        HStack {
-                            Image("SpotifyLogoBlack")
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                            Text("Sign in")
-                                .font(TextStyle.LoginInputTitle())
-                        }
+                    if value {
+                        completeAuth = true
+                    }
+                }), label: {
+                    HStack {
+                        Image("SpotifyLogoBlack")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text("Sign in")
+                            .font(TextStyle.LoginInputTitle())
                     }
                 })
                 .frame(width: 210.0, height: 60.0)
@@ -55,13 +53,13 @@ struct LoginView: View {
                 .foregroundColor(Color("Black"))
                 .cornerRadius(30.0)
                 Spacer()
-
+                
                 if completeAuth {
                     NavigationLink(
                         destination: HomeView(),
                         isActive: $completeAuth) {
-                        EmptyView()
-                    }
+                            EmptyView()
+                        }
                 }
                 
             }
