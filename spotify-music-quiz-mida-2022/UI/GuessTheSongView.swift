@@ -3,20 +3,17 @@ import AVKit
 
 struct GuessTheSongView: View {
     
-    let url : String
     @Binding var userAnswer : String
     @Binding var isShowingGuessView: Bool
 
     
     var body: some View {
         
-        let player = AVPlayer(url: URL(string : url)!)
+        
 
         ZStack {
             
-            AudioPlayerView(player: player, duration: 30)
-                .edgesIgnoringSafeArea(.all)
-                .hidden()
+                
            
             
             VStack {

@@ -1,5 +1,5 @@
 import Foundation
 
 struct LibraryTrackResponse: Codable {
-    let items: [Track]
+    var items: [Track]
 }

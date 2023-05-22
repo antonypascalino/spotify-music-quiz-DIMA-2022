@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct GameView: View {
     
@@ -43,7 +44,14 @@ struct GameView: View {
                 
                 if(gameManager.getNextQuestion()!.isShazam){
                     if isShowingGuessView {
-                        GuessTheSongView(url: gameManager.getNextQuestion()!.songUrl!, userAnswer : $userAnswer, isShowingGuessView: $isShowingGuessView)
+                        GuessTheSongView(userAnswer : $userAnswer, isShowingGuessView: $isShowingGuessView)
+                            .onAppear {
+                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                                
+                            }.onDisappear{
+                                AudioPlayer.shared.stop()
+                                
+                            }
                     } else {
                         
                         //sicuramente da fixare e creare un'altra struttura per queste risposte
@@ -76,6 +84,29 @@ struct GameView: View {
     }
 }
 
+
+
+class AudioPlayer: ObservableObject {
+    static let shared = AudioPlayer()
+    
+    private var player: AVPlayer?
+    
+    func play(audioURL: URL) {
+        let playerItem = AVPlayerItem(url: audioURL)
+        player = AVPlayer(playerItem: playerItem)
+        player?.play()
+    }
+    
+    func stop() {
+        player?.pause()
+        player = nil
+        
+        //stop dopo tot secondi
+//        player.addBoundaryTimeObserver(forTimes: [NSValue(time: CMTime(seconds: duration, preferredTimescale: 1))], queue: .main) {
+//            playerViewController.player?.pause()
+//        }
+    }
+}
 
 
 struct GameView_Previews: PreviewProvider {

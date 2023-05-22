@@ -21,23 +21,16 @@ struct AuthView: View {
     
     var body: some View {
         VStack {
-            if let code = code {
-                Button {
-                    error = nil
-                    
-                     AuthManager.shared.exchangeCodeForToken(code: code) { result in
-                                    switch result {
-                                        case true:
-                                            self.completionHandler?(true)
-                                        case false:
-                                            self.error = error
-                                                }
-                                }
-                    if let error = error { Text("Error: \(error.localizedDescription)") }
-                } label: {
-                    Text("Exchange")
-                }
-            } else {
+//            if let code = code {
+//                Button {
+//                    error = nil
+//
+//
+//                    if let error = error { Text("Error: \(error.localizedDescription)") }
+//                } label: {
+//                    Text("Exchange")
+//                }
+//            } else {
                 
                 WebView(webView: $webView, url: authURL)
                     .onAppear {
@@ -50,11 +43,19 @@ struct AuthView: View {
                             if url.absoluteString.contains("https://localhost:8888/callback?code=") {
                                 let components = URLComponents(string: url.absoluteString)
                                 code = components?.queryItems?.first(where: { $0.name == "code" })?.value
-                                webView.loadHTMLString("<html><body>You have successfully authenticated with Spotify.</body></html>", baseURL: nil)
+//                                webView.loadHTMLString("<html><body>You have successfully authenticated with Spotify.</body></html>", baseURL: nil)
+                                AuthManager.shared.exchangeCodeForToken(code: code!) { result in
+                                               switch result {
+                                                   case true:
+                                                       self.completionHandler?(true)
+                                                   case false:
+                                                       self.error = error
+                                                           }
+                                           }
                             }
                         }
                     )
-            }
+//            }
         }
     }
 }
