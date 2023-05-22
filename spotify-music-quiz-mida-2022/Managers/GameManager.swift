@@ -119,6 +119,8 @@ class GameManager: ObservableObject {
 //        let albumSongQuestions = generateAlbumSongQuestions()
 //        questionsTemp.append(contentsOf: albumSongQuestions)
         
+          // Genera domande di tipo "quale canzone è contenuta nell'album 'TITOLO'?"
+
 //        let listenSongQuestions = generateListenSongQuestions()
 //        questionsTemp.append(contentsOf: listenSongQuestions)
 
