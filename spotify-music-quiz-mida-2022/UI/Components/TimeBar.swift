@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimeBar: View {
     
-    let duration: Double
+    @State var duration: Double
     @State private var currentIteration = 0
     @State private var progress: CGFloat = 0
     
@@ -45,7 +45,7 @@ struct TimeBar: View {
                 startTimer()
             }
             
-            
+            //Timer to show in both sides of the bar
             HStack {
                 if (currentSecond < 10) {
                     Text("0:0\(String(currentSecond))")
@@ -80,9 +80,12 @@ struct TimeBar: View {
     
     func startTimer() {
         
-        let iterations = Int(duration / 0.05)
+        print("STARTING TIMER WITH DURATION: \(duration)")
+        print("THE QUESTION IS: \(gameManager.currentQuestion?.isShazam)")
+        let iterations = Int(duration / 0.01)
         progress = 0
         currentIteration = 0
+        duration = Double(gameManager.currentQuestion!.isShazam ? 25 : 10)
         
         Timer.scheduledTimer(withTimeInterval: duration/Double(iterations), repeats: true) { timer in
             if gameManager.answerSelected {

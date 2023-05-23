@@ -7,23 +7,24 @@ struct GuessTheSongView: View {
     @State var guessedTitle = ""
     @State var isCorrect = false
     
-    @EnvironmentObject var gameManager : GameManager
+//    @EnvironmentObject var gameManager : GameManager
     
-//        let answerSelected = true
+    let answerSelected = true
     var body: some View {
         
         VStack {
+            
             ShazamLikeView()
             
             TextField("",text: $guessedTitle)
-                .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
+                .placeholder(when: guessedTitle.isEmpty && /*!gameManager.*/!answerSelected) {
                     Text("Title...")
                         .font(TextStyle.answer().italic())
                         .foregroundColor(Color("White"))
                         .opacity(0.7)
                 }
             
-                .placeholder(when: gameManager.answerSelected) {
+                .placeholder(when: /*gameManager.*/answerSelected) {
                     Text(correctAnswer)
                         .font(TextStyle.answer())
                         .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
@@ -32,10 +33,8 @@ struct GuessTheSongView: View {
                 }
                 .onSubmit {
                     checkAnswer()
-                    gameManager.selectAnswer(isCorrect)
+//                    gameManager.selectAnswer(isCorrect)
                     guessedTitle = ""
-                    print("Correct answer is: \(correctAnswer)")
-                    print("Player wrote: \(guessedTitle)")
                 }
                 .font(TextStyle.answer())
                 .foregroundColor(Color("White"))
@@ -44,7 +43,7 @@ struct GuessTheSongView: View {
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
                 .frame(width: 360.0)
-                .disabled(gameManager.answerSelected)
+//                .disabled(gameManager.answerSelected)
         }
     }
 
@@ -116,6 +115,6 @@ struct GuessTheSongView_Previews: PreviewProvider {
     static var previews: some View {
         GuessTheSongView(correctAnswer: "Hold On")
             .background(Color("Black"))
-            .environmentObject(GameManager())
+//            .environmentObject(GameManager())
     }
 }

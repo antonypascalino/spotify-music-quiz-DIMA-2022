@@ -63,7 +63,7 @@ struct GameView: View {
                 
                 HStack {
                     Spacer()
-                    TimeBar(duration: 10)
+                    TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
                         .environmentObject(gameManager)
                     Spacer()
                 }
