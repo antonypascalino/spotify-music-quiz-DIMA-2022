@@ -188,7 +188,7 @@ class GameManager: ObservableObject {
                     similarArtistsNames.append(similarArtists[i].name)
                 }
                 
-                let question = Question2(questionText: "Who sings the song '\(track.name)'?",
+                let question = Question2(questionText: "Who sings the song _\(track.name)_?",
                                          correctAnswer: correctAnswer,
                                          wrongAnswers: similarArtistsNames)
                 questions.append(question)
@@ -215,7 +215,7 @@ class GameManager: ObservableObject {
             
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
             
-            let question = Question2(questionText: "What year was the album '\(album.name)' released?",
+            let question = Question2(questionText: "What year was the album _\(album.name)_ released?",
                                      correctAnswer: correctAnswer,
                                      wrongAnswers: similarDates)
            
@@ -246,7 +246,7 @@ class GameManager: ObservableObject {
            
            let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate : track.album!.release_date), originalArtist : track.album!.artists.first!)
 
-           let question = Question2(questionText: "What year was the song '\(track.name)' released?",
+           let question = Question2(questionText: "What year was the song _\(track.name)_ released?",
                                     correctAnswer: correctAnswer,
                                     wrongAnswers: similarDates)
            questions.append(question)
@@ -313,7 +313,7 @@ class GameManager: ObservableObject {
 //                    similarArtistsNames.append(similarArtists[i].name)
 //                }
 //
-//                let question = Question2(questionText: "Who sings the song '\(track.name)'?",
+//                let question = Question2(questionText: "Who sings the song _\(track.name)_?",
 //                                         correctAnswer: correctAnswer,
 //                                         wrongAnswers: similarArtistsNames)
 //                questions.append(question)

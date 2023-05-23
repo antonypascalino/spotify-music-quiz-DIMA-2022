@@ -36,6 +36,8 @@
 		0A6559AB2A05099A007ACBFC /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6559AA2A05099A007ACBFC /* Playlist.swift */; };
 		0A6559AD2A05099F007ACBFC /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6559AC2A05099F007ACBFC /* APIImage.swift */; };
 		0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6559AE2A0509A2007ACBFC /* UserProfile.swift */; };
+		0A710AD52A1CC617001AFEE6 /* Gotham-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A710AD42A1CC5EE001AFEE6 /* Gotham-BoldItalic.otf */; };
+		0A710AD72A1CC706001AFEE6 /* Gotham-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A710AD62A1CC6D7001AFEE6 /* Gotham-BlackItalic.otf */; };
 		0A78A2BC2A1BA70D00876600 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78A2BA2A1BA70D00876600 /* AddFriendView.swift */; };
 		0A78A2BD2A1BA70D00876600 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */; };
 		0A809D182A1158050038DC64 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A809D162A1158050038DC64 /* Item.swift */; };
@@ -120,6 +122,8 @@
 		0A6559AA2A05099A007ACBFC /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		0A6559AC2A05099F007ACBFC /* APIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIImage.swift; sourceTree = "<group>"; };
 		0A6559AE2A0509A2007ACBFC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		0A710AD42A1CC5EE001AFEE6 /* Gotham-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BoldItalic.otf"; sourceTree = "<group>"; };
+		0A710AD62A1CC6D7001AFEE6 /* Gotham-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BlackItalic.otf"; sourceTree = "<group>"; };
 		0A78A2BA2A1BA70D00876600 /* AddFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		0A78A2BE2A1BA7F100876600 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddFriendView.swift; path = "spotify-music-quiz-mida-2022/UI/AddFriendView.swift"; sourceTree = "<group>"; };
@@ -380,7 +384,9 @@
 			isa = PBXGroup;
 			children = (
 				0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */,
+				0A710AD62A1CC6D7001AFEE6 /* Gotham-BlackItalic.otf */,
 				0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */,
+				0A710AD42A1CC5EE001AFEE6 /* Gotham-BoldItalic.otf */,
 				0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */,
 				0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */,
 				0AD8DC8D29BA0490009EE067 /* Gotham-Thin.otf */,
@@ -516,6 +522,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A710AD72A1CC706001AFEE6 /* Gotham-BlackItalic.otf in Resources */,
+				0A710AD52A1CC617001AFEE6 /* Gotham-BoldItalic.otf in Resources */,
 				0AD8DC9629BA0704009EE067 /* Gotham-UltraItalic.otf in Resources */,
 				0ABA735829BC987A00DC0A4C /* colors.xcassets in Resources */,
 				0AD8DC9729BA0704009EE067 /* Gotham-Thin.otf in Resources */,

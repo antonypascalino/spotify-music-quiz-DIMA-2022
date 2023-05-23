@@ -53,4 +53,12 @@ struct TextStyle {
     static func time() -> Font {
         return Font.custom("Gotham-Black", size: 15)
     }
+    
+    static func boldItalic(_ size : CGFloat) -> Font {
+        return Font.custom("Gotham-BoldItalic", size: size)
+    }
+    
+    static func blackItalic(_ size : CGFloat) -> Font {
+        return Font.custom("Gotham-BlackItalic", size: size)
+    }
 }

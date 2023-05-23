@@ -6,6 +6,8 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Gotham-BlackItalic.otf</string>
+		<string>Gotham-BoldItalic.otf</string>
 		<string>Gotham-Black.otf</string>
 		<string>Gotham-Bold.otf</string>
 		<string>Gotham-Light.otf</string>

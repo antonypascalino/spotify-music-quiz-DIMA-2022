@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let score = 257
+let score = 35
 
 
 struct HomeView: View {
