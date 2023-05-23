@@ -98,6 +98,7 @@ class GameManager: ObservableObject {
     }
     
     func selectAnswer(_ isCorrect : Bool) {
+        
         answerSelected = true
         
         let currentQuestion = questions[currentQuestionIndex]
@@ -125,9 +126,11 @@ class GameManager: ObservableObject {
 //        questionsTemp.append(contentsOf: albumSongQuestions)
         
           // Genera domande di tipo "quale canzone è contenuta nell'album 'TITOLO'?"
-
-//        let listenSongQuestions = generateListenSongQuestions()
-//        questionsTemp.append(contentsOf: listenSongQuestions)
+        print("Starting Shazam")
+        let listenSongQuestions = generateListenSongQuestions()
+        print("\nShazam: \(listenSongQuestions)")
+        questionsTemp.append(contentsOf: listenSongQuestions)
+    
 
         return questionsTemp
     }
@@ -266,17 +269,17 @@ class GameManager: ObservableObject {
         
         loadTracksFromPlaylists()
         
-        while(isLoading){
-            ProgressView()
-        }
-        isLoading = true
+       
         
         self.topTracks.shuffle()
         
        for track in self.topTracks {
-           let correctAnswer = track.name
+          
+           let correctAnswer = track.name.components(separatedBy: " -").first!
+           //let correctAnswer = correctAns3wer2.components(separatedBy: " (").first!
+
            if(track.preview_url != nil){
-               let question = Question2(questionText: "Guess the title of the song!",
+               let question = Question2(questionText: "Guess the song!",
                                         correctAnswer: correctAnswer,
                                         isShazam : true,
                                         songUrl : track.preview_url,

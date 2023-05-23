@@ -36,30 +36,25 @@ struct GameView: View {
                 
                 Text((gameManager.getNextQuestion()?.questionText)!)
                     .font(TextStyle.LoginTitle())
-                    .lineLimit(/*@START_MENU_TOKEN@*/2/*@END_MENU_TOKEN@*/)
+                    .lineLimit(3)
                     .frame(width: 360.0, height: 60, alignment: .leading)
                     .minimumScaleFactor(0.1)
                     .foregroundColor(.white)
                     .padding([.leading, .bottom])
                 
                 if(gameManager.getNextQuestion()!.isShazam){
-                    if isShowingGuessView {
-                        GuessTheSongView(userAnswer : $userAnswer, isShowingGuessView: $isShowingGuessView)
-                            .onAppear {
+                    GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
+                        .environmentObject(gameManager)
+                        .onAppear {
                             AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                                
-                            }.onDisappear{
-                                AudioPlayer.shared.stop()
-                                
-                            }
-                    } else {
-                        
-                        //sicuramente da fixare e creare un'altra struttura per queste risposte
-                        Answer(answer: userAnswer)
-                        
-                    }
+                        }
+                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        }
+                        .onDisappear {
+                            AudioPlayer.shared.stop()
+                        }
                 } else {
-                    
                     ForEach(currentAnwers, id: \.self) { answer in
                         Answer(answer: answer)
                             .environmentObject(gameManager)

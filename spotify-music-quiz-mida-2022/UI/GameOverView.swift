@@ -40,7 +40,7 @@ struct GameOverView: View {
                     Text("Homepage")
                         .font(TextStyle.LoginInputTitle())
                 }
-                .frame(width: 180.0, height: 60.0)
+                .frame(width: 170.0, height: 60.0)
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(30.0)
@@ -57,7 +57,7 @@ struct GameOverView: View {
                             .font(TextStyle.LoginInputTitle())
                     }
                 }
-                .frame(width: 180.0, height: 60.0)
+                .frame(width: 170.0, height: 60.0)
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(30.0)
