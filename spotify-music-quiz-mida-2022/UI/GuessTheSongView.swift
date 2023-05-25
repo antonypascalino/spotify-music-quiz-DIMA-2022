@@ -12,18 +12,14 @@ struct GuessTheSongView: View {
 //    let answerSelected = true
     var body: some View {
         
-        VStack {
-            HStack {
-                Spacer()
-                ShazamLikeView()
-                Spacer()
-            }
+        VStack(alignment: .leading, spacing: 3) {
             
+            ShazamLikeView()
             TextField("",text: $guessedTitle)
                 .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
                     Text("Title...")
                         .font(TextStyle.answer().italic())
-                        .foregroundColor(Color("White"))
+                        .foregroundColor(Color.gray)
                         .opacity(0.7)
                 }
             
@@ -41,13 +37,19 @@ struct GuessTheSongView: View {
                 }
                 .font(TextStyle.answer())
                 .foregroundColor(Color("White"))
-                .padding(.top)
-                .padding([.trailing, .leading], 20.0)
+                .padding([.trailing, .leading])
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
                 .frame(width: 360.0)
                 .disabled(gameManager.answerSelected)
+            
+            Text("Coldplay")
+                .font(TextStyle.time())
+                .opacity(gameManager.answerSelected ? 1 : 0)
+                .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
+                .padding([.trailing, .leading])
         }
+        .frame(maxWidth: .infinity)
     }
 
     func checkAnswer() {

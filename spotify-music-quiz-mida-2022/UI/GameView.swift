@@ -39,43 +39,46 @@ struct GameView: View {
                     .frame(width: 360.0, height: 60, alignment: .leading)
                     .minimumScaleFactor(0.1)
                     .foregroundColor(.white)
-                    .padding([.leading, .bottom])
+                    .padding(.leading)
                 
                 if(gameManager.getNextQuestion()!.isShazam){
-                    HStack {
-                        Spacer()
-                        GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
-                            .environmentObject(gameManager)
-                            .onAppear {
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onDisappear {
-                                AudioPlayer.shared.stop()
-                            }
-                        Spacer()
-                    }
+                    
+                    GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
+                        .environmentObject(gameManager)
+                        .onAppear {
+                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        }
+                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        }
+                        .onDisappear {
+                            AudioPlayer.shared.stop()
+                        }
+                        .frame(height: 380)
                 } else {
-                    ForEach(currentAnwers, id: \.self) { answer in
-                        Answer(answer: answer)
-                            .environmentObject(gameManager)
+                    VStack {
+                        ForEach(currentAnwers, id: \.self) { answer in
+                            Answer(answer: answer)
+                                .environmentObject(gameManager)
+                        }
+                        .padding([.top, .bottom] , 12)
+                        .padding(.leading , 5)
                     }
+                    .frame(height: 380)
+                    .offset(y: -18)
                 }
                 
-                HStack {
-                    Spacer()
+                VStack {
                     TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
                         .environmentObject(gameManager)
-                    Spacer()
+                    GameControls()
+                        .environmentObject(gameManager)
                 }
-                .padding(.top, 32)
+                .offset(y: -33)
+                Spacer()
                 
-                GameControls()
-                    .environmentObject(gameManager)
+                
             }
-            
             .background(Color("Black"))
             .navigationBarHidden(true)
         }

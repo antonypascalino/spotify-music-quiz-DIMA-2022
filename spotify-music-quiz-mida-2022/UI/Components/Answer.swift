@@ -30,9 +30,10 @@ struct Answer: View {
                 .foregroundColor(Color(isSelected || (gameManager.answerSelected && isCorrect) ? "Black" : "White"))
                 .lineLimit(1)
                 .minimumScaleFactor(0.1)
+                .padding(.trailing)
         }
         
-        .frame(width: 300.0, height: 60.0, alignment: .leading)
+        .frame(width: 320.0, height: 60.0, alignment: .leading)
         .background(Color(isSelected || (!isSelected && isCorrect && gameManager.answerSelected) ? (isCorrect ? "Green" : "Red") : "Black"))
         .cornerRadius(100)
         .onTapGesture {

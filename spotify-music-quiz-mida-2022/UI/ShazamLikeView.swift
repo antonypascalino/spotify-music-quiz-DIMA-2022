@@ -29,6 +29,7 @@ struct ShazamLikeView: View {
             
             Circle()
                 .frame(width: 200, height: 200)
+                .foregroundColor(.black)
             
             Image("SpotifyLogoGreen")
                 .resizable()
@@ -40,6 +41,7 @@ struct ShazamLikeView: View {
                 animating.toggle()
             }
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
