@@ -33,7 +33,6 @@ struct GameView: View {
                     .foregroundColor(Color(playerMiss ? "Red" : "Green"))
                     .padding(.leading)
                 
-                
                 Text(.init((gameManager.getNextQuestion()?.questionText)!))
                     .font(TextStyle.LoginTitle())
                     .lineLimit(3)
@@ -43,17 +42,21 @@ struct GameView: View {
                     .padding([.leading, .bottom])
                 
                 if(gameManager.getNextQuestion()!.isShazam){
-                    GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
-                        .environmentObject(gameManager)
-                        .onAppear {
-                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        }
-                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        }
-                        .onDisappear {
-                            AudioPlayer.shared.stop()
-                        }
+                    HStack {
+                        Spacer()
+                        GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
+                            .environmentObject(gameManager)
+                            .onAppear {
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onDisappear {
+                                AudioPlayer.shared.stop()
+                            }
+                        Spacer()
+                    }
                 } else {
                     ForEach(currentAnwers, id: \.self) { answer in
                         Answer(answer: answer)

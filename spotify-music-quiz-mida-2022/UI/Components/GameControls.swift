@@ -53,7 +53,8 @@ struct GameControls: View {
 struct GameControls_Previews: PreviewProvider {
     static var previews: some View {
         GameControls()
-            .background(Color("Black"))
             .environmentObject(GameManager())
+            .background(Color("Black"))
+            
     }
 }

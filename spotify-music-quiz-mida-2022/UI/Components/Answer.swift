@@ -18,8 +18,8 @@ struct Answer: View {
     
     var body: some View {
         
-        var currentQuestion = gameManager.getNextQuestion()!
-        var isCorrect = currentQuestion.isCorrect(answer)
+        let currentQuestion = gameManager.getNextQuestion()!
+        let isCorrect = currentQuestion.isCorrect(answer)
         
         HStack {
             Image(systemName: "circle.fill")
@@ -28,13 +28,14 @@ struct Answer: View {
             Text(answer)
                 .font(TextStyle.answer())
                 .foregroundColor(Color(isSelected || (gameManager.answerSelected && isCorrect) ? "Black" : "White"))
+                .lineLimit(1)
+                .minimumScaleFactor(0.1)
         }
         
         .frame(width: 300.0, height: 60.0, alignment: .leading)
         .background(Color(isSelected || (!isSelected && isCorrect && gameManager.answerSelected) ? (isCorrect ? "Green" : "Red") : "Black"))
         .cornerRadius(100)
         .onTapGesture {
-            print("\(answer) pressed")
             if !gameManager.answerSelected {
                 isSelected = true
                 gameManager.selectAnswer(isCorrect)
@@ -50,8 +51,8 @@ struct Answer_Previews: PreviewProvider {
 
     static var previews: some View {
         
-        Answer(answer: "Freddy Mercury")
-            .background(Color("Black"))
+        Answer(answer: "Pinguini Tattici Nucleari")
             .environmentObject(GameManager())
+            .background(Color("Black"))
     }
 }

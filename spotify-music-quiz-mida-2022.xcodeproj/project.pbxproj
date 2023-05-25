@@ -15,7 +15,6 @@
 		0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */; };
 		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
 		0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BC29CB47D20073ACE0 /* Question.swift */; };
-		0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BE29CB651A0073ACE0 /* QuestionText.swift */; };
 		0A3DEEB52A16588F0004BA82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A3DEEB42A16588F0004BA82 /* GoogleService-Info.plist */; };
 		0A3DEEB82A1658E60004BA82 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEB72A1658E60004BA82 /* UserManager.swift */; };
 		0A3DEEBC2A16593C0004BA82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEBA2A16593C0004BA82 /* User.swift */; };
@@ -106,7 +105,6 @@
 		0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0A3908BC29CB47D20073ACE0 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		0A3908BE29CB651A0073ACE0 /* QuestionText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionText.swift; sourceTree = "<group>"; };
 		0A3DEEB42A16588F0004BA82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A3DEEB72A1658E60004BA82 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		0A3DEEBA2A16593C0004BA82 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -355,7 +353,6 @@
 				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
 				0A3908B729CAFF6E0073ACE0 /* LeaderboardView.swift */,
 				0AB9CAEE29C929D200871B2B /* LoginView.swift */,
-				0A3908BE29CB651A0073ACE0 /* QuestionText.swift */,
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
@@ -572,7 +569,6 @@
 				0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */,
 				0A6559A72A050992007ACBFC /* LibraryPlaylistsResponse.swift in Sources */,
 				0AB9A6132A0AB8D400B0F676 /* LibraryTrackResponse.swift in Sources */,
-				0A3908BF29CB651A0073ACE0 /* QuestionText.swift in Sources */,
 				0A6559AD2A05099F007ACBFC /* APIImage.swift in Sources */,
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
 				0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */,

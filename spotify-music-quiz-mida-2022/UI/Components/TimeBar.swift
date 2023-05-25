@@ -51,37 +51,36 @@ struct TimeBar: View {
                     Text("0:0\(String(currentSecond))")
                         .foregroundColor(.gray)
                         .font(TextStyle.time())
-                        .padding(.leading, 8.5)
+                        .padding(.leading, 16.0)
                 }
                 else {
                     
                     Text("0:\(String(currentSecond))")
                         .foregroundColor(.gray)
                         .font(TextStyle.time())
-                        .padding(.leading, 8.5)
+                        .padding(.leading, 16.0)
                 }
                 Spacer()
                 if (missingSeconds < 10) {
                     Text("-0:0\(String(missingSeconds))")
                         .foregroundColor(.gray)
                         .font(TextStyle.time())
-                        .padding(.trailing, 8.5)
+                        .padding(.trailing, 16.0)
                 }
                 else {
                     
                     Text("-0:\(String(missingSeconds))")
                         .foregroundColor(.gray)
                         .font(TextStyle.time())
-                        .padding(.trailing, 8.5)
+                        .padding(.trailing, 16.0)
                 }
             }
         }
+        .frame(maxWidth: .infinity)
     }
     
     func startTimer() {
         
-        print("STARTING TIMER WITH DURATION: \(duration)")
-        print("THE QUESTION IS: \(gameManager.currentQuestion?.isShazam)")
         let iterations = Int(duration / 0.01)
         progress = 0
         currentIteration = 0
@@ -109,7 +108,8 @@ struct TimeBar_Previews: PreviewProvider {
     
     static var previews: some View {
         TimeBar(duration: 10)
+            .environmentObject(GameManager())
             .frame(height: 60.0)
-            .background(Color("Black"))
+            .background(Color("Black")) 
     }
 }
