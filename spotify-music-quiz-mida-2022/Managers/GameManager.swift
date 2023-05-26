@@ -192,7 +192,7 @@ class GameManager: ObservableObject {
                     similarArtistsNames.append(similarArtists[i].name)
                 }
                 
-                let question = Question2(questionText: "Who sings the song _\(track.name)_?",
+                let question = Question2(questionText: "Who sings the song _\(filterString(track.name))_?",
                                          correctAnswer: correctAnswer,
                                          wrongAnswers: similarArtistsNames)
                 questions.append(question)
@@ -230,11 +230,11 @@ class GameManager: ObservableObject {
     }
     
     private func generateReleaseYearQuestions() -> [Question2] {
-       var questions: [Question2] = []
-       self.topTracks = []
-       
-       loadTopTracks()
-
+        var questions: [Question2] = []
+        self.topTracks = []
+        
+        loadTopTracks()
+        
         while(isLoading) {
             ProgressView()
         }
@@ -245,19 +245,19 @@ class GameManager: ObservableObject {
         
         self.topTracks.shuffle()
         
-       for track in self.topTracks {
-           let correctAnswer = getOnlyYear(allDate: track.album!.release_date)
-           
-           let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate : track.album!.release_date), originalArtist : track.album!.artists.first!)
-
-           let question = Question2(questionText: "What year was the song _\(track.name)_ released?",
-                                    correctAnswer: correctAnswer,
-                                    wrongAnswers: similarDates)
-           questions.append(question)
-       }
-               
-           return questions
-       }
+        for track in self.topTracks {
+            let correctAnswer = getOnlyYear(allDate: track.album!.release_date)
+            
+            let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate : track.album!.release_date), originalArtist : track.album!.artists.first!)
+            
+            let question = Question2(questionText: "What year was the song _\(filterString(track.name))_ released?",
+                                     correctAnswer: correctAnswer,
+                                     wrongAnswers: similarDates)
+            questions.append(question)
+        }
+        
+        return questions
+    }
     
     
     private func generateListenSongQuestions() -> [Question2]{
@@ -279,7 +279,7 @@ class GameManager: ObservableObject {
         
        for track in self.topTracks {
           
-           let correctAnswer = track.name.components(separatedBy: " -").first!
+           let correctAnswer = filterString(track.name)
            //let correctAnswer = correctAns3wer2.components(separatedBy: " (").first!
 
            if(track.preview_url != nil){
@@ -317,7 +317,7 @@ class GameManager: ObservableObject {
 //                    similarArtistsNames.append(similarArtists[i].name)
 //                }
 //
-//                let question = Question2(questionText: "Who sings the song _\(track.name)_?",
+//                let question = Question2(questionText: "Who sings the song _\(filterString(track.name))_?",
 //                                         correctAnswer: correctAnswer,
 //                                         wrongAnswers: similarArtistsNames)
 //                questions.append(question)
@@ -528,14 +528,28 @@ class GameManager: ObservableObject {
     }
     
     private func fetchData(completion: @escaping (Bool) -> Void) {
-            DispatchQueue.global().async {
-                Thread.sleep(forTimeInterval: 5)
-                
-                DispatchQueue.main.async {
-                    completion(true)
-                }
+        DispatchQueue.global().async {
+            Thread.sleep(forTimeInterval: 5)
+            
+            DispatchQueue.main.async {
+                completion(true)
             }
         }
+    }
+    
+    func filterString(_ inputString: String) -> String {
+        var filteredString = inputString
+        
+        if let separatorIndex = filteredString.range(of: " -")?.lowerBound {
+            filteredString = String(filteredString[..<separatorIndex])
+        }
+        
+        if let parenthesisIndex = filteredString.range(of: " (")?.lowerBound {
+            filteredString = String(filteredString[..<parenthesisIndex])
+        }
+        
+        return filteredString.trimmingCharacters(in: .whitespaces)
+    }
    
 }
 

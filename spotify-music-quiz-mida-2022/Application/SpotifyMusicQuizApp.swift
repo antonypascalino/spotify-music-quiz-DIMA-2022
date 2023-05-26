@@ -18,11 +18,9 @@ struct spotify_music_quiz_mida_2022App: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                LoginView()
-            }
-            .statusBar(hidden: true)
-            .preferredColorScheme(.dark)
+            LoginView()
+                .statusBar(hidden: true)
+                .preferredColorScheme(.dark)
         }
     }
 }

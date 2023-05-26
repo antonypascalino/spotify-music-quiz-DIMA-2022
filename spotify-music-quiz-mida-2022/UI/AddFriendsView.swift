@@ -1,5 +1,5 @@
 //
-//  AddFriendView.swift
+//  AddFriendsView.swift
 //  spotify-music-quiz-mida-2022
 //
 //  Created by Antony Pascalino on 19/05/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddFriendView: View {
+struct AddFriendsView: View {
     
     @StateObject private var model = UserViewModel()
     @StateObject private var friendsModel = FriendsViewModel()
@@ -31,7 +31,7 @@ struct AddFriendView: View {
                 HStack {
                     ListImage(imageString: user.image)
                     Text(user.display_name)
-                        .font(TextStyle.leaderboardItem())
+                        .font(TextStyle.leaderboardItem().bold())
                         .foregroundColor(.white)
                         .padding(.leading)
                     Spacer()
@@ -54,34 +54,48 @@ struct AddFriendView: View {
                     }
                 }
                 .listRowBackground(Color.clear)
-                .padding(.bottom)
             }
             .listStyle(.plain)
             .foregroundColor(.white)
+            .padding(.leading)
         
             
             Spacer()
             
             //Search field to filter the users
-            TextField(
-                "Search by name...",
-                text:  $nameToSearch
-            )
-            .padding()
+            HStack {
+                Image(systemName: "magnifyingglass")
+                    .foregroundColor(Color("Black"))
+                    .padding(.leading, 10)
+                    .font(Font.title.weight(.semibold))
+                TextField("",text:  $nameToSearch)
+                .placeholder(when: nameToSearch.isEmpty) {
+                    Text("Search name...")
+                        .font(TextStyle.leaderboardItem().bold())
+                        .foregroundColor(Color("Black"))
+                }
+                .font(TextStyle.leaderboardItem().bold())
+                .foregroundColor(Color("Black"))
+                .lineLimit(1)
+                .padding(.vertical, 16.0)
+                .padding(.leading, 15)
+            }
+            .background(Color("White"))
+            .cornerRadius(10)
+            .padding([.leading, .trailing], 30.0)
+            .padding(.bottom)
+            
         }
         .task {
             try? await model.getAllUsers()
         }
         .background(Color("Black"))
-    }
-    
-    func filterUsers(searchWord: String) {
-        
+        .navigationTitle("Add friends")
     }
 }
 
-struct AddFriendView_Previews: PreviewProvider {
+struct AddFriendsView_Previews: PreviewProvider {
     static var previews: some View {
-        AddFriendView()
+        AddFriendsView()
     }
 }

@@ -11,9 +11,8 @@ import SwiftUI
 
 struct FriendsView: View {
     
-    @StateObject private var model = FriendsViewModel()
-    
-    let highscore = 30
+    @StateObject private var friendsModel = FriendsViewModel()
+    @StateObject private var model = UserViewModel()
     
     var body: some View {
         VStack {
@@ -33,12 +32,15 @@ struct FriendsView: View {
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
             HStack(spacing: 20) {
-                Text("Your highscore: \(highscore)")
+                Text("Your highscore: \(model.highscore)")
                     .font(TextStyle.leaderboardItem().bold())
                     .foregroundColor(.white)
                     .padding(.leading, 6.0)
+                    .task {
+                        try? await model.getUserHighscore(SpotifyID: "11127717417")
+                    }
                 Spacer()
-                NavigationLink (destination: AddFriendView() ,label: {
+                NavigationLink (destination: AddFriendsView() ,label: {
                     Image(systemName: "person.crop.circle.badge.plus")
                         .resizable()
                         .scaledToFit()
@@ -47,24 +49,25 @@ struct FriendsView: View {
                 })
                 
                 NavigationLink (destination: GameView() ,label: {
-                    Image("GreenPlay")
+                    Image(systemName: "play.circle.fill")
                         .resizable()
                         .scaledToFit()
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color("Green"))
                         .frame(width: 50.0, height: 50.0)
                         
                 })
                 .padding(.trailing, 5.0)
             }
             .padding()
-            if (!model.friends.isEmpty){
-                List(model.friends.indices) { index in
-                    let friend = model.friends[index]
+            if (!friendsModel.friends.isEmpty){
+                List(friendsModel.friends.indices) { index in
+                    let friend = friendsModel.friends[index]
                     HStack {
                         Text("\(index + 1)")
                             .font(TextStyle.leaderboardItem().bold())
                             .foregroundColor(.white)
                             .frame(width: 20, height: 20)
+                            .padding(.trailing)
                         ListImage(imageString: friend.image)
                         Text(friend.display_name)
                             .font(TextStyle.leaderboardItem().bold())
@@ -82,10 +85,23 @@ struct FriendsView: View {
                 .background(Color.clear)
                 
             } else {
-                HStack {
-                    Text("You have added no friends yet. Click on ")
-                    Image(systemName: "person.crop.circle.badge.plus")
-                    Text("to add new friends!")
+                VStack {
+                    Spacer()
+                    Text("You have added no friends yet!")
+                        .foregroundColor(.white)
+                        .font(TextStyle.leaderboardItem().bold())
+                    
+                    HStack {
+                        Text("Click on")
+                            .foregroundColor(.white)
+                            .font(TextStyle.leaderboardItem().bold())
+                        Image(systemName: "person.crop.circle.badge.plus")
+                            .foregroundColor(.white)
+                        Text("to add new friends!")
+                            .foregroundColor(.white)
+                            .font(TextStyle.leaderboardItem().bold())
+                    }
+                    Spacer()
                 }
             }
             
@@ -104,9 +120,8 @@ struct FriendsView: View {
             startPoint: .top,
             endPoint: .bottom))
         .task {
-            try? await model.getFriends(currentUserSpotifyID: "11127717417")
+            try? await friendsModel.getFriends(currentUserSpotifyID: "11127717417")
         }
-        .navigationBarBackButtonHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

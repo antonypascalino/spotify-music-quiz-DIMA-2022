@@ -12,55 +12,57 @@ struct LoginView: View {
     @State var completeAuth = false
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Spotify Music Quiz")
-                    .font(TextStyle.LoginTitle())
-                    .foregroundColor(Color("Green"))
-                    .multilineTextAlignment(.leading)
-                    .padding(.bottom, 35.0)
-                    .padding(.leading)
-                Spacer()
-            }
-            Spacer()
-            HStack {
-                Text("Test your music!")
-                    .font(TextStyle.homeTitle())
-                    .foregroundColor(.white)
-                    .padding(.leading)
-                    .padding(.bottom, 50.0)
-            }
-            Spacer()
-            
-            NavigationLink(destination: AuthView( completionHandler: { value in
-                if value {
-                    completeAuth = true
-                }
-            }), label: {
+        NavigationView {
+            VStack {
                 HStack {
-                    Image("SpotifyLogoBlack")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                    Text("Sign in")
-                        .font(TextStyle.LoginInputTitle())
+                    Text("Spotify Music Quiz")
+                        .font(TextStyle.LoginTitle())
+                        .foregroundColor(Color("Green"))
+                        .multilineTextAlignment(.leading)
+                        .padding(.bottom, 35.0)
+                        .padding(.leading)
+                    Spacer()
                 }
-            })
-            .frame(width: 210.0, height: 60.0)
-            .background(Color("Green"))
-            .foregroundColor(Color("Black"))
-            .cornerRadius(30.0)
-            Spacer()
-            
-            if completeAuth {
-                NavigationLink(
-                    destination: HomeView(),
-                    isActive: $completeAuth) {
-                        EmptyView()
+                Spacer()
+                HStack {
+                    Text("Test your music!")
+                        .font(TextStyle.homeTitle())
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                        .padding(.bottom, 50.0)
+                }
+                Spacer()
+                
+                NavigationLink(destination: AuthView( completionHandler: { value in
+                    if value {
+                        completeAuth = true
                     }
+                }), label: {
+                    HStack {
+                        Image("SpotifyLogoBlack")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text("Sign in")
+                            .font(TextStyle.LoginInputTitle())
+                    }
+                })
+                .frame(width: 210.0, height: 60.0)
+                .background(Color("Green"))
+                .foregroundColor(Color("Black"))
+                .cornerRadius(30.0)
+                Spacer()
+                
+                if completeAuth {
+                    NavigationLink(
+                        destination: HomeView(),
+                        isActive: $completeAuth) {
+                            EmptyView()
+                        }
+                }
+                
             }
-            
+            .background(Color("Black"))
         }
-        .background(Color("Black"))
     }
 }
 

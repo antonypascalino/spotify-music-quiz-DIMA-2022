@@ -54,10 +54,7 @@ struct GuessTheSongView: View {
                                     .opacity(guessedTitle == "" ? 0 : 1)
                 }
                 .disabled(gameManager.answerSelected)
-
-                
             }
-//            .padding([.trailing, .leading])
             .padding(.leading)
             .frame(width: 370.0)
             

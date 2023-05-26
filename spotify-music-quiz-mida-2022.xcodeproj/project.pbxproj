@@ -37,10 +37,10 @@
 		0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6559AE2A0509A2007ACBFC /* UserProfile.swift */; };
 		0A710AD52A1CC617001AFEE6 /* Gotham-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A710AD42A1CC5EE001AFEE6 /* Gotham-BoldItalic.otf */; };
 		0A710AD72A1CC706001AFEE6 /* Gotham-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0A710AD62A1CC6D7001AFEE6 /* Gotham-BlackItalic.otf */; };
-		0A78A2BC2A1BA70D00876600 /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78A2BA2A1BA70D00876600 /* AddFriendView.swift */; };
 		0A78A2BD2A1BA70D00876600 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */; };
 		0A809D182A1158050038DC64 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A809D162A1158050038DC64 /* Item.swift */; };
 		0A809D192A1158050038DC64 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A809D172A1158050038DC64 /* Artist.swift */; };
+		0A8145D42A210BE7005AC9D0 /* AddFriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */; };
 		0A8BF06A2A16258A007EFA71 /* TimeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BF0692A16258A007EFA71 /* TimeBar.swift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
@@ -122,11 +122,10 @@
 		0A6559AE2A0509A2007ACBFC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		0A710AD42A1CC5EE001AFEE6 /* Gotham-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BoldItalic.otf"; sourceTree = "<group>"; };
 		0A710AD62A1CC6D7001AFEE6 /* Gotham-BlackItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BlackItalic.otf"; sourceTree = "<group>"; };
-		0A78A2BA2A1BA70D00876600 /* AddFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
-		0A78A2BE2A1BA7F100876600 /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddFriendView.swift; path = "spotify-music-quiz-mida-2022/UI/AddFriendView.swift"; sourceTree = "<group>"; };
 		0A809D162A1158050038DC64 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0A809D172A1158050038DC64 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsView.swift; sourceTree = "<group>"; };
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
@@ -278,7 +277,6 @@
 		0AD17C402950AC3B003FEE73 = {
 			isa = PBXGroup;
 			children = (
-				0A78A2BE2A1BA7F100876600 /* AddFriendView.swift */,
 				0AD17C4A2950AC3B003FEE73 /* Products */,
 				0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */,
 				0AD17C5C2950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests */,
@@ -344,7 +342,6 @@
 			isa = PBXGroup;
 			children = (
 				0A8BF0682A16141C007EFA71 /* Components */,
-				0A78A2BA2A1BA70D00876600 /* AddFriendView.swift */,
 				0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
 				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
@@ -357,6 +354,7 @@
 				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
 				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
+				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -559,7 +557,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A78A2BC2A1BA70D00876600 /* AddFriendView.swift in Sources */,
 				0A24F24329D1FA1000841B43 /* AuthManager.swift in Sources */,
 				0AB9A6142A0AB8D400B0F676 /* Tracks.swift in Sources */,
 				0AFD9FCA2A1ACB6D00CFBEEC /* GameOverView.swift in Sources */,
@@ -586,6 +583,7 @@
 				0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */,
 				0A78A2BD2A1BA70D00876600 /* AudioPlayerView.swift in Sources */,
 				0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */,
+				0A8145D42A210BE7005AC9D0 /* AddFriendsView.swift in Sources */,
 				0A3DEEC12A165A140004BA82 /* UserViewModel.swift in Sources */,
 				0A3908B829CAFF6E0073ACE0 /* LeaderboardView.swift in Sources */,
 				0A3DEEBC2A16593C0004BA82 /* User.swift in Sources */,

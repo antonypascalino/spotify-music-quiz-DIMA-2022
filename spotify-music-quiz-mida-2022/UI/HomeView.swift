@@ -77,9 +77,10 @@ struct HomeView: View {
                             try? await model.getUserHighscore(SpotifyID: userProfile.id)
                         }
                     NavigationLink(destination: GameView().environmentObject(gameManager)) {
-                        Image("GreenPlay")
+                        Image(systemName: "play.circle.fill")
                             .resizable()
                             .frame(width: 100.0, height: 100.0)
+                            .foregroundColor(Color("Green"))
                     }
                 }
             }
