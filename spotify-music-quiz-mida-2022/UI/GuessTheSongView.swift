@@ -50,6 +50,9 @@ struct GuessTheSongView: View {
                 .padding([.trailing, .leading])
         }
         .frame(maxWidth: .infinity)
+        .onChange(of: gameManager.playerMiss) { newValue in
+            guessedTitle = ""
+        }
     }
 
     func checkAnswer() {
