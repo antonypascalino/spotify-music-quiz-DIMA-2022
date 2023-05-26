@@ -14,8 +14,9 @@ struct HomeView: View {
     
     @State var userProfile : UserProfile?
     @State var isLoading = false
-    @State private var error: Error?
-    @State private var profileImage: UIImage?
+
+    
+    @StateObject private var model = UserViewModel()
     
     var body: some View {
         NavigationView {
@@ -69,10 +70,13 @@ struct HomeView: View {
                         .font(TextStyle.scoreTitle())
                         .foregroundColor(Color("Green"))
                         .padding(.bottom)
-                    Text(String(score))
+                    Text(model.highscore)
                         .font(TextStyle.score(50))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom, 40.0)
+                        .task {
+                            try? await model.getUserHighscore(SpotifyID: userProfile.id)
+                        }
                     NavigationLink(destination: GameView()) {
                         Image("GreenPlay")
                             .resizable()

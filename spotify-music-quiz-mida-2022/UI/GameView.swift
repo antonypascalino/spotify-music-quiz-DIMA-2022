@@ -23,7 +23,8 @@ struct GameView: View {
         
         
         if gameIsOver {
-            GameOverView(score: gameManager.correctAnswersCount)
+            GameOverView()
+                .environmentObject(gameManager)
         } else {
             VStack(alignment: .leading, spacing: 30) {
                 

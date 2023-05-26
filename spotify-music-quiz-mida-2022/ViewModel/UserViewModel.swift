@@ -11,6 +11,7 @@ import Foundation
 final class UserViewModel : ObservableObject {
     @Published private(set) var users : [User] = []
     @Published private(set) var searchedUsers : [User] = []
+    @Published private(set) var highscore = ""
     
     func getAllUsers() async throws {
         let users = try await UserManager().getAllUsers()
@@ -20,6 +21,13 @@ final class UserViewModel : ObservableObject {
     func searchUsers(name: String) async throws {
         let users = try await UserManager().searchUsers(name: name)
         self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
-        print(users)
+    }
+    
+    func getUserHighscore(SpotifyID: String) async throws {
+        self.highscore = try await UserManager().getUserHighscore(SpotifyID: SpotifyID)
+    }
+    
+    func setUserHighscore(SpotifyID: String, newHighscore: Int) async throws {
+        try await UserManager().setUserHighscore(SpotifyID: SpotifyID, newHighscore: newHighscore)
     }
 }
