@@ -63,6 +63,13 @@ class GameManager: ObservableObject {
         currentAnswers = currentQuestion?.getAnswers()
     }
     
+    func restartGame() {
+        gameIsOver = false
+        playerMiss = false
+        answerSelected = false
+        startGame()
+    }
+    
     func setNextQuestion() {
         answerSelected = false
         
@@ -108,9 +115,6 @@ class GameManager: ObservableObject {
             playerMiss = true
         }
     }
-    
-    
-    
     
     func generateRandomQuestions() -> [Question2] {
         var questionsTemp : [Question2] = []

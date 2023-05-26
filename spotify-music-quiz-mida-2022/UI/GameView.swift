@@ -10,14 +10,14 @@ import AVFoundation
 
 struct GameView: View {
     
-    @StateObject var gameManager = GameManager()
+    @EnvironmentObject var gameManager : GameManager
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     
     var body: some View {
         
         let currentAnwers = gameManager.currentAnswers!
-        let currentQuestion = gameManager.getNextQuestion()!
+//        let currentQuestion = gameManager.getNextQuestion()!
         let playerMiss = gameManager.playerMiss
         let gameIsOver = gameManager.gameIsOver
         
@@ -114,5 +114,6 @@ class AudioPlayer: ObservableObject {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
+            .environmentObject(GameManager())
     }
 }

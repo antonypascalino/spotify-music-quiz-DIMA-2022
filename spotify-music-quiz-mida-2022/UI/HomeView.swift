@@ -7,13 +7,12 @@
 
 import SwiftUI
 
-let score = 35
-
 
 struct HomeView: View {
     
     @State var userProfile : UserProfile?
     @State var isLoading = false
+    @StateObject var gameManager = GameManager()
 
     
     @StateObject private var model = UserViewModel()
@@ -77,7 +76,7 @@ struct HomeView: View {
                         .task {
                             try? await model.getUserHighscore(SpotifyID: userProfile.id)
                         }
-                    NavigationLink(destination: GameView()) {
+                    NavigationLink(destination: GameView().environmentObject(gameManager)) {
                         Image("GreenPlay")
                             .resizable()
                             .frame(width: 100.0, height: 100.0)

@@ -12,12 +12,12 @@ struct GameOverView: View {
     
     @StateObject private var model = UserViewModel()
     @EnvironmentObject var gameManager : GameManager
-    
-    @State var highscore = 0
+    @State var gameRestarted = false
     
     var body: some View {
         
         let score = gameManager.correctAnswersCount
+        @State var isHighscore = score > model.highscore
         
         VStack {
             Spacer()
@@ -37,26 +37,19 @@ struct GameOverView: View {
                 .foregroundColor(Color("Green"))
                 .padding()
             
-            if (score > highscore) {
+            if(isHighscore) {
                 Text("It's your new highscore!")
                     .font(TextStyle.score(40))
                     .foregroundColor(Color("Green"))
                     .padding([.leading,.trailing])
                     .multilineTextAlignment(.center)
-                    .onAppear {
-                        Task {
-                            try await model.setUserHighscore(SpotifyID: "11127717417", newHighscore: score)
-                        }
-                    }
             }
             
             Spacer()
             
             HStack(spacing: 30.0) {
                 
-                NavigationLink {
-                    GameView()
-                } label: {
+                NavigationLink(destination: GameView().environmentObject(gameManager), isActive: $gameRestarted, label: {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: 20, height: 20)
@@ -67,12 +60,16 @@ struct GameOverView: View {
                         .minimumScaleFactor(0.1)
                         .padding(.trailing)
                         .lineLimit(1)
-                }
+                })
                 .frame(width: 160.0, height: 60.0)
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
-                
+                .simultaneousGesture(TapGesture().onEnded {
+                    gameManager.restartGame()
+                    print("GAME RESTARTED")
+                    gameRestarted = true
+                })
                 
                 NavigationLink {
                     HomeView()
@@ -96,9 +93,13 @@ struct GameOverView: View {
             .padding([.leading , .trailing])
             Spacer()
         }
-        .task {
-            try? await model.getUserHighscore(SpotifyID: "11127717417")
-            highscore = model.highscore
+        .onAppear() {
+            Task {
+                try? await model.getUserHighscore(SpotifyID: "11127717417")
+                if score > model.highscore {
+                    try await model.setUserHighscore(SpotifyID: "11127717417", newHighscore: score)
+                }
+            }
         }
         .navigationBarHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
