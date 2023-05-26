@@ -15,33 +15,51 @@ struct GuessTheSongView: View {
         VStack(alignment: .leading, spacing: 3) {
             
             ShazamLikeView()
-            TextField("",text: $guessedTitle)
-                .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
-                    Text("Title...")
-                        .font(TextStyle.answer().italic())
-                        .foregroundColor(Color.gray)
-                        .opacity(0.7)
-                }
-            
-                .placeholder(when: gameManager.answerSelected) {
-                    Text(correctAnswer)
-                        .font(TextStyle.answer())
-                        .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
-                }
-                .onSubmit {
+            HStack {
+                TextField("",text: $guessedTitle)
+                    .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
+                        Text("Title...")
+                            .font(TextStyle.answer().italic())
+                            .foregroundColor(Color.gray)
+                            .opacity(0.7)
+                    }
+                    .placeholder(when: gameManager.answerSelected) {
+                        Text(correctAnswer)
+                            .font(TextStyle.answer())
+                            .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                    }
+                    .onSubmit {
+                        checkAnswer()
+                        gameManager.selectAnswer(isCorrect)
+                        guessedTitle = ""
+                    }
+                    .font(TextStyle.answer())
+                    .foregroundColor(Color("White"))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.1)
+                    .disabled(gameManager.answerSelected)
+                
+                Button {
                     checkAnswer()
                     gameManager.selectAnswer(isCorrect)
                     guessedTitle = ""
+                } label: {
+                    Image(systemName: "checkmark.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(Color("Green"))
+                                    .frame(width: 30, height: 30)
+                                    .opacity(guessedTitle == "" ? 0 : 1)
                 }
-                .font(TextStyle.answer())
-                .foregroundColor(Color("White"))
-                .padding([.trailing, .leading])
-                .lineLimit(1)
-                .minimumScaleFactor(0.1)
-                .frame(width: 360.0)
                 .disabled(gameManager.answerSelected)
+
+                
+            }
+//            .padding([.trailing, .leading])
+            .padding(.leading)
+            .frame(width: 370.0)
             
             Text("Coldplay")
                 .font(TextStyle.time())
