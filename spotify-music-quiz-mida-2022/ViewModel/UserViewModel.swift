@@ -11,7 +11,7 @@ import Foundation
 final class UserViewModel : ObservableObject {
     @Published private(set) var users : [User] = []
     @Published private(set) var searchedUsers : [User] = []
-    @Published private(set) var highscore = ""
+    @Published private(set) var highscore = 0
     
     func getAllUsers() async throws {
         let users = try await UserManager().getAllUsers()

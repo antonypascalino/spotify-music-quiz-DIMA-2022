@@ -98,7 +98,7 @@ struct GameOverView: View {
         }
         .task {
             try? await model.getUserHighscore(SpotifyID: "11127717417")
-            highscore = Int(model.highscore)!
+            highscore = model.highscore
         }
         .navigationBarHidden(true)
         .frame(maxWidth: .infinity, maxHeight: .infinity)

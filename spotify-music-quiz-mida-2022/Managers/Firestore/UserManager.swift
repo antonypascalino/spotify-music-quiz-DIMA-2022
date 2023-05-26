@@ -54,6 +54,24 @@ class UserManager {
         return users.first!
     }
     
+    func getUserHighscore(SpotifyID: String) async throws -> Int {
+        let currentUser =  try await getUser(SpotifyID: SpotifyID)
+        return currentUser.highscore
+    }
+    
+    func setUserHighscore(SpotifyID: String, newHighscore: Int) async throws {
+        let currentUser =  try await getUser(SpotifyID: SpotifyID)
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        
+        currentUserReference.updateData(["highscore" : newHighscore]) { error in
+            if let error = error {
+                print("Error updating highscore field: \(error.localizedDescription)")
+            } else {
+                print("Highscore updated successfully.")
+            }
+        }
+    }
+    
     func searchUsers(name: String) async throws -> [User] {
         
         let nameLowerCase = name.lowercased()

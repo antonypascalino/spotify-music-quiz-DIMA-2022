@@ -70,7 +70,7 @@ struct HomeView: View {
                         .font(TextStyle.scoreTitle())
                         .foregroundColor(Color("Green"))
                         .padding(.bottom)
-                    Text(model.highscore)
+                    Text(String(model.highscore))
                         .font(TextStyle.score(50))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom, 40.0)
