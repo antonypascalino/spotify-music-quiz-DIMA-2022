@@ -15,6 +15,8 @@ class UserManager {
     
 //    @Published var users = [User]()
     
+    static let shared = UserManager()
+    
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
     
@@ -33,15 +35,23 @@ class UserManager {
         return users
     }
     
-    func addUser (user: User) {
+    func addUser (user: User) async throws {
         
-        do {
-            let newDocReference = try usersCollection.addDocument(from: user)
-            print("New user stored with new document reference: \(newDocReference)")
+        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: user.SpotifyID).getDocuments(as: User.self)
+        
+        if (users.isEmpty) {
+            do {
+                let newDocReference = try usersCollection.addDocument(from: user)
+                print("New user stored with new document reference: \(newDocReference)")
+            }
+            catch {
+                print(error)
+            }
+        } else {
+            try usersCollection.document((users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
         }
-        catch {
-            print(error)
-        }
+        
+        
     }
 
     
@@ -55,8 +65,13 @@ class UserManager {
     }
     
     func getUserHighscore(SpotifyID: String) async throws -> Int {
-        let currentUser =  try await getUser(SpotifyID: SpotifyID)
-        return currentUser.highscore
+        
+        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
+        if (users.isEmpty) {
+            return 0
+        } else {
+            return users.first!.highscore
+        }
     }
     
     func setUserHighscore(SpotifyID: String, newHighscore: Int) async throws {

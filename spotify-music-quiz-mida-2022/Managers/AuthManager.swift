@@ -179,7 +179,7 @@ class AuthManager {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 self.cacheToken(result: result)
                 completion(true)
-                print("TOKEN: \(result)")
+//                print("TOKEN: \(result)")
             }catch{
                 print(error.localizedDescription)
                 completion(false)

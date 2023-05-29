@@ -130,9 +130,9 @@ class GameManager: ObservableObject {
 //        questionsTemp.append(contentsOf: albumSongQuestions)
         
           // Genera domande di tipo "quale canzone è contenuta nell'album 'TITOLO'?"
-        print("Starting Shazam")
+//        print("Starting Shazam")
         let listenSongQuestions = generateListenSongQuestions()
-        print("\nShazam: \(listenSongQuestions)")
+//        print("\nShazam: \(listenSongQuestions)")
         questionsTemp.append(contentsOf: listenSongQuestions)
     
 

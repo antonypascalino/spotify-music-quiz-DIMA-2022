@@ -10,80 +10,80 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var userProfile : UserProfile?
+//    @State var userProfile : UserProfile?
+    @State var currentUser = APICaller.shared.currentUser
     @State var isLoading = false
     @StateObject var gameManager = GameManager()
-
-    
     @StateObject private var model = UserViewModel()
+
     
     var body: some View {
         NavigationView {
             VStack {
-                if isLoading {
-                    ProgressView()
-                }
-                else if let userProfile = userProfile {
-                    HStack {
-                        Text("Hi \(userProfile.display_name)!")
-                            .font(TextStyle.homeTitle())
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .foregroundColor(.white)
-                        Spacer()
-                        NavigationLink(destination: FriendsView()) {
-                            Image(systemName: "list.number")
-                                .font(.system(size: 25, weight: .bold))
-                                .foregroundColor(.white)
-                                .frame(width: 50, height: 50)
-                        }
-                        NavigationLink(destination: SettingsView()) {
-                            Image(systemName: "gearshape")
-                                .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(.white)
-                                .frame(width: 50, height: 50)
-                        }
-                    }
+                //                if isLoading {
+                //                    ProgressView()
+                //                }
+                //                else if let userProfile = userProfile {
+                HStack {
+                    Text("Hi \(currentUser!.display_name)!")
+                        .font(TextStyle.homeTitle())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .foregroundColor(.white)
                     Spacer()
+                    NavigationLink(destination: FriendsView()) {
+                        Image(systemName: "list.number")
+                            .font(.system(size: 25, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                    }
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 50, height: 50)
+                    }
+                }
+                Spacer()
+                
+                if !(currentUser?.image == "") {
                     
-                    if !(userProfile.images!.isEmpty) {
-
-                        AsyncImage(url: URL(string: userProfile.images!.first!.url)) { image in
-                            image
-                                .resizable()
-                                .frame(width: 200, height: 200)
-                                .scaledToFit()
-                                .cornerRadius(100)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                    } else {
-                        Image("SpotifyLogoBlack")
+                    AsyncImage(url: URL(string: currentUser!.image)) { image in
+                        image
                             .resizable()
                             .frame(width: 200, height: 200)
                             .scaledToFit()
+                            .cornerRadius(100)
+                    } placeholder: {
+                        ProgressView()
                     }
-                    
-                    Spacer()
-                    Text("Your highscore:")
-                        .font(TextStyle.scoreTitle())
-                        .foregroundColor(Color("Green"))
-                        .padding(.bottom)
-                    Text(String(model.highscore))
-                        .font(TextStyle.score(50))
-                        .foregroundColor(Color("Green"))
-                        .padding(.bottom, 40.0)
-                        .task {
-                            try? await model.getUserHighscore(SpotifyID: userProfile.id)
-                        }
-                    NavigationLink(destination: GameView().environmentObject(gameManager)) {
-                        Image(systemName: "play.circle.fill")
-                            .resizable()
-                            .frame(width: 100.0, height: 100.0)
-                            .foregroundColor(Color("Green"))
+                } else {
+                    Image("SpotifyLogoBlack")
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                        .scaledToFit()
+                }
+                
+                Spacer()
+                Text("Your highscore:")
+                    .font(TextStyle.scoreTitle())
+                    .foregroundColor(Color("Green"))
+                    .padding(.bottom)
+                Text(String(model.highscore))
+                    .font(TextStyle.score(50))
+                    .foregroundColor(Color("Green"))
+                    .padding(.bottom, 40.0)
+                    .task {
+                        try? await model.getUserHighscore(SpotifyID: currentUser!.SpotifyID)
                     }
+                NavigationLink(destination: GameView().environmentObject(gameManager)) {
+                    Image(systemName: "play.circle.fill")
+                        .resizable()
+                        .frame(width: 100.0, height: 100.0)
+                        .foregroundColor(Color("Green"))
                 }
             }
+            
             .background(
                 RadialGradient(
                     gradient: Gradient(colors: [Color("Green"), Color("Black")]),
@@ -92,32 +92,41 @@ struct HomeView: View {
                     endRadius: 280)
             )
             .foregroundColor(.white)
-            .onAppear{
-                loadData()
+            //            .onAppear {
+            //                Task {
+            //                    try await loadData()
+            //                }
+            //            }
+            //        }
+            .task {
+                try? await model.addUser(user: APICaller.shared.currentUser!)
             }
         }
         .navigationBarHidden(true)
+        
     }
             
     
-    func loadData() {
-        
-        isLoading = true
-        
-        APICaller.shared.getUserProfile {result in
-            switch result{
-                case .success(let model):
-                    self.userProfile = model
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    self.isLoading = false
-                    //self?.failedToGetProfile()
-            }
-            
-        }
-    }
+//    func loadData() async throws {
+//
+//        isLoading = true
+//
+//        try await APICaller.shared.getUserProfile { result in
+//            switch result{
+//                case .success(let model):
+//                    self.userProfile = model
+//                    print("USER PROFILE: \(userProfile)")
+//                    self.currentUser = APICaller.shared.currentUser
+//                    print("CURRENT USER: \(currentUser)")
+//                    self.isLoading = false
+//                    break
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                    self.isLoading = false
+//                    //self?.failedToGetProfile()
+//            }
+//        }
+//    }
 }
 
 

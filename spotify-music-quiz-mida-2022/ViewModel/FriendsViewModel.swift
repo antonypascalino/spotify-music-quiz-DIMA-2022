@@ -13,11 +13,11 @@ final class FriendsViewModel : ObservableObject {
     @Published private(set) var friends : [User] = []
     
     func getFriends(currentUserSpotifyID : String) async throws {
-        let friends = try await UserManager().getUserFriends(currentUserSpotifyID: currentUserSpotifyID)
+        let friends = try await UserManager.shared.getUserFriends(currentUserSpotifyID: currentUserSpotifyID)
         self.friends = friends.sorted { $0.highscore > $1.highscore }
     }
     
     func addFriends(currentUserSpotifyID: String, newFriendSpotifyID: String) async throws {
-        try await UserManager().addFriend(currentUserSpotifyID: currentUserSpotifyID, newFriendSpotifyID: newFriendSpotifyID)
+        try await UserManager.shared.addFriend(currentUserSpotifyID: currentUserSpotifyID, newFriendSpotifyID: newFriendSpotifyID)
     }
 }

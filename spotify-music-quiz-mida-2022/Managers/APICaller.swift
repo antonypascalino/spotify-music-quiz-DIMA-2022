@@ -3,7 +3,7 @@ import Foundation
 
 final class APICaller{
     static let shared = APICaller()
-    private(set) var currentUser : UserProfile?
+    private(set) var currentUser : User?
     
     private init() {
     }
@@ -106,7 +106,6 @@ final class APICaller{
         }
     }
     
-    
     //Dovrebbe essere funzionante
     public func getCurrentUserPlaylist(completion: @escaping ((Result<[Playlist],Error>)->Void)) {
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/playlists"), type: .GET) { request in
@@ -148,9 +147,8 @@ final class APICaller{
         }
     }
     
-    
     //Funziona
-    public func getUserProfile(completion: @escaping ((Result<UserProfile,Error>) ->Void)){
+    public func getUserProfile(completion: @escaping ((Result<UserProfile,Error>) ->Void)) async throws {
         let url = "\(Constants.baseAPIURL)/me"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
             let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
@@ -161,8 +159,8 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(UserProfile.self, from: data)
-                    self.currentUser = result
-                    
+                    self.currentUser = result.mapWithUser()
+                    print("CURRENT USER MAPPED: \(self.currentUser)")
 //                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments )
 //                    print("RESULT: \(result) ")
                     completion(.success(result))
