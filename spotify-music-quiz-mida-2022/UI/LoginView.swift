@@ -62,6 +62,25 @@ struct LoginView: View {
                 
             }
             .background(Color("Black"))
+            .onDisappear() {
+                Task {
+                    try await APICaller.shared.getUserProfile { result in
+                        switch result{
+                            case .success(let model):
+                                //                            self.userProfile = model
+                                //                            print("USER PROFILE: \(userProfile)")
+                                //                            self.currentUser = APICaller.shared.currentUser
+                                //                            print("CURRENT USER: \(currentUser)")
+                                //                            self.isLoading = false
+                                break
+                            case .failure(let error):
+                                print(error.localizedDescription)
+//                                self.isLoading = false
+                                //self?.failedToGetProfile()
+                        }
+                    }
+                }
+            }
         }
     }
 }
