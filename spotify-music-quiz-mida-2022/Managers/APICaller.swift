@@ -3,8 +3,10 @@ import Foundation
 
 final class APICaller{
     static let shared = APICaller()
+    private(set) var currentUser : UserProfile?
     
-    private init() {}
+    private init() {
+    }
     
     struct Constants{
         static let baseAPIURL = "https://api.spotify.com/v1"
@@ -159,8 +161,10 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(UserProfile.self, from: data)
+                    self.currentUser = result
+                    
 //                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments )
-                    print("RESULT: \(result) ")
+//                    print("RESULT: \(result) ")
                     completion(.success(result))
                 }
                 catch {

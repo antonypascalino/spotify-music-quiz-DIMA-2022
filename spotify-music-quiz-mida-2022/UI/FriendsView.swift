@@ -13,6 +13,7 @@ struct FriendsView: View {
     
     @StateObject private var friendsModel = FriendsViewModel()
     @StateObject private var model = UserViewModel()
+    private var currentUser = APICaller.shared.currentUser
     
     var body: some View {
         VStack {
@@ -37,7 +38,7 @@ struct FriendsView: View {
                     .foregroundColor(.white)
                     .padding(.leading, 6.0)
                     .task {
-                        try? await model.getUserHighscore(SpotifyID: "11127717417")
+                        try? await model.getUserHighscore(SpotifyID: currentUser!.id)
                     }
                 Spacer()
                 NavigationLink (destination: AddFriendsView() ,label: {

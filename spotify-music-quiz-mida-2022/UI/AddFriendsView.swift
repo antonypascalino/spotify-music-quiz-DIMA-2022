@@ -11,6 +11,7 @@ struct AddFriendsView: View {
     
     @StateObject private var model = UserViewModel()
     @StateObject private var friendsModel = FriendsViewModel()
+    private var currentUser = APICaller.shared.currentUser
     @State private var nameToSearch = ""
     
     var orderedUsers : [User] {
@@ -38,9 +39,9 @@ struct AddFriendsView: View {
                     Button {
                         print("Adding friend with SpotifyID: \(user.SpotifyID)")
                         Task {
-                            try await friendsModel.addFriends(currentUserSpotifyID: "11127717417", newFriendSpotifyID: user.SpotifyID)
+                            try await friendsModel.addFriends(currentUserSpotifyID: currentUser!.id, newFriendSpotifyID: user.SpotifyID)
                             
-                            try? await friendsModel.getFriends(currentUserSpotifyID: "11127717417")
+                            try? await friendsModel.getFriends(currentUserSpotifyID: currentUser!.id)
                             
                             
                         }

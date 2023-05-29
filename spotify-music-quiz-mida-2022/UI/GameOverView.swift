@@ -11,6 +11,7 @@ import SwiftUI
 struct GameOverView: View {
     
     @StateObject private var model = UserViewModel()
+    private var currentUser = APICaller.shared.currentUser
     @EnvironmentObject var gameManager : GameManager
     @State var gameRestarted = false
     
@@ -95,9 +96,9 @@ struct GameOverView: View {
         }
         .onAppear() {
             Task {
-                try? await model.getUserHighscore(SpotifyID: "11127717417")
+                try? await model.getUserHighscore(SpotifyID: currentUser!.id)
                 if score > model.highscore {
-                    try await model.setUserHighscore(SpotifyID: "11127717417", newHighscore: score)
+                    try await model.setUserHighscore(SpotifyID: currentUser!.id, newHighscore: score)
                 }
             }
         }
