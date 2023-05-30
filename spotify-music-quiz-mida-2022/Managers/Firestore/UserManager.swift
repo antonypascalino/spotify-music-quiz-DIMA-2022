@@ -55,7 +55,7 @@ class UserManager {
     }
 
     
-    func getUser(SpotifyID: String) async throws -> User {
+    func getUser(SpotifyID: String) async throws -> User { 
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
         
