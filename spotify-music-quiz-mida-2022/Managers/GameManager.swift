@@ -277,21 +277,23 @@ class GameManager: ObservableObject {
         
         self.topTracks.shuffle()
         
-       for track in self.topTracks {
-          
-           let correctAnswer = filterString(track.name)
-           //let correctAnswer = correctAns3wer2.components(separatedBy: " (").first!
-
-           if(track.preview_url != nil){
-               let question = Question2(questionText: "Guess the song!",
-                                        correctAnswer: correctAnswer,
-                                        isShazam : true,
-                                        songUrl : track.preview_url,
-                                        wrongAnswers: [])
-               questions.append(question)
-           }
-           
-       }
+        for track in self.topTracks {
+            
+            let correctAnswer = filterString(track.name)
+            //let correctAnswer = correctAns3wer2.components(separatedBy: " (").first!
+            
+            if(track.preview_url != nil){
+                let question = Question2(questionText: "Guess the title of the song!",
+                                         correctAnswer: correctAnswer,
+                                         isShazam : true,
+                                         songUrl : track.preview_url,
+                                         albumImage : track.album!.images.first!.url,
+                                         author : track.artists.first!.name,
+                                         wrongAnswers: [])
+                questions.append(question)
+            }
+            
+        }
                
            return questions
        }
@@ -559,6 +561,8 @@ struct Question2 : Equatable {
     let correctAnswer: String
     var isShazam = false
     var songUrl : String? = nil
+    var albumImage : String? = nil
+    var author : String? = nil
     let wrongAnswers: [String]
     
     func isCorrect(_ answer: String) -> Bool {

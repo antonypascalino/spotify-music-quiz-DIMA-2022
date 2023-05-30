@@ -14,7 +14,24 @@ struct GuessTheSongView: View {
         
         VStack(alignment: .leading, spacing: 3) {
             
-            ShazamLikeView()
+            if (gameManager.answerSelected) {
+                HStack {
+                    AsyncImage(url: URL(string: (gameManager.currentQuestion?.albumImage!)!)) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 270, height: 270)
+                            .offset(y: -20)
+                            .shadow(color: Color(isCorrect ? "Green" : "Red"), radius: 40)
+                        
+                    } placeholder: {
+                        ProgressView()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            } else {
+                ShazamLikeView(isCorrect: $isCorrect)
+            }
             HStack {
                 TextField("",text: $guessedTitle)
                     .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
@@ -58,7 +75,7 @@ struct GuessTheSongView: View {
             .padding(.leading)
             .frame(width: 370.0)
             
-            Text("Coldplay")
+            Text((gameManager.currentQuestion?.author)!)
                 .font(TextStyle.time())
                 .opacity(gameManager.answerSelected ? 1 : 0)
                 .foregroundColor(isCorrect ? Color("Green") : Color("Red"))

@@ -1,20 +1,31 @@
+////
+////  TestView.swift
+////  spotify-music-quiz-mida-2022
+////
+////  Created by Antony Pascalino on 10/05/23.
+////
 //
-//  TestView.swift
-//  spotify-music-quiz-mida-2022
+//import SwiftUI
 //
-//  Created by Antony Pascalino on 10/05/23.
+//struct TestView: View {
+//    var body: some View {
+//        HStack {
+//            Image("Profilo1")
+//            .resizable()
+//            .aspectRatio(contentMode: .fill)
+//            .frame(width: 270, height: 270)
+//            .offset(y: -20)
+//            .shadow(color: Color("Green"), radius: 40)
 //
-
-import SwiftUI
-
-struct TestView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TestView_Previews: PreviewProvider {
-    static var previews: some View {
-        TestView()
-    }
-}
+//        }
+//        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//        
+//    }
+//}
+//
+//struct TestView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TestView()
+//            .background(Color("Black"))
+//    }
+//}
