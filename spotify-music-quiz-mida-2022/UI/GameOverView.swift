@@ -11,14 +11,13 @@ import SwiftUI
 struct GameOverView: View {
     
     @StateObject private var model = UserViewModel()
-    private var currentUser = APICaller.shared.currentUser
     @EnvironmentObject var gameManager : GameManager
     @State var gameRestarted = false
     
     var body: some View {
         
         let score = gameManager.correctAnswersCount
-        @State var isHighscore = score > model.highscore
+        let isHighscore = score > model.highscore
         
         VStack {
             Spacer()
@@ -96,9 +95,9 @@ struct GameOverView: View {
         }
         .onAppear() {
             Task {
-                try? await model.getUserHighscore(SpotifyID: currentUser!.SpotifyID)
+                try? await model.getUserHighscore(SpotifyID: model.currentUser.SpotifyID)
                 if score > model.highscore {
-                    try await model.setUserHighscore(SpotifyID: currentUser!.SpotifyID, newHighscore: score)
+                    try await model.setUserHighscore(SpotifyID: model.currentUser.SpotifyID, newHighscore: score)
                 }
             }
         }

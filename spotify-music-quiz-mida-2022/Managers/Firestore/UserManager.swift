@@ -17,6 +17,8 @@ class UserManager {
     
     static let shared = UserManager()
     
+    private(set) var currentUser : User?
+    
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
     
@@ -35,7 +37,7 @@ class UserManager {
         return users
     }
     
-    func addUser (user: User) async throws {
+    func setUser (user: User) async throws {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: user.SpotifyID).getDocuments(as: User.self)
         
@@ -43,12 +45,15 @@ class UserManager {
             do {
                 let newDocReference = try usersCollection.addDocument(from: user)
                 print("New user stored with new document reference: \(newDocReference)")
+                self.currentUser = try await newDocReference.getDocument(as: User.self)
             }
             catch {
                 print(error)
             }
         } else {
-            try usersCollection.document((users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
+            try await userDocument(documentID: (users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
+            self.currentUser = try await userDocument(documentID: (users.first?.id)!).getDocument(as: User.self)
+            print("CURRENT USER FROM FIREBASE: \(self.currentUser?.display_name)")
         }
         
         

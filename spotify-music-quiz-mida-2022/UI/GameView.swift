@@ -10,7 +10,7 @@ import AVFoundation
 
 struct GameView: View {
     
-    @EnvironmentObject var gameManager : GameManager
+    @StateObject var gameManager = GameManager()
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     

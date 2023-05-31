@@ -30,7 +30,7 @@ struct GuessTheSongView: View {
                 }
                 .frame(maxWidth: .infinity)
             } else {
-                ShazamLikeView(isCorrect: $isCorrect)
+                ShazamLikeView()
             }
             HStack {
                 TextField("",text: $guessedTitle)

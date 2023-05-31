@@ -342,9 +342,11 @@
 			isa = PBXGroup;
 			children = (
 				0A8BF0682A16141C007EFA71 /* Components */,
+				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
 				0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
 				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
+				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
 				0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */,
 				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
@@ -353,8 +355,6 @@
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
-				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
-				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

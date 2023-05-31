@@ -11,12 +11,9 @@ import SwiftUI
 struct HomeView: View {
     
 //    @State var userProfile : UserProfile?
-    @State var currentUser = APICaller.shared.currentUser
     @State var isLoading = false
-    @StateObject var gameManager = GameManager()
     @StateObject private var model = UserViewModel()
 
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,7 +22,7 @@ struct HomeView: View {
                 //                }
                 //                else if let userProfile = userProfile {
                 HStack {
-                    Text("Hi \(currentUser!.display_name)!")
+                    Text("Hi \(model.currentUser.display_name)!")
                         .font(TextStyle.homeTitle())
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
@@ -46,9 +43,9 @@ struct HomeView: View {
                 }
                 Spacer()
                 
-                if !(currentUser?.image == "") {
+                if !(model.currentUser.image == "") {
                     
-                    AsyncImage(url: URL(string: currentUser!.image)) { image in
+                    AsyncImage(url: URL(string: model.currentUser.image)) { image in
                         image
                             .resizable()
                             .frame(width: 200, height: 200)
@@ -74,9 +71,9 @@ struct HomeView: View {
                     .foregroundColor(Color("Green"))
                     .padding(.bottom, 40.0)
                     .task {
-                        try? await model.getUserHighscore(SpotifyID: currentUser!.SpotifyID)
+                        try? await model.getUserHighscore(SpotifyID: model.currentUser.SpotifyID)
                     }
-                NavigationLink(destination: GameView().environmentObject(gameManager)) {
+                NavigationLink(destination: GameView()) {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: 100.0, height: 100.0)
@@ -98,9 +95,9 @@ struct HomeView: View {
             //                }
             //            }
             //        }
-            .task {
-                try? await model.addUser(user: APICaller.shared.currentUser!)
-            }
+//            .task {
+//                try? await model.getCurrentUser()
+//            }
         }
         .navigationBarHidden(true)
         

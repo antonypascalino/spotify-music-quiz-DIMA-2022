@@ -14,48 +14,47 @@ import WebKit
 struct AuthView: View {
     let authURL = AuthManager.shared.signInURL!
     public var completionHandler: ((Bool) ->Void)?
-
+    
     @State private var webView = WKWebView()
     @State private var code: String? = nil
     @State private var error: Error?
     
     var body: some View {
         VStack {
-//            if let code = code {
-//                Button {
-//                    error = nil
-//
-//
-//                    if let error = error { Text("Error: \(error.localizedDescription)") }
-//                } label: {
-//                    Text("Exchange")
-//                }
-//            } else {
-                
-                WebView(webView: $webView, url: authURL)
-                    .onAppear {
-                        webView.load(URLRequest(url: authURL))
-                    }
-                    .onReceive(
-                        webView.publisher(for: \.url),
-                        perform: { url in
-                            guard let url = url else { return }
-                            if url.absoluteString.contains("https://localhost:8888/callback?code=") {
-                                let components = URLComponents(string: url.absoluteString)
-                                code = components?.queryItems?.first(where: { $0.name == "code" })?.value
-//                                webView.loadHTMLString("<html><body>You have successfully authenticated with Spotify.</body></html>", baseURL: nil)
-                                AuthManager.shared.exchangeCodeForToken(code: code!) { result in
-                                               switch result {
-                                                   case true:
-                                                       self.completionHandler?(true)
-                                                   case false:
-                                                       self.error = error
-                                                           }
-                                           }
+            //            if let code = code {
+            //                Button {
+            //                    error = nil
+            //
+            //
+            //                    if let error = error { Text("Error: \(error.localizedDescription)") }
+            //                } label: {
+            //                    Text("Exchange")
+            //                }
+            //            } else {
+            
+            WebView(webView: $webView, url: authURL)
+                .onAppear {
+                    webView.load(URLRequest(url: authURL))
+                }
+                .onReceive(
+                    webView.publisher(for: \.url),
+                    perform: { url in
+                        guard let url = url else { return }
+                        if url.absoluteString.contains("https://localhost:8888/callback?code=") {
+                            let components = URLComponents(string: url.absoluteString)
+                            code = components?.queryItems?.first(where: { $0.name == "code" })?.value
+                            //                                webView.loadHTMLString("<html><body>You have successfully authenticated with Spotify.</body></html>", baseURL: nil)
+                            AuthManager.shared.exchangeCodeForToken(code: code!) { result in
+                                switch result {
+                                case true:
+                                    self.completionHandler?(true)
+                                case false:
+                                    self.error = error
+                                }
                             }
                         }
-                    )
-//            }
+                    }
+                )
         }
     }
 }

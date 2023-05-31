@@ -10,8 +10,13 @@ import Foundation
 @MainActor
 final class UserViewModel : ObservableObject {
     @Published private(set) var users : [User] = []
+    @Published private(set) var currentUser : User
     @Published private(set) var searchedUsers : [User] = []
     @Published private(set) var highscore = 0
+    
+    init() {
+        currentUser = UserManager.shared.currentUser!
+    }
     
     func getAllUsers() async throws {
         let users = try await UserManager.shared.getAllUsers()
@@ -31,7 +36,7 @@ final class UserViewModel : ObservableObject {
         try await UserManager.shared.setUserHighscore(SpotifyID: SpotifyID, newHighscore: newHighscore)
     }
     
-    func addUser(user: User) async throws {
-        try await UserManager.shared.addUser(user: user)
-    }
+//    func setUser(user: User) async throws {
+//        try await UserManager.shared.setUser(user: user)
+//    }
 }

@@ -3,7 +3,6 @@ import Foundation
 
 final class APICaller{
     static let shared = APICaller()
-    private(set) var currentUser : User?
     
     private init() {
     }
@@ -159,10 +158,10 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(UserProfile.self, from: data)
-                    self.currentUser = result.mapWithUser()
-                    print("CURRENT USER MAPPED: \(self.currentUser)")
-//                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments )
-//                    print("RESULT: \(result) ")
+                    let currentUser = result.mapWithUser()
+                    Task {
+                        try await UserManager.shared.setUser(user: currentUser)
+                    }
                     completion(.success(result))
                 }
                 catch {
