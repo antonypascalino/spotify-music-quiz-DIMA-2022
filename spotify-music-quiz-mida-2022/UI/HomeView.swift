@@ -12,8 +12,6 @@ struct HomeView: View {
     
 //    @State var userProfile : UserProfile?
     @State var currentUser = APICaller.shared.currentUser
-    @State var isLoading = false
-    @StateObject var gameManager = GameManager()
     @StateObject private var model = UserViewModel()
 
     
@@ -76,7 +74,7 @@ struct HomeView: View {
                     .task {
                         try? await model.getUserHighscore(SpotifyID: currentUser!.SpotifyID)
                     }
-                NavigationLink(destination: GameView().environmentObject(gameManager)) {
+                NavigationLink(destination: GameView()) {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: 100.0, height: 100.0)

@@ -37,7 +37,7 @@ final class APICaller{
     }*/
     
     //Funziona
-    public func getUserAlbums(completion: @escaping ((Result<[Album],Error>)->Void)){
+    public func getUserAlbums(completion: @escaping ((Result<[SimpleAlbum],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/albums"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else{
@@ -269,10 +269,10 @@ final class APICaller{
     }
     
     //NON UTILIZZATA : DA VERIFICARE IL FUNZIONAMENTO
-    public func getRecommendation(songs: Set<String>,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
-        let seeds = songs.joined(separator: ",")
+    public func getRecommendation(songID: String,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
+        //let seeds = songs.joined(separator: ",")
         createRequest(
-            with: URL(string: "\(Constants.baseAPIURL)/recommendations?limit=3&seed_tracks=\(seeds)"),
+            with: URL(string: "\(Constants.baseAPIURL)/recommendations?limit=10&seed_tracks=\(songID)"),
             type: .GET)
         { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
