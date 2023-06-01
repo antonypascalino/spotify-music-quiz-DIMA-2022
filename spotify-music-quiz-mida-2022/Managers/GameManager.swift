@@ -70,6 +70,8 @@ class GameManager: ObservableObject {
     }
     
     func getNextQuestion() -> Question? {
+        print("Current Questions: \(currentQuestion?.questionText)")
+        print("Current solution: \(currentQuestion?.correctAnswer)")
         return currentQuestion
     }
     
