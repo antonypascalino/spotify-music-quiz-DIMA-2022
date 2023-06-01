@@ -133,6 +133,23 @@ class UserManager {
         return friends
     }
     
+    func setUserAuthorScore(SpotifyID: String, author: String) async throws {
+        let currentUser =  try await getUser(SpotifyID: SpotifyID)
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        
+        let userAuthors = try await getUserAuthorsScore()
+        let authorScore = userAuthors[author] ?? 0
+        let newScore = authorScore + 1
+        
+        try await currentUserReference.updateData(["authors\(author)" : newScore])
+    }
+    
+    func getUserAuthorsScore() async throws -> [String : Int] {
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        
+        return try await currentUserReference.getDocument(as: User.self).authors!
+    }
+    
     
 }
 

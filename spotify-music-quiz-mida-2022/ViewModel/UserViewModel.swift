@@ -15,6 +15,7 @@ final class UserViewModel : ObservableObject {
 
     @Published private(set) var searchedUsers : [User] = []
     @Published private(set) var highscore = 0
+    @Published private(set) var authorsScores : [String : Int] = [:]
     
     init() {
     }
@@ -42,5 +43,9 @@ final class UserViewModel : ObservableObject {
         currentUser = UserManager.shared.currentUser
         
         //currentUser = crUser
+    }
+    
+    func getUserAuthorsScore() async throws {
+        self.authorsScores = try await UserManager.shared.getUserAuthorsScore()
     }
 }

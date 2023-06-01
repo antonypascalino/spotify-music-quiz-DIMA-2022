@@ -35,7 +35,7 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 .frame(width: 50, height: 50)
                         }
-                        NavigationLink(destination: SettingsView()) {
+                        NavigationLink(destination: AuthorScoreView()) {
                             Image(systemName: "gearshape")
                                 .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.white)
