@@ -38,9 +38,9 @@ struct AddFriendsView: View {
                     Button {
                         print("Adding friend with SpotifyID: \(user.SpotifyID)")
                         Task {
-                            try await friendsModel.addFriends(currentUserSpotifyID: model.currentUser.SpotifyID, newFriendSpotifyID: user.SpotifyID)
-                            
-                            try? await friendsModel.getFriends(currentUserSpotifyID: model.currentUser.SpotifyID)
+                            try await friendsModel.addFriends(newFriendSpotifyID: user.SpotifyID)
+                            model.updateUserData()
+                            try? await friendsModel.getFriends()
                             
                             
                         }
@@ -87,6 +87,7 @@ struct AddFriendsView: View {
             
         }
         .task {
+            model.updateUserData()
             try? await model.getAllUsers()
         }
         .background(Color("Black"))

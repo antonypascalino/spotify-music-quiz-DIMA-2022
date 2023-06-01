@@ -37,7 +37,7 @@ struct FriendsView: View {
                     .foregroundColor(.white)
                     .padding(.leading, 6.0)
                     .task {
-                        try? await model.getUserHighscore(SpotifyID: model.currentUser.SpotifyID)
+                        try? await model.getUserHighscore()
                     }
                 Spacer()
                 NavigationLink (destination: AddFriendsView() ,label: {
@@ -120,7 +120,14 @@ struct FriendsView: View {
             startPoint: .top,
             endPoint: .bottom))
         .task {
-            try? await friendsModel.getFriends(currentUserSpotifyID: model.currentUser.SpotifyID)
+            model.updateUserData()
+            try? await friendsModel.getFriends()
+        }
+        .onAppear {
+            Task {
+                model.updateUserData()
+                try? await friendsModel.getFriends()
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

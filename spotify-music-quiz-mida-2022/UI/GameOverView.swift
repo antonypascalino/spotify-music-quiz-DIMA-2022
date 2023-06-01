@@ -95,9 +95,10 @@ struct GameOverView: View {
         }
         .onAppear() {
             Task {
-                try? await model.getUserHighscore(SpotifyID: model.currentUser.SpotifyID)
+                model.updateUserData()
+                try? await model.getUserHighscore()
                 if score > model.highscore {
-                    try await model.setUserHighscore(SpotifyID: model.currentUser.SpotifyID, newHighscore: score)
+                    try await model.setUserHighscore(newHighscore: score)
                 }
             }
         }

@@ -1,9 +1,9 @@
 import Foundation
-
+import SwiftUI
 
 final class APICaller{
     static let shared = APICaller()
-    
+    var isLoading = true
     private init() {
     }
     
@@ -153,25 +153,51 @@ final class APICaller{
             let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse, error in
                 guard let data = data, error == nil else{
                     print("Failure to Get data")
-                    completion(.failure(APIError.failedToGetData))
+                    DispatchQueue.main.async {
+                        completion(.failure(APIError.failedToGetData))
+                    }
                     return
                 }
                 do{
                     let result = try JSONDecoder().decode(UserProfile.self, from: data)
                     let currentUser = result.mapWithUser()
-                    Task {
-                        try await UserManager.shared.setUser(user: currentUser)
-                    }
-                    completion(.success(result))
+                    
+                    self.loadUserManager(currentUser: currentUser)
+                    while(self.isLoading){
+                        ProgressView()
+                        }
+                    self.isLoading = true
+                    
+                    print("Stampa API")
+                    
+                        completion(.success(result))
+                    
                 }
                 catch {
                     print("Error Fetch UserProfile \(error.localizedDescription)")
                     completion(.failure(error))
+                   
                 }
             }
             task.resume()
         }
     }
+    
+    private func loadUserManager(currentUser: User ){
+        Task {
+            try await UserManager.shared.setUser(user: currentUser) { result in
+                    switch result {
+                        case .success(let boolean):
+                            self.isLoading = boolean
+                            break;
+                        case .failure(let error):
+                            print(error)
+                            break;
+                    }
+                }
+            }
+    }
+    
     
     //Forse non funziona, per ora non viene utilizzata -> bisogna recuperare l'array di Artists
     public func getFollowedArtists(completion: @escaping ((Result<LibraryArtistResponse,Error>) ->Void)){

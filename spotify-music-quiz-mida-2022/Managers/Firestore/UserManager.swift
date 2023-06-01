@@ -17,7 +17,7 @@ class UserManager {
     
     static let shared = UserManager()
     
-    private(set) var currentUser : User?
+    private(set) var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
     
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
@@ -37,10 +37,10 @@ class UserManager {
         return users
     }
     
-    func setUser (user: User) async throws {
+    func setUser (user: User, completion: @escaping ((Result<Bool,Error>) ->Void)) async throws {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: user.SpotifyID).getDocuments(as: User.self)
-        
+    
         if (users.isEmpty) {
             do {
                 let newDocReference = try usersCollection.addDocument(from: user)
@@ -49,18 +49,18 @@ class UserManager {
             }
             catch {
                 print(error)
+                completion(.failure(error))
             }
         } else {
             try await userDocument(documentID: (users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
             self.currentUser = try await userDocument(documentID: (users.first?.id)!).getDocument(as: User.self)
-            print("CURRENT USER FROM FIREBASE: \(self.currentUser?.display_name)")
+            print("CURRENT USER FROM FIREBASE: \(self.currentUser.display_name)")
         }
-        
-        
+        completion(.success(false))
     }
 
     
-    func getUser(SpotifyID: String) async throws -> User { 
+    func getUser(SpotifyID: String) async throws -> User {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
         
@@ -69,9 +69,9 @@ class UserManager {
         return users.first!
     }
     
-    func getUserHighscore(SpotifyID: String) async throws -> Int {
+    func getUserHighscore() async throws -> Int {
         
-        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
+        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: currentUser.SpotifyID).getDocuments(as: User.self)
         if (users.isEmpty) {
             return 0
         } else {
@@ -79,8 +79,7 @@ class UserManager {
         }
     }
     
-    func setUserHighscore(SpotifyID: String, newHighscore: Int) async throws {
-        let currentUser =  try await getUser(SpotifyID: SpotifyID)
+    func setUserHighscore(newHighscore: Int) async throws {
         let currentUserReference = try await userDocument(documentID: currentUser.id!)
         
         currentUserReference.updateData(["highscore" : newHighscore]) { error in
@@ -92,22 +91,21 @@ class UserManager {
         }
     }
     
-    func searchUsers(name: String) async throws -> [User] {
-        
-        let nameLowerCase = name.lowercased()
-        let nameUpperCase = name.prefix(1).uppercased() + name.dropFirst()
-        
-        var users = try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameLowerCase).getDocuments(as: User.self)
-        users.append(contentsOf: try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameUpperCase).getDocuments(as: User.self))
-        
-        print(users)
-        return users
-    }
+//    func searchUsers(name: String) async throws -> [User] {
+//
+//        let nameLowerCase = name.lowercased()
+//        let nameUpperCase = name.prefix(1).uppercased() + name.dropFirst()
+//
+//        var users = try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameLowerCase).getDocuments(as: User.self)
+//        users.append(contentsOf: try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameUpperCase).getDocuments(as: User.self))
+//
+//        print(users)
+//        return users
+//    }
     
     
-    func addFriend(currentUserSpotifyID: String, newFriendSpotifyID: String) async throws {
+    func addFriend(newFriendSpotifyID: String) async throws {
         
-        let currentUser =  try await getUser(SpotifyID: currentUserSpotifyID)
         let newFriend = try await getUser(SpotifyID: newFriendSpotifyID)
         let currentUserReference = try await userDocument(documentID: currentUser.id!)
         let newFriendReference = try await userDocument(documentID: newFriend.id!)
@@ -121,9 +119,10 @@ class UserManager {
         }
     }
     
-    func getUserFriends(currentUserSpotifyID: String) async throws -> [User] {
+    func getUserFriends() async throws -> [User] {
         
-        let currentUser = try await getUser(SpotifyID: currentUserSpotifyID)
+        print("CURRENT USER FROM USERMANAGER: \(currentUser)")
+        
         var friends : [User] = []
 
         for documentID in currentUser.friends {

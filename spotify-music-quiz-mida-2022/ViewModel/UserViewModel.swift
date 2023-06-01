@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 @MainActor
 final class UserViewModel : ObservableObject {
     @Published private(set) var users : [User] = []
-    @Published private(set) var currentUser : User
+    @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
+
     @Published private(set) var searchedUsers : [User] = []
     @Published private(set) var highscore = 0
     
     init() {
-        currentUser = UserManager.shared.currentUser!
     }
     
     func getAllUsers() async throws {
@@ -23,20 +24,23 @@ final class UserViewModel : ObservableObject {
         self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
     }
     
-    func searchUsers(name: String) async throws {
-        let users = try await UserManager.shared.searchUsers(name: name)
-        self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
-    }
-    
-    func getUserHighscore(SpotifyID: String) async throws {
-        self.highscore = try await UserManager.shared.getUserHighscore(SpotifyID: SpotifyID)
-    }
-    
-    func setUserHighscore(SpotifyID: String, newHighscore: Int) async throws {
-        try await UserManager.shared.setUserHighscore(SpotifyID: SpotifyID, newHighscore: newHighscore)
-    }
-    
-//    func setUser(user: User) async throws {
-//        try await UserManager.shared.setUser(user: user)
+//    func searchUsers(name: String) async throws {
+//        let users = try await UserManager.shared.searchUsers(name: name)
+//        self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
 //    }
+    
+    func getUserHighscore() async throws {
+        self.highscore = try await UserManager.shared.getUserHighscore()
+    }
+    
+    func setUserHighscore(newHighscore: Int) async throws {
+        try await UserManager.shared.setUserHighscore(newHighscore: newHighscore)
+    }
+    
+    func updateUserData() {
+        print("Stampo Prima")
+        currentUser = UserManager.shared.currentUser
+        
+        //currentUser = crUser
+    }
 }

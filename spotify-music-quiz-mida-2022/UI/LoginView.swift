@@ -63,18 +63,7 @@ struct LoginView: View {
                 
             }
             .background(Color("Black"))
-            .onDisappear() {
-                Task {
-                    try await APICaller.shared.getUserProfile { result in
-                        switch result{
-                        case .success(let model):
-                            break
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
-                    }
-                }
-            }
+            
         }
     }
 }
