@@ -234,13 +234,13 @@ class QuestionManager: ObservableObject {
             
             if(track.preview_url != nil){
                 let question = Question(questionText: "Guess the author of the song!",
-                                         correctAnswer: correctAnswer,
-                                         isShazam : true,
-                                         songUrl : track.preview_url,
-                                         albumImage : track.album!.images.first!.url,
-                                         author: correctAnswer,
-                                         songName : filterString(track.name),
-                                         wrongAnswers: [])
+                                        correctAnswer: correctAnswer,
+                                        isShazam : true,
+                                        songUrl : track.preview_url,
+                                        albumImage : track.album!.images.first!.url,
+                                        author: track.artists.first!.name,
+                                        songName : filterString(track.name),
+                                        wrongAnswers: [])
                 questions.append(question)
             }
             

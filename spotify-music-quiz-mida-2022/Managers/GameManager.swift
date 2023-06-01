@@ -23,10 +23,11 @@ class GameManager: ObservableObject {
     
     func startGame() {
         QuestionManager.shared.importAllData()
-        
+        self.genQuestions()
+    }
+    
+    func genQuestions() {
         questions = QuestionManager.shared.genRandomQuestions()
-        
-        
         print("Count \(questions.count)")
         questions.shuffle()
         currentQuestionIndex = 0
@@ -34,13 +35,12 @@ class GameManager: ObservableObject {
         currentQuestion = questions[currentQuestionIndex]
         currentAnswers = currentQuestion?.getAnswers()
     }
-    
     func restartGame() {
         gameIsOver = false
         playerMiss = false
         answerSelected = false
         QuestionManager.shared.isLoadingQuestions = true
-        startGame()
+        genQuestions()
     }
     
     func setNextQuestion() {
