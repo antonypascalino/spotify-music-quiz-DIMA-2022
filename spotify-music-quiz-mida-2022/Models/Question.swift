@@ -7,27 +7,27 @@
 
 import Foundation
 
-struct Question {
-    var question = ""
-    var rightAns = ""
-    var answers : [String]
-
-    init(question: String, rightAns: String, wrongAns1: String, wrongAns2: String, wrongAns3: String) {
-        self.question = question
-        self.rightAns = rightAns
-        answers = []
-        answers.append(rightAns)
-        answers.append(wrongAns1)
-        answers.append(wrongAns2)
-        answers.append(wrongAns3)
-        answers.shuffle();
+struct Question : Equatable {
+    let id = UUID()
+    let questionText: String?
+    let correctAnswer: String
+    var isShazam = false
+    var songUrl : String? = nil
+    var albumImage : String? = nil
+    var author : String? = nil
+    var songName : String? = nil
+    let wrongAnswers: [String]
+    
+    func isCorrect(_ answer: String) -> Bool {
+        return answer == correctAnswer
     }
     
-    func isRight (answer: String) -> Bool {
-        if answer == rightAns {
-            return true
-        } else {
-            return false
-        }
+    func getAnswers() -> [String] {
+        var answers : [String] = []
+        answers.append(correctAnswer)
+        answers.append(contentsOf: wrongAnswers)
+        answers.shuffle()
+        
+        return answers
     }
 }

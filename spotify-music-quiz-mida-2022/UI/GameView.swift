@@ -13,77 +13,98 @@ struct GameView: View {
     @StateObject var gameManager = GameManager()
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
+    @State private var isLoading = true
     
     var body: some View {
         
-        let currentAnwers = gameManager.currentAnswers!
-//        let currentQuestion = gameManager.getNextQuestion()!
         let playerMiss = gameManager.playerMiss
         let gameIsOver = gameManager.gameIsOver
-        
-        
-        if gameIsOver {
-            GameOverView()
-                .environmentObject(gameManager)
-        } else {
-            VStack(alignment: .leading, spacing: 30) {
+        VStack{
+            if QuestionManager.shared.isLoadingQuestions {
+                LoadingView()
+            } else if gameIsOver {
+                GameOverView()
+                    .environmentObject(gameManager)
+            } else {
+                let currentAnwers = gameManager.currentAnswers!
+        //        let currentQuestion = gameManager.getNextQuestion()!
                 
-                Spacer()
-                Text("Score: \(gameManager.correctAnswersCount)")
-                    .font(TextStyle.score(50))
-                    .foregroundColor(Color(playerMiss ? "Red" : "Green"))
-                    .padding(.leading)
                 
-                Text(.init((gameManager.getNextQuestion()?.questionText)!))
-                    .font(TextStyle.LoginTitle())
-                    .lineLimit(3)
-                    .frame(width: 360.0, height: 60, alignment: .leading)
-                    .minimumScaleFactor(0.1)
-                    .foregroundColor(.white)
-                    .padding(.leading)
-                
-                if(gameManager.getNextQuestion()!.isShazam){
+                VStack(alignment: .leading, spacing: 30) {
                     
-                    GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
-                        .environmentObject(gameManager)
-                        .onAppear {
-                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        }
-                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        }
-                        .onDisappear {
-                            AudioPlayer.shared.stop()
+                    Spacer()
+                    Text("Score: \(gameManager.correctAnswersCount)")
+                        .font(TextStyle.score(50))
+                        .foregroundColor(Color(playerMiss ? "Red" : "Green"))
+                        .padding(.leading)
+                    
+                    Text(.init((gameManager.getNextQuestion()?.questionText)!))
+                        .font(TextStyle.LoginTitle())
+                        .lineLimit(3)
+                        .frame(width: 360.0, height: 60, alignment: .leading)
+                        .minimumScaleFactor(0.1)
+                        .foregroundColor(.white)
+                        .padding(.leading)
+                    
+                    if(gameManager.getNextQuestion()!.isShazam){
+                        
+                        GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
+                            .environmentObject(gameManager)
+                            .onAppear {
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onDisappear {
+                                AudioPlayer.shared.stop()
+                            }
+                            .frame(height: 380)
+                    } else {
+                        VStack {
+                            ForEach(currentAnwers, id: \.self) { answer in
+                                Answer(answer: answer)
+                                    .environmentObject(gameManager)
+                            }
+                            .padding([.top, .bottom] , 12)
+                            .padding(.leading , 5)
                         }
                         .frame(height: 380)
-                } else {
-                    VStack {
-                        ForEach(currentAnwers, id: \.self) { answer in
-                            Answer(answer: answer)
-                                .environmentObject(gameManager)
-                        }
-                        .padding([.top, .bottom] , 12)
-                        .padding(.leading , 5)
+                        .offset(y: -18)
                     }
-                    .frame(height: 380)
-                    .offset(y: -18)
+                    
+                    VStack {
+                        TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
+                            .environmentObject(gameManager)
+                        GameControls()
+                            .environmentObject(gameManager)
+                    }
+                    .offset(y: -33)
+                    Spacer()
+                    
+                    
                 }
-                
-                VStack {
-                    TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
-                        .environmentObject(gameManager)
-                    GameControls()
-                        .environmentObject(gameManager)
-                }
-                .offset(y: -33)
-                Spacer()
-                
+                .background(Color("Black"))
+                .navigationBarHidden(true)
                 
             }
-            .background(Color("Black"))
-            .navigationBarHidden(true)
+        }.onAppear {
+            Task {
+                try await loadData()
+                 }
         }
+       
     }
+    
+    
+        func loadData() async throws {
+    
+            //isLoading = QuestionManager.shared.isLoadingQuestions
+            gameManager.startGame()
+            //isLoading = QuestionManager.shared.isLoadingQuestions
+            
+        }
+            
 }
 
 

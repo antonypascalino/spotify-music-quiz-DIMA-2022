@@ -10,13 +10,13 @@ import Foundation
 @MainActor
 final class GameViewModel : ObservableObject {
     
-//    @Published private(set) var nextQuestion : Question2()
+//    @Published private(set) var nextQuestion : Question()
     
 //    func startGame() {
 //        GameManager()  )
 //    }
     
-    func getNextQuestion() -> Question2 {
+    func getNextQuestion() -> Question {
         return GameManager().getNextQuestion()!
     } 
 }

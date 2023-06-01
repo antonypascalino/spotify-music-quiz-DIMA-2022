@@ -5,5 +5,5 @@ struct LibraryAlbumResponse: Codable {
 }
 struct SavedAlbum: Codable{
     let added_at: String
-    let album: Album
+    let album: SimpleAlbum
 }
