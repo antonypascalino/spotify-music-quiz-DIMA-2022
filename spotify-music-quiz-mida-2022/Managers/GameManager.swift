@@ -3,6 +3,7 @@ import SwiftUI
 
 class GameManager: ObservableObject {
     static let shared = GameManager()
+    let userManager = UserManager.shared
     
     private(set) var questions: [Question] = []
     private(set) var currentQuestion : Question?
@@ -84,6 +85,9 @@ class GameManager: ObservableObject {
         let currentQuestion = questions[currentQuestionIndex]
         if isCorrect {
             correctAnswersCount += 1
+            Task {
+                try await userManager.setUserAuthorScore(author: currentQuestion.author!)
+            }
         } else {
             playerMiss = true
         }

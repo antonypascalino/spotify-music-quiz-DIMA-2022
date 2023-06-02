@@ -115,10 +115,11 @@ struct FriendsView: View {
             //                Text(" text.")
             //                .font(.system(size: 16)) // Set the desired font size for the normal text
         }
-        .background(LinearGradient(
-            gradient: Gradient(colors: [Color("Green"),Color("Black"),Color("Black")]),
-            startPoint: .top,
-            endPoint: .bottom))
+//        .background(LinearGradient(
+//            gradient: Gradient(colors: [Color("Green"),Color("Black"),Color("Black")]),
+//            startPoint: .top,
+//            endPoint: .bottom))
+        .background(Color("Black"))
         .task {
             model.updateUserData()
             try? await friendsModel.getFriends()
@@ -130,6 +131,17 @@ struct FriendsView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle(Text(""))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Friends leaderboard")
+                    .font(TextStyle.homeTitle())
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .scaledToFit()
+                    .minimumScaleFactor(0.1)
+            }
+        }
     }
 }
 

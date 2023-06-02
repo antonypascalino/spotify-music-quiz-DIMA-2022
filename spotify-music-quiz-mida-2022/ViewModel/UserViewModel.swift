@@ -15,7 +15,7 @@ final class UserViewModel : ObservableObject {
 
     @Published private(set) var searchedUsers : [User] = []
     @Published private(set) var highscore = 0
-    @Published private(set) var authorsScores : [String : Int] = [:]
+    @Published private(set) var authorsScores : Array<(key: String, value: Int)> = []
     
     init() {
     }
@@ -46,6 +46,15 @@ final class UserViewModel : ObservableObject {
     }
     
     func getUserAuthorsScore() async throws {
-        self.authorsScores = try await UserManager.shared.getUserAuthorsScore()
+        let dictionary = try await UserManager.shared.getUserAuthorsScore()
+        /*let sortedArray*/ authorsScores = dictionary.sorted { $0.value > $1.value }
+//        authorsScores = Dictionary(uniqueKeysWithValues: sortedArray)
+        for (author, score) in authorsScores {
+            print("\(author) : \(score)")
+        }
+    }
+    
+    func setUserAuthorsScore(author: String) async throws {
+        try await UserManager.shared.setUserAuthorScore(author: author)
     }
 }

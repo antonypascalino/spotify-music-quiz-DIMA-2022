@@ -27,6 +27,17 @@ struct AddFriendsView: View {
     var body: some View {
         
         VStack {
+            HStack {
+                Text("Click on")
+                    .foregroundColor(.white)
+                    .font(TextStyle.leaderboardItem().bold())
+                Image(systemName: "plus.circle")
+                    .foregroundColor(.white)
+                Text("to add a friend to your leaderboard!")
+                    .foregroundColor(.white)
+                    .font(TextStyle.leaderboardItem().bold())
+            }
+            .padding(.top)
             List(orderedUsers) { user in
                 HStack {
                     ListImage(imageString: user.image)
@@ -41,8 +52,6 @@ struct AddFriendsView: View {
                             try await friendsModel.addFriends(newFriendSpotifyID: user.SpotifyID)
                             model.updateUserData()
                             try? await friendsModel.getFriends()
-                            
-                            
                         }
                     } label: {
                         Image(systemName: "plus.circle")
@@ -91,7 +100,17 @@ struct AddFriendsView: View {
             try? await model.getAllUsers()
         }
         .background(Color("Black"))
-        .navigationTitle("Add friends")
+        .navigationTitle(Text(""))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Add friend")
+                    .font(TextStyle.homeTitle())
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .scaledToFit()
+                    .minimumScaleFactor(0.1)
+            }
+        }
     }
 }
 

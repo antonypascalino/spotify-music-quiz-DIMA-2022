@@ -18,6 +18,7 @@ class UserManager {
     static let shared = UserManager()
     
     private(set) var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
+    private var currentUserReference : DocumentReference?
     
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
@@ -46,6 +47,7 @@ class UserManager {
                 let newDocReference = try usersCollection.addDocument(from: user)
                 print("New user stored with new document reference: \(newDocReference)")
                 self.currentUser = try await newDocReference.getDocument(as: User.self)
+                self.currentUserReference = try await userDocument(documentID: currentUser.id!)
             }
             catch {
                 print(error)
@@ -54,6 +56,7 @@ class UserManager {
         } else {
             try await userDocument(documentID: (users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
             self.currentUser = try await userDocument(documentID: (users.first?.id)!).getDocument(as: User.self)
+            self.currentUserReference = try await userDocument(documentID: currentUser.id!)
             print("CURRENT USER FROM FIREBASE: \(self.currentUser.display_name)")
         }
         completion(.success(false))
@@ -80,9 +83,8 @@ class UserManager {
     }
     
     func setUserHighscore(newHighscore: Int) async throws {
-        let currentUserReference = try await userDocument(documentID: currentUser.id!)
         
-        currentUserReference.updateData(["highscore" : newHighscore]) { error in
+        currentUserReference!.updateData(["highscore" : newHighscore]) { error in
             if let error = error {
                 print("Error updating highscore field: \(error.localizedDescription)")
             } else {
@@ -107,10 +109,9 @@ class UserManager {
     func addFriend(newFriendSpotifyID: String) async throws {
         
         let newFriend = try await getUser(SpotifyID: newFriendSpotifyID)
-        let currentUserReference = try await userDocument(documentID: currentUser.id!)
         let newFriendReference = try await userDocument(documentID: newFriend.id!)
         
-        currentUserReference.updateData(["friends" : FieldValue.arrayUnion([newFriendReference])]) { error in
+        currentUserReference!.updateData(["friends" : FieldValue.arrayUnion([newFriendReference])]) { error in
             if let error = error {
                 print("Error updating Friends array: \(error.localizedDescription)")
             } else {
@@ -133,21 +134,22 @@ class UserManager {
         return friends
     }
     
-    func setUserAuthorScore(SpotifyID: String, author: String) async throws {
-        let currentUser =  try await getUser(SpotifyID: SpotifyID)
-        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+    func setUserAuthorScore(author: String) async throws {
         
         let userAuthors = try await getUserAuthorsScore()
         let authorScore = userAuthors[author] ?? 0
         let newScore = authorScore + 1
         
-        try await currentUserReference.updateData(["authors\(author)" : newScore])
+        try await currentUserReference!.setData(["authors" : [author : newScore]], merge: true)
     }
     
     func getUserAuthorsScore() async throws -> [String : Int] {
         let currentUserReference = try await userDocument(documentID: currentUser.id!)
-        
-        return try await currentUserReference.getDocument(as: User.self).authors!
+        let authors = try await currentUserReference.getDocument(as: User.self).authors!
+//        for (author, score) in authors {
+//            print("Author: \(author), Score: \(score)\n")
+//        }
+        return authors
     }
     
     

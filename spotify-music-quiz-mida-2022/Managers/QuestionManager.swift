@@ -102,8 +102,10 @@ class QuestionManager: ObservableObject {
                 }
                 
                 let question = Question(questionText: "Who sings the song _\(filterString(track.name))_?",
-                                         correctAnswer: correctAnswer,
-                                         wrongAnswers: similarArtistsNames)
+                                        correctAnswer: correctAnswer,
+                                        author: correctAnswer,
+                                        wrongAnswers: similarArtistsNames)
+                
                 questions.append(question)
             }
             
@@ -139,9 +141,10 @@ class QuestionManager: ObservableObject {
                     similarSongsNames.append(similarSongs[i].name)
                 }
                 
-                let question = Question(questionText: "Quale canzone è di \(filterString(track.artists.first!.name))_?",
-                                         correctAnswer: correctAnswer,
-                                         wrongAnswers: similarSongsNames)
+                let question = Question(questionText: "Quale canzone è di _\(filterString(track.artists.first!.name))_?",
+                                        correctAnswer: correctAnswer,
+                                        author: track.artists.first!.name,
+                                        wrongAnswers: similarSongsNames)
                 questions.append(question)
             }
             
@@ -163,9 +166,10 @@ class QuestionManager: ObservableObject {
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
-                                     correctAnswer: correctAnswer,
-                                     wrongAnswers: similarDates)
-           
+                                    correctAnswer: correctAnswer,
+                                    author: album.artists.first!.name,
+                                    wrongAnswers: similarDates)
+            
             questions.append(question)
         }
         
@@ -186,8 +190,9 @@ class QuestionManager: ObservableObject {
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate : track.album!.release_date), originalArtist : track.album!.artists.first!)
             
             let question = Question(questionText: "What year was the song _\(filterString(track.name))_ released?",
-                                     correctAnswer: correctAnswer,
-                                     wrongAnswers: similarDates)
+                                    correctAnswer: correctAnswer,
+                                    author: track.artists.first!.name,
+                                    wrongAnswers: similarDates)
             questions.append(question)
         }
         
@@ -271,10 +276,11 @@ class QuestionManager: ObservableObject {
                     for i in 0...2{
                         similarTracksNames.append(reccTracks[i].name)
                     }
-
+                    
                     let question = Question(questionText: "Quale canzone è dell'album '\(album.name)'?",
-                                             correctAnswer: correctAnswer,
-                                             wrongAnswers: similarTracksNames)
+                                            correctAnswer: correctAnswer,
+                                            author: album.artists.first!.name,
+                                            wrongAnswers: similarTracksNames)
                     questions.append(question)
                 }
 

@@ -14,35 +14,24 @@ struct AuthorScoreView: View {
     var body: some View {
         
         VStack {
-            List {
-                ForEach(model.authorsScores.sorted(by: <), id: \.value) { author, score in
-                    HStack {
-                        Text(author)
-                            .font(TextStyle.leaderboardItem())
-                            .foregroundColor(.white)
-                            .padding(.leading)
-                        Spacer()
-                        Text(String(score))
-                            .font(TextStyle.leaderboardItem())
-                            .foregroundColor(.white)
-                    }
-                    .listRowBackground(Color.clear)
-                    .padding(.bottom)
-                }
-                .listStyle(.plain)
-                //                .toolbar {
-                //                    ToolbarItem(placement: .principal) {
-                //                        HStack {
-                //                            Text("Leaderboard")
-                //                                .font(TextStyle.homeTitle())
-                //                                .foregroundColor(.white)
-                //                                .padding(.leading, 22.0)
-                //                            Spacer()
-                //                        }
-                //                    }
-                //                }
+            Text("Look at the authors you know better! For each correct answer you get a point!")
+                .padding([.top, .leading], 25)
+                .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
-                
+            
+            List(model.authorsScores, id: \.key) { author, score in
+                HStack {
+                    Text(author)
+                        .font(TextStyle.leaderboardItem().bold())
+                        .foregroundColor(.white)
+                    Spacer()
+                    Text(String(score))
+                        .font(TextStyle.leaderboardItem().bold())
+                        .foregroundColor(.white)
+                }
+                .listRowBackground(Color.clear)
+                .listStyle(.plain)
+                .foregroundColor(.white)
             }
             .task {
                 model.updateUserData()
@@ -50,7 +39,15 @@ struct AuthorScoreView: View {
             }
             .background(Color("Black"))
         }
-        
+        .navigationTitle(Text(""))
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Authors scores")
+                    .font(TextStyle.homeTitle())
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
     }
 }
 

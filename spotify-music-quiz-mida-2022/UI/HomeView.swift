@@ -36,8 +36,8 @@ struct HomeView: View {
                                 .frame(width: 50, height: 50)
                         }
                         NavigationLink(destination: AuthorScoreView()) {
-                            Image(systemName: "gearshape")
-                                .font(.system(size: 20, weight: .bold))
+                            Image(systemName: "music.note.list")
+                                .font(.system(size: 25, weight: .bold))
                                 .foregroundColor(.white)
                                 .frame(width: 50, height: 50)
                         }
