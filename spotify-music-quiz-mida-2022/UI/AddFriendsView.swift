@@ -15,12 +15,13 @@ struct AddFriendsView: View {
     
     var orderedUsers : [User] {
         if nameToSearch.isEmpty {
-            return model.users
+            return model.users.filter { $0.display_name != model.currentUser.display_name}
         } else {
-            return model.users.filter { user in
+            let orderedUser = model.users.filter { user in
                 let range = user.display_name.range(of: nameToSearch, options: .caseInsensitive)
                 return range != nil
             }
+            return orderedUser.filter { $0.display_name != model.currentUser.display_name}
         }
     }
     
@@ -60,7 +61,10 @@ struct AddFriendsView: View {
                             .padding()
                             .foregroundColor(Color.white)
                             .frame(width: 60.0, height: 60.0)
+                            .opacity(alreadyAdded(user: user) ? 0.5 : 1)
                     }
+                    .disabled(alreadyAdded(user: user))
+                    
                 }
                 .listRowBackground(Color.clear)
             }
@@ -97,6 +101,7 @@ struct AddFriendsView: View {
         }
         .task {
             model.updateUserData()
+            try? await friendsModel.getFriends()
             try? await model.getAllUsers()
         }
         .background(Color("Black"))
@@ -111,6 +116,11 @@ struct AddFriendsView: View {
                     .minimumScaleFactor(0.1)
             }
         }
+    }
+    
+    func alreadyAdded(user: User) -> Bool {
+        let friends = friendsModel.friends
+        return friends.contains{ $0.display_name == user.display_name }
     }
 }
 
