@@ -35,7 +35,7 @@ class QuestionManager: ObservableObject {
 
                 
     private(set) var isLoading = true
-    private(set) let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
+    private let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
     var isLoadingQuestions = true
 
     func importAllData() async throws {
@@ -161,7 +161,7 @@ class QuestionManager: ObservableObject {
         var questions: [Question] = []
         
 
-        var tempAlbums : [Album] = []
+        var tempAlbums : [SimpleAlbum] = []
         tempAlbums = reduceAlbumDim(num: 3)
 
         for album in tempAlbums {
@@ -171,7 +171,7 @@ class QuestionManager: ObservableObject {
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
-                                    songUrl : track.preview_url ?? predSongURL,
+                                    songUrl : /*album.tracks.first!.preview_url ?? */predSongURL, ///DA MODIFICARE
                                     author: album.artists.first!.name,
                                     wrongAnswers: similarDates)
             
@@ -260,7 +260,7 @@ class QuestionManager: ObservableObject {
     private func genAlbumSongQuestions() -> [Question] {
             var questions: [Question] = []
 
-            var tempAlbums : [Album] = []
+            var tempAlbums : [SimpleAlbum] = []
             tempAlbums = reduceAlbumDim(num: 3)
 
             for var album in tempAlbums {
@@ -270,7 +270,7 @@ class QuestionManager: ObservableObject {
 
                 self.reccTracks = []
                 loadRecc(track: correctTrack)
-                while(isLoading){
+                while(isLoading) {
                     ProgressView()
                 }
                 isLoading = true
@@ -288,9 +288,9 @@ class QuestionManager: ObservableObject {
                         }
                     }
                     
-                    let question = Question(questionText: "Quale canzone è dell'album '\(album.name)'?",
+                    let question = Question(questionText: "Quale canzone è dell'album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
-                                            songUrl : track.preview_url ?? predSongURL,
+                                            songUrl : correctTrack.preview_url ?? predSongURL,
                                             author: album.artists.first!.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)
@@ -589,7 +589,7 @@ class QuestionManager: ObservableObject {
         return Array(self.userTracks.prefix(self.userTracks.count > num ? num : self.userTracks.count))
     }
 
-    private func reduceAlbumsDim(num: Int) -> [Album] {
+    private func reduceAlbumDim(num: Int) -> [SimpleAlbum] {
         self.albums.shuffle()
         return Array(self.albums.prefix(self.albums.count > num ? num : self.albums.count))
     }

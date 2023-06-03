@@ -66,6 +66,9 @@ struct GameOverView: View {
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
                 .simultaneousGesture(TapGesture().onEnded {
+                    Task {
+                        try await gameManager.restartGame()
+                    }
                     print("GAME RESTARTED")
                     gameRestarted = true
                 })
@@ -87,8 +90,11 @@ struct GameOverView: View {
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
-                
-                
+                .simultaneousGesture(TapGesture().onEnded {
+                    Task {
+                        try await gameManager.endGame()
+                    }
+                })  
             }
             .padding([.leading , .trailing])
             Spacer()
@@ -100,8 +106,6 @@ struct GameOverView: View {
                 if score > model.highscore {
                     try await model.setUserHighscore(newHighscore: score)
                 }
-                try await gameManager.restartGame()
-
             }
         }
         .navigationBarHidden(true)

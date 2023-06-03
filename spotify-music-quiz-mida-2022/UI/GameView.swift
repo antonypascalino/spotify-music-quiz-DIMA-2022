@@ -130,13 +130,13 @@ class AudioPlayer: ObservableObject {
         let playerItem = AVPlayerItem(url: audioURL)
         player = AVPlayer(playerItem: playerItem)
 
-        playerLooper = AVPlayerLooper(player: player!, templateItem: playerItem)
+//        playerLooper = AVPlayerLooper(player: player!, templateItem: playerItem)
 
         player?.play()
     }
     
     func stop() {
-        player?.setVolume(0, fadeDuration: 2.0) // Sfuma il volume a zero in 2 secondi
+//        player?.setVolume(0, fadeDuration: 2.0) // Sfuma il volume a zero in 2 secondi
         player?.pause()
         player = nil
         playerLooper = nil

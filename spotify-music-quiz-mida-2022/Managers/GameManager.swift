@@ -24,16 +24,16 @@ class GameManager: ObservableObject {
     
     
     func startGame() async throws {
-        if(questions.count == 0 || correctAnswersCount != 0) {
+//        if(questions.count == 0 || correctAnswersCount != 0) {
             try await QuestionManager.shared.importAllData()
             try await self.genQuestions()
-        }
+//        }
     }
     
     func genQuestions() async throws {
         if(questions.count == 0 || correctAnswersCount != 0) {
             tempQuestions = []
-            questions = []
+//            questions = []
             questions = try await QuestionManager.shared.genRandomQuestions()
             print("Count \(questions.count)")
             questions.shuffle()
@@ -53,6 +53,7 @@ class GameManager: ObservableObject {
     
     func endGame() async throws {
         DispatchQueue.main.async {
+            self.questions = []
             self.gameIsOver = false
             self.playerMiss = false
             self.answerSelected = false
@@ -77,7 +78,8 @@ class GameManager: ObservableObject {
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers() ?? [String]()
                 }
-                    if (currentQuestionIndex % 6) == 0 {
+                    if (currentQuestionIndex % 10 == 0 && currentQuestionIndex != 0)  {
+                        print("CURRENT INDEX: \(currentQuestionIndex)")
                         tempQuestions = []
                         tempQuestions = try await QuestionManager.shared.genRandomQuestions()
                     }
@@ -97,6 +99,7 @@ class GameManager: ObservableObject {
     }
     
     func getNextQuestion() -> Question? {
+        print("Risposta esatta: \(currentQuestion?.correctAnswer)")
         return currentQuestion
     }
     
