@@ -6,6 +6,7 @@ class GameManager: ObservableObject {
     let userManager = UserManager.shared
     
     private(set) var questions: [Question] = []
+    private(set) var tempQuestions: [Question] = []
     private(set) var currentQuestion : Question?
     
     private(set) var currentAnswers : [String]?
@@ -28,15 +29,20 @@ class GameManager: ObservableObject {
     }
     
     func genQuestions() async throws {
-        questions = try await QuestionManager.shared.genRandomQuestions()
-        print("Count \(questions.count)")
-        questions.shuffle()
-        DispatchQueue.main.async {
-            self.currentQuestionIndex = 0
-            self.correctAnswersCount = 0
-            self.currentQuestion = self.questions[self.currentQuestionIndex]
-            self.currentAnswers = self.currentQuestion?.getAnswers()
+        if(questions.count == 0 || correctAnswersCount != 0) {
+            tempQuestions = []
+            questions = []
+            questions = try await QuestionManager.shared.genRandomQuestions()
+            print("Count \(questions.count)")
+            questions.shuffle()
+            DispatchQueue.main.async {
+                self.currentQuestionIndex = 0
+                self.correctAnswersCount = 0
+                self.currentQuestion = self.questions[self.currentQuestionIndex]
+                self.currentAnswers = self.currentQuestion?.getAnswers()
+            }
         }
+        
     }
     func restartGame() async throws {
         try await endGame()
@@ -68,19 +74,21 @@ class GameManager: ObservableObject {
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers() ?? [String]()
                 }
-                
+                    if currentQuestionIndex % 6 == 0 {
+                        tempQuestions = []
+                        tempQuestions = try await QuestionManager.shared.genRandomQuestions()
+                    }
+
             } else {
                 DispatchQueue.main.async {
                     self.questions = []
                 }
-                questions = try await QuestionManager.shared.genRandomQuestions()
+                questions = tempQuestions
+                //questions = try await QuestionManager.shared.genRandomQuestions()
                 questions.shuffle()
             }
             
-//            if currentQuestionIndex == 20 {
-//                questions.append(contentsOf: generateRandomQuestionsLv2())
-//                questions.shuffle()
-//            }
+//            
         }
         
     }

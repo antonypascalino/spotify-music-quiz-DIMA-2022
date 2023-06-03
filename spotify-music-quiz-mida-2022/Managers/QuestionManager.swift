@@ -68,6 +68,7 @@ class QuestionManager: ObservableObject {
         self.authorSongQuestion = genAuthorSongQuestion()
         questionsTemp.append(contentsOf: self.authorSongQuestion)
         print("Prima7")
+        
         isLoadingQuestions = false
         questionsTemp.shuffle()
         
@@ -79,9 +80,8 @@ class QuestionManager: ObservableObject {
     private func genWhoSingsQuestions() -> [Question] {
         var questions: [Question] = []
         
-        self.userTracks.shuffle()
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 10)
+        tempTracks = reduceArrayDim(num: 3)
         
         for track in tempTracks {
             
@@ -119,9 +119,8 @@ class QuestionManager: ObservableObject {
     private func genAuthorSongQuestion() -> [Question] {
         var questions: [Question] = []
         
-        self.userTracks.shuffle()
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 10)
+        tempTracks = reduceArrayDim(num: 3)
         
         for track in tempTracks {
             
@@ -143,6 +142,7 @@ class QuestionManager: ObservableObject {
                 
                 let question = Question(questionText: "Quale canzone è di _\(filterString(track.artists.first!.name))_?",
                                         correctAnswer: correctAnswer,
+                                        songUrl : track.preview_url ?? "",
                                         author: track.artists.first!.name,
                                         wrongAnswers: similarSongsNames)
                 questions.append(question)
@@ -158,15 +158,18 @@ class QuestionManager: ObservableObject {
     private func genYearAlbumQuestions() -> [Question] {
         var questions: [Question] = []
         
-        self.albums.shuffle()
-        
-        for album in self.albums {
+
+        var tempAlbums : [Album] = []
+        tempAlbums = reduceAlbumDim(num: 3)
+
+        for album in tempAlbums {
             let correctAnswer = getOnlyYear(allDate: album.release_date)
             
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
+                                    songUrl : track.preview_url ?? "",
                                     author: album.artists.first!.name,
                                     wrongAnswers: similarDates)
             
@@ -180,9 +183,8 @@ class QuestionManager: ObservableObject {
         var questions: [Question] = []
         
         
-        self.userTracks.shuffle()
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 10)
+        tempTracks = reduceArrayDim(num: 3)
         
         for track in tempTracks {
             let correctAnswer = getOnlyYear(allDate: track.album!.release_date)
@@ -191,6 +193,7 @@ class QuestionManager: ObservableObject {
             
             let question = Question(questionText: "What year was the song _\(filterString(track.name))_ released?",
                                     correctAnswer: correctAnswer,
+                                    songUrl : track.preview_url ?? "",
                                     author: track.artists.first!.name,
                                     wrongAnswers: similarDates)
             questions.append(question)
@@ -202,9 +205,8 @@ class QuestionManager: ObservableObject {
     private func genShazamTitleQuestions() -> [Question]{
        var questions: [Question] = []
        
-        self.userTracks.shuffle()
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 10)
+        tempTracks = reduceArrayDim(num: 3)
         
         for track in tempTracks {
         
@@ -229,9 +231,8 @@ class QuestionManager: ObservableObject {
     private func genShazamAuthorQuestions() -> [Question]{
        var questions: [Question] = []
        
-        self.userTracks.shuffle()
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 10)
+        tempTracks = reduceArrayDim(num: 3)
         
         for track in tempTracks {
         
@@ -256,9 +257,11 @@ class QuestionManager: ObservableObject {
     
     private func genAlbumSongQuestions() -> [Question] {
             var questions: [Question] = []
-            self.albums.shuffle()
 
-            for var album in self.albums {
+            var tempAlbums : [Album] = []
+            tempAlbums = reduceAlbumDim(num: 3)
+
+            for var album in tempAlbums {
                 album.tracks.items.shuffle()
                 let correctTrack = album.tracks.items.first!
                 let correctAnswer = correctTrack.name
@@ -272,13 +275,20 @@ class QuestionManager: ObservableObject {
                 self.reccTracks.shuffle()
 
                 var similarTracksNames : [String] = []
-                if !reccTracks.isEmpty{
-                    for i in 0...2{
-                        similarTracksNames.append(reccTracks[i].name)
+                if !reccTracks.isEmpty && reccTracks.count > 3{
+                    
+                    for i in 0...reccTracks.count-1{
+                        if(reccTracks[i].artists.first!.name != album.artists.first!.name){
+                            similarTracksNames.append(reccTracks[i].name)
+                        }  
+                        if similarTracksNames.count == 3 {
+                            break;
+                        }
                     }
                     
                     let question = Question(questionText: "Quale canzone è dell'album '\(album.name)'?",
                                             correctAnswer: correctAnswer,
+                                            songUrl : track.preview_url ?? "",
                                             author: album.artists.first!.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)
@@ -573,7 +583,13 @@ class QuestionManager: ObservableObject {
     }
     
     private func reduceArrayDim(num: Int) -> [Track] {
+        self.userTracks.shuffle()
         return Array(self.userTracks.prefix(self.userTracks.count > num ? num : self.userTracks.count))
+    }
+
+    private func reduceAlbumsDim(num: Int) -> [Album] {
+        self.albums.shuffle()
+        return Array(self.albums.prefix(self.albums.count > num ? num : self.albums.count))
     }
     
 }

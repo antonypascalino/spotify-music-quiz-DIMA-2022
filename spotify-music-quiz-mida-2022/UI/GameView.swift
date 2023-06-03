@@ -69,6 +69,16 @@ struct GameView: View {
                             .padding([.top, .bottom] , 12)
                             .padding(.leading , 5)
                         }
+                        .onAppear {
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                            }
+                            .onDisappear {
+                                AudioPlayer.shared.stop()
+                            }
+                            .frame(height: 380)
                         .frame(height: 380)
                         .offset(y: -18)
                     }
