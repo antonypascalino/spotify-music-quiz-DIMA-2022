@@ -59,30 +59,32 @@ struct FriendsView: View {
                 .padding(.trailing, 5.0)
             }
             .padding()
-            if (!friendsModel.friends.isEmpty){
-                List(friendsModel.friends.indices) { index in
-                    let friend = friendsModel.friends[index]
-                    HStack {
-                        Text("\(index + 1)")
-                            .font(TextStyle.leaderboardItem().bold())
-                            .foregroundColor(.white)
-                            .frame(width: 20, height: 20)
-                            .padding(.trailing)
-                        ListImage(imageString: friend.image)
-                        Text(friend.display_name)
-                            .font(TextStyle.leaderboardItem().bold())
-                            .foregroundColor(.white)
-                            .padding(.leading)
-                        Spacer()
-                        Text(String(friend.highscore))
-                            .font(TextStyle.leaderboardItem().bold())
-                            .foregroundColor(.white)
-                            .padding(.trailing)
+            if (!friendsModel.friends.isEmpty) {
+                ScrollView {
+                    ForEach(Array(friendsModel.friends.enumerated()), id: \.offset) { index, friend in
+                        HStack {
+                            Text("\(index + 1)")
+                                .font(TextStyle.leaderboardItem().bold())
+                                .foregroundColor(.white)
+                                .frame(width: 20, height: 20)
+                                .padding(.leading)
+                            ListImage(imageString: friend.image)
+                            Text(friend.display_name)
+                                .font(TextStyle.leaderboardItem().bold())
+                                .foregroundColor(.white)
+                                .padding(.leading)
+                            Spacer()
+                            Text(String(friend.highscore))
+                                .font(TextStyle.leaderboardItem().bold())
+                                .foregroundColor(.white)
+                                .padding(.trailing)
+                        }
+                        .listRowBackground(Color.clear)
+                        .padding(.bottom)
                     }
-                    .listRowBackground(Color.clear)
                 }
-                .listStyle(.plain)
-                .background(Color.clear)
+//                .listStyle(.plain)
+//                .background(Color.clear)
                 
             } else {
                 VStack {
@@ -123,13 +125,16 @@ struct FriendsView: View {
         .task {
             model.updateUserData()
             try? await friendsModel.getFriends()
-        }
-        .onAppear {
-            Task {
-                model.updateUserData()
-                try? await friendsModel.getFriends()
+            for user in friendsModel.friends {
+                print("CURRENT FRIENDS FROM FRIENDSVIEWMODEL: \(user.display_name)")
             }
         }
+//        .onAppear {
+//            Task {
+//                model.updateUserData()
+//                try? await friendsModel.getFriends()
+//            }
+//        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .navigationTitle(Text(""))
         .toolbar {

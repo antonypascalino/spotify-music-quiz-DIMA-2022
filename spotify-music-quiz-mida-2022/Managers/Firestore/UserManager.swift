@@ -84,13 +84,14 @@ class UserManager {
     
     func setUserHighscore(newHighscore: Int) async throws {
         
-        currentUserReference!.updateData(["highscore" : newHighscore]) { error in
+        try await currentUserReference!.updateData(["highscore" : newHighscore]) { error in
             if let error = error {
                 print("Error updating highscore field: \(error.localizedDescription)")
             } else {
                 print("Highscore updated successfully.")
             }
         }
+        self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
     }
     
 //    func searchUsers(name: String) async throws -> [User] {
@@ -108,21 +109,25 @@ class UserManager {
     
     func addFriend(newFriendSpotifyID: String) async throws {
         
+        print("CURRENT USER FRIENDS: \(currentUser.friends)")
+        
         let newFriend = try await getUser(SpotifyID: newFriendSpotifyID)
         let newFriendReference = try await userDocument(documentID: newFriend.id!)
         
-        currentUserReference!.updateData(["friends" : FieldValue.arrayUnion([newFriendReference])]) { error in
+        try await currentUserReference!.updateData(["friends" : FieldValue.arrayUnion([newFriendReference])]) { error in
             if let error = error {
                 print("Error updating Friends array: \(error.localizedDescription)")
             } else {
                 print("New friend added successfully.")
             }
         }
+        self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
+        print("CURRENT USER FRIENDS: \(currentUser.friends)")
     }
     
     func getUserFriends() async throws -> [User] {
         
-        print("CURRENT USER FROM USERMANAGER: \(currentUser)")
+//        print("CURRENT USER FROM USERMANAGER: \(currentUser)")
         
         var friends : [User] = []
 
@@ -141,6 +146,7 @@ class UserManager {
         let newScore = authorScore + 1
         
         try await currentUserReference!.setData(["authors" : [author : newScore]], merge: true)
+        self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
     }
     
     func getUserAuthorsScore() async throws -> [String : Int] {

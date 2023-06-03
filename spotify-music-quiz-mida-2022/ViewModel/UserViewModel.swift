@@ -39,7 +39,7 @@ final class UserViewModel : ObservableObject {
     }
     
     func updateUserData() {
-        print("Stampo Prima")
+//        print("Stampo Prima")
         currentUser = UserManager.shared.currentUser
         
         //currentUser = crUser
