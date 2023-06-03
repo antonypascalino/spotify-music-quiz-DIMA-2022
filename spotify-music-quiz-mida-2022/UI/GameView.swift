@@ -124,21 +124,22 @@ class AudioPlayer: ObservableObject {
     static let shared = AudioPlayer()
     
     private var player: AVPlayer?
+    private var playerLooper: AVPlayerLooper?
     
     func play(audioURL: URL) {
         let playerItem = AVPlayerItem(url: audioURL)
         player = AVPlayer(playerItem: playerItem)
+
+        playerLooper = AVPlayerLooper(player: player!, templateItem: playerItem)
+
         player?.play()
     }
     
     func stop() {
+        player?.setVolume(0, fadeDuration: 2.0) // Sfuma il volume a zero in 2 secondi
         player?.pause()
         player = nil
-        
-        //stop dopo tot secondi
-//        player.addBoundaryTimeObserver(forTimes: [NSValue(time: CMTime(seconds: duration, preferredTimescale: 1))], queue: .main) {
-//            playerViewController.player?.pause()
-//        }
+        playerLooper = nil
     }
 }
 

@@ -35,6 +35,7 @@ class QuestionManager: ObservableObject {
 
                 
     private(set) var isLoading = true
+    private(set) let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
     var isLoadingQuestions = true
 
     func importAllData() async throws {
@@ -103,6 +104,7 @@ class QuestionManager: ObservableObject {
                 
                 let question = Question(questionText: "Who sings the song _\(filterString(track.name))_?",
                                         correctAnswer: correctAnswer,
+                                        songUrl : track.preview_url ?? predSongURL,
                                         author: correctAnswer,
                                         wrongAnswers: similarArtistsNames)
                 
@@ -142,7 +144,7 @@ class QuestionManager: ObservableObject {
                 
                 let question = Question(questionText: "Quale canzone è di _\(filterString(track.artists.first!.name))_?",
                                         correctAnswer: correctAnswer,
-                                        songUrl : track.preview_url ?? "",
+                                        songUrl : track.preview_url ?? predSongURL,
                                         author: track.artists.first!.name,
                                         wrongAnswers: similarSongsNames)
                 questions.append(question)
@@ -169,7 +171,7 @@ class QuestionManager: ObservableObject {
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
-                                    songUrl : track.preview_url ?? "",
+                                    songUrl : track.preview_url ?? predSongURL,
                                     author: album.artists.first!.name,
                                     wrongAnswers: similarDates)
             
@@ -193,7 +195,7 @@ class QuestionManager: ObservableObject {
             
             let question = Question(questionText: "What year was the song _\(filterString(track.name))_ released?",
                                     correctAnswer: correctAnswer,
-                                    songUrl : track.preview_url ?? "",
+                                    songUrl : track.preview_url ?? predSongURL,
                                     author: track.artists.first!.name,
                                     wrongAnswers: similarDates)
             questions.append(question)
@@ -288,7 +290,7 @@ class QuestionManager: ObservableObject {
                     
                     let question = Question(questionText: "Quale canzone è dell'album '\(album.name)'?",
                                             correctAnswer: correctAnswer,
-                                            songUrl : track.preview_url ?? "",
+                                            songUrl : track.preview_url ?? predSongURL,
                                             author: album.artists.first!.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)
