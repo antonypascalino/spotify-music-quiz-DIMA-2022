@@ -13,6 +13,7 @@ struct HomeView: View {
 //    @State var userProfile : UserProfile?
     @State var isLoading = true
     @ObservedObject private var userModel = UserViewModel()
+    @StateObject var gameManager = GameManager.shared
 
     var body: some View {
         NavigationView {
@@ -96,6 +97,7 @@ struct HomeView: View {
                         .onAppear {
                             Task {
                                 try await loadData()
+                                try await loadGame()
                             }
                         }
             //        }
@@ -113,6 +115,7 @@ struct HomeView: View {
     
     func loadData() async throws {
 
+        print("")
         self.isLoading = true
 
         try await APICaller.shared.getUserProfile { result in
@@ -129,6 +132,10 @@ struct HomeView: View {
                     //self?.failedToGetProfile()
             }
         }
+    }
+    
+    func loadGame() async throws {
+        try await gameManager.startGame()
     }
 }
 

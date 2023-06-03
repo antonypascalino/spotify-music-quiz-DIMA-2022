@@ -37,7 +37,9 @@ struct GameControls: View {
             
             
             Button(action: {
-                gameManager.setNextQuestion()
+                Task {
+                    try await gameManager.setNextQuestion()
+                }
             }, label: {
                 Image(systemName: "forward.end.fill")
                 .foregroundColor(.white)

@@ -49,7 +49,7 @@ struct GameOverView: View {
             
             HStack(spacing: 30.0) {
                 
-                NavigationLink(destination: GameView().environmentObject(gameManager), isActive: $gameRestarted, label: {
+                NavigationLink(destination: GameView(), isActive: $gameRestarted, label: {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .frame(width: 20, height: 20)
@@ -66,7 +66,9 @@ struct GameOverView: View {
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
                 .simultaneousGesture(TapGesture().onEnded {
-                    gameManager.restartGame()
+                    Task {
+                        try await gameManager.restartGame()
+                    }
                     print("GAME RESTARTED")
                     gameRestarted = true
                 })
@@ -88,6 +90,11 @@ struct GameOverView: View {
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
+                .simultaneousGesture(TapGesture().onEnded {
+                    Task {
+                        try await gameManager.endGame()
+                    }
+                })
                 
             }
             .padding([.leading , .trailing])

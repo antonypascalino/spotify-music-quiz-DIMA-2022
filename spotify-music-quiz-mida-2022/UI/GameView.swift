@@ -10,7 +10,7 @@ import AVFoundation
 
 struct GameView: View {
     
-    @StateObject var gameManager = GameManager()
+    @StateObject var gameManager = GameManager.shared
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     @State private var isLoading = true
@@ -88,22 +88,23 @@ struct GameView: View {
                 .navigationBarHidden(true)
                 
             }
-        }.onAppear {
-            Task {
-                try await loadData()
-                 }
         }
+//        .onAppear {
+//            Task {
+//                try await loadData()
+//            }
+//        }
        
     }
     
     
-        func loadData() async throws {
-    
-            //isLoading = QuestionManager.shared.isLoadingQuestions
-            gameManager.startGame()
-            //isLoading = QuestionManager.shared.isLoadingQuestions
-            
-        }
+    func loadData() async throws {
+        
+        //isLoading = QuestionManager.shared.isLoadingQuestions
+//        try await gameManager.startGame()
+        //isLoading = QuestionManager.shared.isLoadingQuestions
+        
+    }
             
 }
 

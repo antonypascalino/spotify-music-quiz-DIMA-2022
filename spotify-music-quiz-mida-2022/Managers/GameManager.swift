@@ -22,30 +22,40 @@ class GameManager: ObservableObject {
     init() {}
     
     
-    func startGame() {
-        QuestionManager.shared.importAllData()
-        self.genQuestions()
+    func startGame() async throws {
+        try await QuestionManager.shared.importAllData()
+        try await self.genQuestions()
     }
     
-    func genQuestions() {
-        questions = QuestionManager.shared.genRandomQuestions()
+    func genQuestions() async throws {
+        questions = try await QuestionManager.shared.genRandomQuestions()
         print("Count \(questions.count)")
         questions.shuffle()
-        currentQuestionIndex = 0
-        correctAnswersCount = 0
-        currentQuestion = questions[currentQuestionIndex]
-        currentAnswers = currentQuestion?.getAnswers()
+        DispatchQueue.main.async {
+            self.currentQuestionIndex = 0
+            self.correctAnswersCount = 0
+            self.currentQuestion = self.questions[self.currentQuestionIndex]
+            self.currentAnswers = self.currentQuestion?.getAnswers()
+        }
     }
-    func restartGame() {
-        gameIsOver = false
-        playerMiss = false
-        answerSelected = false
-        QuestionManager.shared.isLoadingQuestions = true
-        genQuestions()
+    func restartGame() async throws {
+        try await endGame()
+        try await genQuestions()
     }
     
-    func setNextQuestion() {
-        answerSelected = false
+    func endGame() async throws {
+        DispatchQueue.main.async {
+            self.gameIsOver = false
+            self.playerMiss = false
+            self.answerSelected = false
+        }
+        QuestionManager.shared.isLoadingQuestions = true
+    }
+    
+    func setNextQuestion() async throws {
+        DispatchQueue.main.async {
+            self.answerSelected = false
+        }
         
         if (playerMiss) {
             gameOver()
@@ -53,12 +63,17 @@ class GameManager: ObservableObject {
             
             // Only setting next question if index is smaller than the number of questions set
             if currentQuestionIndex < questions.count {
-                currentQuestionIndex += 1
-                currentQuestion = questions[currentQuestionIndex]
-                currentAnswers = currentQuestion?.getAnswers() ?? [String]()
+                DispatchQueue.main.async {
+                    self.currentQuestionIndex += 1
+                    self.currentQuestion = self.questions[self.currentQuestionIndex]
+                    self.currentAnswers = self.currentQuestion?.getAnswers() ?? [String]()
+                }
+                
             } else {
-                questions = []
-                questions = QuestionManager.shared.genRandomQuestions()
+                DispatchQueue.main.async {
+                    self.questions = []
+                }
+                questions = try await QuestionManager.shared.genRandomQuestions()
                 questions.shuffle()
             }
             

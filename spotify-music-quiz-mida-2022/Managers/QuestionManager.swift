@@ -37,13 +37,13 @@ class QuestionManager: ObservableObject {
     private(set) var isLoading = true
     var isLoadingQuestions = true
 
-    func importAllData() {
+    func importAllData() async throws {
         importPlaylists()
         importAlbums()
         importTracks()
     }
     
-    func genRandomQuestions() -> [Question] {
+    func genRandomQuestions() async throws -> [Question] {
         
         var questionsTemp : [Question] = []
         
@@ -551,7 +551,7 @@ class QuestionManager: ObservableObject {
 
     }
     
-    private func importPlaylists(){
+    private func importPlaylists() {
         
         let words = ["lofi", "relax", "cover", "chill"]
         loadPlaylists()
