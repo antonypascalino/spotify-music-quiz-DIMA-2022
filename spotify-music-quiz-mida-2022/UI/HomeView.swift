@@ -24,7 +24,7 @@ struct HomeView: View {
                 //                else if let userProfile = userProfile {
                 if !isLoading {
                     HStack {
-                        Text("Hi \(userModel.currentUser.display_name)!")
+                        Text("Hi \(userModel.currentUser.display_name.components(separatedBy: " ").first!)!")
                             .font(TextStyle.homeTitle())
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding()

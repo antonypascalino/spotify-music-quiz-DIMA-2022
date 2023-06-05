@@ -27,7 +27,7 @@ struct GameView: View {
                     .environmentObject(gameManager)
             } else {
                 let currentAnwers = gameManager.currentAnswers!
-        //        let currentQuestion = gameManager.getNextQuestion()!
+                //        let currentQuestion = gameManager.getNextQuestion()!
                 
                 
                 VStack(alignment: .leading, spacing: 30) {
@@ -50,22 +50,26 @@ struct GameView: View {
                         
                         GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
                             .environmentObject(gameManager)
-                            .onAppear {
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onChange(of: gameManager.isTimerRunning) { newValue in
-                                if newValue == false {
-                                    AudioPlayer.shared.pause()
-                                } else {
-                                    AudioPlayer.shared.resume()
-                                }
-                            }
-                            .onDisappear {
-                                AudioPlayer.shared.stop()
-                            }
+                        //                            .onAppear {
+                        //                                print("onAppear Shazam")
+                        //                                AudioPlayer.shared.stop()
+                        //                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        //                            }
+                        //                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                        //                                AudioPlayer.shared.stop()
+                        //                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        //                            }
+                        //                            .onChange(of: gameManager.isTimerRunning) { newValue in
+                        //                                if newValue == false {
+                        //                                    AudioPlayer.shared.pause()
+                        //                                } else {
+                        //                                    AudioPlayer.shared.resume()
+                        //                                }
+                        //                            }
+                        //                            .onDisappear {
+                        //                                print("onDisappear Shazam")
+                        //                                AudioPlayer.shared.stop()
+                        //                            }
                             .frame(height: 380)
                     } else {
                         VStack {
@@ -76,16 +80,20 @@ struct GameView: View {
                             .padding([.top, .bottom] , 12)
                             .padding(.leading , 5)
                         }
-                        .onAppear {
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                            }
-                            .onDisappear {
-                                AudioPlayer.shared.stop()
-                            }
-                            .frame(height: 380)
+                        //                        .onAppear {
+                        //                            print("onAppear VStack")
+                        //                            AudioPlayer.shared.stop()
+                        //                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        //                        }
+                        //                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                        //                            AudioPlayer.shared.stop()
+                        //                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                        //                        }
+                        //                        .onDisappear {
+                        //                            print("onDisappear VStack")
+                        //                            AudioPlayer.shared.stop()
+                        //                        }
+                        .frame(height: 380)
                         .frame(height: 380)
                         .offset(y: -18)
                     }
@@ -103,15 +111,25 @@ struct GameView: View {
                 }
                 .background(Color("Black"))
                 .navigationBarHidden(true)
+                .onAppear {
+                    print("onAppear")
+        //            AudioPlayer.shared.stop()
+                    AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                }
+                .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+        //            AudioPlayer.shared.stop()
+                    AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                }
+                .onChange(of: gameManager.isTimerRunning) { newValue in
+                    if newValue == false {
+                        AudioPlayer.shared.pause()
+                    } else {
+                        AudioPlayer.shared.resume()
+                    }
+                }
                 
             }
         }
-//        .onAppear {
-//            Task {
-//                try await loadData()
-//            }
-//        }
-       
     }
     
     

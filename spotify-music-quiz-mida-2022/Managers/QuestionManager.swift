@@ -86,7 +86,7 @@ class QuestionManager: ObservableObject {
         
         for track in tempTracks {
             
-            let correctAnswer = track.artists.first!.name
+            let correctAnswer = filterString(track.artists.first!.name)
             var similarArtistsNames : [String] = []
             
             self.similarArtists = []
@@ -99,13 +99,14 @@ class QuestionManager: ObservableObject {
             
             if !similarArtists.isEmpty{
                 for i in 0...2{
-                    similarArtistsNames.append(similarArtists[i].name)
+                    similarArtistsNames.append(filterString(similarArtists[i].name))
                 }
                 
-                let question = Question(questionText: "Who sings the song _\(filterString(track.name))_?",
+                let question = Question(questionText: "Who's the author of the song _\(filterString(track.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
                                         author: correctAnswer,
+                                        songName: track.name,
                                         wrongAnswers: similarArtistsNames)
                 
                 questions.append(question)
@@ -126,7 +127,7 @@ class QuestionManager: ObservableObject {
         
         for track in tempTracks {
             
-            let correctAnswer = track.name
+            let correctAnswer = filterString(track.name)
             var similarSongsNames : [String] = []
             
             self.similarSongs = []
@@ -139,13 +140,14 @@ class QuestionManager: ObservableObject {
             
             if !similarSongs.isEmpty{
                 for i in 0...2{
-                    similarSongsNames.append(similarSongs[i].name)
+                    similarSongsNames.append(filterString(similarSongs[i].name))
                 }
                 
-                let question = Question(questionText: "Quale canzone è di _\(filterString(track.artists.first!.name))_?",
+                let question = Question(questionText: "Which of these songs is of _\(filterString(track.artists.first!.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
                                         author: track.artists.first!.name,
+                                        songName: track.name,
                                         wrongAnswers: similarSongsNames)
                 questions.append(question)
             }
@@ -173,6 +175,7 @@ class QuestionManager: ObservableObject {
                                     correctAnswer: correctAnswer,
                                     songUrl : /*album.tracks.first!.preview_url ?? */predSongURL, ///DA MODIFICARE
                                     author: album.artists.first!.name,
+                                    songName: "",
                                     wrongAnswers: similarDates)
             
             questions.append(question)
@@ -197,6 +200,7 @@ class QuestionManager: ObservableObject {
                                     correctAnswer: correctAnswer,
                                     songUrl : track.preview_url ?? predSongURL,
                                     author: track.artists.first!.name,
+                                    songName: track.name,
                                     wrongAnswers: similarDates)
             questions.append(question)
         }
@@ -216,12 +220,13 @@ class QuestionManager: ObservableObject {
             
             if(track.preview_url != nil){
                 let question = Question(questionText: "Guess the title of the song!",
-                                         correctAnswer: correctAnswer,
-                                         isShazam : true,
-                                         songUrl : track.preview_url,
-                                         albumImage : track.album!.images.first!.url,
-                                         author : track.artists.first!.name,
-                                         wrongAnswers: [])
+                                        correctAnswer: correctAnswer,
+                                        isShazam : true,
+                                        songUrl : track.preview_url,
+                                        albumImage : track.album!.images.first!.url,
+                                        author : track.artists.first!.name,
+                                        songName: track.name,
+                                        wrongAnswers: [])
                 questions.append(question)
             }
             
@@ -240,13 +245,15 @@ class QuestionManager: ObservableObject {
         
             let correctAnswer = track.artists.first!.name
             
-            if(track.preview_url != nil){
+            if(track.preview_url != nil) {
+                print("Generate listen author question with song name: \(track.name)")
+                print("FILTERED: Generate listen author question with song name: \(filterString(track.name))")
                 let question = Question(questionText: "Guess the author of the song!",
-                                        correctAnswer: correctAnswer,
+                                        correctAnswer: filterString(correctAnswer),
                                         isShazam : true,
                                         songUrl : track.preview_url,
                                         albumImage : track.album!.images.first!.url,
-                                        author: track.artists.first!.name,
+                                        author: filterString(track.artists.first!.name),
                                         songName : filterString(track.name),
                                         wrongAnswers: [])
                 questions.append(question)
@@ -266,7 +273,7 @@ class QuestionManager: ObservableObject {
             for var album in tempAlbums {
                 album.tracks.items.shuffle()
                 let correctTrack = album.tracks.items.first!
-                let correctAnswer = correctTrack.name
+                let correctAnswer = filterString(correctTrack.name)
 
                 self.reccTracks = []
                 loadRecc(track: correctTrack)
@@ -281,17 +288,18 @@ class QuestionManager: ObservableObject {
                     
                     for i in 0...reccTracks.count-1{
                         if(reccTracks[i].artists.first!.name != album.artists.first!.name){
-                            similarTracksNames.append(reccTracks[i].name)
+                            similarTracksNames.append(filterString(reccTracks[i].name))
                         }  
                         if similarTracksNames.count == 3 {
                             break;
                         }
                     }
                     
-                    let question = Question(questionText: "Quale canzone è dell'album _\(album.name)_?",
+                    let question = Question(questionText: "Which of these songs is in the album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
                                             songUrl : correctTrack.preview_url ?? predSongURL,
                                             author: album.artists.first!.name,
+                                            songName: correctTrack.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)
                 }
@@ -420,7 +428,9 @@ class QuestionManager: ObservableObject {
                 if(self.tempTrack.count >= 1){
                     for i in 0...self.tempTrack.count-1
                     {
-                        trackList.append(self.tempTrack[i].track!)
+                        if self.tempTrack[i].track != nil {
+                            trackList.append(self.tempTrack[i].track!)
+                        }
                     }
                 }
                     

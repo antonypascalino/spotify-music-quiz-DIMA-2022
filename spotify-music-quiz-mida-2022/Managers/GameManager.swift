@@ -34,7 +34,7 @@ class GameManager: ObservableObject {
     
     func genQuestions() async throws {
         if(questions.count == 0 || correctAnswersCount != 0) {
-            tempQuestions = []
+//            tempQuestions = []
 //            questions = []
             questions = try await QuestionManager.shared.genRandomQuestions()
             print("Count \(questions.count)")
@@ -74,7 +74,8 @@ class GameManager: ObservableObject {
         } else {
             
             // Only setting next question if index is smaller than the number of questions set
-            if currentQuestionIndex < questions.count {
+            print("Current question index : \(currentQuestionIndex), question.count: \(questions.count)")
+            if currentQuestionIndex < questions.count + 1 {
                 DispatchQueue.main.async {
                     self.currentQuestionIndex += 1
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
@@ -82,13 +83,14 @@ class GameManager: ObservableObject {
                 }
                     if (currentQuestionIndex % 10 == 0 && currentQuestionIndex != 0)  {
                         print("CURRENT INDEX: \(currentQuestionIndex)")
-                        tempQuestions = []
                         tempQuestions = try await QuestionManager.shared.genRandomQuestions()
                     }
 
             } else {
+                print("Reload questions")
                 DispatchQueue.main.async {
                     self.questions = []
+                    self.tempQuestions = []
                 }
                 questions = tempQuestions
                 //questions = try await QuestionManager.shared.genRandomQuestions()

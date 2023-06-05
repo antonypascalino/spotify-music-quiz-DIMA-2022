@@ -40,10 +40,10 @@ struct GameControls: View {
                     message: Text("The score of this game will be lost!"),
                     primaryButton: .default(Text("Yes")) {
                         goHome = true
-//                        gameManager.gameOver()
-//                        Task {
-//                            try await gameManager.endGame()
-//                        }
+                        gameManager.gameOver()
+                        Task {
+                            try await gameManager.endGame()
+                        }
                     },
                     secondaryButton: .cancel(Text("No").foregroundColor(Color("Red"))) {
                         showAlert = false
