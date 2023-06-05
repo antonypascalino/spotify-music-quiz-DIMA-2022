@@ -40,18 +40,27 @@ final class UserViewModel : ObservableObject {
     
     func updateUserData() {
 //        print("Stampo Prima")
-        currentUser = UserManager.shared.currentUser
-        
-        //currentUser = crUser
+        DispatchQueue.main.async {
+            self.currentUser = UserManager.shared.currentUser
+        }
     }
     
     func getUserAuthorsScore() async throws {
         let dictionary = try await UserManager.shared.getUserAuthorsScore()
-        /*let sortedArray*/ authorsScores = dictionary.sorted { $0.value > $1.value }
+        authorsScores = dictionary.sorted { $0.value > $1.value }
 //        authorsScores = Dictionary(uniqueKeysWithValues: sortedArray)
         for (author, score) in authorsScores {
             print("\(author) : \(score)")
         }
+        print("TOP 5 AUTHORS: \(try await getTopAuthors())")
+    }
+    
+    func getTopAuthors() async throws -> [String] {
+        let dictionary = try await UserManager.shared.getUserAuthorsScore()
+        authorsScores = dictionary.sorted { $0.value > $1.value }
+        
+        return authorsScores.prefix(5).map { $0.key }
+         
     }
     
     func setUserAuthorsScore(author: String) async throws {

@@ -14,10 +14,11 @@ struct AuthorScoreView: View {
     var body: some View {
         
         VStack {
-            Text("Look at the authors you know better! For each correct answer you get a point!")
-                .padding([.top, .leading], 25)
+            Text("Look at the authors you know better!\nFor each correct answer you get a point!")
+                .padding(.top, 25)
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
+                .offset(x: -7)
             
             List(model.authorsScores, id: \.key) { author, score in
                 HStack {

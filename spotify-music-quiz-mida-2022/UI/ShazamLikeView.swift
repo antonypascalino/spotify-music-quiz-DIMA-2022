@@ -45,14 +45,11 @@ struct ShazamLikeView: View {
     }
 }
 
-//struct ShazamLikeView_Preview: PreviewProvider {
-//    
-//    static var previews: some View {
-//        
-//        let isCorrect = false
-//        
-//        ShazamLikeView(isCorrect: $isCorrect)
-//            .background(Color("Black"))
-//    }
-//}
+struct ShazamLikeView_Preview: PreviewProvider {
+    
+    static var previews: some View {
+        ShazamLikeView()
+            .background(Color("Black"))
+    }
+}
 

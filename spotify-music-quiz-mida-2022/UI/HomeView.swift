@@ -50,9 +50,10 @@ struct HomeView: View {
                         AsyncImage(url: URL(string: userModel.currentUser.image)) { image in
                             image
                                 .resizable()
-                                .frame(width: 200, height: 200)
-                                .scaledToFit()
+                                .frame(width: 230, height: 230)
+                                .scaledToFill()
                                 .cornerRadius(100)
+                                .shadow(color: Color("Green"), radius: 40)
                         } placeholder: {
                             ProgressView()
                         }
@@ -61,15 +62,16 @@ struct HomeView: View {
                             .resizable()
                             .frame(width: 200, height: 200)
                             .scaledToFit()
+                            .shadow(color: Color("Green"), radius: 40)
                     }
                     
                     Spacer()
-                    Text("Your highscore:")
+                    Text("Highscore:")
                         .font(TextStyle.scoreTitle())
                         .foregroundColor(Color("Green"))
                         .padding(.bottom)
                     Text(String(userModel.currentUser.highscore))
-                        .font(TextStyle.score(50))
+                        .font(TextStyle.score(100))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom, 40.0)
                         .task {
@@ -78,20 +80,22 @@ struct HomeView: View {
                     NavigationLink(destination: GameView()) {
                         Image(systemName: "play.circle.fill")
                             .resizable()
-                            .frame(width: 100.0, height: 100.0)
+                            .frame(width: 80.0, height: 80.0)
                             .foregroundColor(Color("Green"))
+                            .padding(.bottom)
+                        
                     }
-                }else {
-                    ProgressView()
+                } else {
+                    LoadingView()
                 }
             }
             
-            .background(
-                RadialGradient(
-                    gradient: Gradient(colors: [Color("Green"), Color("Black")]),
-                    center: UnitPoint(x: 0.50, y: 0.35),
-                    startRadius: 20,
-                    endRadius: 280)
+            .background(Color("Black")
+//                RadialGradient(
+//                    gradient: Gradient(colors: [Color("Green"), Color("Black")]),
+//                    center: UnitPoint(x: 0.50, y: 0.35),
+//                    startRadius: 20,
+//                    endRadius: 280)
             )
             .foregroundColor(.white)
                         .onAppear {

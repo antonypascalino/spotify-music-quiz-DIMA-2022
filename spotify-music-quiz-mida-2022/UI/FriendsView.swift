@@ -19,15 +19,16 @@ struct FriendsView: View {
             ZStack {
                 Rectangle()
                     .frame(width: 260.0, height: 260.0)
-                    .foregroundColor(Color(.blue))
+                    .foregroundColor(Color("Green"))
+                    .shadow(color: Color("Green"), radius: 80 , y: -25)
                 
                 Image("Podio")
                     .resizable()
-                    .frame(width: 260.0, height: 260.0)
+                    .frame(width: 200.0, height: 200.0)
                     .scaledToFit()
             }
             .padding()
-            Text("Look at your friends' highscore. Who knows more about music?")
+            Text("Look at your friends' highscore!\nWho knows more about music?")
                 .padding()
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
