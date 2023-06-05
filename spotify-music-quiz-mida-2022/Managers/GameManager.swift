@@ -75,13 +75,13 @@ class GameManager: ObservableObject {
             
             // Only setting next question if index is smaller than the number of questions set
             print("Current question index : \(currentQuestionIndex), question.count: \(questions.count)")
-            if currentQuestionIndex < questions.count + 1 {
+            if currentQuestionIndex < questions.count - 1 {
                 DispatchQueue.main.async {
                     self.currentQuestionIndex += 1
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers() ?? [String]()
                 }
-                    if (currentQuestionIndex % 10 == 0 && currentQuestionIndex != 0)  {
+                    if (currentQuestionIndex == (questions.count - 5))  {
                         print("CURRENT INDEX: \(currentQuestionIndex)")
                         tempQuestions = try await QuestionManager.shared.genRandomQuestions()
                     }
@@ -95,6 +95,12 @@ class GameManager: ObservableObject {
                 questions = tempQuestions
                 //questions = try await QuestionManager.shared.genRandomQuestions()
                 questions.shuffle()
+                DispatchQueue.main.async {
+                        self.currentQuestionIndex = 0
+                        //self.correctAnswersCount = 0 //is necessary?
+                        self.currentQuestion = self.questions[self.currentQuestionIndex]
+                        self.currentAnswers = self.currentQuestion?.getAnswers()
+                    }
             }
             
 //            
