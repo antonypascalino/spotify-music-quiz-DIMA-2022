@@ -20,19 +20,20 @@ struct GameControls: View {
                 Image(systemName: "backward.end.fill")
                     .foregroundColor(.white)
                     .font(.system(size: 45, weight: .ultraLight))
+                    .opacity(!gameManager.answerSelected ? 0.5 : 1)
             })
             
             Button(action: {
                 
             }, label: {
-                Image(systemName: "play.circle.fill")
+                Image(systemName: gameManager.answerSelected ? "play.circle.fill" : "pause.circle.fill")
                     .foregroundColor(.white)
                     .padding(.horizontal, 25.0)
                     .font(.system(size: 80, weight: .ultraLight))
-                    .opacity(50)
+                    .opacity(!gameManager.answerSelected ? 0.5 : 1)
             })
             .disabled(!gameManager.answerSelected)
-            .opacity(!gameManager.answerSelected ? 50 : 100)
+            
             
             
             
@@ -44,7 +45,7 @@ struct GameControls: View {
                 Image(systemName: "forward.end.fill")
                 .foregroundColor(.white)
                 .font(.system(size: 45, weight: .ultraLight))
-                .opacity(!gameManager.answerSelected ? 50 : 100)
+                .opacity(!gameManager.answerSelected ? 0.5 : 1)
             })
             .disabled(!gameManager.answerSelected)
             Spacer()
