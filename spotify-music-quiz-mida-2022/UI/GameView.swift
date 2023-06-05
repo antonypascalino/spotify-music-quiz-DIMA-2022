@@ -56,6 +56,13 @@ struct GameView: View {
                             .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
                                 AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
                             }
+                            .onChange(of: gameManager.isTimerRunning) { newValue in
+                                if newValue == false {
+                                    AudioPlayer.shared.pause()
+                                } else {
+                                    AudioPlayer.shared.resume()
+                                }
+                            }
                             .onDisappear {
                                 AudioPlayer.shared.stop()
                             }
@@ -129,6 +136,14 @@ class AudioPlayer: ObservableObject {
 //        player.addBoundaryTimeObserver(forTimes: [NSValue(time: CMTime(seconds: duration, preferredTimescale: 1))], queue: .main) {
 //            playerViewController.player?.pause()
 //        }
+    }
+    
+    func pause() {
+        player?.pause()
+    }
+    
+    func resume() {
+        player?.play()
     }
 }
 

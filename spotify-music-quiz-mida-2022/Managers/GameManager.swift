@@ -11,6 +11,8 @@ class GameManager: ObservableObject {
     private(set) var currentAnswers : [String]?
     private(set) var gameIsOver = false
     private(set) var playerMiss = false
+    @Published private(set) var isTimerRunning = true
+    
     @Published private(set) var currentQuestionIndex = 0
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
@@ -106,6 +108,14 @@ class GameManager: ObservableObject {
         } else {
             playerMiss = true
         }
+    }
+    
+    func pauseTimer() {
+        isTimerRunning = false
+    }
+        
+    func resumeTimer() {
+        isTimerRunning = true
     }
     
 
