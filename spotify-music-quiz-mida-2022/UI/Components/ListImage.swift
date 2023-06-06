@@ -20,7 +20,7 @@ struct ListImage: View {
                     .frame(width: 40, height: 40)
                     .scaledToFit()
             } placeholder: {
-                ProgressView()
+                Image(systemName: "person.crop.circle")
             }
         }
         else {

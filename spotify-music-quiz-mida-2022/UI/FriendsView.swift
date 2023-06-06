@@ -29,7 +29,7 @@ struct FriendsView: View {
             }
             .padding()
             Text("Look at your friends' highscore!\nWho knows more about music?")
-                .padding()
+                .padding(.leading, 15)
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
             HStack(spacing: 20) {

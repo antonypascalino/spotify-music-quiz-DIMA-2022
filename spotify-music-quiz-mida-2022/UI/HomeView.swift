@@ -67,7 +67,7 @@ struct HomeView: View {
                     
                     Spacer()
                     Text("Highscore:")
-                        .font(TextStyle.scoreTitle())
+                        .font(TextStyle.score(40))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom)
                     Text(String(userModel.currentUser.highscore))

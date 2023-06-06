@@ -90,17 +90,16 @@ class GameManager: ObservableObject {
                 print("Reload questions")
                 DispatchQueue.main.async {
                     self.questions = []
+                    self.questions = self.tempQuestions
                     self.tempQuestions = []
+                    //questions = try await QuestionManager.shared.genRandomQuestions()
+                    self.questions.shuffle()
+                    self.currentQuestionIndex = 0
+                    print("Questions.count: \(self.questions.count)")
+                    //self.correctAnswersCount = 0 //is necessary?
+                    self.currentQuestion = self.questions[self.currentQuestionIndex]
+                    self.currentAnswers = self.currentQuestion?.getAnswers()
                 }
-                questions = tempQuestions
-                //questions = try await QuestionManager.shared.genRandomQuestions()
-                questions.shuffle()
-                DispatchQueue.main.async {
-                        self.currentQuestionIndex = 0
-                        //self.correctAnswersCount = 0 //is necessary?
-                        self.currentQuestion = self.questions[self.currentQuestionIndex]
-                        self.currentAnswers = self.currentQuestion?.getAnswers()
-                    }
             }
             
 //            

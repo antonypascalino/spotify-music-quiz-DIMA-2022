@@ -25,7 +25,7 @@ struct GuessTheSongView: View {
                             .shadow(color: Color(isCorrect ? "Green" : "Red"), radius: 40)
                         
                     } placeholder: {
-                        ProgressView()
+                        ShazamLikeView()
                     }
                 }
                 .frame(maxWidth: .infinity)

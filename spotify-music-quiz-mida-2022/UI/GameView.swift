@@ -40,7 +40,7 @@ struct GameView: View {
                     
                     Text(.init((gameManager.getNextQuestion()?.questionText)!))
                         .font(TextStyle.LoginTitle())
-                        .lineLimit(3)
+                        .lineLimit(gameManager.getNextQuestion()!.isShazam ? 1 : 3)
                         .frame(width: 360.0, height: 60, alignment: .leading)
                         .minimumScaleFactor(0.1)
                         .foregroundColor(.white)
