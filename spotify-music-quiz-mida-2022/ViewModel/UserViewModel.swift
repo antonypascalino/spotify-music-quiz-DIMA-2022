@@ -54,6 +54,8 @@ final class UserViewModel : ObservableObject {
         }
         print("TOP 5 AUTHORS: \(try await getTopAuthors())")
     }
+
+    
     
     func getTopAuthors() async throws -> [String] {
         let dictionary = try await UserManager.shared.getUserAuthorsScore()
@@ -63,6 +65,14 @@ final class UserViewModel : ObservableObject {
          
     }
     
+    func getTopAuthorsId() async throws -> [String] {
+        let dictionary = try await UserManager.shared.getUserAuthorsId()
+        authorsId = dictionary.sorted { $0.value > $1.value }
+        
+        return authorsId.prefix(10).map { $0.key }
+    }
+    
+
     func setUserAuthorsScore(author: String) async throws {
         try await UserManager.shared.setUserAuthorScore(author: author)
     }

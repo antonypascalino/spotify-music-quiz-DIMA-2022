@@ -11,6 +11,7 @@ import SwiftUI
 class QuestionManager: ObservableObject {
     static let shared = QuestionManager()
     private let apiCaller = APICaller.shared
+    private var userModel = UserViewModel()
 
     
     private(set) var whoSingsQuestion : [Question] = []
@@ -79,6 +80,8 @@ class QuestionManager: ObservableObject {
     func genLeaderBoardQuestions() {
 
         //recupero la lista degli id degli artisti
+        let artistsId : [String] = []
+        artistsId = userModel.getTopAuthorsId()
 
         for artistId in artistsId {
 
@@ -126,7 +129,7 @@ class QuestionManager: ObservableObject {
                     let question = Question(questionText: "(Your Taste) Which of these songs is of _\(filterString(self.similarArtists[0].name))_?",
                                             correctAnswer: correctAnswer,
                                             songUrl : self.songsBySameArtist.first!.preview_url ?? predSongURL,
-                                            author: self.similarArtists[0].name,
+                                            author: self.similarArtists[0],
                                             songName: correctAnswer,
                                             wrongAnswers: similarSongsName)
                     
@@ -168,7 +171,7 @@ class QuestionManager: ObservableObject {
                 let question = Question(questionText: "Who's the author of the song _\(filterString(similarArtists[i].name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
-                                        author: correctAnswer,
+                                        author: track.artists.first!,
                                         songName: track.name,
                                         wrongAnswers: similarArtistsNames)
                 
@@ -215,7 +218,7 @@ class QuestionManager: ObservableObject {
                 let question = Question(questionText: "Which of these songs is of _\(filterString(track.artists.first!.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
-                                        author: track.artists.first!.name,
+                                        author: track.artists.first!,
                                         songName: track.name,
                                         wrongAnswers: similarSongsNames)
                 questions.append(question)
@@ -243,7 +246,7 @@ class QuestionManager: ObservableObject {
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
                                     songUrl : album.tracks.items.first!.preview_url ?? predSongURL, 
-                                    author: album.artists.first!.name,
+                                    author: album.artists.first!,
                                     songName: "",
                                     wrongAnswers: similarDates)
             
@@ -293,7 +296,7 @@ class QuestionManager: ObservableObject {
                                         isShazam : true,
                                         songUrl : track.preview_url,
                                         albumImage : track.album!.images.first!.url,
-                                        author : track.artists.first!.name,
+                                        author : track.artists.first!,
                                         songName: track.name,
                                         wrongAnswers: [])
                 questions.append(question)
@@ -322,7 +325,7 @@ class QuestionManager: ObservableObject {
                                         isShazam : true,
                                         songUrl : track.preview_url,
                                         albumImage : track.album!.images.first!.url,
-                                        author: filterString(track.artists.first!.name),
+                                        author: track.artists.first!,
                                         songName : filterString(track.name),
                                         wrongAnswers: [])
                 questions.append(question)
@@ -367,7 +370,7 @@ class QuestionManager: ObservableObject {
                     let question = Question(questionText: "Which of these songs is in the album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
                                             songUrl : correctTrack.preview_url ?? predSongURL,
-                                            author: album.artists.first!.name,
+                                            author: album.artists.first!,
                                             songName: correctTrack.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)

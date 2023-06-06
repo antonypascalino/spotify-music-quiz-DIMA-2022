@@ -139,13 +139,16 @@ class UserManager {
         return friends
     }
     
-    func setUserAuthorScore(author: String) async throws {
+    func setUserAuthorScore(author: Author) async throws {
         
         let userAuthors = try await getUserAuthorsScore()
-        let authorScore = userAuthors[author] ?? 0
+        let authorScore = userAuthors[author.name] ?? 0
         let newScore = authorScore + 1
         
-        try await currentUserReference!.setData(["authors" : [author : newScore]], merge: true)
+        try await currentUserReference!.setData(["authors" : [author.name : newScore]], merge: true)
+        //new
+        try await currentUserReference!.setData(["idList" : [author : author.id]], merge: true)
+
         self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
     }
     
@@ -158,6 +161,14 @@ class UserManager {
         return authors
     }
     
+    func getUserAuthorsId() async throws -> [String : String] {
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        let authorsId = try await currentUserReference.getDocument(as: User.self).idList!
+//        for (author, score) in authors {
+//            print("Author: \(author), Score: \(score)\n")
+//        }
+        return authorsId
+    }
     
 }
 
