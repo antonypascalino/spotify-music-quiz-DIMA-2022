@@ -61,8 +61,8 @@ final class APICaller{
     }
 
     //Funziona
-    public func getArtistRelatedArtists( for artist: Artist , completion: @escaping ((Result<[Artist],Error>)->Void)){
-        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/related-artists"), type: .GET) { request in
+    public func getArtistRelatedArtists( for artistId: String , completion: @escaping ((Result<[Artist],Error>)->Void)){
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artistId)/related-artists"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else{
                     completion(.failure(APIError.failedToGetData))

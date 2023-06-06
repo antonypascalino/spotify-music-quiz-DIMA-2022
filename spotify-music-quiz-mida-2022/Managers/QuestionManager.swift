@@ -75,6 +75,69 @@ class QuestionManager: ObservableObject {
         
         return questionsTemp
     }
+
+    func genLeaderBoardQuestions() {
+
+        //recupero la lista degli id degli artisti
+
+        for artistId in artistsId {
+
+            self.similarArtists = []
+
+            loadArtistRelatedArtists(artistId: artistId)
+            while(isLoading) {
+                ProgressView()
+            }
+            isLoading = true
+
+            if !similarArtists.isEmpty{
+                
+                self.songsBySameArtist = []
+
+                loadArtistTopTracks(originalArtist: self.similarArtists[0])
+                    while(isLoading) {
+                    ProgressView()
+                }
+                isLoading = true
+
+                self.songsBySameArtist.shuffle()
+                let correctAnswer = self.songsBySameArtist.first!.name
+
+                self.similarSongs = []
+            
+                loadReccom(track: self.songsBySameArtist.first!)
+                while(isLoading) {
+                    ProgressView()
+                }
+                isLoading = true
+            
+                if !self.similarSongs.isEmpty{
+                    
+                    var similarSongsNames : [String] = []
+                    for i in 0...self.similarSongs.count-1{
+                        if(similarSongs[i].artists.first!.name != correctAnswer){
+                            similarSongsNames.append(filterString(similarSongs[i].name))
+                        }  
+                        if similarSongsNames.count == 3 {
+                            break;
+                        }
+                    }
+
+                    let question = Question(questionText: "(Your Taste) Which of these songs is of _\(filterString(self.similarArtists[0].name))_?",
+                                            correctAnswer: correctAnswer,
+                                            songUrl : self.songsBySameArtist.first!.preview_url ?? predSongURL,
+                                            author: self.similarArtists[0].name,
+                                            songName: correctAnswer,
+                                            wrongAnswers: similarSongsName)
+                    
+                    questions.append(question)
+                }
+            }
+            
+        }
+
+
+    }
     
     //Functions to generate each type of questions
     
@@ -91,7 +154,7 @@ class QuestionManager: ObservableObject {
             
             self.similarArtists = []
             
-            loadArtistRelatedArtists(track: track)
+            loadArtistRelatedArtists(artistId: track.artists.first!.id)
             while(isLoading) {
                 ProgressView()
             }
@@ -102,7 +165,7 @@ class QuestionManager: ObservableObject {
                     similarArtistsNames.append(filterString(similarArtists[i].name))
                 }
                 
-                let question = Question(questionText: "Who's the author of the song _\(filterString(track.name))_?",
+                let question = Question(questionText: "Who's the author of the song _\(filterString(similarArtists[i].name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
                                         author: correctAnswer,
@@ -139,8 +202,14 @@ class QuestionManager: ObservableObject {
             isLoading = true
             
             if !similarSongs.isEmpty{
-                for i in 0...2{
-                    similarSongsNames.append(filterString(similarSongs[i].name))
+                var similarSongsNames : [String] = []
+                for i in 0...self.similarSongs.count-1{
+                    if(similarSongs[i].artists.first!.name != correctAnswer){
+                        similarSongsNames.append(filterString(similarSongs[i].name))
+                    }  
+                    if similarSongsNames.count == 3 {
+                        break;
+                    }
                 }
                 
                 let question = Question(questionText: "Which of these songs is of _\(filterString(track.artists.first!.name))_?",
@@ -173,7 +242,7 @@ class QuestionManager: ObservableObject {
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
-                                    songUrl : /*album.tracks.first!.preview_url ?? */predSongURL, ///DA MODIFICARE
+                                    songUrl : album.tracks.items.first!.preview_url ?? predSongURL, 
                                     author: album.artists.first!.name,
                                     songName: "",
                                     wrongAnswers: similarDates)
@@ -393,8 +462,9 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    private func loadArtistRelatedArtists(track : Track){
-        apiCaller.getArtistRelatedArtists(for : track.artists.first!) {  result in
+   
+    private func loadArtistRelatedArtists(artistId: String){
+        apiCaller.getArtistRelatedArtists(for : artistId) {  result in
             switch result{
                 case .success(let model):
                     self.similarArtists = model
