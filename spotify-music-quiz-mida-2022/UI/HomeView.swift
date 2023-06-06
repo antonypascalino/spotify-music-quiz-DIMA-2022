@@ -86,7 +86,7 @@ struct HomeView: View {
                         
                     }
                 } else {
-                    LoadingView()
+                    ProgressView()
                 }
             }
             
@@ -100,26 +100,21 @@ struct HomeView: View {
             .foregroundColor(.white)
                         .onAppear {
                             Task {
+                                print("Inizio task HomeView")
                                 try await loadData()
                                 try await loadGame()
+                                print("Fine task HomeView")
                             }
                         }
-            //        }
-            //            .task {
-            //                try? await model.getCurrentUser()
-            //            }
         }
-                    .navigationBarHidden(true)
-            
-            
-        
+        .navigationBarHidden(true)
     }
             
     
     
     func loadData() async throws {
 
-        print("")
+        print("LOAD DATA")
         self.isLoading = true
 
         try await APICaller.shared.getUserProfile { result in
@@ -139,6 +134,7 @@ struct HomeView: View {
     }
     
     func loadGame() async throws {
+        print("Home View: START GAME")
         try await gameManager.startGame()
     }
 }

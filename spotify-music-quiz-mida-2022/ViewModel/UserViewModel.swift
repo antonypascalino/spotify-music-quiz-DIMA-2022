@@ -16,6 +16,8 @@ final class UserViewModel : ObservableObject {
     @Published private(set) var searchedUsers : [User] = []
     @Published private(set) var highscore = 0
     @Published private(set) var authorsScores : Array<(key: String, value: Int)> = []
+    @Published private(set) var authorsId : Array<(key: String, value: String)> = []
+    
     
     init() {
     }
@@ -52,28 +54,28 @@ final class UserViewModel : ObservableObject {
         for (author, score) in authorsScores {
             print("\(author) : \(score)")
         }
-        print("TOP 5 AUTHORS: \(try await getTopAuthors())")
+//        print("TOP 5 AUTHORS: \(try await getTopAuthors())")
     }
 
     
     
-    func getTopAuthors() async throws -> [String] {
-        let dictionary = try await UserManager.shared.getUserAuthorsScore()
-        authorsScores = dictionary.sorted { $0.value > $1.value }
-        
-        return authorsScores.prefix(5).map { $0.key }
-         
-    }
+//    func getTopAuthors() async throws -> [String] {
+//        let dictionary = try await UserManager.shared.getUserAuthorsScore()
+//        authorsScores = dictionary.sorted { $0.value > $1.value }
+//
+//        let topArtistsNames = authorsScores.prefix(10).map { $0.key }
+//        let topArtistsIds = try await UserManager.shared.getAuthorsId(artists: topArtistsNames)
+//        print("Names: \(topArtistsNames), IDs: \(topArtistsIds)")
+//        return topArtistsIds
+//    }
     
-    func getTopAuthorsId() async throws -> [String] {
-        let dictionary = try await UserManager.shared.getUserAuthorsId()
-        authorsId = dictionary.sorted { $0.value > $1.value }
-        
-        return authorsId.prefix(10).map { $0.key }
-    }
     
 
     func setUserAuthorsScore(author: String) async throws {
         try await UserManager.shared.setUserAuthorScore(author: author)
     }
+    
+//    func addAuthor(artist: Artist) async throws {
+//        try await UserManager.shared.addAuthor(artist: artist)
+//    }
 }

@@ -6,8 +6,9 @@
 //
 
 import Foundation
-
+		
 struct Question : Equatable {
+    
     let id = UUID()
     let questionText: String?
     let correctAnswer: String
@@ -15,6 +16,7 @@ struct Question : Equatable {
     var songUrl : String? = nil
     var albumImage : String? = nil
     var author : String? = nil
+    var authorId : String? = nil
     var songName : String? = nil
     let wrongAnswers: [String]
     

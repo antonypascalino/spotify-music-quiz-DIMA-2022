@@ -33,7 +33,7 @@ struct GuessTheSongView: View {
                 ShazamLikeView()
             }
             HStack {
-                let guessAuthor = gameManager.currentQuestion?.author.name == gameManager.currentQuestion?.correctAnswer
+                let guessAuthor = gameManager.currentQuestion?.author == gameManager.currentQuestion?.correctAnswer
                 TextField("",text: $guessedTitle)
                     .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
                         Text(guessAuthor ? "_Author..._" : "_Title..._")
@@ -76,7 +76,7 @@ struct GuessTheSongView: View {
             .padding(.leading)
             .frame(width: 370.0)
             
-            Text((gameManager.currentQuestion?.author.name)!)
+            Text((gameManager.currentQuestion?.author)!)
                 .font(TextStyle.time())
                 .opacity(gameManager.answerSelected ? 1 : 0)
                 .foregroundColor(isCorrect ? Color("Green") : Color("Red"))

@@ -11,7 +11,7 @@ import SwiftUI
 class QuestionManager: ObservableObject {
     static let shared = QuestionManager()
     private let apiCaller = APICaller.shared
-    private var userModel = UserViewModel()
+    private let userManager = UserManager.shared
 
     
     private(set) var whoSingsQuestion : [Question] = []
@@ -33,6 +33,7 @@ class QuestionManager: ObservableObject {
     private(set) var tempTrack : [PlaylistItem] = []
     private(set) var reccTracks : [Track] = []
     private(set) var similarSongs : [Track] = []
+    private(set) var loadedData = false
 
                 
     private(set) var isLoading = true
@@ -40,14 +41,18 @@ class QuestionManager: ObservableObject {
     var isLoadingQuestions = true
 
     func importAllData() async throws {
-        importPlaylists()
-        importAlbums()
-        importTracks()
+        if !loadedData {
+            importPlaylists()
+            importAlbums()
+            importTracks()
+            loadedData = true
+        }
     }
     
     func genRandomQuestions() async throws -> [Question] {
         
         var questionsTemp : [Question] = []
+        
         
         self.whoSingsQuestion = genWhoSingsQuestions()
         questionsTemp.append(contentsOf: self.whoSingsQuestion)
@@ -70,18 +75,21 @@ class QuestionManager: ObservableObject {
         self.authorSongQuestion = genAuthorSongQuestion()
         questionsTemp.append(contentsOf: self.authorSongQuestion)
         print("Prima7")
+        questionsTemp.append(contentsOf: try await genLeaderBoardQuestions())
+        print("Prima8")
         
         isLoadingQuestions = false
         questionsTemp.shuffle()
-        
+      //  return try await genLeaderBoardQuestions()
         return questionsTemp
     }
 
-    func genLeaderBoardQuestions() {
+    func genLeaderBoardQuestions() async throws -> [Question] {
 
+        var questions : [Question] = []
         //recupero la lista degli id degli artisti
-        let artistsId : [String] = []
-        artistsId = userModel.getTopAuthorsId()
+        var artistsId : [String] = []
+        artistsId = try await userManager.getTopAuthorsId()
 
         for artistId in artistsId {
 
@@ -96,7 +104,7 @@ class QuestionManager: ObservableObject {
             if !similarArtists.isEmpty{
                 
                 self.songsBySameArtist = []
-
+                similarArtists.shuffle()
                 loadArtistTopTracks(originalArtist: self.similarArtists[0])
                     while(isLoading) {
                     ProgressView()
@@ -118,7 +126,7 @@ class QuestionManager: ObservableObject {
                     
                     var similarSongsNames : [String] = []
                     for i in 0...self.similarSongs.count-1{
-                        if(similarSongs[i].artists.first!.name != correctAnswer){
+                        if(similarSongs[i].name != correctAnswer){
                             similarSongsNames.append(filterString(similarSongs[i].name))
                         }  
                         if similarSongsNames.count == 3 {
@@ -126,18 +134,18 @@ class QuestionManager: ObservableObject {
                         }
                     }
 
-                    let question = Question(questionText: "(Your Taste) Which of these songs is of _\(filterString(self.similarArtists[0].name))_?",
-                                            correctAnswer: correctAnswer,
-                                            songUrl : self.songsBySameArtist.first!.preview_url ?? predSongURL,
-                                            author: self.similarArtists[0],
-                                            songName: correctAnswer,
-                                            wrongAnswers: similarSongsName)
-                    
+                    let question = Question(questionText: "😡 Which of these songs is of _\(filterString(self.similarArtists[0].name))_?",
+                                        correctAnswer: correctAnswer,
+                                        songUrl : self.songsBySameArtist.first!.preview_url ?? predSongURL,
+                                        author: self.similarArtists[0].name,
+                                        authorId: self.similarArtists[0].id,
+                                        songName: correctAnswer,
+                                        wrongAnswers: similarSongsNames)
                     questions.append(question)
                 }
             }
-            
         }
+        return questions
 
 
     }
@@ -164,14 +172,15 @@ class QuestionManager: ObservableObject {
             isLoading = true
             
             if !similarArtists.isEmpty{
-                for i in 0...2{
+                for i in 0...2 {
                     similarArtistsNames.append(filterString(similarArtists[i].name))
                 }
                 
-                let question = Question(questionText: "Who's the author of the song _\(filterString(similarArtists[i].name))_?",
+                let question = Question(questionText: "Who's the author of the song _\(filterString(track.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
-                                        author: track.artists.first!,
+                                        author: track.artists.first!.name,
+                                        authorId: track.artists.first!.id,
                                         songName: track.name,
                                         wrongAnswers: similarArtistsNames)
                 
@@ -207,7 +216,7 @@ class QuestionManager: ObservableObject {
             if !similarSongs.isEmpty{
                 var similarSongsNames : [String] = []
                 for i in 0...self.similarSongs.count-1{
-                    if(similarSongs[i].artists.first!.name != correctAnswer){
+                    if(similarSongs[i].name != correctAnswer){
                         similarSongsNames.append(filterString(similarSongs[i].name))
                     }  
                     if similarSongsNames.count == 3 {
@@ -218,7 +227,8 @@ class QuestionManager: ObservableObject {
                 let question = Question(questionText: "Which of these songs is of _\(filterString(track.artists.first!.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
-                                        author: track.artists.first!,
+                                        author: track.artists.first!.name,
+                                        authorId: track.artists.first!.id,
                                         songName: track.name,
                                         wrongAnswers: similarSongsNames)
                 questions.append(question)
@@ -246,7 +256,8 @@ class QuestionManager: ObservableObject {
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
                                     songUrl : album.tracks.items.first!.preview_url ?? predSongURL, 
-                                    author: album.artists.first!,
+                                    author: album.artists.first!.name,
+                                    authorId: album.artists.first!.id,
                                     songName: "",
                                     wrongAnswers: similarDates)
             
@@ -272,6 +283,7 @@ class QuestionManager: ObservableObject {
                                     correctAnswer: correctAnswer,
                                     songUrl : track.preview_url ?? predSongURL,
                                     author: track.artists.first!.name,
+                                    authorId: track.artists.first!.id,
                                     songName: track.name,
                                     wrongAnswers: similarDates)
             questions.append(question)
@@ -296,7 +308,8 @@ class QuestionManager: ObservableObject {
                                         isShazam : true,
                                         songUrl : track.preview_url,
                                         albumImage : track.album!.images.first!.url,
-                                        author : track.artists.first!,
+                                        author : track.artists.first!.name,
+                                        authorId : track.artists.first!.id,
                                         songName: track.name,
                                         wrongAnswers: [])
                 questions.append(question)
@@ -318,14 +331,13 @@ class QuestionManager: ObservableObject {
             let correctAnswer = track.artists.first!.name
             
             if(track.preview_url != nil) {
-                print("Generate listen author question with song name: \(track.name)")
-                print("FILTERED: Generate listen author question with song name: \(filterString(track.name))")
                 let question = Question(questionText: "Guess the author of the song!",
                                         correctAnswer: filterString(correctAnswer),
                                         isShazam : true,
                                         songUrl : track.preview_url,
                                         albumImage : track.album!.images.first!.url,
-                                        author: track.artists.first!,
+                                        author: track.artists.first!.name,
+                                        authorId: track.artists.first!.id,
                                         songName : filterString(track.name),
                                         wrongAnswers: [])
                 questions.append(question)
@@ -370,7 +382,8 @@ class QuestionManager: ObservableObject {
                     let question = Question(questionText: "Which of these songs is in the album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
                                             songUrl : correctTrack.preview_url ?? predSongURL,
-                                            author: album.artists.first!,
+                                            author: album.artists.first!.name,
+                                            authorId: album.artists.first!.id,
                                             songName: correctTrack.name,
                                             wrongAnswers: similarTracksNames)
                     questions.append(question)

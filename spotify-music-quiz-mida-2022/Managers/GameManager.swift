@@ -27,12 +27,15 @@ class GameManager: ObservableObject {
     
     func startGame() async throws {
 //        if(questions.count == 0 || correctAnswersCount != 0) {
-            try await QuestionManager.shared.importAllData()
-            try await self.genQuestions()
+        try await resetGame()
+        QuestionManager.shared.isLoadingQuestions = true
+        try await QuestionManager.shared.importAllData()
+        try await self.genQuestions()
 //        }
     }
     
     func genQuestions() async throws {
+        print("GEN QUESTION: QUESTION COUNT: \(questions.count) Answer Count: \(correctAnswersCount)")
         if(questions.count == 0 || correctAnswersCount != 0) {
 //            tempQuestions = []
 //            questions = []
@@ -49,19 +52,23 @@ class GameManager: ObservableObject {
         
     }
     func restartGame() async throws {
-        try await endGame()
+        try await resetGame()
+        QuestionManager.shared.isLoadingQuestions = true
         try await genQuestions()
     }
     
-    func endGame() async throws {
+    func resetGame() async throws {
+        
+        print("Enter RESET GAME")
+        self.questions = []
         DispatchQueue.main.async {
-            self.questions = []
             self.gameIsOver = false
             self.playerMiss = false
             self.answerSelected = false
             self.correctAnswersCount = 0
         }
-        QuestionManager.shared.isLoadingQuestions = true
+        print("Exit RESET GAME")
+        print("RESET GAME: QUESTION COUNT: \(questions.count)")
     }
     
     func setNextQuestion() async throws {
@@ -125,6 +132,7 @@ class GameManager: ObservableObject {
             correctAnswersCount += 1
             Task {
                 try await userManager.setUserAuthorScore(author: currentQuestion.author!)
+                try await userManager.addAuthor(artist: currentQuestion.author!, artistId: currentQuestion.authorId!)
             }
         } else {
             playerMiss = true

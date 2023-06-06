@@ -90,16 +90,17 @@ struct GameOverView: View {
                 .background(Color("Green"))
                 .foregroundColor(Color("Black"))
                 .cornerRadius(100.0)
-                .simultaneousGesture(TapGesture().onEnded {
-                    Task {
-                        try await gameManager.endGame()
-                    }
-                })  
+//                .simultaneousGesture(TapGesture().onEnded {
+//                    Task {
+//                        try await gameManager.endGame()
+//                    }
+//                })
             }
             .padding([.leading , .trailing])
             Spacer()
         }
         .onAppear() {
+            AudioPlayer.shared.stop()
             Task {
                 model.updateUserData()
                 try? await model.getUserHighscore()
