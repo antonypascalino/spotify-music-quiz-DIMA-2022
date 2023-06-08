@@ -10,7 +10,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    //    @State var userProfile : UserProfile?
     @State var isLoading = true
     @ObservedObject private var userModel = UserViewModel()
     @StateObject var gameManager = GameManager.shared
@@ -115,8 +114,8 @@ struct HomeView: View {
                 ProgressView()
             }
         }
-        .toolbar(.visible, for: .tabBar)
-        .toolbar(.hidden, for: .navigationBar)
+//        .toolbar(.visible, for: .tabBar)
+//        .navigationBarHidden(true)
         .onAppear {
             Task {
                 print("Inizio task HomeView")
@@ -135,8 +134,6 @@ struct HomeView: View {
         }
     }
 
-            
-    
     
     func loadData() async throws {
 

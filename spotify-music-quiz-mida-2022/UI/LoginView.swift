@@ -65,6 +65,7 @@ struct LoginView: View {
             .background(Color("Black"))
             
         }
+        .accentColor(.white)
     }
 }
 

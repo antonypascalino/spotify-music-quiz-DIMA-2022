@@ -116,7 +116,8 @@ struct GameOverView: View {
             
             @State var isLoading = false
         }
-        .toolbar(.hidden, for: .tabBar, .navigationBar)
+        .navigationBarHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Black"))
     }
