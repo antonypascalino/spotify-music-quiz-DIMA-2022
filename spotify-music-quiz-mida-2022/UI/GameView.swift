@@ -47,6 +47,7 @@ struct GameView: View {
                         .minimumScaleFactor(0.1)
                         .foregroundColor(.white)
                         .padding(.leading)
+                        .blur(radius: gameManager.isTimerRunning ? 0 : 10)
                     
                     if(gameManager.getNextQuestion()!.isShazam){
                         
@@ -85,6 +86,7 @@ struct GameView: View {
                         .frame(height: 380)
                         .frame(height: 380)
                         .offset(y: -18)
+                        .blur(radius: gameManager.isTimerRunning ? 0 : 10)
                     }
                     
                     VStack {

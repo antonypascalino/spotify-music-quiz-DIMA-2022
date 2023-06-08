@@ -27,24 +27,33 @@ struct ModeView: View {
                 }
                 .sorted { $0.highscores![mode.label]! > $1.highscores![mode.label]! }
             
-            //            HStack {
-            //                Text(mode.name)
-            //                    .font(TextStyle.homeTitle())
-            //                    .padding()
-            //                    .foregroundColor(.white)
-            //                Spacer()
-            //            }
-            //            .padding(.leading)
+//            mode.color
+//                .frame(height: UIScreen.main.bounds.height / 3)
+//                .edgesIgnoringSafeArea(.top)
+//                        
+//            Color("Black")
+//                .frame(height: UIScreen.main.bounds.height / 3 * 2)
+//                .edgesIgnoringSafeArea(.bottom)
             
             Image(mode.label)
                 .resizable()
-                .frame(width: 200.0, height: 200.0)
+                .frame(width: 220.0, height: 220.0)
                 .scaledToFit()
-                .padding()
-                .shadow(color: mode.color, radius: 80 , y: -25)
+                .offset(y: -20)
+//                .padding()
+                .shadow(color: Color("Black").opacity(0.8), radius: 15)
+            
+            HStack {
+                Text(mode.name)
+                    .font(TextStyle.GothamBlack(30))
+                    .padding(.leading)
+                    .foregroundColor(.white)
+                Spacer()
+            }
+//            .padding(.leading)
             
             HStack{
-                Text("Your friends' highscore in this game mode!\nWho knows more about music?")
+                Text(mode.description)
                     .font(TextStyle.leaderboardItem().bold())
                     .foregroundColor(Color.gray)
                 Spacer()
@@ -55,7 +64,7 @@ struct ModeView: View {
                     Text("Your highscore: \(model.currentUser.highscores![mode.label] ?? 0)")
                         .font(TextStyle.leaderboardItem().bold())
                         .foregroundColor(.white)
-                        .padding(.leading, 6.0)
+                        .padding(.leading, 3.0)
                 } else {
                     Text("Your highscore:   ")
                         .font(TextStyle.leaderboardItem().bold())
@@ -102,7 +111,7 @@ struct ModeView: View {
                             Text(String(friend.highscores![mode.label]!))
                                 .font(TextStyle.leaderboardItem().bold())
                                 .foregroundColor(.white)
-                                .padding(.trailing)
+                                .padding(.trailing, 35)
                         }
                         .listRowBackground(Color.clear)
                         .padding(.bottom)
@@ -129,19 +138,25 @@ struct ModeView: View {
                 }
             }
         }
-        .background(Color("Black"))
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [mode.color.opacity(0.8), .black]),
+                startPoint: UnitPoint(x: 0.5, y: 0),
+                endPoint: UnitPoint(x: 0.5, y: 0.5)
+                    )
+                )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden, for: .tabBar)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text(mode.name)
-                    .font(TextStyle.homeTitle())
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .scaledToFit()
-                    .minimumScaleFactor(0.1)
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .principal) {
+//                Text(m)
+//                    .font(TextStyle.homeTitle())
+//                    .foregroundColor(.white)
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                    .scaledToFit()
+//                    .minimumScaleFactor(0.1)
+//            }
+//        }
         .onAppear {
             print("ModeView")
             Task {

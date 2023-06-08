@@ -89,7 +89,7 @@ struct GuessTheSongView: View {
     }
 
     func checkAnswer() {
-        if guessedTitle.compare(correctAnswer, options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame || levenshteinDistance(correctAnswer, guessedTitle) <= correctAnswer.count/3 {
+        if guessedTitle.compare(correctAnswer, options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame || levenshteinDistance(correctAnswer.uppercased(), guessedTitle.uppercased()) <= correctAnswer.count/3 {
             isCorrect = true
         } else {
             isCorrect = false

@@ -192,7 +192,7 @@ class QuestionManager: ObservableObject {
                 isLoading = true
 
                 self.songsBySameArtist.shuffle()
-                let correctAnswer = self.songsBySameArtist.first!.name
+                let correctAnswer = filterString(self.songsBySameArtist.first!.name)
 
                 self.similarSongs = []
             
@@ -256,7 +256,7 @@ class QuestionManager: ObservableObject {
                     similarArtistsNames.append(filterString(similarArtists[i].name))
                 }
                 
-                let question = Question(questionText: "Who's the author of the song _\(filterString(track.name))_?",
+                let question = Question(questionText: "Who is the author of the song _\(filterString(track.name))_?",
                                         correctAnswer: correctAnswer,
                                         songUrl : track.preview_url ?? predSongURL,
                                         author: track.artists.first!.name,
@@ -332,10 +332,16 @@ class QuestionManager: ObservableObject {
             let correctAnswer = getOnlyYear(allDate: album.release_date)
             
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
+            print("songUrlAll: \(album.tracks.items)")
+
+            let songsWithUrl = album.tracks.items.filter {
+                $0.preview_url != nil
+            }
+            print("songUrl1: \(songsWithUrl)")
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
-                                    songUrl : album.tracks.items.first!.preview_url ?? predSongURL, 
+                                    songUrl : songsWithUrl.first?.preview_url ?? predSongURL,
                                     author: album.artists.first!.name,
                                     authorId: album.artists.first!.id,
                                     songName: "",
@@ -458,10 +464,16 @@ class QuestionManager: ObservableObject {
                             break;
                         }
                     }
+                    print("songUrLWhichAll: \(album.tracks.items)")
+                    let songsWithUrl = album.tracks.items.filter {
+                        $0.preview_url != nil
+                    }
                     
+                    print("songUrlWhich: \(songsWithUrl)")
+
                     let question = Question(questionText: "Which of these songs is in the album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
-                                            songUrl : correctTrack.preview_url ?? predSongURL,
+                                            songUrl : songsWithUrl.first?.preview_url ?? predSongURL,
                                             author: album.artists.first!.name,
                                             authorId: album.artists.first!.id,
                                             songName: correctTrack.name,
@@ -509,7 +521,7 @@ class QuestionManager: ObservableObject {
             loadArtistTopTracks(originalArtist: originalArtist)
 
             while(isLoading) {
-                ProgressView()
+                LoadingView()
             }
             isLoading = true
         

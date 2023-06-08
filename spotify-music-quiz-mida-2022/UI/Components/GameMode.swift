@@ -25,7 +25,7 @@ struct GameMode: View {
                 .foregroundColor(.gray)
                 .minimumScaleFactor(0.5)
                 .lineLimit(2)
-                .scaledToFit()
+                .scaledToFill()
         }
         .frame(width: 140)
     }

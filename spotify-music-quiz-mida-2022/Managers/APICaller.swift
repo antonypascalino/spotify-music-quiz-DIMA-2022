@@ -149,20 +149,24 @@ final class APICaller{
         }
     }
     
-    public func getSavedTracks(completion: @escaping ((Result<[Track],Error>)->Void)) {
-        createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/tracks"), type: .GET) { request in
-            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+    public func getSavedTracks(completion: @escaping ((Result<[Track],Error>) ->Void)){
+        let url = "\(Constants.baseAPIURL)/me/tracks"
+        createRequest(with: URL(string: url), type: .GET) { baseRequest in
+            let task = URLSession.shared.dataTask(with: baseRequest) { data, URLResponse , error in
                 guard let data = data, error == nil else{
+                    print("Failure to Get data")
                     completion(.failure(APIError.failedToGetData))
                     return
                 }
                 do{
                     //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
-                    let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data)
-                    
-                    completion(.success(result.items))
-                }catch{
-                    print("\nError Saved Tracks")
+                    let result = try JSONDecoder().decode(LibrarySavedTrackResponse.self, from: data)
+                    completion(.success(result.items.compactMap({
+                        $0.track
+                    })))
+                }
+                catch {
+                    print("Error Fetch UserProfile, Saved Tracks \(error.localizedDescription)")
                     completion(.failure(error))
                 }
             }

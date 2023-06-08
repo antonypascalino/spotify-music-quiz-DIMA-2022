@@ -13,11 +13,22 @@ struct HomeView: View {
     @State var isLoading = true
     @ObservedObject private var userModel = UserViewModel()
     @StateObject var gameManager = GameManager.shared
+    @State var showAlert = false
+    @State var goLoginView = false
     
     var body: some View {
         VStack {
             if !isLoading {
                 VStack(alignment: .leading) {
+                    
+                    if goLoginView {
+                        NavigationLink(
+                            destination: LoginView(),
+                            isActive: $goLoginView) {
+                                EmptyView()
+                            }
+                    }
+                    
                     HStack {
                         Text("Hi \(userModel.currentUser.display_name.components(separatedBy: " ").first!)!")
                             .font(TextStyle.GothamBlack(30))
@@ -26,16 +37,40 @@ struct HomeView: View {
                             .lineLimit(1)
                             .minimumScaleFactor(0.1)
                         Spacer()
-                        NavigationLink(destination: HomeView()) {
+                        
+                        Button(action: {
+                            showAlert = true
+                        }, label: {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
                                 .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(.white)
                                 .frame(width: 50, height: 50)
                                 .rotationEffect(Angle(degrees: 180))
                                 .padding(.trailing)
+                        
+                        })
+                        .alert(isPresented: $showAlert) {
+                            Alert(
+                                title: Text("Do you want to log out from the app?"),
+                                primaryButton: .default(Text("Yes")) {
+                                    print("Start logout")
+                                    goLoginView = true
+                                    AuthManager.shared.signOut { success in
+                                        if (success) {
+                                            print("Logged out")
+                                        } else {
+                                            print("Error logging out")
+                                        }
+                                    }
+                                },
+                                secondaryButton: .cancel(Text("No")) {
+                                    showAlert = false
+                                }
+                            )
                         }
                     }
-                    HStack(spacing: 40) {
+                    .preferredColorScheme(.dark)
+                    HStack(spacing: 50) {
                         Spacer()
                         if !(userModel.currentUser.image == "") {
                             AsyncImage(url: URL(string: userModel.currentUser.image)) { image in
@@ -44,7 +79,7 @@ struct HomeView: View {
                                     .frame(width: 120, height: 120)
                                     .scaledToFill()
                                     .cornerRadius(100)
-                                    .shadow(color: Color("Green"), radius: 40)
+                                    .shadow(color: Color("Green"), radius: 20)
                             } placeholder: {
                                 Image(systemName: "person.crop.circle")
                                     .resizable()
