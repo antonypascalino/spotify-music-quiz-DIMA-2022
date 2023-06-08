@@ -34,3 +34,7 @@ struct UserProfile: Codable {
     }
 }
 
+struct Owner: Codable{
+    let id: String
+    
+}

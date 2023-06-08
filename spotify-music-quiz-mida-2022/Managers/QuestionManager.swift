@@ -558,6 +558,22 @@ class QuestionManager: ObservableObject {
         }
     }
     
+    private func loadSavedTracks(){
+        
+        apiCaller.getSavedTracks { result in
+            switch result{
+                case .success(let model):
+                    self.userTracks.append(contentsOf: model)
+                    self.isLoading = false
+                    break
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    //self?.failedToGetProfile()
+            }
+            
+        }
+    }
+    
    
     private func loadArtistRelatedArtists(artistId: String){
         apiCaller.getArtistRelatedArtists(for : artistId) {  result in
@@ -722,8 +738,17 @@ class QuestionManager: ObservableObject {
             ProgressView()
         }
         isLoading = true
-        
+        print("Saved Tracks Inizio")
+        loadSavedTracks()
+        while(isLoading) {
+            ProgressView()
+        }
+        isLoading = true
+        print("Saved Tracks Fine")
         loadTracksFromPlaylists()
+        print("Playlist2")
+        
+
         
     }
     

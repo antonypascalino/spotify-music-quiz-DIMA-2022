@@ -3,6 +3,7 @@ import SwiftUI
 
 final class APICaller{
     static let shared = APICaller()
+    var currentUserProfile : UserProfile?
     var isLoading = true
     private init() {
     }
@@ -115,8 +116,9 @@ final class APICaller{
                 }
                 do{
                    // print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
-                    let result = try JSONDecoder().decode(LibraryPlaylistsResponse.self, from: data) 
-                    completion(.success(result.items))
+                    let result = try JSONDecoder().decode(LibraryPlaylistsResponse.self, from: data)
+                    let filteredResult = result.items.filter { $0.owner.id == self.currentUserProfile?.id }
+                    completion(.success(filteredResult))
                 }catch{
                     print("\nError Playlist")
                     completion(.failure(error))
@@ -136,9 +138,31 @@ final class APICaller{
                 do{
                     //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
                     let result = try JSONDecoder().decode(PlaylistTracks.self, from: data)
+                    
                     completion(.success(result))
                 }catch{
                     print("\nError Single Playlist")
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
+    
+    public func getSavedTracks(completion: @escaping ((Result<[Track],Error>)->Void)) {
+        createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/tracks"), type: .GET) { request in
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else{
+                    completion(.failure(APIError.failedToGetData))
+                    return
+                }
+                do{
+                    //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
+                    let result = try JSONDecoder().decode(LibraryTrackResponse.self, from: data)
+                    
+                    completion(.success(result.items))
+                }catch{
+                    print("\nError Saved Tracks")
                     completion(.failure(error))
                 }
             }
@@ -160,6 +184,7 @@ final class APICaller{
                 }
                 do{
                     let result = try JSONDecoder().decode(UserProfile.self, from: data)
+                    self.currentUserProfile = result
                     let currentUser = result.mapWithUser()
                     
                     self.loadUserManager(currentUser: currentUser)
