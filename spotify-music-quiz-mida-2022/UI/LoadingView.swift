@@ -46,7 +46,7 @@ struct LoadingView: View {
                 animating.toggle()
             }
         }
-        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar, .navigationBar)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Black"))
     }

@@ -10,11 +10,13 @@ import AVFoundation
 
 struct GameView: View {
     
+    let mode : String
     @StateObject var gameManager = GameManager.shared
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     @State private var isLoading = true
     
+    @available(iOS 16.0, *)
     var body: some View {
         
         let playerMiss = gameManager.playerMiss
@@ -23,7 +25,7 @@ struct GameView: View {
             if QuestionManager.shared.isLoadingQuestions {
                 LoadingView()
             } else if gameIsOver {
-                GameOverView()
+                GameOverView(mode: mode)
                     .environmentObject(gameManager)
             } else {
                 let currentAnwers = gameManager.currentAnswers!
@@ -110,7 +112,7 @@ struct GameView: View {
                     
                 }
                 .background(Color("Black"))
-                .navigationBarHidden(true)
+                .toolbar(.hidden, for: .tabBar, .navigationBar)
                 .onAppear {
                     print("onAppear")
         //            AudioPlayer.shared.stop()
@@ -127,7 +129,6 @@ struct GameView: View {
                         AudioPlayer.shared.resume()
                     }
                 }
-                
             }
         }
     }
@@ -176,10 +177,10 @@ class AudioPlayer: ObservableObject {
     }
 }
 
-
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
-            .environmentObject(GameManager())
-    }
-}
+//
+//struct GameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameView()
+//            .environmentObject(GameManager())
+//    }
+//}

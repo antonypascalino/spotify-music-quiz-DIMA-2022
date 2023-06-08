@@ -14,6 +14,7 @@ struct User : Identifiable, Codable {
     
     @DocumentID var id : String?
     var authors : [String : Int]?
+    var highscores : [String : Int]?
     var display_name : String
     var email : String
     var friends : [DocumentReference]

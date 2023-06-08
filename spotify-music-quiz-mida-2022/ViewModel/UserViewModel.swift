@@ -10,38 +10,38 @@ import FirebaseFirestore
 
 @MainActor
 final class UserViewModel : ObservableObject {
+    @Published private(set) var isLoading = true
     @Published private(set) var users : [User] = []
-    @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
-
+    @Published private(set) var friends : [User] = []
     @Published private(set) var searchedUsers : [User] = []
-    @Published private(set) var highscore = 0
+    @Published private(set) var highscores = [String : Int]()
     @Published private(set) var authorsScores : Array<(key: String, value: Int)> = []
     @Published private(set) var authorsId : Array<(key: String, value: String)> = []
-    
-    
-    init() {
-    }
+    @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
     
     func getAllUsers() async throws {
         let users = try await UserManager.shared.getAllUsers()
         self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
     }
     
-//    func searchUsers(name: String) async throws {
-//        let users = try await UserManager.shared.searchUsers(name: name)
-//        self.users = users.sorted { $0.display_name.localizedCaseInsensitiveCompare($1.display_name) == .orderedAscending }
-//    }
-    
-    func getUserHighscore() async throws {
-        self.highscore = try await UserManager.shared.getUserHighscore()
+    func getFriends() async throws {
+        self.friends = try await UserManager.shared.getUserFriends()
     }
     
-    func setUserHighscore(newHighscore: Int) async throws {
-        try await UserManager.shared.setUserHighscore(newHighscore: newHighscore)
+    func addFriends(newFriendSpotifyID: String) async throws {
+        try await UserManager.shared.addFriend(newFriendSpotifyID: newFriendSpotifyID)
+    }
+    
+    func getUserHighscores() async throws {
+        self.highscores = try await UserManager.shared.getUserHighscores()
+        self.isLoading = false
+    }
+    
+    func setUserHighscore(mode: String, newHighscore: Int) async throws {
+        try await UserManager.shared.setUserHighscore(mode: mode, newHighscore: newHighscore)
     }
     
     func updateUserData() {
-//        print("Stampo Prima")
         DispatchQueue.main.async {
             self.currentUser = UserManager.shared.currentUser
         }
@@ -50,11 +50,9 @@ final class UserViewModel : ObservableObject {
     func getUserAuthorsScore() async throws {
         let dictionary = try await UserManager.shared.getUserAuthorsScore()
         authorsScores = dictionary.sorted { $0.value > $1.value }
-//        authorsScores = Dictionary(uniqueKeysWithValues: sortedArray)
         for (author, score) in authorsScores {
             print("\(author) : \(score)")
         }
-//        print("TOP 5 AUTHORS: \(try await getTopAuthors())")
     }
 
     

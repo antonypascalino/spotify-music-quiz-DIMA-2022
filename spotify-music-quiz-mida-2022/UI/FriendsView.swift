@@ -11,35 +11,55 @@ import SwiftUI
 
 struct FriendsView: View {
     
-    @StateObject private var friendsModel = FriendsViewModel()
+    let mode : String
     @StateObject private var model = UserViewModel()
+    @State var isLoading = true
     
     var body: some View {
+        
         VStack {
-            ZStack {
-                Rectangle()
-                    .frame(width: 260.0, height: 260.0)
-                    .foregroundColor(Color("Green"))
-                    .shadow(color: Color("Green"), radius: 80 , y: -25)
-                
-                Image("Podio")
-                    .resizable()
-                    .frame(width: 200.0, height: 200.0)
-                    .scaledToFit()
-            }
-            .padding()
-            Text("Look at your friends' highscore!\nWho knows more about music?")
-                .padding(.leading, 15)
-                .font(TextStyle.leaderboardItem().bold())
+            
+            let friends = model.friends
+                .filter { friend in
+                    friend.highscores?[mode] ?? nil != nil
+                        }
+                .sorted { $0.highscores![mode]! > $1.highscores![mode]! }
+            
+            HStack {
+                Text(mode)
+                    .font(TextStyle.homeTitle())
+                    .padding()
                 .foregroundColor(.white)
-            HStack(spacing: 20) {
-                Text("Your highscore: \(model.highscore)")
+                Spacer()
+            }
+            .padding(.leading)
+            
+            Image(mode)
+                .resizable()
+                .frame(width: 200.0, height: 200.0)
+                .scaledToFit()
+                .padding(.bottom)
+            
+            HStack{
+                Text("Your friends' highscore in this game mode!\nWho knows more about music?")
                     .font(TextStyle.leaderboardItem().bold())
-                    .foregroundColor(.white)
-                    .padding(.leading, 6.0)
-                    .task {
-                        try? await model.getUserHighscore()
-                    }
+                    .foregroundColor(Color.gray)
+                Spacer()
+            }
+            .padding(.leading)
+            HStack(spacing: 20) {
+                if(!model.isLoading) {
+                    Text("Your highscore: \(model.currentUser.highscores!["classic"]!)")
+                        .font(TextStyle.leaderboardItem().bold())
+                        .foregroundColor(.white)
+                        .padding(.leading, 6.0)
+                } else {
+                    Text("Your highscore:   ")
+                        .font(TextStyle.leaderboardItem().bold())
+                        .foregroundColor(.white)
+                        .padding(.leading, 6.0)
+                }
+                    
                 Spacer()
                 NavigationLink (destination: AddFriendsView() ,label: {
                     Image(systemName: "person.crop.circle.badge.plus")
@@ -49,7 +69,7 @@ struct FriendsView: View {
                         .frame(width: 40.0, height: 40.0)
                 })
                 
-                NavigationLink (destination: GameView() ,label: {
+                NavigationLink (destination: GameView(mode: mode) ,label: {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .scaledToFit()
@@ -60,9 +80,9 @@ struct FriendsView: View {
                 .padding(.trailing, 5.0)
             }
             .padding()
-            if (!friendsModel.friends.isEmpty) {
+            if (!friends.isEmpty) {
                 ScrollView {
-                    ForEach(Array(friendsModel.friends.enumerated()), id: \.offset) { index, friend in
+                    ForEach(Array(friends.enumerated()), id: \.offset) { index, friend in
                         HStack {
                             Text("\(index + 1)")
                                 .font(TextStyle.leaderboardItem().bold())
@@ -75,7 +95,7 @@ struct FriendsView: View {
                                 .foregroundColor(.white)
                                 .padding(.leading)
                             Spacer()
-                            Text(String(friend.highscore))
+                            Text(String(friend.highscores![mode]!))
                                 .font(TextStyle.leaderboardItem().bold())
                                 .foregroundColor(.white)
                                 .padding(.trailing)
@@ -107,52 +127,23 @@ struct FriendsView: View {
                     Spacer()
                 }
             }
-            
-            //            Text("This is ")
-            //                .font(.system(size: 16)) // Set the desired font size for the normal text
-            //                +
-            //                Text("italic")
-            //                .italic() // Apply the italic style to this part of the text
-            //                .font(.system(size: 16)) // Set the desired font size for the italic text
-            //                +
-            //                Text(" text.")
-            //                .font(.system(size: 16)) // Set the desired font size for the normal text
         }
-//        .background(LinearGradient(
-//            gradient: Gradient(colors: [Color("Green"),Color("Black"),Color("Black")]),
-//            startPoint: .top,
-//            endPoint: .bottom))
         .background(Color("Black"))
         .task {
+            print("TASK FRIENDSVIEW")
             model.updateUserData()
-            try? await friendsModel.getFriends()
-            for user in friendsModel.friends {
-                print("CURRENT FRIENDS FROM FRIENDSVIEWMODEL: \(user.display_name)")
-            }
+            try? await model.getFriends()
+            try? await model.getUserHighscores()
+            
+            print("CURRENT USER HIGHSCORES: \(model.currentUser.highscores!["classic"])")
+            
         }
-//        .onAppear {
-//            Task {
-//                model.updateUserData()
-//                try? await friendsModel.getFriends()
-//            }
-//        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .navigationTitle(Text(""))
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("Friends leaderboard")
-                    .font(TextStyle.homeTitle())
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .scaledToFit()
-                    .minimumScaleFactor(0.1)
-            }
-        }
     }
 }
 
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsView()
-    }
-}
+//struct FriendsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FriendsView()
+//    }
+//}

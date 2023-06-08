@@ -10,14 +10,20 @@ import Firebase
 
 @MainActor
 final class FriendsViewModel : ObservableObject {
-    @Published private(set) var friends : [User] = []
     
-    func getFriends() async throws {
-        let friends = try await UserManager.shared.getUserFriends()
-        self.friends = friends.sorted { $0.highscore > $1.highscore }
+
+//    @Published private(set) var friends : [User] = []
+    
+    
+//    func getFriends() async throws {
+//        let friends = try await UserManager.shared.getUserFriends()
+//        friends.filter { friend in
+//            friend.highscores![mode] != nil
+//        }
+//        self.friends = friends.sorted { $0.highscores![mode]! > $1.highscores![mode]! }
     }
     
-    func addFriends(newFriendSpotifyID: String) async throws {
-        try await UserManager.shared.addFriend(newFriendSpotifyID: newFriendSpotifyID)
-    }
-}
+//    func addFriends(newFriendSpotifyID: String) async throws {
+//        try await UserManager.shared.addFriend(newFriendSpotifyID: newFriendSpotifyID)
+//    }
+//}

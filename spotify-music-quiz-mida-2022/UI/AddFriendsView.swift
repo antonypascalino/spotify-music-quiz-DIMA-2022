@@ -10,7 +10,6 @@ import SwiftUI
 struct AddFriendsView: View {
     
     @StateObject private var model = UserViewModel()
-    @StateObject private var friendsModel = FriendsViewModel()
     @State private var nameToSearch = ""
     
     var orderedUsers : [User] {
@@ -50,9 +49,9 @@ struct AddFriendsView: View {
                     Button {
                         print("Adding friend with SpotifyID: \(user.SpotifyID)")
                         Task {
-                            try await friendsModel.addFriends(newFriendSpotifyID: user.SpotifyID)
+                            try await model.addFriends(newFriendSpotifyID: user.SpotifyID)
                             model.updateUserData()
-                            try? await friendsModel.getFriends()
+                            try? await model.getFriends()
                         }
                     } label: {
                         Image(systemName: "plus.circle")
@@ -101,7 +100,7 @@ struct AddFriendsView: View {
         }
         .task {
             model.updateUserData()
-            try? await friendsModel.getFriends()
+            try? await model.getFriends()
             try? await model.getAllUsers()
         }
         .background(Color("Black"))
@@ -119,7 +118,7 @@ struct AddFriendsView: View {
     }
     
     func alreadyAdded(user: User) -> Bool {
-        let friends = friendsModel.friends
+        let friends = model.friends
         return friends.contains{ $0.display_name == user.display_name }
     }
 }

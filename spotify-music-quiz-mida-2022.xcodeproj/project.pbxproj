@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0FFF772A2FD93100710AFB /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FFF762A2FD93100710AFB /* GameMode.swift */; };
 		0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55DF2A0BA27F0067504D /* TestView.swift */; };
 		0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */; };
 		0A1A55E52A0BFA650067504D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E42A0BFA650067504D /* GameViewModel.swift */; };
+		0A242DEF2A2FE6430074F935 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A242DEE2A2FE6430074F935 /* ContentView.swift */; };
 		0A24F24329D1FA1000841B43 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24F24229D1FA1000841B43 /* AuthManager.swift */; };
 		0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A24F24629D1FB7200841B43 /* AuthView.swift */; };
 		0A3908B829CAFF6E0073ACE0 /* AuthorScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */; };
@@ -77,6 +79,7 @@
 		0AD8DCA029BB9CA7009EE067 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */; };
 		0AD8DCA229BB9CC1009EE067 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */; };
 		0AD99A2A29C4E885000EAF39 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD99A2929C4E885000EAF39 /* GameView.swift */; };
+		0AE1EADD2A313810001312A3 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1EADC2A313810001312A3 /* Mode.swift */; };
 		0AFD9FC62A17847100CFBEEC /* ListImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD9FC52A17847000CFBEEC /* ListImage.swift */; };
 		0AFD9FCA2A1ACB6D00CFBEEC /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */; };
 /* End PBXBuildFile section */
@@ -99,9 +102,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A0FFF762A2FD93100710AFB /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		0A1A55DF2A0BA27F0067504D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedArtistResponse.swift; sourceTree = "<group>"; };
 		0A1A55E42A0BFA650067504D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0A242DEE2A2FE6430074F935 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A24F24229D1FA1000841B43 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		0A24F24629D1FB7200841B43 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorScoreView.swift; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 		0AD8DC9F29BB9CA7009EE067 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0AD8DCA129BB9CC1009EE067 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		0AD99A2929C4E885000EAF39 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		0AE1EADC2A313810001312A3 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		0AFD9FC52A17847000CFBEEC /* ListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImage.swift; sourceTree = "<group>"; };
 		0AFD9FC72A178D8700CFBEEC /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 				0A3DEEBA2A16593C0004BA82 /* User.swift */,
 				0A6559AE2A0509A2007ACBFC /* UserProfile.swift */,
 				0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */,
+				0AE1EADC2A313810001312A3 /* Mode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,6 +282,7 @@
 				0AABD71829CE343800D819BB /* GameControls.swift */,
 				0A8BF0692A16258A007EFA71 /* TimeBar.swift */,
 				0AFD9FC52A17847000CFBEEC /* ListImage.swift */,
+				0A0FFF762A2FD93100710AFB /* GameMode.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -346,8 +354,8 @@
 		0AD8DC6B29B9F55D009EE067 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				0A8145E52A28B445005AC9D0 /* LoadingView.swift */,
 				0A8BF0682A16141C007EFA71 /* Components */,
+				0A8145E52A28B445005AC9D0 /* LoadingView.swift */,
 				0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
 				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
@@ -361,6 +369,7 @@
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
 				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
 				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
+				0A242DEE2A2FE6430074F935 /* ContentView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -577,6 +586,7 @@
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
 				0A6559AF2A0509A2007ACBFC /* UserProfile.swift in Sources */,
 				0A4C49FA29CF6D9800204644 /* Answer.swift in Sources */,
+				0A0FFF772A2FD93100710AFB /* GameMode.swift in Sources */,
 				0A6559A92A050994007ACBFC /* LibraryAlbumResponse.swift in Sources */,
 				0A6559A32A050989007ACBFC /* Album.swift in Sources */,
 				0A3DEEC22A165A140004BA82 /* FriendsViewModel.swift in Sources */,
@@ -588,7 +598,9 @@
 				0AABD71929CE343800D819BB /* GameControls.swift in Sources */,
 				0A8145DA2A2648DF005AC9D0 /* QuestionManager.swift in Sources */,
 				0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */,
+				0A242DEF2A2FE6430074F935 /* ContentView.swift in Sources */,
 				0A78A2BD2A1BA70D00876600 /* AudioPlayerView.swift in Sources */,
+				0AE1EADD2A313810001312A3 /* Mode.swift in Sources */,
 				0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */,
 				0A8145D42A210BE7005AC9D0 /* AddFriendsView.swift in Sources */,
 				0A3DEEC12A165A140004BA82 /* UserViewModel.swift in Sources */,
@@ -781,7 +793,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -816,7 +828,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

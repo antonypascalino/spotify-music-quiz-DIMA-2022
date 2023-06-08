@@ -10,6 +10,20 @@ import SwiftUI
 
     
 struct TextStyle {
+    
+    
+    static func GothamBlack(_ size : CGFloat) -> Font {
+        return Font.custom("Gotham-Black", size: size)
+    }
+    
+    static func GothamBold(_ size : CGFloat) -> Font {
+        return Font.custom("Gotham-Bold", size: size)
+    }
+    
+    static func GothamLight(_ size : CGFloat) -> Font {
+        return Font.custom("Gotham-Light", size: size)
+    }
+    
     static func homeTitle() -> Font {
         return Font.custom("Gotham-Black", size: 35)
     }

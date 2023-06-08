@@ -55,7 +55,7 @@ struct LoginView: View {
                 
                 if completeAuth {
                     NavigationLink(
-                        destination: HomeView(),
+                        destination: ContentView(),
                         isActive: $completeAuth) {
                             EmptyView()
                         }

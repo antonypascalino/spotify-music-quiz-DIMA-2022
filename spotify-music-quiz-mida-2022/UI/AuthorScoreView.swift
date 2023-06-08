@@ -40,15 +40,6 @@ struct AuthorScoreView: View {
             }
             .background(Color("Black"))
         }
-        .navigationTitle(Text(""))
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("Authors scores")
-                    .font(TextStyle.homeTitle())
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
     }
 }
 

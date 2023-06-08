@@ -77,39 +77,38 @@ class UserManager {
         return users.first!
     }
     
-    func getUserHighscore() async throws -> Int {
+    func getUserHighscores() async throws -> [String : Int]  {
+        let currentUserReference = try await userDocument(documentID: currentUser.id!)
+        let highscores = try await currentUserReference.getDocument(as: User.self).highscores ?? [String : Int]()
+//
+        print("current user highscores: \(highscores) ")
+        return highscores
         
-        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: currentUser.SpotifyID).getDocuments(as: User.self)
-        if (users.isEmpty) {
-            return 0
-        } else {
-            return users.first!.highscore
-        }
+//        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: currentUser.SpotifyID).getDocuments(as: User.self)
+//        if (users.isEmpty) {
+//            return 0
+//        } else {
+//            return users.first!.highscore
+//        }
     }
     
-    func setUserHighscore(newHighscore: Int) async throws {
+    func setUserHighscore(mode: String, newHighscore: Int) async throws {
         
-        currentUserReference!.updateData(["highscore" : newHighscore]) { error in
-            if let error = error {
-                print("Error updating highscore field: \(error.localizedDescription)")
-            } else {
-                print("Highscore updated successfully.")
-            }
-        }
+        let userHighscores = try await getUserHighscores()
+        
+        try await currentUserReference!.setData(["highscores" : [mode : newHighscore]], merge: true)
         self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
-    }
     
-//    func searchUsers(name: String) async throws -> [User] {
-//
-//        let nameLowerCase = name.lowercased()
-//        let nameUpperCase = name.prefix(1).uppercased() + name.dropFirst()
-//
-//        var users = try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameLowerCase).getDocuments(as: User.self)
-//        users.append(contentsOf: try await usersCollection.whereField("display_name", isGreaterThanOrEqualTo: nameUpperCase).getDocuments(as: User.self))
-//
-//        print(users)
-//        return users
-//    }
+        
+//        currentUserReference!.updateData(["highscore" : newHighscore]) { error in
+//            if let error = error {
+//                print("Error updating highscore field: \(error.localizedDescription)")
+//            } else {
+//                print("Highscore updated successfully.")
+//            }
+//        }
+//        self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
+    }
     
     
     func addFriend(newFriendSpotifyID: String) async throws {
