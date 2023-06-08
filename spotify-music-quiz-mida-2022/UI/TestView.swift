@@ -34,9 +34,10 @@ struct TestView: View {
             }
             HStack(spacing: 40) {
                 Spacer()
-                Image("Profilo1")
+                Image(systemName: "person.crop.circle")
                     .resizable()
-                    .frame(width: 150, height: 150)
+                    .foregroundColor(Color("Green"))
+                    .frame(width: 120, height: 120)
                     .scaledToFit()
                     .cornerRadius(100)
                 
@@ -46,12 +47,11 @@ struct TestView: View {
                         .foregroundColor(Color("Green"))
                     
                     Text("45")
-                        .font(TextStyle.score(100))
+                        .font(TextStyle.score(80))
                         .foregroundColor(Color("Green"))
                         .padding(.bottom, 40.0)
                 }
                 .offset(y: 20)
-                
                 Spacer()
             }
             .padding([.bottom,.top])
@@ -65,9 +65,6 @@ struct TestView: View {
                     ForEach(Mode.modes.prefix(3) , id: \.name) { mode in
                         GameMode(cover: mode.label, description: mode.description)
                     }
-//                    GameMode(cover: "classic", description: "All kind of questions")
-//                    GameMode(cover: "guessTheSong", description: "Listen! Know the title?")
-//                    GameMode(cover: "guessTheSinger", description: "Listen! Who is singing?")
                 }
             }
             .padding()
@@ -77,24 +74,11 @@ struct TestView: View {
                     ForEach(Mode.modes.suffix(4) , id: \.name) { mode in
                         GameMode(cover: mode.label, description: mode.description)
                     }
-//                    GameMode(cover: "recallTheYear", description: "When was it released?")
-//                    GameMode(cover: "whichAlbum", description: "In which album was it?")
-//                    GameMode(cover: "whoIsTheAuthor", description: "Who sings that song?")
-//                    GameMode(cover: "authorSong", description: "Which song they sing?")
                 }
             }
             .padding()
             
             Spacer()
-            
-            
-            
-            
-            //            Image(systemName: "play.circle.fill")
-            //                .resizable()
-            //                .frame(width: 80.0, height: 80.0)
-            //                .foregroundColor(Color("Green"))
-            //                .padding(.bottom)
         }
         .background(Color("Black"))
         .foregroundColor(.white)

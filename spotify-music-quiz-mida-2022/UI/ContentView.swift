@@ -18,11 +18,11 @@ struct ContentView: View {
                 Text("Home")
             }
             NavigationView {
-                FriendsView(mode: "classic")
+                AddFriendsView()
             }
             .tabItem {
-                Image(systemName: "list.number")
-                Text("Leaderboard")
+                Image(systemName: "person.2")
+                Text("Friends")
             }
             NavigationView {
                 AuthorScoreView()

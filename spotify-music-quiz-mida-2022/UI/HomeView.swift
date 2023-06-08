@@ -10,84 +10,113 @@ import SwiftUI
 
 struct HomeView: View {
     
-//    @State var userProfile : UserProfile?
+    //    @State var userProfile : UserProfile?
     @State var isLoading = true
     @ObservedObject private var userModel = UserViewModel()
     @StateObject var gameManager = GameManager.shared
-
+    
     var body: some View {
         VStack {
             if !isLoading {
-                HStack {
-                    Text("Hi \(userModel.currentUser.display_name.components(separatedBy: " ").first!)!")
-                        .font(TextStyle.homeTitle())
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text("Hi \(userModel.currentUser.display_name.components(separatedBy: " ").first!)!")
+                            .font(TextStyle.GothamBlack(30))
+                            .padding()
+                            .foregroundColor(.white)
+                        Spacer()
+                        NavigationLink(destination: HomeView()) {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                                .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                                .rotationEffect(Angle(degrees: 180))
+                                .padding(.trailing)
+                        }
+                    }
+                    HStack(spacing: 40) {
+                        Spacer()
+                        if !(userModel.currentUser.image == "") {
+                            AsyncImage(url: URL(string: userModel.currentUser.image)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 120, height: 120)
+                                    .scaledToFill()
+                                    .cornerRadius(100)
+                                    .shadow(color: Color("Green"), radius: 40)
+                            } placeholder: {
+                                Image(systemName: "person.crop.circle")
+                                    .resizable()
+                                    .foregroundColor(Color("Green"))
+                                    .frame(width: 120, height: 120)
+                                    .scaledToFit()
+                                    .cornerRadius(100)
+                            }
+                        } else {
+                            Image(systemName: "person.crop.circle")
+                                .resizable()
+                                .foregroundColor(Color("Green"))
+                                .frame(width: 120, height: 120)
+                                .scaledToFit()
+                                .cornerRadius(100)
+                        }
+                        VStack {
+                            Text("Highscore:")
+                                .font(TextStyle.score(26))
+                                .foregroundColor(Color("Green"))
+                                .scaledToFit()
+                                .minimumScaleFactor(0.1)
+                            Text(String(userModel.currentUser.highscores!["classic"]!))
+                                .font(TextStyle.score(80))
+                                .foregroundColor(Color("Green"))
+                                .padding(.bottom, 40.0)
+                                .task {
+                                    try? await userModel.getUserHighscores()
+                                }
+                        }
+                        .offset(y: 20)
+                        Spacer()
+                    }
+                    .padding([.bottom,.top])
+                    
+                    Text("Let's play!")
+                        .font(TextStyle.GothamBlack(30))
+                        .padding(.leading)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(Mode.modes.prefix(3) , id: \.name) { mode in
+                                NavigationLink(destination: ModeView(mode: mode)) {
+                                    GameMode(cover: mode.label, description: mode.description)
+                                }
 
-                        .padding()
-                        .foregroundColor(.white)
+                                
+                            }
+                        }
+                    }
+                    .padding()
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(Mode.modes.suffix(4) , id: \.name) { mode in
+                                NavigationLink(destination: ModeView(mode: mode)) {
+                                    GameMode(cover: mode.label, description: mode.description)
+                                }
+                            }
+                        }
+                    }
+                    .padding()
+                    
                     Spacer()
-                    NavigationLink(destination: FriendsView(mode: "classic")) {
-                        Image(systemName: "list.number")
-                            .font(.system(size: 25, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 50, height: 50)
-                    }
-                    NavigationLink(destination: AuthorScoreView()) {
-                        Image(systemName: "music.note.list")
-                            .font(.system(size: 25, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(width: 50, height: 50)
-                    }
                 }
-                Spacer()
-                
-                if !(userModel.currentUser.image == "") {
-                    
-                    AsyncImage(url: URL(string: userModel.currentUser.image)) { image in
-                        image
-                            .resizable()
-                            .frame(width: 230, height: 230)
-                            .scaledToFill()
-                            .cornerRadius(100)
-                            .shadow(color: Color("Green"), radius: 40)
-                    } placeholder: {
-                        ProgressView()
-                    }
-                } else {
-                    Image("SpotifyLogoBlack")
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                        .scaledToFit()
-                        .shadow(color: Color("Green"), radius: 40)
-                }
-                
-                Spacer()
-                Text("Highscore:")
-                    .font(TextStyle.score(40))
-                    .foregroundColor(Color("Green"))
-                    .padding(.bottom)
-                Text(String(userModel.currentUser.highscores!["classic"]!))
-                    .font(TextStyle.score(100))
-                    .foregroundColor(Color("Green"))
-                    .padding(.bottom, 40.0)
-                    .task {
-                        try? await userModel.getUserHighscores()
-                    }
-                NavigationLink(destination: GameView(mode: "classic")) {
-                    Image(systemName: "play.circle.fill")
-                        .resizable()
-                        .frame(width: 80.0, height: 80.0)
-                        .foregroundColor(Color("Green"))
-                        .padding(.bottom)
-                    
-                }
+                .background(Color("Black"))
+                .foregroundColor(.white)
             } else {
                 LoadingView()
             }
         }
-        
-        .background(Color("Black")
-        )
-        .foregroundColor(.white)
+        .toolbar(.visible, for: .tabBar)
+        .toolbar(.hidden, for: .navigationBar)
         .onAppear {
             Task {
                 print("Inizio task HomeView")
@@ -96,9 +125,8 @@ struct HomeView: View {
                 print("Fine task HomeView")
             }
         }
-        .toolbar(.visible, for: .tabBar)
-        .toolbar(.hidden, for: .navigationBar)
     }
+
             
     
     

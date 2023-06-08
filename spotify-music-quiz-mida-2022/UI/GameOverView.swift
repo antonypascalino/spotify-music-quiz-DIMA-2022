@@ -79,7 +79,7 @@ struct GameOverView: View {
                     })
                     
                     NavigationLink {
-                        HomeView()
+                        ContentView()
                     } label: {
                         Image(systemName: "house.fill")
                             .resizable()

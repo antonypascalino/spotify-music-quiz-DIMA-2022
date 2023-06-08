@@ -20,7 +20,7 @@
 		0A3DEEB52A16588F0004BA82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A3DEEB42A16588F0004BA82 /* GoogleService-Info.plist */; };
 		0A3DEEB82A1658E60004BA82 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEB72A1658E60004BA82 /* UserManager.swift */; };
 		0A3DEEBC2A16593C0004BA82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEBA2A16593C0004BA82 /* User.swift */; };
-		0A3DEEBE2A1659CD0004BA82 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */; };
+		0A3DEEBE2A1659CD0004BA82 /* ModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEBD2A1659CD0004BA82 /* ModeView.swift */; };
 		0A3DEEC12A165A140004BA82 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEBF2A165A140004BA82 /* UserViewModel.swift */; };
 		0A3DEEC22A165A140004BA82 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3DEEC02A165A140004BA82 /* FriendsViewModel.swift */; };
 		0A3E4AC22A1B9AA600AD6992 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0A3E4AC12A1B9AA600AD6992 /* FirebaseAnalytics */; };
@@ -115,7 +115,7 @@
 		0A3DEEB42A16588F0004BA82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0A3DEEB72A1658E60004BA82 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		0A3DEEBA2A16593C0004BA82 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		0A3DEEBD2A1659CD0004BA82 /* ModeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeView.swift; sourceTree = "<group>"; };
 		0A3DEEBF2A165A140004BA82 /* UserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		0A3DEEC02A165A140004BA82 /* FriendsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		0A4C49F929CF6D9800204644 /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -355,21 +355,21 @@
 			isa = PBXGroup;
 			children = (
 				0A8BF0682A16141C007EFA71 /* Components */,
-				0A8145E52A28B445005AC9D0 /* LoadingView.swift */,
+				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
 				0A78A2BB2A1BA70D00876600 /* AudioPlayerView.swift */,
+				0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */,
 				0A24F24629D1FB7200841B43 /* AuthView.swift */,
-				0A3DEEBD2A1659CD0004BA82 /* FriendsView.swift */,
+				0A242DEE2A2FE6430074F935 /* ContentView.swift */,
+				0A3DEEBD2A1659CD0004BA82 /* ModeView.swift */,
+				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
 				0AD99A2929C4E885000EAF39 /* GameView.swift */,
 				0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */,
 				0AD17C4E2950AC3B003FEE73 /* HomeView.swift */,
-				0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */,
+				0A8145E52A28B445005AC9D0 /* LoadingView.swift */,
 				0AB9CAEE29C929D200871B2B /* LoginView.swift */,
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
-				0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */,
-				0A8145D32A210BE7005AC9D0 /* AddFriendsView.swift */,
-				0A242DEE2A2FE6430074F935 /* ContentView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -618,7 +618,7 @@
 				0A809D192A1158050038DC64 /* Artist.swift in Sources */,
 				0A6559AB2A05099A007ACBFC /* Playlist.swift in Sources */,
 				0A65599B2A0508E6007ACBFC /* APICaller.swift in Sources */,
-				0A3DEEBE2A1659CD0004BA82 /* FriendsView.swift in Sources */,
+				0A3DEEBE2A1659CD0004BA82 /* ModeView.swift in Sources */,
 				0A52972129D327FB0036915A /* AuthResponse.swift in Sources */,
 				0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */,
 				0AABD1362A17DD9200B26479 /* PlaylistTracks.swift in Sources */,

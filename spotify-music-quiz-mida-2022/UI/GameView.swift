@@ -112,6 +112,7 @@ struct GameView: View {
                     
                 }
                 .background(Color("Black"))
+                .navigationBarHidden(true)
                 .toolbar(.hidden, for: .tabBar, .navigationBar)
                 .onAppear {
                     print("onAppear")
