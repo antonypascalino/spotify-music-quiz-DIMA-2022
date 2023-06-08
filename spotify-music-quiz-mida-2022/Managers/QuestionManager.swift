@@ -22,6 +22,8 @@ class QuestionManager: ObservableObject {
     private(set) var authorSongQuestion : [Question] = []
     private(set) var albumSongQuestion : [Question] = []
     private(set) var popularArtistsQuestion : [Question] = []
+    private(set) var allQuestions: [Question] = []
+    private(set) var leaderboardQuestions: [Question] = []
 
     private(set) var userPlaylists : [Playlist] = []
     private(set) var userTracks : [Track] = []
@@ -33,12 +35,12 @@ class QuestionManager: ObservableObject {
     private(set) var tempTrack : [PlaylistItem] = []
     private(set) var reccTracks : [Track] = []
     private(set) var similarSongs : [Track] = []
-    private(set) var loadedData = false
+    var loadedData = false
 
                 
     private(set) var isLoading = true
     private let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
-    var isLoadingQuestions = true
+    @Published var isLoadingQuestions = true
 
     func importAllData() async throws {
         if !loadedData {
@@ -49,52 +51,78 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func genRandomQuestions(code: String) async throws -> [Question] {
+    func genRandomQuestions(code: String, regenQuest: Bool) async throws -> [Question] {
         
         var questionsTemp : [Question] = []
         
         
         switch code {
             case "whoIsTheAuthor" :
-                self.whoSingsQuestion = genWhoSingsQuestions()
+                if(regenQuest ){
+                    self.whoSingsQuestion = genWhoSingsQuestions()
+                }
                 questionsTemp.append(contentsOf: self.whoSingsQuestion)
                 print("Mode: Who")
                 break
             case "recallTheYear" :
-                self.yearSongQuestion = genYearSongQuestions()
+                if(regenQuest){
+                    self.yearSongQuestion = genYearSongQuestions()
+                    self.yearAlbumQuestion = genYearAlbumQuestions()
+
+                }
                 questionsTemp.append(contentsOf: self.yearSongQuestion)
-                self.yearAlbumQuestion = genYearAlbumQuestions()
                 questionsTemp.append(contentsOf: self.yearAlbumQuestion)
                 print("Mode: Recall")
                 break
             case "guessTheSong" :
-                self.shazamTitleQuestion = genShazamTitleQuestions()
+                if(regenQuest){
+                    self.shazamTitleQuestion = genShazamTitleQuestions()
+
+                }
                 questionsTemp.append(contentsOf: self.shazamTitleQuestion)
                 print("Mode: guessTheSong")
                 break
             case "guessTheSinger" :
-                self.shazamAuthorQuestion = genShazamAuthorQuestions()
+                if(regenQuest){
+                    self.shazamAuthorQuestion = genShazamAuthorQuestions()
+
+                }
                 questionsTemp.append(contentsOf: self.shazamAuthorQuestion)
                 print("Mode: guessTheSinger")
                 break
             case "authorSong" :
-                self.authorSongQuestion = genAuthorSongQuestion()
+                if(regenQuest){
+                    self.authorSongQuestion = genAuthorSongQuestion()
+                    self.leaderboardQuestions = try await genLeaderBoardQuestions()
+                }
                 questionsTemp.append(contentsOf: self.authorSongQuestion)
-                questionsTemp.append(contentsOf: try await genLeaderBoardQuestions())
+                questionsTemp.append(contentsOf: self.leaderboardQuestions)
                 print("Mode: authorSong")
                 break
             case "whichAlbum" :
-                self.albumSongQuestion = genAlbumSongQuestions()
+                if(regenQuest){
+                    self.albumSongQuestion = genAlbumSongQuestions()
+                }
                 questionsTemp.append(contentsOf: self.albumSongQuestion)
                 print("Mode: whichAlbum")
                 break
-            default:
+            case "classic" :
+                if(regenQuest) {
+                    print("Regen Classic")
                 try await questionsTemp.append(contentsOf: genAllQuestions())
+                }
+                else{
+                    print(" No Regen Classic")
+                    questionsTemp.append(contentsOf: allQuestions)
+                }
+            case "home":
+                try await questionsTemp.append(contentsOf: genAllQuestions())
+                print("Home")
+            default:
                 print("Mode: classic")
         }
         
        
-        isLoadingQuestions = false
         questionsTemp.shuffle()
         return questionsTemp
     }
@@ -102,7 +130,7 @@ class QuestionManager: ObservableObject {
     func genAllQuestions() async throws -> [Question] {
         
         var questionsTemp : [Question] = []
-        
+        self.allQuestions = []
         
         self.whoSingsQuestion = genWhoSingsQuestions()
         questionsTemp.append(contentsOf: self.whoSingsQuestion)
@@ -125,11 +153,13 @@ class QuestionManager: ObservableObject {
         self.authorSongQuestion = genAuthorSongQuestion()
         questionsTemp.append(contentsOf: self.authorSongQuestion)
         print("Prima7")
-        questionsTemp.append(contentsOf: try await genLeaderBoardQuestions())
+        self.leaderboardQuestions = try await genLeaderBoardQuestions()
+        questionsTemp.append(contentsOf:self.leaderboardQuestions)
         print("Prima8")
         
-        isLoadingQuestions = false
         questionsTemp.shuffle()
+        self.allQuestions = questionsTemp
+        
       //  return try await genLeaderBoardQuestions()
         return questionsTemp
     }
@@ -206,7 +236,7 @@ class QuestionManager: ObservableObject {
         var questions: [Question] = []
         
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 3)
+        tempTracks = reduceArrayDim(num: 5)
         
         for track in tempTracks {
             
@@ -248,7 +278,7 @@ class QuestionManager: ObservableObject {
         var questions: [Question] = []
         
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 3)
+        tempTracks = reduceArrayDim(num: 5)
         
         for track in tempTracks {
             
@@ -296,7 +326,7 @@ class QuestionManager: ObservableObject {
         
 
         var tempAlbums : [SimpleAlbum] = []
-        tempAlbums = reduceAlbumDim(num: 3)
+        tempAlbums = reduceAlbumDim(num: 5)
 
         for album in tempAlbums {
             let correctAnswer = getOnlyYear(allDate: album.release_date)
@@ -322,7 +352,7 @@ class QuestionManager: ObservableObject {
         
         
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 3)
+        tempTracks = reduceArrayDim(num: 5)
         
         for track in tempTracks {
             let correctAnswer = getOnlyYear(allDate: track.album!.release_date)
@@ -346,7 +376,7 @@ class QuestionManager: ObservableObject {
        var questions: [Question] = []
        
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 3)
+        tempTracks = reduceArrayDim(num: 5)
         
         for track in tempTracks {
         
@@ -374,7 +404,7 @@ class QuestionManager: ObservableObject {
        var questions: [Question] = []
        
         var tempTracks : [Track] = []
-        tempTracks = reduceArrayDim(num: 3)
+        tempTracks = reduceArrayDim(num: 5)
         
         for track in tempTracks {
         
@@ -402,7 +432,7 @@ class QuestionManager: ObservableObject {
             var questions: [Question] = []
 
             var tempAlbums : [SimpleAlbum] = []
-            tempAlbums = reduceAlbumDim(num: 3)
+            tempAlbums = reduceAlbumDim(num: 5)
 
             for var album in tempAlbums {
                 album.tracks.items.shuffle()

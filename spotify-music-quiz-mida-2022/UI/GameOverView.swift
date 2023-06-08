@@ -24,7 +24,7 @@ struct GameOverView: View {
         VStack {
             if(!model.isLoading) {
                 let score = gameManager.correctAnswersCount
-                let isHighscore = score > model.highscores[mode.label]!
+                let isHighscore = score > model.highscores[mode.label] ?? 0
                 
                 Spacer()
                 Text("Oh no!")
@@ -72,7 +72,7 @@ struct GameOverView: View {
                     .cornerRadius(100.0)
                     .simultaneousGesture(TapGesture().onEnded {
                         Task {
-                            try await gameManager.restartGame(codeQuestion: mode.label)
+                            try await gameManager.restartGame(codeQuestion: mode.label, regenQuest: true)
                         }
                         print("GAME RESTARTED")
                         gameRestarted = true
@@ -95,6 +95,7 @@ struct GameOverView: View {
                     .background(Color("Green"))
                     .foregroundColor(Color("Black"))
                     .cornerRadius(100.0)
+                    
                 }
                 .padding([.leading , .trailing])
                 Spacer()
@@ -103,12 +104,16 @@ struct GameOverView: View {
         .onAppear() {
             AudioPlayer.shared.stop()
             Task {
+                gameManager.restartGame = true
+                print("RestartGame from GameOverview : \(gameManager.restartGame)")
                 model.updateUserData()
                 try? await model.getUserHighscores()
-                if gameManager.correctAnswersCount > model.highscores[mode.label]! {
+                if gameManager.correctAnswersCount > model.highscores[mode.label] ?? 0  {
                     try await model.setUserHighscore(mode: mode.label, newHighscore: gameManager.correctAnswersCount)
                 }
+                
             }
+            
             @State var isLoading = false
         }
         .toolbar(.hidden, for: .tabBar, .navigationBar)

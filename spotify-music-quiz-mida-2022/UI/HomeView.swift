@@ -112,7 +112,7 @@ struct HomeView: View {
                 .background(Color("Black"))
                 .foregroundColor(.white)
             } else {
-                LoadingView()
+                ProgressView()
             }
         }
         .toolbar(.visible, for: .tabBar)
@@ -121,9 +121,17 @@ struct HomeView: View {
             Task {
                 print("Inizio task HomeView")
                 try await loadData()
-                try await loadGame()
+
+                if(gameManager.restartGame){
+                    try await loadGame()
+                }
+
                 print("Fine task HomeView")
             }
+            //if QuestionManager.shared.isLoadingQuestions{
+               
+            //}
+           
         }
     }
 
@@ -153,7 +161,7 @@ struct HomeView: View {
     
     func loadGame() async throws {
         print("Home View: START GAME")
-        try await gameManager.startGame(codeQuestion: "classic")
+        try await gameManager.startGame(codeQuestion: "home")
     }
 }
 
