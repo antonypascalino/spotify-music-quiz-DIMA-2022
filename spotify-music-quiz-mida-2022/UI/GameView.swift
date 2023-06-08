@@ -21,7 +21,7 @@ struct GameView: View {
         
         let playerMiss = gameManager.playerMiss
         let gameIsOver = gameManager.gameIsOver
-        VStack{
+        VStack {
             if QuestionManager.shared.isLoadingQuestions {
                 LoadingView()
             } else if gameIsOver {
@@ -82,19 +82,6 @@ struct GameView: View {
                             .padding([.top, .bottom] , 12)
                             .padding(.leading , 5)
                         }
-                        //                        .onAppear {
-                        //                            print("onAppear VStack")
-                        //                            AudioPlayer.shared.stop()
-                        //                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        //                        }
-                        //                        .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                        //                            AudioPlayer.shared.stop()
-                        //                            AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        //                        }
-                        //                        .onDisappear {
-                        //                            print("onDisappear VStack")
-                        //                            AudioPlayer.shared.stop()
-                        //                        }
                         .frame(height: 380)
                         .frame(height: 380)
                         .offset(y: -18)
@@ -108,19 +95,13 @@ struct GameView: View {
                     }
                     .offset(y: -33)
                     Spacer()
-                    
-                    
                 }
                 .background(Color("Black"))
-                .navigationBarHidden(true)
-                .toolbar(.hidden, for: .tabBar, .navigationBar)
                 .onAppear {
                     print("onAppear")
-        //            AudioPlayer.shared.stop()
                     AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
                 }
                 .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-        //            AudioPlayer.shared.stop()
                     AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
                 }
                 .onChange(of: gameManager.isTimerRunning) { newValue in
@@ -132,6 +113,9 @@ struct GameView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     

@@ -24,7 +24,7 @@ struct GameOverView: View {
         VStack {
             if(!model.isLoading) {
                 let score = gameManager.correctAnswersCount
-                let isHighscore = score > model.highscores[mode.label]!
+                let isHighscore = score > model.highscores[mode.label] ?? 0
                 
                 Spacer()
                 Text("Oh no!")
@@ -105,13 +105,14 @@ struct GameOverView: View {
             Task {
                 model.updateUserData()
                 try? await model.getUserHighscores()
-                if gameManager.correctAnswersCount > model.highscores[mode.label]! {
+                if gameManager.correctAnswersCount > model.highscores[mode.label] ?? 0 {
                     try await model.setUserHighscore(mode: mode.label, newHighscore: gameManager.correctAnswersCount)
                 }
             }
             @State var isLoading = false
         }
-        .toolbar(.hidden, for: .tabBar, .navigationBar)
+        .navigationBarHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Black"))
     }
