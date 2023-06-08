@@ -25,21 +25,21 @@ class GameManager: ObservableObject {
     init() {}
     
     
-    func startGame() async throws {
+    func startGame(codeQuestion: String) async throws {
 //        if(questions.count == 0 || correctAnswersCount != 0) {
         try await resetGame()
         QuestionManager.shared.isLoadingQuestions = true
         try await QuestionManager.shared.importAllData()
-        try await self.genQuestions()
+        try await self.genQuestions(codeQuestion: codeQuestion)
 //        }
     }
     
-    func genQuestions() async throws {
+    func genQuestions(codeQuestion: String) async throws {
         print("GEN QUESTION: QUESTION COUNT: \(questions.count) Answer Count: \(correctAnswersCount)")
         if(questions.count == 0 || correctAnswersCount != 0) {
 //            tempQuestions = []
 //            questions = []
-            questions = try await QuestionManager.shared.genRandomQuestions()
+            questions = try await QuestionManager.shared.genRandomQuestions(code: codeQuestion)
             print("Count \(questions.count)")
             questions.shuffle()
             DispatchQueue.main.async {
@@ -51,10 +51,10 @@ class GameManager: ObservableObject {
         }
         
     }
-    func restartGame() async throws {
+    func restartGame(codeQuestion: String) async throws {
         try await resetGame()
         QuestionManager.shared.isLoadingQuestions = true
-        try await genQuestions()
+        try await genQuestions(codeQuestion: codeQuestion)
     }
     
     func resetGame() async throws {
@@ -88,9 +88,9 @@ class GameManager: ObservableObject {
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers() ?? [String]()
                 }
-                    if (currentQuestionIndex == (questions.count - 5))  {
+                    if (currentQuestionIndex == (questions.count - 3))  {
                         print("CURRENT INDEX: \(currentQuestionIndex)")
-                        tempQuestions = try await QuestionManager.shared.genRandomQuestions()
+                        tempQuestions = try await QuestionManager.shared.genRandomQuestions(code: codeQuestion)
                     }
 
             } else {

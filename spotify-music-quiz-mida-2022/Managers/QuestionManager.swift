@@ -49,7 +49,45 @@ class QuestionManager: ObservableObject {
         }
     }
     
-    func genRandomQuestions() async throws -> [Question] {
+    func genRandomQuestions(code: String) async throws -> [Question] {
+        
+        var questionsTemp : [Question] = []
+        
+        
+        switch code {
+            case "whoSings" :
+            self.whoSingsQuestion = genWhoSingsQuestions()
+            questionsTemp.append(contentsOf: self.whoSingsQuestion)
+                break
+            case "year" :
+                self.yearSongQuestion = genYearSongQuestions()
+                questionsTemp.append(contentsOf: self.yearSongQuestion)
+                self.yearAlbumQuestion = genYearAlbumQuestions()
+                questionsTemp.append(contentsOf: self.yearAlbumQuestion)
+            case "shazamTitle" :
+                self.shazamTitleQuestion = genShazamTitleQuestions()
+                questionsTemp.append(contentsOf: self.shazamTitleQuestion)
+            case "shazamAuthor" :
+                self.shazamAuthorQuestion = genShazamAuthorQuestions()
+                questionsTemp.append(contentsOf: self.shazamAuthorQuestion)
+            case "authorSong" :
+                self.authorSongQuestion = genAuthorSongQuestion()
+                questionsTemp.append(contentsOf: self.authorSongQuestion)
+                questionsTemp.append(contentsOf: try await genLeaderBoardQuestions())
+            case "albumSong" :
+                self.albumSongQuestion = genAlbumSongQuestions()
+                questionsTemp.append(contentsOf: self.albumSongQuestion)
+            default:
+                try await questionsTemp.append(contentsOf: genAllQuestions())
+        }
+        
+       
+        isLoadingQuestions = false
+        questionsTemp.shuffle()
+        return questionsTemp
+    }
+    
+    func genAllQuestions() async throws -> [Question] {
         
         var questionsTemp : [Question] = []
         
