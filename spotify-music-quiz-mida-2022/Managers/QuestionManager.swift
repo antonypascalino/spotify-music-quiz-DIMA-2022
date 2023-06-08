@@ -55,30 +55,42 @@ class QuestionManager: ObservableObject {
         
         
         switch code {
-            case "whoSings" :
-            self.whoSingsQuestion = genWhoSingsQuestions()
-            questionsTemp.append(contentsOf: self.whoSingsQuestion)
+            case "whoIsTheAuthor" :
+                self.whoSingsQuestion = genWhoSingsQuestions()
+                questionsTemp.append(contentsOf: self.whoSingsQuestion)
+                print("Mode: Who")
                 break
-            case "year" :
+            case "recallTheYear" :
                 self.yearSongQuestion = genYearSongQuestions()
                 questionsTemp.append(contentsOf: self.yearSongQuestion)
                 self.yearAlbumQuestion = genYearAlbumQuestions()
                 questionsTemp.append(contentsOf: self.yearAlbumQuestion)
-            case "shazamTitle" :
+                print("Mode: Recall")
+                break
+            case "guessTheSong" :
                 self.shazamTitleQuestion = genShazamTitleQuestions()
                 questionsTemp.append(contentsOf: self.shazamTitleQuestion)
-            case "shazamAuthor" :
+                print("Mode: guessTheSong")
+                break
+            case "guessTheSinger" :
                 self.shazamAuthorQuestion = genShazamAuthorQuestions()
                 questionsTemp.append(contentsOf: self.shazamAuthorQuestion)
+                print("Mode: guessTheSinger")
+                break
             case "authorSong" :
                 self.authorSongQuestion = genAuthorSongQuestion()
                 questionsTemp.append(contentsOf: self.authorSongQuestion)
                 questionsTemp.append(contentsOf: try await genLeaderBoardQuestions())
-            case "albumSong" :
+                print("Mode: authorSong")
+                break
+            case "whichAlbum" :
                 self.albumSongQuestion = genAlbumSongQuestions()
                 questionsTemp.append(contentsOf: self.albumSongQuestion)
+                print("Mode: whichAlbum")
+                break
             default:
                 try await questionsTemp.append(contentsOf: genAllQuestions())
+                print("Mode: classic")
         }
         
        

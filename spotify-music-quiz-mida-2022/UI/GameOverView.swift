@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GameOverView: View {
     
-    let mode : String
+    let mode : Mode
     
     @StateObject private var model = UserViewModel()
     @EnvironmentObject var gameManager : GameManager
@@ -24,7 +24,7 @@ struct GameOverView: View {
         VStack {
             if(!model.isLoading) {
                 let score = gameManager.correctAnswersCount
-                let isHighscore = score > model.highscores[mode]!
+                let isHighscore = score > model.highscores[mode.label]!
                 
                 Spacer()
                 Text("Oh no!")
@@ -72,7 +72,7 @@ struct GameOverView: View {
                     .cornerRadius(100.0)
                     .simultaneousGesture(TapGesture().onEnded {
                         Task {
-                            try await gameManager.restartGame()
+                            try await gameManager.restartGame(codeQuestion: mode.label)
                         }
                         print("GAME RESTARTED")
                         gameRestarted = true
@@ -105,8 +105,8 @@ struct GameOverView: View {
             Task {
                 model.updateUserData()
                 try? await model.getUserHighscores()
-                if gameManager.correctAnswersCount > model.highscores[mode]! {
-                    try await model.setUserHighscore(mode: mode, newHighscore: gameManager.correctAnswersCount)
+                if gameManager.correctAnswersCount > model.highscores[mode.label]! {
+                    try await model.setUserHighscore(mode: mode.label, newHighscore: gameManager.correctAnswersCount)
                 }
             }
             @State var isLoading = false

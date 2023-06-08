@@ -8,12 +8,11 @@ class GameManager: ObservableObject {
     private(set) var questions: [Question] = []
     private(set) var tempQuestions: [Question] = []
     private(set) var currentQuestion : Question?
-    
     private(set) var currentAnswers : [String]?
     private(set) var gameIsOver = false
     private(set) var playerMiss = false
+    private(set) var codeQuestion = ""
     @Published private(set) var isTimerRunning = true
-    
     @Published private(set) var currentQuestionIndex = 0
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
@@ -26,6 +25,7 @@ class GameManager: ObservableObject {
     
     
     func startGame(codeQuestion: String) async throws {
+        self.codeQuestion = codeQuestion
 //        if(questions.count == 0 || correctAnswersCount != 0) {
         try await resetGame()
         QuestionManager.shared.isLoadingQuestions = true
@@ -52,6 +52,7 @@ class GameManager: ObservableObject {
         
     }
     func restartGame(codeQuestion: String) async throws {
+        self.codeQuestion = codeQuestion
         try await resetGame()
         QuestionManager.shared.isLoadingQuestions = true
         try await genQuestions(codeQuestion: codeQuestion)
@@ -90,7 +91,7 @@ class GameManager: ObservableObject {
                 }
                     if (currentQuestionIndex == (questions.count - 3))  {
                         print("CURRENT INDEX: \(currentQuestionIndex)")
-                        tempQuestions = try await QuestionManager.shared.genRandomQuestions(code: codeQuestion)
+                        tempQuestions = try await QuestionManager.shared.genRandomQuestions(code: self.codeQuestion)
                     }
 
             } else {

@@ -153,7 +153,7 @@ struct HomeView: View {
     
     func loadGame() async throws {
         print("Home View: START GAME")
-        try await gameManager.startGame()
+        try await gameManager.startGame(codeQuestion: "classic")
     }
 }
 

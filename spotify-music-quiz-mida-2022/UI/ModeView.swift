@@ -13,6 +13,7 @@ struct ModeView: View {
     
     let mode : Mode
     @StateObject private var model = UserViewModel()
+    @StateObject var gameManager = GameManager.shared
     @State var isLoading = true
     
     var body: some View {
@@ -69,7 +70,7 @@ struct ModeView: View {
                             .frame(width: 40.0, height: 40.0)
                     })
                     
-                    NavigationLink (destination: GameView(mode: mode.label) ,label: {
+                    NavigationLink (destination: GameView(mode: mode) ,label: {
                         Image(systemName: "play.circle.fill")
                             .resizable()
                             .scaledToFit()
@@ -142,6 +143,11 @@ struct ModeView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .toolbar(.hidden, for: .tabBar)
+        .onAppear {
+            Task {
+                try await gameManager.restartGame(codeQuestion: mode.label)
+            }
+        }
     }
 }
 

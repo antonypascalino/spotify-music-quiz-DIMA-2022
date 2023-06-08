@@ -10,7 +10,7 @@ import AVFoundation
 
 struct GameView: View {
     
-    let mode : String
+    let mode : Mode
     @StateObject var gameManager = GameManager.shared
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
