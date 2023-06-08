@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A0FFF772A2FD93100710AFB /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FFF762A2FD93100710AFB /* GameMode.swift */; };
+		0A15505E2A3237FA00454F8C /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15505D2A3237FA00454F8C /* FriendsView.swift */; };
 		0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55DF2A0BA27F0067504D /* TestView.swift */; };
 		0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */; };
 		0A1A55E52A0BFA650067504D /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E42A0BFA650067504D /* GameViewModel.swift */; };
@@ -103,6 +104,7 @@
 
 /* Begin PBXFileReference section */
 		0A0FFF762A2FD93100710AFB /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		0A15505D2A3237FA00454F8C /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		0A1A55DF2A0BA27F0067504D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedArtistResponse.swift; sourceTree = "<group>"; };
 		0A1A55E42A0BFA650067504D /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				0ABF2A9129BCCE5B0097B7FA /* SettingsView.swift */,
 				0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */,
 				0A1A55DF2A0BA27F0067504D /* TestView.swift */,
+				0A15505D2A3237FA00454F8C /* FriendsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				0A3DEEB82A1658E60004BA82 /* UserManager.swift in Sources */,
 				0A8145E42A276A2A005AC9D0 /* Track.swift in Sources */,
 				0A1A55E52A0BFA650067504D /* GameViewModel.swift in Sources */,
+				0A15505E2A3237FA00454F8C /* FriendsView.swift in Sources */,
 				0A809D182A1158050038DC64 /* Item.swift in Sources */,
 				0A24F24729D1FB7200841B43 /* AuthView.swift in Sources */,
 				0AFD9FC62A17847100CFBEEC /* ListImage.swift in Sources */,

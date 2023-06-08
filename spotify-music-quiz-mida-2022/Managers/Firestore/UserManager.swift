@@ -17,7 +17,7 @@ class UserManager {
     
     static let shared = UserManager()
     
-    private(set) var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
+    private(set) var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), SpotifyID: "", image: "")
     private var currentUserReference : DocumentReference?
     
     private let db = Firestore.firestore()

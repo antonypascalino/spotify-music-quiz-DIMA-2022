@@ -17,7 +17,7 @@ final class UserViewModel : ObservableObject {
     @Published private(set) var highscores = [String : Int]()
     @Published private(set) var authorsScores : Array<(key: String, value: Int)> = []
     @Published private(set) var authorsId : Array<(key: String, value: String)> = []
-    @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), highscore: 0, SpotifyID: "", image: "")
+    @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), SpotifyID: "", image: "")
     
     func getAllUsers() async throws {
         let users = try await UserManager.shared.getAllUsers()

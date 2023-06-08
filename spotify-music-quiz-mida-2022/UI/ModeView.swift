@@ -22,24 +22,26 @@ struct ModeView: View {
             
             let friends = model.friends
                 .filter { friend in
-                    friend.highscores?[mode.label] ?? nil != nil
+                    friend.highscores?[mode.label] ?? nil != nil && friend.highscores?[mode.label] != 0
+                    
                 }
                 .sorted { $0.highscores![mode.label]! > $1.highscores![mode.label]! }
             
-//            HStack {
-//                Text(mode.name)
-//                    .font(TextStyle.homeTitle())
-//                    .padding()
-//                    .foregroundColor(.white)
-//                Spacer()
-//            }
-//            .padding(.leading)
+            //            HStack {
+            //                Text(mode.name)
+            //                    .font(TextStyle.homeTitle())
+            //                    .padding()
+            //                    .foregroundColor(.white)
+            //                Spacer()
+            //            }
+            //            .padding(.leading)
             
             Image(mode.label)
                 .resizable()
                 .frame(width: 200.0, height: 200.0)
                 .scaledToFit()
                 .padding()
+                .shadow(color: mode.color, radius: 80 , y: -25)
             
             HStack{
                 Text("Your friends' highscore in this game mode!\nWho knows more about music?")
@@ -50,7 +52,7 @@ struct ModeView: View {
             .padding(.leading)
             HStack(spacing: 20) {
                 if(!model.isLoading) {
-                    Text("Your highscore: \(model.currentUser.highscores!["classic"]!)")
+                    Text("Your highscore: \(model.currentUser.highscores![mode.label] ?? 0)")
                         .font(TextStyle.leaderboardItem().bold())
                         .foregroundColor(.white)
                         .padding(.leading, 6.0)
@@ -102,13 +104,33 @@ struct ModeView: View {
                                 .foregroundColor(.white)
                                 .padding(.trailing)
                         }
+                        .listRowBackground(Color.clear)
+                        .padding(.bottom)
                     }
                 }
-                .background(Color("Black"))
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            
+            } else {
+                VStack {
+                    Spacer()
+                    Text("No friends of yours has ever played this mode!")
+                        .foregroundColor(.white)
+                        .font(TextStyle.leaderboardItem().bold())
+                    
+                    HStack {
+                        Text("Click on")
+                            .foregroundColor(.white)
+                            .font(TextStyle.leaderboardItem().bold())
+                        Image(systemName: "person.crop.circle.badge.plus")
+                            .foregroundColor(.white)
+                        Text("to add new friends!")
+                            .foregroundColor(.white)
+                            .font(TextStyle.leaderboardItem().bold())
+                    }
+                    Spacer()
+                }
+            }
         }
+        .background(Color("Black"))
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden, for: .tabBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -120,10 +142,7 @@ struct ModeView: View {
                     .minimumScaleFactor(0.1)
             }
         }
-        
-        //        .navigationBarHidden(true)
         .onAppear {
-            
             print("ModeView")
             Task {
                 print("TASK ModeView")

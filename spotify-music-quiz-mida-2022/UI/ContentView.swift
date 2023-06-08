@@ -15,7 +15,7 @@ struct ContentView: View {
                 Image(systemName: "house")
                 Text("Home")
             }
-            AddFriendsView()
+            FriendsView()
             .tabItem {
                 Image(systemName: "person.2")
                 Text("Friends")

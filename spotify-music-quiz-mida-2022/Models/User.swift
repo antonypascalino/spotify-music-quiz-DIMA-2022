@@ -18,7 +18,7 @@ struct User : Identifiable, Codable {
     var display_name : String
     var email : String
     var friends : [DocumentReference]
-    var highscore : Int
+//    var highscore : Int
     var SpotifyID : String
     var image : String
 }

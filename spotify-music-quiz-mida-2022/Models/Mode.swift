@@ -16,12 +16,12 @@ struct Mode {
     
     static let modes : [Mode] = [
         Mode(name: "Classic", label: "classic", color: Color("Green"), description: "All kind of questions"),
-        Mode(name: "Guess the song", label: "guessTheSong", color: Color("Green"), description: "Listen! Know the title?"),
-        Mode(name: "Guess the singer", label: "guessTheSinger", color: Color("Green"), description: "Listen! Who is singing?"),
-        Mode(name: "Recall the year", label: "recallTheYear", color: Color("Green"), description: "When was it released?"),
-        Mode(name: "Which album", label: "whichAlbum", color: Color("Green"), description: "In which album was it?"),
-        Mode(name: "Who is the author", label: "whoIsTheAuthor", color: Color("Green"), description: "Who sings that song?"),
-        Mode(name: "Author song", label: "authorSong", color: Color("Green"), description: "Which song they sing?")
+        Mode(name: "Guess the song", label: "guessTheSong", color: .yellow, description: "Listen! Know the title?"),
+        Mode(name: "Guess the singer", label: "guessTheSinger", color: .indigo, description: "Listen! Who is singing?"),
+        Mode(name: "Recall the year", label: "recallTheYear", color: .orange, description: "When was it released?"),
+        Mode(name: "Which album", label: "whichAlbum", color: .brown, description: "In which album was it?"),
+        Mode(name: "Who is the author", label: "whoIsTheAuthor", color: .yellow, description: "Who sings that song?"),
+        Mode(name: "Author song", label: "authorSong", color: .blue, description: "Which song they sing?")
     ]
 }
 

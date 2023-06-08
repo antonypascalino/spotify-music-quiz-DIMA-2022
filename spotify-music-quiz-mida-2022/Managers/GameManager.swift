@@ -26,6 +26,7 @@ class GameManager: ObservableObject {
     
     
     func startGame(codeQuestion: String) async throws {
+        self.restartGame = false
         self.codeQuestion = codeQuestion
 //        if(questions.count == 0 || correctAnswersCount != 0) {
         try await resetGame()
@@ -33,7 +34,7 @@ class GameManager: ObservableObject {
         try await QuestionManager.shared.importAllData()
         print("Start Game")
         try await self.genQuestions(codeQuestion: codeQuestion, regenQuest : true)
-        self.restartGame = false
+        
 //        }
     }
     

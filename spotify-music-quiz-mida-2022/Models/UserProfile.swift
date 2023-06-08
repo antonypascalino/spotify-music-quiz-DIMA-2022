@@ -15,7 +15,20 @@ struct UserProfile: Codable {
     func mapWithUser() -> User {
         
         print(UserProfile.self)
-        let user = User(display_name: display_name, email: email, friends: [DocumentReference](), highscore: 0, SpotifyID: id, image: images?.first?.url ?? "")
+        let user = User( highscores: [
+            "classic": 0,
+            "guessTheSong": 0,
+            "guessTheSinger": 0,
+            "recallTheYear": 0,
+            "whichAlbum": 0,
+            "whoIsTheAuthor": 0,
+            "authorSong": 0,
+        ],
+                         display_name: display_name,
+                         email: email,
+                         friends: [DocumentReference](),
+                         SpotifyID: id, image: images?.first?.url ?? "")
+        
         print(user)
         return user
     }

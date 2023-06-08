@@ -23,6 +23,8 @@ struct HomeView: View {
                             .font(TextStyle.GothamBlack(30))
                             .padding()
                             .foregroundColor(.white)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.1)
                         Spacer()
                         NavigationLink(destination: HomeView()) {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
@@ -88,8 +90,6 @@ struct HomeView: View {
                                 NavigationLink(destination: ModeView(mode: mode)) {
                                     GameMode(cover: mode.label, description: mode.description)
                                 }
-
-                                
                             }
                         }
                     }

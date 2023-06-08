@@ -13,12 +13,17 @@ struct AuthorScoreView: View {
     
     var body: some View {
         
-        VStack {
+        VStack(alignment: .leading) {
+            
+            Text("Authors score")
+                .font(TextStyle.GothamBlack(30))
+                .padding()
+                .foregroundColor(.white)
+            
             Text("Look at the authors you know better!\nFor each correct answer you get a point!")
-                .padding(.top, 25)
+                .padding()
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
-                .offset(x: -7)
             
             List(model.authorsScores, id: \.key) { author, score in
                 HStack {
@@ -31,15 +36,16 @@ struct AuthorScoreView: View {
                         .foregroundColor(.white)
                 }
                 .listRowBackground(Color.clear)
-                .listStyle(.plain)
-                .foregroundColor(.white)
             }
+            .listStyle(.plain)
+            .foregroundColor(.white)
             .task {
                 model.updateUserData()
                 try? await model.getUserAuthorsScore()
             }
-            .background(Color("Black"))
+            Spacer()
         }
+        .background(Color("Black"))
     }
 }
 
