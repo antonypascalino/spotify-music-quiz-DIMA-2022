@@ -171,7 +171,6 @@
 		0AD99A2929C4E885000EAF39 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		0AE1EADC2A313810001312A3 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		0AFD9FC52A17847000CFBEEC /* ListImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListImage.swift; sourceTree = "<group>"; };
-		0AFD9FC72A178D8700CFBEEC /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		0AFD9FC92A1ACB6D00CFBEEC /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,14 +260,6 @@
 			path = Firestore;
 			sourceTree = "<group>";
 		};
-		0A78A2B92A1BA5D300876600 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				0AFD9FC72A178D8700CFBEEC /* AddFriendView.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		0A8BF0682A16141C007EFA71 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -288,7 +279,6 @@
 				0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */,
 				0AD17C5C2950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests */,
 				0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */,
-				0A78A2B92A1BA5D300876600 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
