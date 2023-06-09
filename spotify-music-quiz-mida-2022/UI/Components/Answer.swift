@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+//The single answer component of the 4 answers for each question
 struct Answer: View {
     
     @EnvironmentObject var gameManager : GameManager

@@ -15,7 +15,6 @@ struct GameOverView: View {
     @StateObject private var model = UserViewModel()
     @EnvironmentObject var gameManager : GameManager
     @State var gameRestarted = false
-//    @State var isLoading = true
     
     var body: some View {
         
@@ -105,16 +104,12 @@ struct GameOverView: View {
             AudioPlayer.shared.stop()
             Task {
                 gameManager.restartGame = true
-                print("RestartGame from GameOverview : \(gameManager.restartGame)")
                 model.updateUserData()
                 try? await model.getUserHighscores()
                 if gameManager.correctAnswersCount > model.highscores[mode.label] ?? 0  {
                     try await model.setUserHighscore(mode: mode.label, newHighscore: gameManager.correctAnswersCount)
                 }
-                
             }
-            
-            @State var isLoading = false
         }
         .navigationBarHidden(true)
         .toolbar(.hidden, for: .tabBar)

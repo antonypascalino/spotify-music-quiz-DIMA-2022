@@ -1,6 +1,8 @@
 import Foundation
 import SwiftUI
 
+
+//All the function which uses SpotifyAPI to retrieve user song/author information
 final class APICaller{
     static let shared = APICaller()
     var currentUserProfile : UserProfile?
@@ -36,7 +38,6 @@ final class APICaller{
         }
     }*/
     
-    //Funziona
     public func getUserAlbums(completion: @escaping ((Result<[SimpleAlbum],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/albums"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -61,7 +62,6 @@ final class APICaller{
         }
     }
 
-    //Funziona
     public func getArtistRelatedArtists( for artistId: String , completion: @escaping ((Result<[Artist],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artistId)/related-artists"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -71,7 +71,7 @@ final class APICaller{
                 }
                 do{
                     //print(try JSONSerialization.jsonObject(with: data, options: .allowFragments))
-                    let result = try JSONDecoder().decode(RelatedArtistResponse.self, from: data) //Potrebbe non funzionare perchè prende items e non artists
+                    let result = try JSONDecoder().decode(RelatedArtistResponse.self, from: data)
                     completion(.success(result.artists)) //LibraryArtistResponse è corretto con items o ha senso result.artists
                 }catch{
                     completion(.failure(error))
@@ -82,7 +82,6 @@ final class APICaller{
         }
     }
 
-    //Funziona
     public func getArtistTopTracks( for artist: Artist , completion: @escaping ((Result<[Track],Error>)->Void)){
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/artists/\(artist.id)/top-tracks?market=IT"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -106,7 +105,6 @@ final class APICaller{
         }
     }
     
-    //Dovrebbe essere funzionante
     public func getCurrentUserPlaylist(completion: @escaping ((Result<[Playlist],Error>)->Void)) {
         createRequest(with: URL(string: "\(Constants.baseAPIURL)/me/playlists"), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
@@ -174,7 +172,6 @@ final class APICaller{
         }
     }
     
-    //Funziona
     public func getUserProfile(completion: @escaping ((Result<UserProfile,Error>) ->Void)) async throws {
         let url = "\(Constants.baseAPIURL)/me"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
@@ -193,11 +190,9 @@ final class APICaller{
                     
                     self.loadUserManager(currentUser: currentUser)
                     while(self.isLoading){
-                        ProgressView()
+                        
                         }
                     self.isLoading = true
-                    
-                    print("Stampa API")
                     
                         completion(.success(result))
                     
@@ -227,8 +222,6 @@ final class APICaller{
             }
     }
     
-    
-    //Forse non funziona, per ora non viene utilizzata -> bisogna recuperare l'array di Artists
     public func getFollowedArtists(completion: @escaping ((Result<LibraryArtistResponse,Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/following?type=artist"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
@@ -251,7 +244,6 @@ final class APICaller{
         }
     }
 
-    //Dovrebbe essere funzionante
     public func getTopArtists(completion: @escaping ((Result<[Artist],Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/top/artists"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
@@ -275,7 +267,6 @@ final class APICaller{
         }
     }
 
-    //Funziona
     public func getTopTracks(completion: @escaping ((Result<[Track],Error>) ->Void)){
         let url = "\(Constants.baseAPIURL)/me/top/tracks"
         createRequest(with: URL(string: url), type: .GET) { baseRequest in
@@ -322,7 +313,6 @@ final class APICaller{
         }
     }
     
-    //NON UTILIZZATA : DA VERIFICARE IL FUNZIONAMENTO
     public func getRecommendation(songID: String,completion: @escaping ((Result<RecommendationsResponse, Error>)->Void)){
         //let seeds = songs.joined(separator: ",")
         createRequest(

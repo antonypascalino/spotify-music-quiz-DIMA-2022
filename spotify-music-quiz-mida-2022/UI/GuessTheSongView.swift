@@ -9,7 +9,6 @@ struct GuessTheSongView: View {
     
     @EnvironmentObject var gameManager : GameManager
     
-//    let answerSelected = true
     var body: some View {
         
         VStack(alignment: .leading, spacing: 3) {

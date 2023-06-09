@@ -1,5 +1,6 @@
 import SwiftUI
 
+//Animated component that appears when you have to guess the song/author listening to te music
 struct ShazamLikeView: View {
     
     @State private var animating = true

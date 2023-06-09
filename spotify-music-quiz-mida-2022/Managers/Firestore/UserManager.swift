@@ -10,16 +10,13 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-
+//Class which calls Firebase function to store and retrive data from the server
 class UserManager {
-    
-//    @Published var users = [User]()
     
     static let shared = UserManager()
     
     private(set) var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), SpotifyID: "", image: "")
     private var currentUserReference : DocumentReference?
-    
     private let db = Firestore.firestore()
     private let usersCollection = Firestore.firestore().collection("users")
     private let authorsCollection = Firestore.firestore().collection("authors")
@@ -43,6 +40,7 @@ class UserManager {
         return users
     }
     
+    //On user log in updates their data on the server or create a new user if does not exist yet
     func setUser (user: User, completion: @escaping ((Result<Bool,Error>) ->Void)) async throws {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: user.SpotifyID).getDocuments(as: User.self)
@@ -62,17 +60,15 @@ class UserManager {
             try await userDocument(documentID: (users.first?.id)!).setData(from: user, mergeFields: ["image", "email", "SpotifyID"])
             self.currentUser = try await userDocument(documentID: (users.first?.id)!).getDocument(as: User.self)
             self.currentUserReference = try await userDocument(documentID: currentUser.id!)
-            print("CURRENT USER FROM FIREBASE: \(self.currentUser.display_name)")
+//            print("CURRENT USER FROM FIREBASE: \(self.currentUser.display_name)")
         }
         completion(.success(false))
     }
 
-    
     func getUser(SpotifyID: String) async throws -> User {
         
         let users = try await usersCollection.whereField("SpotifyID", isEqualTo: SpotifyID).getDocuments(as: User.self)
-        
-        print (users)
+//        print (users)
         
         return users.first!
     }
@@ -80,16 +76,10 @@ class UserManager {
     func getUserHighscores() async throws -> [String : Int]  {
         let currentUserReference = try await userDocument(documentID: currentUser.id!)
         let highscores = try await currentUserReference.getDocument(as: User.self).highscores ?? [String : Int]()
-//
-        print("current user highscores: \(highscores) ")
+
+//        print("current user highscores: \(highscores) ")
         return highscores
         
-//        let users = try await usersCollection.whereField("SpotifyID", isEqualTo: currentUser.SpotifyID).getDocuments(as: User.self)
-//        if (users.isEmpty) {
-//            return 0
-//        } else {
-//            return users.first!.highscore
-//        }
     }
     
     func setUserHighscore(mode: String, newHighscore: Int) async throws {
@@ -98,22 +88,10 @@ class UserManager {
         
         try await currentUserReference!.setData(["highscores" : [mode : newHighscore]], merge: true)
         self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
-    
-        
-//        currentUserReference!.updateData(["highscore" : newHighscore]) { error in
-//            if let error = error {
-//                print("Error updating highscore field: \(error.localizedDescription)")
-//            } else {
-//                print("Highscore updated successfully.")
-//            }
-//        }
-//        self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
     }
     
     
     func addFriend(newFriendSpotifyID: String) async throws {
-        
-        print("CURRENT USER FRIENDS: \(currentUser.friends)")
         
         let newFriend = try await getUser(SpotifyID: newFriendSpotifyID)
         let newFriendReference = try await userDocument(documentID: newFriend.id!)
@@ -126,12 +104,10 @@ class UserManager {
             }
         }
         self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
-        print("CURRENT USER FRIENDS: \(currentUser.friends)")
+//        print("CURRENT USER FRIENDS: \(currentUser.friends)")
     }
     
     func getUserFriends() async throws -> [User] {
-        
-//        print("CURRENT USER FROM USERMANAGER: \(currentUser)")
         
         var friends : [User] = []
 
@@ -143,6 +119,7 @@ class UserManager {
         return friends
     }
     
+    //Increments the score of an author for a user
     func setUserAuthorScore(author: String) async throws {
         
         let userAuthors = try await getUserAuthorsScore()
@@ -154,25 +131,15 @@ class UserManager {
         self.currentUser = try await userDocument(documentID: currentUser.id!).getDocument(as: User.self)
     }
     
+    //Get for each author the score of the user for that author
     func getUserAuthorsScore() async throws -> [String : Int] {
         let currentUserReference = try await userDocument(documentID: currentUser.id!)
         
         let authors = try await currentUserReference.getDocument(as: User.self).authors ?? [String : Int]()
-//        for (author, score) in authors {
-//            print("Author: \(author), Score: \(score)\n")
-//        }
         return authors
     }
     
-//    func getUserAuthorsId() async throws -> [String : String] {
-//        let currentUserReference = try await userDocument(documentID: currentUser.id!)
-//        let authorsId = try await currentUserReference.getDocument(as: User.self).idList!
-//        for (author, score) in authors {
-//            print("Author: \(author), Score: \(score)\n")
-//        }
-//        return authorsId
-//    }
-    
+    //Each time an user faces a question with an author, store the author's name and their SpotifyID for future retrieve
     func addAuthor(artist: String, artistId: String ) async throws {
         let authorToAdd: [String: Any] = [
             "name": artist,
@@ -188,6 +155,7 @@ class UserManager {
         }
     }
     
+    //Gets the SpotifyID of the 5 authors the user knows bettere based on their score
     func getTopAuthorsId() async throws -> [String]  {
         let dictionary = try await getUserAuthorsScore()
         let sortedDictionary = dictionary.sorted { $0.value > $1.value }

@@ -146,26 +146,19 @@ struct HomeView: View {
                 .background(Color("Black"))
                 .foregroundColor(.white)
             } else {
-                ProgressView()
+                LoadingView()
             }
         }
 //        .toolbar(.visible, for: .tabBar)
 //        .navigationBarHidden(true)
         .onAppear {
             Task {
-                print("Inizio task HomeView")
                 try await loadData()
 
                 if(gameManager.restartGame){
                     try await loadGame()
                 }
-
-                print("Fine task HomeView")
             }
-            //if QuestionManager.shared.isLoadingQuestions{
-               
-            //}
-           
         }
     }
 

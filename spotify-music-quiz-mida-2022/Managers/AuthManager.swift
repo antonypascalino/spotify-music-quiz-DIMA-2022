@@ -19,7 +19,7 @@ class AuthManager {
         static let redirectURI = "https://localhost:8888/callback"
         //static let scopes = "user-read-private"
         static let scopes =
-         "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email%20user-top-read"
+        "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email%20user-top-read"
     }
     
     private init() {}
@@ -29,7 +29,7 @@ class AuthManager {
         let string = "\(base)?response_type=code&client_id=\(AuthManager.Constants.clientID)&scope=\(Constants.scopes)&redirect_uri=\(Constants.redirectURI)&show_dialog=TRUE"
         return URL(string: string)
     }
-
+    
     private var refreshingToken: Bool = false
     
     var isSignedIn: Bool {
@@ -56,11 +56,11 @@ class AuthManager {
         let fiveMinutes: TimeInterval = 300
         return currentDate.addingTimeInterval(fiveMinutes) >= expirationDate
     }
-
+    
     private var onRefreshBlock = [((String)->Void)]()
-
-
-
+    
+    
+    
     public func withValidToken(completion: @escaping ((String)->Void)){
         guard !refreshingToken else{
             onRefreshBlock.append(completion)
@@ -77,13 +77,13 @@ class AuthManager {
             completion(token)
         }
     }
-
+    
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void){
-
+        
         guard !refreshingToken else {
             return
         }
-
+        
         guard shouldRefreshToken else {
             completion(true)
             return
@@ -179,7 +179,7 @@ class AuthManager {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 self.cacheToken(result: result)
                 completion(true)
-//                print("TOKEN: \(result)")
+                //                print("TOKEN: \(result)")
             }catch{
                 print(error.localizedDescription)
                 completion(false)
@@ -187,14 +187,14 @@ class AuthManager {
         }
         task.resume()
     }
-
+    
     
     
     
     private func cacheToken(result: AuthResponse){
         UserDefaults.standard.set(result.access_token,
                                   forKey: "access_token")
-                                  
+        
         if let refresh_token = result.refresh_token {
             UserDefaults.standard.set(result.refresh_token,
                                       forKey: "refresh_token")

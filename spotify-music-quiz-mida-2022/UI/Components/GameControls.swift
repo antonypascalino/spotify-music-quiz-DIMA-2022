@@ -19,7 +19,7 @@ struct GameControls: View {
             
             if goHome {
                 NavigationLink(
-                    destination: HomeView(),
+                    destination: ContentView(),
                     isActive: $goHome) {
                         EmptyView()
                     }
@@ -27,11 +27,11 @@ struct GameControls: View {
             
             Button(action: {
                 showAlert = true
+                gameManager.pauseTimer()
             }, label: {
                 Image(systemName: "backward.end.fill")
                     .foregroundColor(.white)
                     .font(.system(size: 45, weight: .ultraLight))
-//                    .opacity(!gameManager.answerSelected ? 0.5 : 1)
             
             })
             .alert(isPresented: $showAlert) {
@@ -39,14 +39,14 @@ struct GameControls: View {
                     title: Text("Wanna leave the game?"),
                     message: Text("The score of this game will be lost!"),
                     primaryButton: .default(Text("Yes")) {
+                        AudioPlayer.shared.stop()
                         goHome = true
                         gameManager.gameOver()
-//                        Task {
-//                            try await gameManager.endGame()
-//                        }
+                        gameManager.restartGame = true
                     },
                     secondaryButton: .cancel(Text("No").foregroundColor(Color("Red"))) {
                         showAlert = false
+                        gameManager.resumeTimer()
                     }
                 )
             }

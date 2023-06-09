@@ -3,6 +3,7 @@ import SwiftUI
 
 class GameManager: ObservableObject {
     static let shared = GameManager()
+    
     let userManager = UserManager.shared
     
     private(set) var questions: [Question] = []
@@ -20,11 +21,6 @@ class GameManager: ObservableObject {
     
     @State var userProfile : UserProfile?
     
-    
-    
-    init() {}
-    
-    
     func startGame(codeQuestion: String) async throws {
         self.restartGame = false
         self.codeQuestion = codeQuestion
@@ -39,12 +35,12 @@ class GameManager: ObservableObject {
     }
     
     func genQuestions(codeQuestion: String, regenQuest : Bool) async throws {
-        print("GEN QUESTION: QUESTION COUNT: \(questions.count) Answer Count: \(correctAnswersCount)")
-       // if(questions.count == 0 || correctAnswersCount != 0) {
+//        print("GEN QUESTION: QUESTION COUNT: \(questions.count) Answer Count: \(correctAnswersCount)")
+//            if(questions.count == 0 || correctAnswersCount != 0) {
 //            tempQuestions = []
 //            questions = []
             questions = try await QuestionManager.shared.genRandomQuestions(code: codeQuestion, regenQuest: regenQuest)
-            print("CountGen: \(questions.count)")
+            print("Question generated: \(questions.count)")
             questions.shuffle()
             DispatchQueue.main.async {
                 self.currentQuestionIndex = 0
@@ -120,15 +116,13 @@ class GameManager: ObservableObject {
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers()
                 }
-            }
-            
-//            
+            }     
         }
         
     }
     
     func getNextQuestion() -> Question? {
-        print("Risposta esatta: \(currentQuestion?.correctAnswer)")
+//        print("Risposta esatta: \(currentQuestion?.correctAnswer)")
         return currentQuestion
     }
     
@@ -159,59 +153,6 @@ class GameManager: ObservableObject {
     func resumeTimer() {
         isTimerRunning = true
     }
-    
-
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-//    private func generateAlbumSongQuestions() -> [Question] {
-//        var questions: [Question] = []
-//        self.albums.shuffle()
-//
-//        for var album in self.albums {
-//            album.tracks.items.shuffle()
-//            let correctTrack = album.tracks.items.first!
-//            let correctAnswer = correctTrack.name
-//
-//            self.reccTracks = []
-//            loadRecc(track: correctTrack)
-//            while(isLoading){
-//                ProgressView()
-//            }
-//            isLoading = true
-//
-//            if !similarArtists.isEmpty{
-//                for i in 0...2{
-//                    similarArtistsNames.append(similarArtists[i].name)
-//                }
-//
-//                let question = Question(questionText: "Who sings the song _\(filterString(track.name))_?",
-//                                         correctAnswer: correctAnswer,
-//                                         wrongAnswers: similarArtistsNames)
-//                questions.append(question)
-//            }
-//
-//
-//        }
-//
-//            return questions
-//
-//
-//
-//    }
-
-    
-   
-    
-   
-   
 }
 
 

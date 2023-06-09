@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-
+//Page of the single game mode, shows the leaderborad of your friends in this mode and can launch the game
 struct ModeView: View {
     
     let mode : Mode
@@ -27,20 +27,11 @@ struct ModeView: View {
                 }
                 .sorted { $0.highscores![mode.label]! > $1.highscores![mode.label]! }
             
-//            mode.color
-//                .frame(height: UIScreen.main.bounds.height / 3)
-//                .edgesIgnoringSafeArea(.top)
-//                        
-//            Color("Black")
-//                .frame(height: UIScreen.main.bounds.height / 3 * 2)
-//                .edgesIgnoringSafeArea(.bottom)
-            
             Image(mode.label)
                 .resizable()
                 .frame(width: 220.0, height: 220.0)
                 .scaledToFit()
                 .offset(y: -20)
-//                .padding()
                 .shadow(color: Color("Black").opacity(0.8), radius: 15)
             
             HStack {
@@ -50,7 +41,6 @@ struct ModeView: View {
                     .foregroundColor(.white)
                 Spacer()
             }
-//            .padding(.leading)
             
             HStack{
                 Text(mode.description)
@@ -147,16 +137,6 @@ struct ModeView: View {
                 )
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden, for: .tabBar)
-//        .toolbar {
-//            ToolbarItem(placement: .principal) {
-//                Text(m)
-//                    .font(TextStyle.homeTitle())
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .scaledToFit()
-//                    .minimumScaleFactor(0.1)
-//            }
-//        }
         .onAppear {
             print("ModeView")
             Task {

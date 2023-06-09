@@ -16,7 +16,6 @@ struct GameView: View {
     @State private var userAnswer = ""
     @State private var isLoading = true
     
-    @available(iOS 16.0, *)
     var body: some View {
         
         let playerMiss = gameManager.playerMiss
@@ -29,7 +28,6 @@ struct GameView: View {
                     .environmentObject(gameManager)
             } else {
                 let currentAnwers = gameManager.currentAnswers!
-                //        let currentQuestion = gameManager.getNextQuestion()!
                 
                 
                 VStack(alignment: .leading, spacing: 30) {
@@ -53,26 +51,6 @@ struct GameView: View {
                         
                         GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
                             .environmentObject(gameManager)
-                        //                            .onAppear {
-                        //                                print("onAppear Shazam")
-                        //                                AudioPlayer.shared.stop()
-                        //                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        //                            }
-                        //                            .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                        //                                AudioPlayer.shared.stop()
-                        //                                AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                        //                            }
-                        //                            .onChange(of: gameManager.isTimerRunning) { newValue in
-                        //                                if newValue == false {
-                        //                                    AudioPlayer.shared.pause()
-                        //                                } else {
-                        //                                    AudioPlayer.shared.resume()
-                        //                                }
-                        //                            }
-                        //                            .onDisappear {
-                        //                                print("onDisappear Shazam")
-                        //                                AudioPlayer.shared.stop()
-                        //                            }
                             .frame(height: 380)
                     } else {
                         VStack {
@@ -118,17 +96,7 @@ struct GameView: View {
         .navigationBarHidden(true)
         .toolbar(.hidden, for: .tabBar)
         .toolbar(.hidden, for: .navigationBar)
-    }
-    
-    
-    func loadData() async throws {
-        
-        //isLoading = QuestionManager.shared.isLoadingQuestions
-//        try await gameManager.startGame()
-        //isLoading = QuestionManager.shared.isLoadingQuestions
-        
-    }
-            
+    }   
 }
 
 

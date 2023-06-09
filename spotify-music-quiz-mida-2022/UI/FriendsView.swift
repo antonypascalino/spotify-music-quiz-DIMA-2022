@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+//Show the list of your friends and allows to add new ones
 struct FriendsView: View {
     
     @StateObject private var model = UserViewModel()

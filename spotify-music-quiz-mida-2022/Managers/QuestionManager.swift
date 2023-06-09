@@ -117,7 +117,7 @@ class QuestionManager: ObservableObject {
                 }
             case "home":
                 try await questionsTemp.append(contentsOf: genAllQuestions())
-                print("Home")
+//                print("Home")
             default:
                 print("Mode: classic")
         }
@@ -177,7 +177,7 @@ class QuestionManager: ObservableObject {
 
             loadArtistRelatedArtists(artistId: artistId)
             while(isLoading) {
-                ProgressView()
+                 
             }
             isLoading = true
 
@@ -187,7 +187,7 @@ class QuestionManager: ObservableObject {
                 similarArtists.shuffle()
                 loadArtistTopTracks(originalArtist: self.similarArtists[0])
                     while(isLoading) {
-                    ProgressView()
+                     
                 }
                 isLoading = true
 
@@ -198,7 +198,7 @@ class QuestionManager: ObservableObject {
             
                 loadReccom(track: self.songsBySameArtist.first!)
                 while(isLoading) {
-                    ProgressView()
+                     
                 }
                 isLoading = true
             
@@ -247,7 +247,7 @@ class QuestionManager: ObservableObject {
             
             loadArtistRelatedArtists(artistId: track.artists.first!.id)
             while(isLoading) {
-                ProgressView()
+                 
             }
             isLoading = true
             
@@ -283,13 +283,13 @@ class QuestionManager: ObservableObject {
         for track in tempTracks {
             
             let correctAnswer = filterString(track.name)
-            var similarSongsNames : [String] = []
+//            var similarSongsNames : [String] = []
             
             self.similarSongs = []
             
             loadReccom(track: track)
             while(isLoading) {
-                ProgressView()
+                 
             }
             isLoading = true
             
@@ -332,12 +332,12 @@ class QuestionManager: ObservableObject {
             let correctAnswer = getOnlyYear(allDate: album.release_date)
             
             let similarDates = generateRandomDates(originalYear: getOnlyYear(allDate: album.release_date), originalArtist : album.artists.first!)
-            print("songUrlAll: \(album.tracks.items)")
+//            print("songUrlAll: \(album.tracks.items)")
 
             let songsWithUrl = album.tracks.items.filter {
                 $0.preview_url != nil
             }
-            print("songUrl1: \(songsWithUrl)")
+//            print("songUrl1: \(songsWithUrl)")
             
             let question = Question(questionText: "What year was the album _\(album.name)_ released?",
                                     correctAnswer: correctAnswer,
@@ -448,7 +448,7 @@ class QuestionManager: ObservableObject {
                 self.reccTracks = []
                 loadRecc(track: correctTrack)
                 while(isLoading) {
-                    ProgressView()
+                     
                 }
                 isLoading = true
                 self.reccTracks.shuffle()
@@ -464,12 +464,12 @@ class QuestionManager: ObservableObject {
                             break;
                         }
                     }
-                    print("songUrLWhichAll: \(album.tracks.items)")
+//                    print("songUrLWhichAll: \(album.tracks.items)")
                     let songsWithUrl = album.tracks.items.filter {
                         $0.preview_url != nil
                     }
                     
-                    print("songUrlWhich: \(songsWithUrl)")
+//                    print("songUrlWhich: \(songsWithUrl)")
 
                     let question = Question(questionText: "Which of these songs is in the album _\(album.name)_?",
                                             correctAnswer: correctAnswer,
@@ -521,7 +521,7 @@ class QuestionManager: ObservableObject {
             loadArtistTopTracks(originalArtist: originalArtist)
 
             while(isLoading) {
-                LoadingView()
+                
             }
             isLoading = true
         
@@ -614,7 +614,7 @@ class QuestionManager: ObservableObject {
                 loadTracksFromPlaylist(playlist: self.filteredUserPlaylists[i])
         
                 while(isLoading){
-                    ProgressView()
+                     
                 }
         
                 var trackList : [Track] = []
@@ -747,18 +747,17 @@ class QuestionManager: ObservableObject {
         loadTopTracks()
         
         while(isLoading) {
-            ProgressView()
+             
         }
         isLoading = true
-        print("Saved Tracks Inizio")
+//        print("Saved Tracks Inizio")
         loadSavedTracks()
         while(isLoading) {
-            ProgressView()
+             
         }
         isLoading = true
-        print("Saved Tracks Fine")
+//        print("Saved Tracks Fine")
         loadTracksFromPlaylists()
-        print("Playlist2")
         
 
         
@@ -769,7 +768,7 @@ class QuestionManager: ObservableObject {
         loadAlbums()
         
         while(isLoading) {
-            ProgressView()
+             
         }
         isLoading = true
         
@@ -781,7 +780,7 @@ class QuestionManager: ObservableObject {
         let words = ["lofi", "relax", "cover", "chill"]
         loadPlaylists()
         while(isLoading){
-            ProgressView()
+             
         }
         isLoading = true
         

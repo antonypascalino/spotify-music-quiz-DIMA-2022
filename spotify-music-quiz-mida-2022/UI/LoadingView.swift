@@ -12,13 +12,16 @@ struct LoadingView: View {
     @State private var isMovingRight = false
     
     var body: some View {
+        
         VStack(spacing: 100) {
+            
             Image("Icon")
                 .resizable()
                 .foregroundColor(Color("Green"))
                 .frame(width: 120, height: 120)
                 .scaledToFit()
                 .scaleEffect(animating ? 1.5 : 1)
+            
             ZStack {
                 Rectangle()
                     .foregroundColor(.gray)
@@ -32,13 +35,11 @@ struct LoadingView: View {
                     .foregroundColor(Color("Green"))
                     .frame(width: 60, height: 10)
                     .offset(x: isMovingRight ? 125 : -125)
-//                    .animation(Animation.easeInOut(duration: 1.5).repeatForever(), value: isMovingRight)
                     .onAppear {
                         withAnimation(Animation.easeInOut(duration: 1.5).repeatForever()) {
                             isMovingRight.toggle()
                         }
                     }
-                
             }
         }
         .onAppear {
