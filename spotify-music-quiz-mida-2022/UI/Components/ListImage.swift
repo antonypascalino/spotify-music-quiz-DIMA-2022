@@ -17,8 +17,9 @@ struct ListImage: View {
             AsyncImage(url: URL(string: imageString)) { image in
                 image
                     .resizable()
+                    .scaledToFill()
                     .frame(width: 40, height: 40)
-                    .scaledToFit()
+                    .clipShape(Circle())
             } placeholder: {
                 Image(systemName: "person.crop.circle")
             }

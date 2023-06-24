@@ -25,61 +25,69 @@ struct GuessTheSongView: View {
                         
                     } placeholder: {
                         ShazamLikeView()
+                            .scaleEffect(UIDevice.current.userInterfaceIdiom == .pad ? 1.3 : 1)
                     }
                 }
                 .frame(maxWidth: .infinity)
             } else {
                 ShazamLikeView()
+                    .scaleEffect(UIDevice.current.userInterfaceIdiom == .pad ? 1.3 : 1)
+
             }
             HStack {
-                let guessAuthor = gameManager.currentQuestion?.author == gameManager.currentQuestion?.correctAnswer
-                TextField("",text: $guessedTitle)
-                    .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
-                        Text(guessAuthor ? "_Author..._" : "_Title..._")
-                            .font(TextStyle.answer().italic())
-                            .foregroundColor(Color.gray)
-                            .opacity(0.7)
-                    }
-                    .placeholder(when: gameManager.answerSelected) {
-                        Text(guessAuthor ? gameManager.currentQuestion!.songName! : correctAnswer)
-                            .font(TextStyle.answer())
-                            .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                    }
-                    .onSubmit {
+                Spacer()
+                HStack {
+                    let guessAuthor = gameManager.currentQuestion?.author == gameManager.currentQuestion?.correctAnswer
+                    TextField("",text: $guessedTitle)
+                        .placeholder(when: guessedTitle.isEmpty && !gameManager.answerSelected) {
+                            Text(guessAuthor ? "_Author..._" : "_Title..._")
+                                .font(TextStyle.answer().italic())
+                                .foregroundColor(Color.gray)
+                                .opacity(0.7)
+                        }
+                        .placeholder(when: gameManager.answerSelected) {
+                            Text(guessAuthor ? gameManager.currentQuestion!.songName! : correctAnswer)
+                                .font(TextStyle.answer())
+                                .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                        }
+                        .onSubmit {
+                            checkAnswer()
+                            gameManager.selectAnswer(isCorrect)
+                            guessedTitle = ""
+                        }
+                        .font(TextStyle.answer())
+                        .foregroundColor(Color("White"))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.1)
+                        .disabled(gameManager.answerSelected)
+                    
+                    Button {
                         checkAnswer()
                         gameManager.selectAnswer(isCorrect)
                         guessedTitle = ""
+                    } label: {
+                        Image(systemName: "checkmark.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(Color("Green"))
+                            .frame(width: 30, height: 30)
+                            .opacity(guessedTitle == "" ? 0 : 1)
                     }
-                    .font(TextStyle.answer())
-                    .foregroundColor(Color("White"))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.1)
                     .disabled(gameManager.answerSelected)
-                
-                Button {
-                    checkAnswer()
-                    gameManager.selectAnswer(isCorrect)
-                    guessedTitle = ""
-                } label: {
-                    Image(systemName: "checkmark.circle.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(Color("Green"))
-                                    .frame(width: 30, height: 30)
-                                    .opacity(guessedTitle == "" ? 0 : 1)
                 }
-                .disabled(gameManager.answerSelected)
+                .padding(.leading, 10)
+                .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 600 : 370.0)
+                Spacer()
             }
-            .padding(.leading)
-            .frame(width: 370.0)
             
             Text((gameManager.currentQuestion?.author)!)
                 .font(TextStyle.time())
                 .opacity(gameManager.answerSelected ? 1 : 0)
                 .foregroundColor(isCorrect ? Color("Green") : Color("Red"))
-                .padding([.trailing, .leading])
+                .padding(.trailing)
+                .padding(.leading, UIDevice.current.userInterfaceIdiom == .pad ? 310 : 20)
         }
         .frame(maxWidth: .infinity)
         .onChange(of: gameManager.playerMiss) { newValue in

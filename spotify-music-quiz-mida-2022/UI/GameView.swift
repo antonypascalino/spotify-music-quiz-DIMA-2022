@@ -41,7 +41,7 @@ struct GameView: View {
                     Text(.init((gameManager.getNextQuestion()?.questionText)!))
                         .font(TextStyle.LoginTitle())
                         .lineLimit(gameManager.getNextQuestion()!.isShazam ? 1 : 3)
-                        .frame(width: 360.0, height: 60, alignment: .leading)
+                        .frame(height: 60, alignment: .leading)
                         .minimumScaleFactor(0.1)
                         .foregroundColor(.white)
                         .padding(.leading)
@@ -53,18 +53,22 @@ struct GameView: View {
                             .environmentObject(gameManager)
                             .frame(height: 380)
                     } else {
-                        VStack {
-                            ForEach(currentAnwers, id: \.self) { answer in
-                                Answer(answer: answer)
-                                    .environmentObject(gameManager)
+                        HStack {
+                            Spacer()
+                            VStack {
+                                ForEach(currentAnwers, id: \.self) { answer in
+                                    Answer(answer: answer)
+                                        .environmentObject(gameManager)
+                                }
+                                .padding([.top, .bottom] , 12)
+                                .padding(.leading , 5)
                             }
-                            .padding([.top, .bottom] , 12)
-                            .padding(.leading , 5)
+                            .frame(height: 380)
+                            .frame(height: 380)
+                            .offset(y: -18)
+                            .blur(radius: gameManager.isTimerRunning ? 0 : 10)
+                            Spacer()
                         }
-                        .frame(height: 380)
-                        .frame(height: 380)
-                        .offset(y: -18)
-                        .blur(radius: gameManager.isTimerRunning ? 0 : 10)
                     }
                     
                     VStack {

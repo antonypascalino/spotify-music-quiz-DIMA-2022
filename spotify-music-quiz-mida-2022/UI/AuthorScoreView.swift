@@ -40,10 +40,6 @@ struct AuthorScoreView: View {
                 }
                 .listStyle(.plain)
                 .foregroundColor(.white)
-                .task {
-                    model.updateUserData()
-                    try? await model.getUserAuthorsScore()
-                }
             } else {
                 VStack(alignment: .center, spacing: 20) {
                     Spacer()
@@ -60,6 +56,10 @@ struct AuthorScoreView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Black"))
+        .task {
+            model.updateUserData()
+            try? await model.getUserAuthorsScore()
+        }
     }
 }
 

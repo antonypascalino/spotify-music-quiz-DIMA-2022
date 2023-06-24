@@ -20,12 +20,17 @@ struct GameMode: View {
                 .scaledToFit()
                 .frame(width: 140, height: 140)
             
-            Text(description)
-                .font(TextStyle.GothamLight(20).bold())
-                .foregroundColor(.gray)
-                .minimumScaleFactor(0.5)
-                .lineLimit(2)
-                .scaledToFill()
+            HStack {
+                Text(description)
+                    .frame(width: 130)
+                    .font(TextStyle.GothamLight(20).bold())
+                    .foregroundColor(.gray)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .scaledToFit()
+                Spacer()
+            }
+            .frame(width: 140)
         }
         .frame(width: 140)
     }

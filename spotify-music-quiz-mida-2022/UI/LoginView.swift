@@ -14,8 +14,10 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
                 HStack {
-                    Text("Spotify Music Quiz")
+                    Spacer()
+                    Text("Spotify\nMusic\nQuiz")
                         .font(TextStyle.LoginTitle())
                         .foregroundColor(Color("Green"))
                         .multilineTextAlignment(.leading)
@@ -66,6 +68,7 @@ struct LoginView: View {
             
         }
         .accentColor(.white)
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

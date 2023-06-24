@@ -76,9 +76,7 @@ struct FriendsView: View {
                 }
                 Spacer()
             }
-    
             Spacer()
-            
         }
         .task {
             model.updateUserData()
@@ -86,17 +84,6 @@ struct FriendsView: View {
             try? await model.getAllUsers()
         }
         .background(Color("Black"))
-//        .navigationTitle(Text(""))
-//        .toolbar {
-//            ToolbarItem(placement: .principal) {
-//                Text(" friend")
-//                    .font(TextStyle.homeTitle())
-//                    .foregroundColor(.white)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .scaledToFit()
-//                    .minimumScaleFactor(0.1)
-//            }
-//        }
     }
     
     func alreadyed(user: User) -> Bool {

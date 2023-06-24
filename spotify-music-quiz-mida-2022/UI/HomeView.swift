@@ -70,23 +70,23 @@ struct HomeView: View {
                         }
                     }
                     .preferredColorScheme(.dark)
-                    HStack(spacing: 50) {
+                    HStack() {
                         Spacer()
                         if !(userModel.currentUser.image == "") {
                             AsyncImage(url: URL(string: userModel.currentUser.image)) { image in
                                 image
                                     .resizable()
-                                    .frame(width: 120, height: 120)
-                                    .scaledToFill()
-                                    .cornerRadius(100)
+                                    .scaledToFit()
+                                    .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 250 : 120, height: UIDevice.current.userInterfaceIdiom == .pad ? 300 : 120)
+                                    .clipShape(Circle())
                                     .shadow(color: Color("Green"), radius: 20)
                             } placeholder: {
                                 Image(systemName: "person.crop.circle")
                                     .resizable()
-                                    .foregroundColor(Color("Green"))
-                                    .frame(width: 120, height: 120)
                                     .scaledToFit()
-                                    .cornerRadius(100)
+                                    .foregroundColor(Color("Green"))
+                                    .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 250 : 120, height: UIDevice.current.userInterfaceIdiom == .pad ? 300 : 120)
+                                    
                             }
                         } else {
                             Image(systemName: "person.crop.circle")
@@ -96,14 +96,13 @@ struct HomeView: View {
                                 .scaledToFit()
                                 .cornerRadius(100)
                         }
+                        Spacer()
                         VStack {
                             Text("Highscore:")
-                                .font(TextStyle.score(26))
+                                .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 60 : 20))
                                 .foregroundColor(Color("Green"))
-                                .scaledToFit()
-                                .minimumScaleFactor(0.1)
                             Text(String(userModel.currentUser.highscores!["classic"]!))
-                                .font(TextStyle.score(80))
+                                .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 150 : 80))
                                 .foregroundColor(Color("Green"))
                                 .padding(.bottom, 40.0)
                                 .task {
@@ -119,27 +118,41 @@ struct HomeView: View {
                         .font(TextStyle.GothamBlack(30))
                         .padding(.leading)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(Mode.modes.prefix(3) , id: \.name) { mode in
-                                NavigationLink(destination: ModeView(mode: mode)) {
-                                    GameMode(cover: mode.label, description: mode.description)
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(Mode.modes, id: \.name) { mode in
+                                    NavigationLink(destination: ModeView(mode: mode)) {
+                                        GameMode(cover: mode.label, description: mode.description)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .padding()
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(Mode.modes.suffix(4) , id: \.name) { mode in
-                                NavigationLink(destination: ModeView(mode: mode)) {
-                                    GameMode(cover: mode.label, description: mode.description)
+                        .padding()
+                        
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(Mode.modes.prefix(3) , id: \.name) { mode in
+                                    NavigationLink(destination: ModeView(mode: mode)) {
+                                        GameMode(cover: mode.label, description: mode.description)
+                                    }
                                 }
                             }
                         }
+                        .padding()
+                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(Mode.modes.suffix(4) , id: \.name) { mode in
+                                    NavigationLink(destination: ModeView(mode: mode)) {
+                                        GameMode(cover: mode.label, description: mode.description)
+                                    }
+                                }
+                            }
+                        }
+                        .padding()
                     }
-                    .padding()
                     
                     Spacer()
                 }
@@ -149,8 +162,6 @@ struct HomeView: View {
                 LoadingView()
             }
         }
-//        .toolbar(.visible, for: .tabBar)
-//        .navigationBarHidden(true)
         .onAppear {
             Task {
                 try await loadData()

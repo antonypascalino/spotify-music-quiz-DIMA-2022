@@ -36,8 +36,9 @@ struct TimeBar: View {
                         .cornerRadius(100)
                 }
             }
-            .frame(width: 355, height: 3)
+            .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 600 : 355, height: 3)
             .padding(.bottom, 3)
+            ///TODO:  To call ony one time
             .onAppear {
                 startTimer()
             }
@@ -61,6 +62,7 @@ struct TimeBar: View {
                         .padding(.leading, 16.0)
                 }
                 Spacer()
+                    .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 525 : 280)
                 if (missingSeconds < 10) {
                     Text("-0:0\(String(missingSeconds))")
                         .foregroundColor(.gray)
@@ -85,6 +87,7 @@ struct TimeBar: View {
         progress = 0
         currentIteration = 0
         duration = Double(gameManager.currentQuestion!.isShazam ? 25 : 10)
+        print("DURATION: \(duration)")
         
         Timer.scheduledTimer(withTimeInterval: duration/Double(iterations), repeats: true) { timer in
             if gameManager.answerSelected {
