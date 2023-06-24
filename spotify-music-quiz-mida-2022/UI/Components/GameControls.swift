@@ -41,8 +41,9 @@ struct GameControls: View {
                     primaryButton: .default(Text("Yes")) {
                         AudioPlayer.shared.stop()
                         goHome = true
-                        gameManager.gameOver()
+//                        gameManager.gameOver()
                         gameManager.restartGame = true
+                        gameManager.resumeTimer()
                     },
                     secondaryButton: .cancel(Text("No").foregroundColor(Color("Red"))) {
                         showAlert = false

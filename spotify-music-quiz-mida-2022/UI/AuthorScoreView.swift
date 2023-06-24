@@ -25,26 +25,40 @@ struct AuthorScoreView: View {
                 .font(TextStyle.leaderboardItem().bold())
                 .foregroundColor(.white)
             
-            List(model.authorsScores, id: \.key) { author, score in
-                HStack {
-                    Text(author)
-                        .font(TextStyle.leaderboardItem().bold())
-                        .foregroundColor(.white)
-                    Spacer()
-                    Text(String(score))
-                        .font(TextStyle.leaderboardItem().bold())
-                        .foregroundColor(.white)
+            if (!model.authorsScores.isEmpty) {
+                List(model.authorsScores, id: \.key) { author, score in
+                    HStack {
+                        Text(author)
+                            .font(TextStyle.leaderboardItem().bold())
+                            .foregroundColor(.white)
+                        Spacer()
+                        Text(String(score))
+                            .font(TextStyle.leaderboardItem().bold())
+                            .foregroundColor(.white)
+                    }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
-            }
-            .listStyle(.plain)
-            .foregroundColor(.white)
-            .task {
-                model.updateUserData()
-                try? await model.getUserAuthorsScore()
+                .listStyle(.plain)
+                .foregroundColor(.white)
+                .task {
+                    model.updateUserData()
+                    try? await model.getUserAuthorsScore()
+                }
+            } else {
+                VStack(alignment: .center, spacing: 20) {
+                    Spacer()
+                    Text("Sorry, you have not guessed any question yet")
+                        .foregroundColor(.white)
+                        .font(TextStyle.leaderboardItem().bold())
+                    Text("Play some games to score more points!")
+                        .foregroundColor(.white)
+                        .font(TextStyle.leaderboardItem().bold())
+                    Spacer()
+                }
             }
             Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("Black"))
     }
 }

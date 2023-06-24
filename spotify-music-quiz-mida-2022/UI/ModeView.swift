@@ -50,16 +50,19 @@ struct ModeView: View {
             }
             .padding(.leading)
             HStack(spacing: 20) {
-                if(!model.isLoading) {
-                    Text("Your highscore: \(model.currentUser.highscores![mode.label] ?? 0)")
+                VStack(alignment: .leading) {
+                    if(!model.isLoading) {
+                        Text("Your highscore: \(model.currentUser.highscores![mode.label] ?? 0)")
+                            .font(TextStyle.leaderboardItem().bold())
+                            .foregroundColor(.white)
+                    } else {
+                        Text("Your highscore:")
+                            .font(TextStyle.leaderboardItem().bold())
+                            .foregroundColor(.white)
+                    }
+                    Text("Your friends highscores:")
                         .font(TextStyle.leaderboardItem().bold())
-                        .foregroundColor(.white)
-                        .padding(.leading, 3.0)
-                } else {
-                    Text("Your highscore:   ")
-                        .font(TextStyle.leaderboardItem().bold())
-                        .foregroundColor(.white)
-                        .padding(.leading, 6.0)
+                        .foregroundColor(Color.white)
                 }
                 
                 Spacer()

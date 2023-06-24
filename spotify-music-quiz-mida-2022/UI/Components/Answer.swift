@@ -37,7 +37,7 @@ struct Answer: View {
         .background(Color(isSelected || (!isSelected && isCorrect && gameManager.answerSelected) ? (isCorrect ? "Green" : "Red") : "Black"))
         .cornerRadius(100)
         .onTapGesture {
-            if !gameManager.answerSelected {
+            if !gameManager.answerSelected && gameManager.isTimerRunning {
                 isSelected = true
                 gameManager.selectAnswer(isCorrect)
             }
