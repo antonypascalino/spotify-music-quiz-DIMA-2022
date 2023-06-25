@@ -62,6 +62,7 @@ struct GuessTheSongView: View {
                         .lineLimit(1)
                         .minimumScaleFactor(0.1)
                         .disabled(gameManager.answerSelected)
+                        .autocorrectionDisabled(true)
                     
                     Button {
                         checkAnswer()

@@ -9,25 +9,28 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            HomeView()
-            .tabItem {
-                Image(systemName: "house")
-                Text("Home")
+        NavigationStack {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("Home")
+                    }
+                FriendsView()
+                    .tabItem {
+                        Image(systemName: "person.2")
+                        Text("Friends")
+                    }
+                AuthorScoreView()
+                    .tabItem {
+                        Image(systemName: "music.note.list")
+                        Text("Authors scores")
+                    }
             }
-            FriendsView()
-            .tabItem {
-                Image(systemName: "person.2")
-                Text("Friends")
-            }
-            AuthorScoreView()
-            .tabItem {
-                Image(systemName: "music.note.list")
-                Text("Authors scores")
-            }
+            .accentColor(.white)
+            .toolbar(.hidden, for: .tabBar, .navigationBar)
         }
-        .accentColor(.white)
-        .toolbar(.hidden, for: .tabBar, .navigationBar)
+        .toolbar(.hidden, for: .navigationBar)
         
     }
 }
