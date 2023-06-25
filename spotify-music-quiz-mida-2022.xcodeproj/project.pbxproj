@@ -51,6 +51,8 @@
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
 		0AABD1362A17DD9200B26479 /* PlaylistTracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */; };
 		0AABD71929CE343800D819BB /* GameControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD71829CE343800D819BB /* GameControls.swift */; };
+		0AB246AB2A484898004929B7 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB246AA2A484898004929B7 /* CustomAlert.swift */; };
+		0AB246AD2A48543E004929B7 /* LogOutAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB246AC2A48543E004929B7 /* LogOutAlert.swift */; };
 		0AB9A6132A0AB8D400B0F676 /* LibraryTrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */; };
 		0AB9A6142A0AB8D400B0F676 /* Tracks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */; };
 		0AB9A6152A0AB8D400B0F676 /* RecommendationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB9A6102A0AB8D400B0F676 /* RecommendationsResponse.swift */; };
@@ -139,6 +141,8 @@
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
 		0AABD1352A17DD9200B26479 /* PlaylistTracks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTracks.swift; sourceTree = "<group>"; };
 		0AABD71829CE343800D819BB /* GameControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControls.swift; sourceTree = "<group>"; };
+		0AB246AA2A484898004929B7 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		0AB246AC2A48543E004929B7 /* LogOutAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutAlert.swift; sourceTree = "<group>"; };
 		0AB9A60E2A0AB8D400B0F676 /* LibraryTrackResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryTrackResponse.swift; sourceTree = "<group>"; };
 		0AB9A60F2A0AB8D400B0F676 /* Tracks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tracks.swift; sourceTree = "<group>"; };
 		0AB9A6102A0AB8D400B0F676 /* RecommendationsResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendationsResponse.swift; sourceTree = "<group>"; };
@@ -268,6 +272,8 @@
 				0A8BF0692A16258A007EFA71 /* TimeBar.swift */,
 				0AFD9FC52A17847000CFBEEC /* ListImage.swift */,
 				0A0FFF762A2FD93100710AFB /* GameMode.swift */,
+				0AB246AA2A484898004929B7 /* CustomAlert.swift */,
+				0AB246AC2A48543E004929B7 /* LogOutAlert.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -565,6 +571,7 @@
 				0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */,
 				0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */,
 				0A6559A72A050992007ACBFC /* LibraryPlaylistsResponse.swift in Sources */,
+				0AB246AB2A484898004929B7 /* CustomAlert.swift in Sources */,
 				0AB9A6132A0AB8D400B0F676 /* LibraryTrackResponse.swift in Sources */,
 				0A6559AD2A05099F007ACBFC /* APIImage.swift in Sources */,
 				0AB9CAEF29C929D300871B2B /* LoginView.swift in Sources */,
@@ -605,6 +612,7 @@
 				0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */,
 				0AABD1362A17DD9200B26479 /* PlaylistTracks.swift in Sources */,
 				0AB9A6152A0AB8D400B0F676 /* RecommendationsResponse.swift in Sources */,
+				0AB246AD2A48543E004929B7 /* LogOutAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

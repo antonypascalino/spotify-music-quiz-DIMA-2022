@@ -11,7 +11,7 @@ struct GameControls: View {
     
     @EnvironmentObject var gameManager : GameManager
     @State var goHome = false
-    @State var showAlert = false
+    @Binding var showAlert : Bool
     
     var body: some View {
         HStack {
@@ -32,25 +32,24 @@ struct GameControls: View {
                 Image(systemName: "backward.end.fill")
                     .foregroundColor(.white)
                     .font(.system(size: 45, weight: .ultraLight))
-            
             })
-            .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Wanna leave the game?"),
-                    message: Text("The score of this game will be lost!"),
-                    primaryButton: .default(Text("Yes")) {
-                        AudioPlayer.shared.stop()
-                        goHome = true
-//                        gameManager.gameOver()
-                        gameManager.restartGame = true
-                        gameManager.resumeTimer()
-                    },
-                    secondaryButton: .cancel(Text("No").foregroundColor(Color("Red"))) {
-                        showAlert = false
-                        gameManager.resumeTimer()
-                    }
-                )
-            }
+//            .alert(isPresented: $showAlert) {
+//                Alert(
+//                    title: Text("Wanna leave the game?"),
+//                    message: Text("The score of this game will be lost!"),
+//                    primaryButton: .default(Text("Yes")) {
+//                        AudioPlayer.shared.stop()
+//                        goHome = true
+////                        gameManager.gameOver()
+//                        gameManager.restartGame = true
+//                        gameManager.resumeTimer()
+//                    },
+//                    secondaryButton: .cancel(Text("No").foregroundColor(Color("Red"))) {
+//                        showAlert = false
+//                        gameManager.resumeTimer()
+//                    }
+//                )
+//            }
             
             
             Image(systemName: gameManager.isTimerRunning ? "pause.circle.fill" : "play.circle.fill")

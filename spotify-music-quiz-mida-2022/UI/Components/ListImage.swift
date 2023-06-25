@@ -22,6 +22,9 @@ struct ListImage: View {
                     .clipShape(Circle())
             } placeholder: {
                 Image(systemName: "person.crop.circle")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 40, height: 40)
             }
         }
         else {

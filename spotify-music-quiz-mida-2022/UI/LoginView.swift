@@ -62,13 +62,13 @@ struct LoginView: View {
                             EmptyView()
                         }
                 }
-                
             }
             .background(Color("Black"))
             
         }
         .accentColor(.white)
         .navigationViewStyle(StackNavigationViewStyle())
+        .toolbar(.hidden, for: .navigationBar)
     }
 }
 

@@ -15,6 +15,7 @@ struct GameView: View {
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     @State private var isLoading = true
+    @State private var showAlert = false
     
     var body: some View {
         
@@ -29,70 +30,75 @@ struct GameView: View {
             } else {
                 let currentAnwers = gameManager.currentAnswers!
                 
-                
-                VStack(alignment: .leading, spacing: 30) {
-                    
-                    Spacer()
-                    Text("Score: \(gameManager.correctAnswersCount)")
-                        .font(TextStyle.score(50))
-                        .foregroundColor(Color(playerMiss ? "Red" : "Green"))
-                        .padding(.leading)
-                    
-                    Text(.init((gameManager.getNextQuestion()?.questionText)!))
-                        .font(TextStyle.LoginTitle())
-                        .lineLimit(gameManager.getNextQuestion()!.isShazam ? 1 : 3)
-                        .frame(height: 60, alignment: .leading)
-                        .minimumScaleFactor(0.1)
-                        .foregroundColor(.white)
-                        .padding(.leading)
-                        .blur(radius: gameManager.isTimerRunning ? 0 : 10)
-                    
-                    if(gameManager.getNextQuestion()!.isShazam){
+                ZStack {
+                    VStack(alignment: .leading, spacing: 30) {
                         
-                        GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
-                            .environmentObject(gameManager)
-                            .frame(height: 380)
-                    } else {
-                        HStack {
-                            Spacer()
-                            VStack {
-                                ForEach(currentAnwers, id: \.self) { answer in
-                                    Answer(answer: answer)
-                                        .environmentObject(gameManager)
-                                }
-                                .padding([.top, .bottom] , 12)
-                                .padding(.leading , 5)
-                            }
-                            .frame(height: 380)
-                            .frame(height: 380)
-                            .offset(y: -18)
+                        Spacer()
+                        Text("Score: \(gameManager.correctAnswersCount)")
+                            .font(TextStyle.score(50))
+                            .foregroundColor(Color(playerMiss ? "Red" : "Green"))
+                            .padding(.leading)
+                        
+                        Text(.init((gameManager.getNextQuestion()?.questionText)!))
+                            .font(TextStyle.LoginTitle())
+                            .lineLimit(gameManager.getNextQuestion()!.isShazam ? 1 : 3)
+                            .frame(height: 60, alignment: .leading)
+                            .minimumScaleFactor(0.1)
+                            .foregroundColor(.white)
+                            .padding(.leading)
                             .blur(radius: gameManager.isTimerRunning ? 0 : 10)
-                            Spacer()
+                        
+                        if(gameManager.getNextQuestion()!.isShazam){
+                            
+                            GuessTheSongView(correctAnswer: gameManager.currentQuestion!.correctAnswer)
+                                .environmentObject(gameManager)
+                                .frame(height: 380)
+                        } else {
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    ForEach(currentAnwers, id: \.self) { answer in
+                                        Answer(answer: answer)
+                                            .environmentObject(gameManager)
+                                    }
+                                    .padding([.top, .bottom] , 12)
+                                    .padding(.leading , 5)
+                                }
+                                .frame(height: 380)
+                                .frame(height: 380)
+                                .offset(y: -18)
+                                .blur(radius: gameManager.isTimerRunning ? 0 : 10)
+                                Spacer()
+                            }
+                        }
+                        
+                        VStack {
+                            TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
+                                .environmentObject(gameManager)
+                            GameControls(showAlert: $showAlert)
+                                .environmentObject(gameManager)
+                        }
+                        .offset(y: -33)
+                        Spacer()
+                    }
+                    .background(Color("Black"))
+                    .onAppear {
+                        print("onAppear")
+                        AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                    }
+                    .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
+                        AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
+                    }
+                    .onChange(of: gameManager.isTimerRunning) { newValue in
+                        if newValue == false {
+                            AudioPlayer.shared.pause()
+                        } else {
+                            AudioPlayer.shared.resume()
                         }
                     }
                     
-                    VStack {
-                        TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
-                            .environmentObject(gameManager)
-                        GameControls()
-                            .environmentObject(gameManager)
-                    }
-                    .offset(y: -33)
-                    Spacer()
-                }
-                .background(Color("Black"))
-                .onAppear {
-                    print("onAppear")
-                    AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                }
-                .onChange(of: gameManager.getNextQuestion()!.songUrl!) { newValue in
-                    AudioPlayer.shared.play(audioURL: URL(string: gameManager.getNextQuestion()!.songUrl!)!)
-                }
-                .onChange(of: gameManager.isTimerRunning) { newValue in
-                    if newValue == false {
-                        AudioPlayer.shared.pause()
-                    } else {
-                        AudioPlayer.shared.resume()
+                    if (showAlert) {
+                        CustomAlert(showAlert: $showAlert)
                     }
                 }
             }
