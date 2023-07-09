@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var apiCaller : APICaller!
+    var userManager : UserManager!
+    
+    init(userManager: UserManager) {
+        self.userManager = userManager
+        self.apiCaller = APICaller(userManager: userManager, authManager: AuthManager())
+    }
+    
     var body: some View {
         NavigationStack {
             TabView {
-                HomeView()
+                HomeView(apiCaller: apiCaller, userManager: userManager)
                     .tabItem {
                         Image(systemName: "house")
                         Text("Home")
                     }
-                FriendsView()
+                FriendsView(userManager: userManager)
                     .tabItem {
                         Image(systemName: "person.2")
                         Text("Friends")
                     }
-                AuthorScoreView()
+                AuthorScoreView(userManager: userManager)
                     .tabItem {
                         Image(systemName: "music.note.list")
                         Text("Authors scores")
@@ -35,8 +44,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}

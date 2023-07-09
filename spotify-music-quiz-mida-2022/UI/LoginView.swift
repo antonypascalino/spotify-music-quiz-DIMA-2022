@@ -10,6 +10,15 @@ import SwiftUI
 struct LoginView: View {
     
     @State var completeAuth = false
+    let authManager : AuthManagerProtocol
+    let userManager : UserManager
+    let apiCaller : APICaller
+    
+    init() {
+        self.authManager = AuthManager()
+        self.userManager = UserManager()
+        self.apiCaller = APICaller(userManager: self.userManager, authManager: self.authManager)
+    }
     
     var body: some View {
         NavigationView {
@@ -37,7 +46,6 @@ struct LoginView: View {
                 
                 NavigationLink(destination: AuthView( completionHandler: { value in
                     if value {
-                        
                         completeAuth = true
                     }
                 }), label: {
@@ -57,7 +65,7 @@ struct LoginView: View {
                 
                 if completeAuth {
                     NavigationLink(
-                        destination: ContentView(),
+                        destination: ContentView(userManager: userManager),
                         isActive: $completeAuth) {
                             EmptyView()
                         }

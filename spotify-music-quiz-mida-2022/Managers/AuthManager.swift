@@ -7,10 +7,19 @@
 
 import Foundation
 
+protocol AuthManagerProtocol {
+    func withValidToken(completion: @escaping ((String)->Void))
+    func refreshIfNeeded(completion: @escaping (Bool) -> Void)
+    func exchangeCodeForToken(
+        code : String,
+        completion: @escaping ((Bool)->Void)
+    )
+    func cacheToken(result: AuthResponse)
+    func signOut(completion: (Bool)-> Void)
+}
 
-class AuthManager {
-    
-    static let shared = AuthManager()
+
+class AuthManager : AuthManagerProtocol {
     
     struct Constants {
         static let clientID = "a92e939475fa48619185a62b70173a45"
@@ -21,8 +30,6 @@ class AuthManager {
         static let scopes =
         "user-read-private%20playlist-modify-public%20playlist-read-private%20playlist-modify-private%20user-follow-read%20user-library-modify%20user-library-read%20user-read-email%20user-top-read"
     }
-    
-    private init() {}
     
     public var signInURL : URL? {
         let base = "https://accounts.spotify.com/authorize"
@@ -59,9 +66,7 @@ class AuthManager {
     
     private var onRefreshBlock = [((String)->Void)]()
     
-    
-    
-    public func withValidToken(completion: @escaping ((String)->Void)){
+    public func withValidToken(completion: @escaping ((String)->Void)) {
         guard !refreshingToken else{
             onRefreshBlock.append(completion)
             return
@@ -78,7 +83,7 @@ class AuthManager {
         }
     }
     
-    public func refreshIfNeeded(completion: @escaping (Bool) -> Void){
+    public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
         
         guard !refreshingToken else {
             return
@@ -136,11 +141,7 @@ class AuthManager {
         task.resume()
     }
     
-    
-    public func exchangeCodeForToken(
-        code : String,
-        completion: @escaping ((Bool)->Void)
-    ){
+    public func exchangeCodeForToken(code : String, completion: @escaping ((Bool)->Void)) {
         guard let url = URL(string: Constants.tokenAPIURL) else { return }
         
         var components = URLComponents()
@@ -188,10 +189,7 @@ class AuthManager {
         task.resume()
     }
     
-    
-    
-    
-    private func cacheToken(result: AuthResponse){
+    internal func cacheToken(result: AuthResponse) {
         UserDefaults.standard.set(result.access_token,
                                   forKey: "access_token")
         

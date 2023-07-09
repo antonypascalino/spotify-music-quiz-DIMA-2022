@@ -9,11 +9,10 @@ import Foundation
 import SwiftUI
 
 class QuestionManager: ObservableObject {
-    static let shared = QuestionManager()
-    private let apiCaller = APICaller.shared
-    private let userManager = UserManager.shared
-
     
+    private let apiCaller : APICaller!
+    private let userManager : UserManager!
+
     private(set) var whoSingsQuestion : [Question] = []
     private(set) var yearSongQuestion : [Question] = []
     private(set) var yearAlbumQuestion : [Question] = []
@@ -35,12 +34,15 @@ class QuestionManager: ObservableObject {
     private(set) var tempTrack : [PlaylistItem] = []
     private(set) var reccTracks : [Track] = []
     private(set) var similarSongs : [Track] = []
-    var loadedData = false
-
-                
     private(set) var isLoading = true
+    var loadedData = false
     private let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
     @Published var isLoadingQuestions = true
+    
+    init(apiCaller: APICaller, userManager: UserManager) {
+        self.apiCaller = apiCaller
+        self.userManager = userManager
+    }
 
     func importAllData() async throws {
         if !loadedData {

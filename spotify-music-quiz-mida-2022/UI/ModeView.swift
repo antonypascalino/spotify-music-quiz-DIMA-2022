@@ -12,9 +12,17 @@ import SwiftUI
 struct ModeView: View {
     
     let mode : Mode
-    @StateObject private var model = UserViewModel()
-    @StateObject var gameManager = GameManager.shared
+    let userManager : UserManager
+    @ObservedObject private var model : UserViewModel
+    @EnvironmentObject var gameManager : GameManager
+    @EnvironmentObject var questionManager : QuestionManager
     @State var isLoading = true
+    
+    init(mode: Mode, userManager: UserManager) {
+        self.mode = mode
+        self.userManager = userManager
+        self.model = UserViewModel(userManager: userManager)
+    }
     
     var body: some View {
         
@@ -66,7 +74,7 @@ struct ModeView: View {
                 }
                 
                 Spacer()
-                NavigationLink (destination: AddFriendsView() ,label: {
+                NavigationLink (destination: AddFriendsView(userManager: userManager) ,label: {
                     Image(systemName: "person.crop.circle.badge.plus")
                         .resizable()
                         .scaledToFit()
@@ -74,7 +82,7 @@ struct ModeView: View {
                         .frame(width: 40.0, height: 40.0)
                 })
                 
-                NavigationLink (destination: GameView(mode: mode).navigationBarHidden(true) ,label: {
+                NavigationLink (destination: GameView(mode: mode, userManager: userManager).navigationBarHidden(true).environmentObject(gameManager).environmentObject(questionManager) ,label: {
                     Image(systemName: "play.circle.fill")
                         .resizable()
                         .scaledToFit()
@@ -149,7 +157,7 @@ struct ModeView: View {
                 try? await model.getUserHighscores()
                 
                 Task.detached {
-                    while QuestionManager.shared.isLoadingQuestions {
+                    while await questionManager.isLoadingQuestions {
                         // Lavora in background
                     }
                     print("PARTO START MINI")

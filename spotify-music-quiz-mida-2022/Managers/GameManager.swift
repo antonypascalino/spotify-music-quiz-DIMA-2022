@@ -2,12 +2,13 @@ import Foundation
 import SwiftUI
 
 class GameManager: ObservableObject {
-    static let shared = GameManager()
     
-    let userManager = UserManager.shared
     
-    private(set) var questions: [Question] = []
-    private(set) var tempQuestions: [Question] = []
+    let userManager : UserManager!
+    let questionManager : QuestionManager!
+    
+     var questions: [Question] = []
+     var tempQuestions: [Question] = []
     private(set) var currentQuestion : Question?
     private(set) var currentAnswers : [String]?
     private(set) var gameIsOver = false
@@ -18,16 +19,21 @@ class GameManager: ObservableObject {
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
     var restartGame = true
-    
     @State var userProfile : UserProfile?
+    
+    
+    init(userManager: UserManager, questionManager : QuestionManager) {
+        self.userManager = userManager
+        self.questionManager = questionManager
+    }
     
     func startGame(codeQuestion: String) async throws {
         self.restartGame = false
         self.codeQuestion = codeQuestion
 //        if(questions.count == 0 || correctAnswersCount != 0) {
         try await resetGame()
-        QuestionManager.shared.isLoadingQuestions = true
-        try await QuestionManager.shared.importAllData()
+        questionManager.isLoadingQuestions = true
+        try await questionManager.importAllData()
         print("Start Game")
         try await self.genQuestions(codeQuestion: codeQuestion, regenQuest : true)
         
@@ -39,7 +45,7 @@ class GameManager: ObservableObject {
 //            if(questions.count == 0 || correctAnswersCount != 0) {
 //            tempQuestions = []
 //            questions = []
-            questions = try await QuestionManager.shared.genRandomQuestions(code: codeQuestion, regenQuest: regenQuest)
+        questions = try await questionManager.genRandomQuestions(code: codeQuestion, regenQuest: regenQuest)
             print("Question generated: \(questions.count)")
             questions.shuffle()
             DispatchQueue.main.async {
@@ -49,7 +55,7 @@ class GameManager: ObservableObject {
                 self.currentAnswers = self.currentQuestion?.getAnswers()
             }
        // }
-        QuestionManager.shared.isLoadingQuestions = false
+        questionManager.isLoadingQuestions = false
 
         
     }
@@ -57,14 +63,14 @@ class GameManager: ObservableObject {
         self.codeQuestion = codeQuestion
         self.restartGame = true
         try await resetGame()
-        QuestionManager.shared.isLoadingQuestions = true
+        questionManager.isLoadingQuestions = true
         try await genQuestions(codeQuestion: codeQuestion, regenQuest: regenQuest)
     }
     
     func startMiniGame(codeQuestion: String, regenQuest: Bool) async throws {
         self.codeQuestion = codeQuestion
         print("MiniGame")
-        QuestionManager.shared.isLoadingQuestions = true
+        questionManager.isLoadingQuestions = true
         try await genQuestions(codeQuestion: codeQuestion, regenQuest: regenQuest)
     }
     
@@ -99,7 +105,7 @@ class GameManager: ObservableObject {
                 }
                     if (currentQuestionIndex == (questions.count/2))  {
                         print("CURRENT INDEX: \(currentQuestionIndex)")
-                        tempQuestions = try await QuestionManager.shared.genRandomQuestions(code: self.codeQuestion, regenQuest: true)
+                        tempQuestions = try await questionManager.genRandomQuestions(code: self.codeQuestion, regenQuest: true)
                     }
 
             } else {
