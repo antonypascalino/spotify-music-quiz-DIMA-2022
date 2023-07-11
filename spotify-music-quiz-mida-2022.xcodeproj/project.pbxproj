@@ -18,6 +18,8 @@
 		0A3425E32A49A0280004C300 /* AuthResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425E22A49A0280004C300 /* AuthResponse.json */; };
 		0A3425E52A49A4A50004C300 /* Mockable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425E42A49A4A50004C300 /* Mockable.swift */; };
 		0A3425E72A5892660004C300 /* GameManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425E62A5892660004C300 /* GameManagerTests.swift */; };
+		0A3425E92A5DC4A70004C300 /* QuestionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */; };
+		0A3425EB2A5DC5470004C300 /* MockQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */; };
 		0A3908B829CAFF6E0073ACE0 /* AuthorScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */; };
 		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
 		0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BC29CB47D20073ACE0 /* Question.swift */; };
@@ -124,6 +126,8 @@
 		0A3425E22A49A0280004C300 /* AuthResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AuthResponse.json; sourceTree = "<group>"; };
 		0A3425E42A49A4A50004C300 /* Mockable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mockable.swift; sourceTree = "<group>"; };
 		0A3425E62A5892660004C300 /* GameManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerTests.swift; sourceTree = "<group>"; };
+		0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManagerTests.swift; sourceTree = "<group>"; };
+		0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuestionManager.swift; sourceTree = "<group>"; };
 		0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorScoreView.swift; sourceTree = "<group>"; };
 		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0A3908BC29CB47D20073ACE0 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 				0A3425E22A49A0280004C300 /* AuthResponse.json */,
 				0A3425E42A49A4A50004C300 /* Mockable.swift */,
 				0A3425E62A5892660004C300 /* GameManagerTests.swift */,
+				0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */,
+				0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022Tests";
 			sourceTree = "<group>";
@@ -666,7 +672,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD17C5E2950AC40003FEE73 /* AuthManagerTests.swift in Sources */,
+				0A3425EB2A5DC5470004C300 /* MockQuestionManager.swift in Sources */,
 				0A3425E72A5892660004C300 /* GameManagerTests.swift in Sources */,
+				0A3425E92A5DC4A70004C300 /* QuestionManagerTests.swift in Sources */,
 				0A3425E52A49A4A50004C300 /* Mockable.swift in Sources */,
 				0A3425E12A49885A0004C300 /* MockAuthManager.swift in Sources */,
 			);
