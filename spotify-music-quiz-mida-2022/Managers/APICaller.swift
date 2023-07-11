@@ -2,6 +2,20 @@ import Foundation
 import SwiftUI
 
 
+
+enum HTTPMethod: String{
+    case GET
+    case POST
+    case DELETE
+    case PUT
+}
+
+
+protocol APICallerProtocol {
+    func createRequest(with url: URL?,type: HTTPMethod,completion: @escaping ((URLRequest)->Void))
+    func getUserAlbums(completion: @escaping ((Result<[SimpleAlbum],Error>)->Void))
+}
+
 //All the function which uses SpotifyAPI to retrieve user song/author information
 final class APICaller {
     
@@ -344,12 +358,6 @@ final class APICaller {
         
     }
     
-    enum HTTPMethod: String{
-        case GET
-        case POST
-        case DELETE
-        case PUT
-    }
     
     private func createRequest(with url: URL?,type: HTTPMethod,completion: @escaping ((URLRequest)->Void)) {
         authManager.withValidToken { token in
