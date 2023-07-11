@@ -79,6 +79,7 @@ class AuthManager : AuthManagerProtocol {
                 }
             }
         } else if let token = accessToken{
+            print("token: \(token)")
             completion(token)
         }
     }

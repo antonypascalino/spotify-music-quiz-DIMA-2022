@@ -40,7 +40,7 @@ final class MockAPICaller:  APICallerProtocol, Mockable {
     }
     func createRequest(with url: URL?,type: spotify_music_quiz_mida_2022.HTTPMethod,completion: @escaping ((URLRequest)->Void))
         {
-            var token = "NgCXRKc...MzYjw";
+            var token = "BQBm4qRGKuclHf4poJHUCdv6eJeN7To7enfTYtv5yyJWYwStejvQs0w8FADvtsZ_CzUbr05wuZd48hVPSlDBRTKoHmb_R1uFSNzLWexNfihva4XYIeKUVSFCuta228VlsOPd3OVTFnPADTjK0spZIHuVJ9g1Jr3w8AbaOBJEK_8juJR__nOSNHzlTvCB3n8AVAagyZ8Z6bh0m24aebHOoasLD9uGBv6wZc-JkckhVC0TFOUSfdSxDvYQaVfyRersjLa10xNXR-vuTUu85tMKoyDFKagd4vRVyLrCOzFR";
         var request = URLRequest(url: url!)
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.httpMethod = type.rawValue
