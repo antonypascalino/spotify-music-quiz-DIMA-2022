@@ -13,7 +13,6 @@ class QuestionManager: ObservableObject {
     private let apiCaller = APICaller.shared
     private let userManager = UserManager.shared
 
-    
     private(set) var whoSingsQuestion : [Question] = []
     private(set) var yearSongQuestion : [Question] = []
     private(set) var yearAlbumQuestion : [Question] = []

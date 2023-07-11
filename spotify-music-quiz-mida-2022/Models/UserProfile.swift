@@ -16,18 +16,19 @@ struct UserProfile: Codable {
         
         print(UserProfile.self)
         let user = User( highscores: [
-            "classic": 0,
-            "guessTheSong": 0,
-            "guessTheSinger": 0,
-            "recallTheYear": 0,
-            "whichAlbum": 0,
-            "whoIsTheAuthor": 0,
-            "authorSong": 0,
-        ],
+                            "classic": 0,
+                            "guessTheSong": 0,
+                            "guessTheSinger": 0,
+                            "recallTheYear": 0,
+                            "whichAlbum": 0,
+                            "whoIsTheAuthor": 0,
+                            "authorSong": 0,
+                        ],
                          display_name: display_name,
                          email: email,
                          friends: [DocumentReference](),
-                         SpotifyID: id, image: images?.first?.url ?? "")
+                         SpotifyID: id,
+                         image: images?[1].url ?? "")
         
         print(user)
         return user

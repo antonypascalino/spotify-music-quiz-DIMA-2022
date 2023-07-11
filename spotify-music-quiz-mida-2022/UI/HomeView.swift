@@ -16,6 +16,10 @@ struct HomeView: View {
     @State var showAlert = false
     @State var goLoginView = false
     
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+    }
+    
     var body: some View {
         VStack {
             if (!isLoading) {
@@ -43,6 +47,7 @@ struct HomeView: View {
                             })
                         }
                         .preferredColorScheme(.dark)
+                        
                         HStack() {
                             Spacer()
                             if !(userModel.currentUser.image == "") {
@@ -59,7 +64,6 @@ struct HomeView: View {
                                         .scaledToFit()
                                         .foregroundColor(Color("Green"))
                                         .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? 250 : 120, height: UIDevice.current.userInterfaceIdiom == .pad ? 300 : 120)
-                                    
                                 }
                             } else {
                                 Image(systemName: "person.crop.circle")
@@ -71,16 +75,44 @@ struct HomeView: View {
                             }
                             Spacer()
                             VStack {
-                                Text("Highscore:")
-                                    .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 60 : 20))
-                                    .foregroundColor(Color("Green"))
-                                Text(String(userModel.currentUser.highscores!["classic"]!))
-                                    .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 150 : 80))
-                                    .foregroundColor(Color("Green"))
-                                    .padding(.bottom, 40.0)
-                                    .task {
-                                        try? await userModel.getUserHighscores()
+                                if(UIDevice.current.userInterfaceIdiom == .pad) {
+                                    Text("Highscores:")
+                                        .font(TextStyle.score(50))
+                                        .foregroundColor(Color("Green"))
+                                    
+                                    ScrollView(.vertical, showsIndicators: false) {
+                                        ForEach(userModel.highscoresOrdered, id: \.key) { mode, highscore in
+                                            HStack {
+                                                Text("\(mode) : \(highscore)")
+                                                    .font(TextStyle.score(20))
+                                                    .foregroundColor(Color("Green"))
+                                                    .listRowBackground(Color.clear)
+                                                    .listRowSeparator(.hidden)
+                                                Spacer()
+                                            }
+                                            .padding(.top, 10)
+                                        }
+                                        .task {
+                                            try? await userModel.getUserHighscores()
+                                        }
+                                        .listStyle(.plain)
+                                        .foregroundColor(Color("Green"))
+                                        .listRowBackground(Color.clear)
+                                        //.scrollDisabled(true)
+                                        .frame(width: 300, height: 320)
                                     }
+                                } else {
+                                    Text("Highscore:")
+                                        .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 60 : 20))
+                                        .foregroundColor(Color("Green"))
+                                    Text(String(userModel.currentUser.highscores!["classic"]!))
+                                        .font(TextStyle.score(UIDevice.current.userInterfaceIdiom == .pad ? 150 : 80))
+                                        .foregroundColor(Color("Green"))
+                                        .padding(.bottom, 40.0)
+                                        .task {
+                                            try? await userModel.getUserHighscores()
+                                        }
+                                }
                             }
                             .offset(y: 20)
                             Spacer()
