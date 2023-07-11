@@ -58,13 +58,13 @@ struct LogOutAlert: View {
 }
 
         
-struct LogOutAlert_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        @State var showAlert = false
-        
-        LogOutAlert(showAlert: $showAlert)
-    }
-}
-        
+//struct LogOutAlert_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        @State var showAlert = false
+//        
+//        LogOutAlert(showAlert: $showAlert)
+//    }
+//}
+//        
     

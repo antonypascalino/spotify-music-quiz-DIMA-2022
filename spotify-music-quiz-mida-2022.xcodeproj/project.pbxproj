@@ -49,6 +49,8 @@
 		0A8145E42A276A2A005AC9D0 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8145E32A276A29005AC9D0 /* Track.swift */; };
 		0A8145E62A28B445005AC9D0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8145E52A28B445005AC9D0 /* LoadingView.swift */; };
 		0A8BF06A2A16258A007EFA71 /* TimeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BF0692A16258A007EFA71 /* TimeBar.swift */; };
+		0AA87BC92A5DB53C00B9105B /* APICallerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */; };
+		0AA87BCA2A5DB53C00B9105B /* MockAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
@@ -150,6 +152,8 @@
 		0A8145E32A276A29005AC9D0 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		0A8145E52A28B445005AC9D0 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
+		0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallerTest.swift; sourceTree = "<group>"; };
+		0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAPICaller.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 		0AD17C5C2950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests */ = {
 			isa = PBXGroup;
 			children = (
+				0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */,
+				0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */,
 				0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */,
 				0A3425E02A49885A0004C300 /* MockAuthManager.swift */,
 				0A3425E22A49A0280004C300 /* AuthResponse.json */,
@@ -668,7 +674,9 @@
 				0AD17C5E2950AC40003FEE73 /* AuthManagerTests.swift in Sources */,
 				0A3425E72A5892660004C300 /* GameManagerTests.swift in Sources */,
 				0A3425E52A49A4A50004C300 /* Mockable.swift in Sources */,
+				0AA87BC92A5DB53C00B9105B /* APICallerTest.swift in Sources */,
 				0A3425E12A49885A0004C300 /* MockAuthManager.swift in Sources */,
+				0AA87BCA2A5DB53C00B9105B /* MockAPICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
