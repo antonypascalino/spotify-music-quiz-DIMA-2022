@@ -51,6 +51,8 @@
 		0A8BF06A2A16258A007EFA71 /* TimeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BF0692A16258A007EFA71 /* TimeBar.swift */; };
 		0AA87BC92A5DB53C00B9105B /* APICallerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */; };
 		0AA87BCA2A5DB53C00B9105B /* MockAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */; };
+		0AA87BCD2A5DFF1600B9105B /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */; };
+		0AA87BD22A5E0CF500B9105B /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
@@ -78,8 +80,6 @@
 		0AD17C512950AC3E003FEE73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C502950AC3E003FEE73 /* Assets.xcassets */; };
 		0AD17C542950AC3E003FEE73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C532950AC3E003FEE73 /* Preview Assets.xcassets */; };
 		0AD17C5E2950AC40003FEE73 /* AuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */; };
-		0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */; };
-		0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */; };
 		0AD8DC9329BA06FA009EE067 /* Gotham-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */; };
 		0AD8DC9429BA06FD009EE067 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */; };
 		0AD8DC9529BA06FF009EE067 /* Gotham-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */; };
@@ -154,6 +154,9 @@
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
 		0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICallerTest.swift; sourceTree = "<group>"; };
 		0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAPICaller.swift; sourceTree = "<group>"; };
+		0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BD02A5E01F300B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spotify-music-quiz-mida-2022UITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
@@ -176,8 +179,6 @@
 		0AD17C592950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerTests.swift; sourceTree = "<group>"; };
 		0AD17C632950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITests.swift; sourceTree = "<group>"; };
-		0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Light.otf"; sourceTree = "<group>"; };
 		0AD8DC8629BA048F009EE067 /* Gotham-XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLight.otf"; sourceTree = "<group>"; };
@@ -375,8 +376,9 @@
 		0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */ = {
 			isa = PBXGroup;
 			children = (
-				0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */,
-				0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */,
+				0AA87BD02A5E01F300B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */,
+				0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */,
+				0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022UITests";
 			sourceTree = "<group>";
@@ -541,6 +543,7 @@
 					};
 					0AD17C622950AC41003FEE73 = {
 						CreatedOnToolsVersion = 14.1;
+						LastSwiftMigration = 1420;
 						TestTargetID = 0AD17C482950AC3B003FEE73;
 					};
 				};
@@ -684,8 +687,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */,
-				0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */,
+				0AA87BD22A5E0CF500B9105B /* LoginViewUITests.swift in Sources */,
+				0AA87BCD2A5DFF1600B9105B /* HomeViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,14 +936,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KQZX4895TL;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Prova.spotify-music-quiz-mida-2022UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "spotify-music-quiz-mida-2022UITests/spotify-music-quiz-mida-2022UITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "spotify-music-quiz-mida-2022";
@@ -951,14 +962,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KQZX4895TL;
 				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Prova.spotify-music-quiz-mida-2022UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "spotify-music-quiz-mida-2022UITests/spotify-music-quiz-mida-2022UITests-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "spotify-music-quiz-mida-2022";
