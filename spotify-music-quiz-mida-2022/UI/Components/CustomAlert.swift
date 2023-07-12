@@ -65,11 +65,11 @@ struct CustomAlert: View {
     }
 }
 
-struct CustomAlert_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        @State var showAlert = true
-        
-        CustomAlert(showAlert: $showAlert)
-    }
-}
+//struct CustomAlert_Previews: PreviewProvider {
+//    static var previews: some View {
+//        
+//        @State var showAlert = true
+//        
+//        CustomAlert(showAlert: $showAlert)
+//    }
+//}

@@ -46,6 +46,25 @@
 		0A8145E42A276A2A005AC9D0 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8145E32A276A29005AC9D0 /* Track.swift */; };
 		0A8145E62A28B445005AC9D0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8145E52A28B445005AC9D0 /* LoadingView.swift */; };
 		0A8BF06A2A16258A007EFA71 /* TimeBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8BF0692A16258A007EFA71 /* TimeBar.swift */; };
+		0AA87BF22A5E973C00B9105B /* FriendsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BE92A5E973B00B9105B /* FriendsViewUITests.swift */; };
+		0AA87BF32A5E973C00B9105B /* ModeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BEA2A5E973B00B9105B /* ModeViewUITests.swift */; };
+		0AA87BF42A5E973C00B9105B /* GameOverViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BEC2A5E973B00B9105B /* GameOverViewUITests.swift */; };
+		0AA87BF52A5E973C00B9105B /* AuthorsScoreViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BED2A5E973B00B9105B /* AuthorsScoreViewUITests.swift */; };
+		0AA87BF62A5E973C00B9105B /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BEE2A5E973B00B9105B /* HomeViewUITests.swift */; };
+		0AA87BF72A5E973C00B9105B /* GameVIewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BEF2A5E973C00B9105B /* GameVIewUITests.swift */; };
+		0AA87BF82A5E973C00B9105B /* AddFriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BF02A5E973C00B9105B /* AddFriendUITests.swift */; };
+		0AA87BF92A5E973C00B9105B /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BF12A5E973C00B9105B /* LoginViewUITests.swift */; };
+		0AA87BFC2A5E989A00B9105B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87BFB2A5E989A00B9105B /* FirebaseDatabase */; };
+		0AA87BFE2A5E989A00B9105B /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87BFD2A5E989A00B9105B /* FirebaseDatabaseSwift */; };
+		0AA87C002A5E989A00B9105B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87BFF2A5E989A00B9105B /* FirebaseFirestore */; };
+		0AA87C022A5E989A00B9105B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C012A5E989A00B9105B /* FirebaseFirestoreSwift */; };
+		0AA87C042A5E98A300B9105B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C032A5E98A300B9105B /* FirebaseAnalytics */; };
+		0AA87C062A5E98B100B9105B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C052A5E98B100B9105B /* FirebaseAnalytics */; };
+		0AA87C082A5E98B100B9105B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C072A5E98B100B9105B /* FirebaseDatabase */; };
+		0AA87C0A2A5E98B100B9105B /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C092A5E98B100B9105B /* FirebaseDatabaseSwift */; };
+		0AA87C0C2A5E98B100B9105B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C0B2A5E98B100B9105B /* FirebaseFirestore */; };
+		0AA87C0E2A5E98B100B9105B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AA87C0D2A5E98B100B9105B /* FirebaseFirestoreSwift */; };
+		0AA87C102A5EA14B00B9105B /* MockUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87C0F2A5EA14B00B9105B /* MockUserViewModel.swift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
@@ -136,6 +155,16 @@
 		0A8145E32A276A29005AC9D0 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		0A8145E52A28B445005AC9D0 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0A8BF0692A16258A007EFA71 /* TimeBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBar.swift; sourceTree = "<group>"; };
+		0AA87BE92A5E973B00B9105B /* FriendsViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BEA2A5E973B00B9105B /* ModeViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BEB2A5E973B00B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spotify-music-quiz-mida-2022UITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0AA87BEC2A5E973B00B9105B /* GameOverViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BED2A5E973B00B9105B /* AuthorsScoreViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsScoreViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BEE2A5E973B00B9105B /* HomeViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BEF2A5E973C00B9105B /* GameVIewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVIewUITests.swift; sourceTree = "<group>"; };
+		0AA87BF02A5E973C00B9105B /* AddFriendUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendUITests.swift; sourceTree = "<group>"; };
+		0AA87BF12A5E973C00B9105B /* LoginViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
+		0AA87C0F2A5EA14B00B9105B /* MockUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserViewModel.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
@@ -195,6 +224,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA87BFE2A5E989A00B9105B /* FirebaseDatabaseSwift in Frameworks */,
+				0AA87BFC2A5E989A00B9105B /* FirebaseDatabase in Frameworks */,
+				0AA87C002A5E989A00B9105B /* FirebaseFirestore in Frameworks */,
+				0AA87C042A5E98A300B9105B /* FirebaseAnalytics in Frameworks */,
+				0AA87C022A5E989A00B9105B /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +236,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA87C0E2A5E98B100B9105B /* FirebaseFirestoreSwift in Frameworks */,
+				0AA87C0A2A5E98B100B9105B /* FirebaseDatabaseSwift in Frameworks */,
+				0AA87C0C2A5E98B100B9105B /* FirebaseFirestore in Frameworks */,
+				0AA87C082A5E98B100B9105B /* FirebaseDatabase in Frameworks */,
+				0AA87C062A5E98B100B9105B /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +317,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		0AA87BFA2A5E989A00B9105B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0AD17C402950AC3B003FEE73 = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +331,7 @@
 				0AD17C4B2950AC3B003FEE73 /* spotify-music-quiz-mida-2022 */,
 				0AD17C5C2950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests */,
 				0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */,
+				0AA87BFA2A5E989A00B9105B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -335,8 +382,18 @@
 		0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */ = {
 			isa = PBXGroup;
 			children = (
+				0AA87BF02A5E973C00B9105B /* AddFriendUITests.swift */,
+				0AA87BED2A5E973B00B9105B /* AuthorsScoreViewUITests.swift */,
+				0AA87BE92A5E973B00B9105B /* FriendsViewUITests.swift */,
+				0AA87BEC2A5E973B00B9105B /* GameOverViewUITests.swift */,
+				0AA87BEF2A5E973C00B9105B /* GameVIewUITests.swift */,
+				0AA87BEE2A5E973B00B9105B /* HomeViewUITests.swift */,
+				0AA87BF12A5E973C00B9105B /* LoginViewUITests.swift */,
+				0AA87BEA2A5E973B00B9105B /* ModeViewUITests.swift */,
+				0AA87BEB2A5E973B00B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */,
 				0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */,
 				0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */,
+				0AA87C0F2A5EA14B00B9105B /* MockUserViewModel.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022UITests";
 			sourceTree = "<group>";
@@ -449,6 +506,13 @@
 				0AD17C5B2950AC40003FEE73 /* PBXTargetDependency */,
 			);
 			name = "spotify-music-quiz-mida-2022Tests";
+			packageProductDependencies = (
+				0AA87BFB2A5E989A00B9105B /* FirebaseDatabase */,
+				0AA87BFD2A5E989A00B9105B /* FirebaseDatabaseSwift */,
+				0AA87BFF2A5E989A00B9105B /* FirebaseFirestore */,
+				0AA87C012A5E989A00B9105B /* FirebaseFirestoreSwift */,
+				0AA87C032A5E98A300B9105B /* FirebaseAnalytics */,
+			);
 			productName = "spotify-music-quiz-mida-2022Tests";
 			productReference = 0AD17C592950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -467,6 +531,13 @@
 				0AD17C652950AC41003FEE73 /* PBXTargetDependency */,
 			);
 			name = "spotify-music-quiz-mida-2022UITests";
+			packageProductDependencies = (
+				0AA87C052A5E98B100B9105B /* FirebaseAnalytics */,
+				0AA87C072A5E98B100B9105B /* FirebaseDatabase */,
+				0AA87C092A5E98B100B9105B /* FirebaseDatabaseSwift */,
+				0AA87C0B2A5E98B100B9105B /* FirebaseFirestore */,
+				0AA87C0D2A5E98B100B9105B /* FirebaseFirestoreSwift */,
+			);
 			productName = "spotify-music-quiz-mida-2022UITests";
 			productReference = 0AD17C632950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -629,7 +700,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */,
+				0AA87C102A5EA14B00B9105B /* MockUserViewModel.swift in Sources */,
+				0AA87BF82A5E973C00B9105B /* AddFriendUITests.swift in Sources */,
+				0AA87BF42A5E973C00B9105B /* GameOverViewUITests.swift in Sources */,
+				0AA87BF52A5E973C00B9105B /* AuthorsScoreViewUITests.swift in Sources */,
+				0AA87BF32A5E973C00B9105B /* ModeViewUITests.swift in Sources */,
 				0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */,
+				0AA87BF92A5E973C00B9105B /* LoginViewUITests.swift in Sources */,
+				0AA87BF22A5E973C00B9105B /* FriendsViewUITests.swift in Sources */,
+				0AA87BF72A5E973C00B9105B /* GameVIewUITests.swift in Sources */,
+				0AA87BF62A5E973C00B9105B /* HomeViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +1059,56 @@
 			productName = FirebaseFirestore;
 		};
 		0A3E4AC92A1B9AA700AD6992 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		0AA87BFB2A5E989A00B9105B /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		0AA87BFD2A5E989A00B9105B /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		0AA87BFF2A5E989A00B9105B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		0AA87C012A5E989A00B9105B /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		0AA87C032A5E98A300B9105B /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		0AA87C052A5E98B100B9105B /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		0AA87C072A5E98B100B9105B /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		0AA87C092A5E98B100B9105B /* FirebaseDatabaseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabaseSwift;
+		};
+		0AA87C0B2A5E98B100B9105B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		0AA87C0D2A5E98B100B9105B /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0A3E4AC02A1B9AA600AD6992 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;

@@ -9,15 +9,15 @@ import Foundation
 import FirebaseFirestore
 
 @MainActor
-final class UserViewModel : ObservableObject {
-    @Published private(set) var isLoading = true
-    @Published private(set) var users : [User] = []
-    @Published private(set) var friends : [User] = []
-    @Published private(set) var searchedUsers : [User] = []
-    @Published private(set) var highscores = [String : Int]()
-    @Published private(set) var highscoresOrdered : Array<(key: String, value: Int)> = []
-    @Published private(set) var authorsScores : Array<(key: String, value: Int)> = []
-    @Published private(set) var authorsId : Array<(key: String, value: String)> = []
+class UserViewModel : ObservableObject {
+    @Published var isLoading = true
+    @Published var users : [User] = []
+    @Published var friends : [User] = []
+    @Published var searchedUsers : [User] = []
+    @Published var highscores = [String : Int]()
+    @Published var highscoresOrdered : Array<(key: String, value: Int)> = []
+    @Published  var authorsScores : Array<(key: String, value: Int)> = []
+    @Published  var authorsId : Array<(key: String, value: String)> = []
     @Published var currentUser = User(id: "", display_name: "", email: "", friends: [DocumentReference](), SpotifyID: "", image: "")
     
     func getAllUsers() async throws {
