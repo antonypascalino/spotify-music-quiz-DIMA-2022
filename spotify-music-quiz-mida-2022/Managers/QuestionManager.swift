@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+protocol QuestionManagerProtocol {
+    
+}
+
 class QuestionManager: ObservableObject {
     
     private let apiCaller : APICaller!

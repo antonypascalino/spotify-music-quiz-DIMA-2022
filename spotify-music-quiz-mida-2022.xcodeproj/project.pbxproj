@@ -20,6 +20,18 @@
 		0A3425E72A5892660004C300 /* GameManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425E62A5892660004C300 /* GameManagerTests.swift */; };
 		0A3425E92A5DC4A70004C300 /* QuestionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */; };
 		0A3425EB2A5DC5470004C300 /* MockQuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */; };
+		0A3425F22A5DDE410004C300 /* UserTopArtists.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425EC2A5DDE400004C300 /* UserTopArtists.json */; };
+		0A3425F32A5DDE410004C300 /* FollowedArtists.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425ED2A5DDE400004C300 /* FollowedArtists.json */; };
+		0A3425F42A5DDE410004C300 /* UserAlbums.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425EE2A5DDE400004C300 /* UserAlbums.json */; };
+		0A3425F52A5DDE410004C300 /* UserTopTracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425EF2A5DDE400004C300 /* UserTopTracks.json */; };
+		0A3425F62A5DDE410004C300 /* SavedTracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425F02A5DDE400004C300 /* SavedTracks.json */; };
+		0A3425F72A5DDE410004C300 /* UserProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425F12A5DDE410004C300 /* UserProfile.json */; };
+		0A3425F92A5DDE890004C300 /* UserPlaylist.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425F82A5DDE890004C300 /* UserPlaylist.json */; };
+		0A3425FF2A5DE67F0004C300 /* ReccTracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3425FE2A5DE67F0004C300 /* ReccTracks.json */; };
+		0A3426012A5DE6F30004C300 /* ArtistTopTracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3426002A5DE6F30004C300 /* ArtistTopTracks.json */; };
+		0A3426032A5DF9350004C300 /* PlaylistTracks2.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3426022A5DF9350004C300 /* PlaylistTracks2.json */; };
+		0A3426052A5DFBE20004C300 /* ArtistRelatedArtists.json in Resources */ = {isa = PBXBuildFile; fileRef = 0A3426042A5DFBE20004C300 /* ArtistRelatedArtists.json */; };
+		0A3426072A5E02350004C300 /* MockGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3426062A5E02350004C300 /* MockGameManager.swift */; };
 		0A3908B829CAFF6E0073ACE0 /* AuthorScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */; };
 		0A3908BB29CB0B640073ACE0 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BA29CB0B640073ACE0 /* Friend.swift */; };
 		0A3908BD29CB47D20073ACE0 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3908BC29CB47D20073ACE0 /* Question.swift */; };
@@ -130,6 +142,18 @@
 		0A3425E62A5892660004C300 /* GameManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerTests.swift; sourceTree = "<group>"; };
 		0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManagerTests.swift; sourceTree = "<group>"; };
 		0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockQuestionManager.swift; sourceTree = "<group>"; };
+		0A3425EC2A5DDE400004C300 /* UserTopArtists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTopArtists.json; sourceTree = "<group>"; };
+		0A3425ED2A5DDE400004C300 /* FollowedArtists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FollowedArtists.json; sourceTree = "<group>"; };
+		0A3425EE2A5DDE400004C300 /* UserAlbums.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserAlbums.json; sourceTree = "<group>"; };
+		0A3425EF2A5DDE400004C300 /* UserTopTracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserTopTracks.json; sourceTree = "<group>"; };
+		0A3425F02A5DDE400004C300 /* SavedTracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SavedTracks.json; sourceTree = "<group>"; };
+		0A3425F12A5DDE410004C300 /* UserProfile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserProfile.json; sourceTree = "<group>"; };
+		0A3425F82A5DDE890004C300 /* UserPlaylist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UserPlaylist.json; sourceTree = "<group>"; };
+		0A3425FE2A5DE67F0004C300 /* ReccTracks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ReccTracks.json; sourceTree = "<group>"; };
+		0A3426002A5DE6F30004C300 /* ArtistTopTracks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArtistTopTracks.json; sourceTree = "<group>"; };
+		0A3426022A5DF9350004C300 /* PlaylistTracks2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlaylistTracks2.json; sourceTree = "<group>"; };
+		0A3426042A5DFBE20004C300 /* ArtistRelatedArtists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArtistRelatedArtists.json; sourceTree = "<group>"; };
+		0A3426062A5E02350004C300 /* MockGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGameManager.swift; sourceTree = "<group>"; };
 		0A3908B729CAFF6E0073ACE0 /* AuthorScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorScoreView.swift; sourceTree = "<group>"; };
 		0A3908BA29CB0B640073ACE0 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0A3908BC29CB47D20073ACE0 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -366,14 +390,26 @@
 			isa = PBXGroup;
 			children = (
 				0AA87BC72A5DB53B00B9105B /* APICallerTest.swift */,
-				0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */,
+				0A3426002A5DE6F30004C300 /* ArtistTopTracks.json */,
 				0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */,
-				0A3425E02A49885A0004C300 /* MockAuthManager.swift */,
 				0A3425E22A49A0280004C300 /* AuthResponse.json */,
-				0A3425E42A49A4A50004C300 /* Mockable.swift */,
+				0A3425ED2A5DDE400004C300 /* FollowedArtists.json */,
 				0A3425E62A5892660004C300 /* GameManagerTests.swift */,
-				0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */,
+				0A3425E42A49A4A50004C300 /* Mockable.swift */,
+				0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */,
+				0A3425E02A49885A0004C300 /* MockAuthManager.swift */,
 				0A3425EA2A5DC5470004C300 /* MockQuestionManager.swift */,
+				0A3425E82A5DC4A70004C300 /* QuestionManagerTests.swift */,
+				0A3425FE2A5DE67F0004C300 /* ReccTracks.json */,
+				0A3425F02A5DDE400004C300 /* SavedTracks.json */,
+				0A3425EE2A5DDE400004C300 /* UserAlbums.json */,
+				0A3425F82A5DDE890004C300 /* UserPlaylist.json */,
+				0A3425F12A5DDE410004C300 /* UserProfile.json */,
+				0A3425EC2A5DDE400004C300 /* UserTopArtists.json */,
+				0A3425EF2A5DDE400004C300 /* UserTopTracks.json */,
+				0A3426022A5DF9350004C300 /* PlaylistTracks2.json */,
+				0A3426042A5DFBE20004C300 /* ArtistRelatedArtists.json */,
+				0A3426062A5E02350004C300 /* MockGameManager.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022Tests";
 			sourceTree = "<group>";
@@ -602,7 +638,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A3425F32A5DDE410004C300 /* FollowedArtists.json in Resources */,
+				0A3425F62A5DDE410004C300 /* SavedTracks.json in Resources */,
+				0A3426012A5DE6F30004C300 /* ArtistTopTracks.json in Resources */,
+				0A3426052A5DFBE20004C300 /* ArtistRelatedArtists.json in Resources */,
+				0A3425F92A5DDE890004C300 /* UserPlaylist.json in Resources */,
 				0A3425E32A49A0280004C300 /* AuthResponse.json in Resources */,
+				0A3425F42A5DDE410004C300 /* UserAlbums.json in Resources */,
+				0A3425F52A5DDE410004C300 /* UserTopTracks.json in Resources */,
+				0A3425F72A5DDE410004C300 /* UserProfile.json in Resources */,
+				0A3426032A5DF9350004C300 /* PlaylistTracks2.json in Resources */,
+				0A3425F22A5DDE410004C300 /* UserTopArtists.json in Resources */,
+				0A3425FF2A5DE67F0004C300 /* ReccTracks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,6 +727,7 @@
 				0AD17C5E2950AC40003FEE73 /* AuthManagerTests.swift in Sources */,
 				0A3425EB2A5DC5470004C300 /* MockQuestionManager.swift in Sources */,
 				0A3425E72A5892660004C300 /* GameManagerTests.swift in Sources */,
+				0A3426072A5E02350004C300 /* MockGameManager.swift in Sources */,
 				0A3425E92A5DC4A70004C300 /* QuestionManagerTests.swift in Sources */,
 				0A3425E52A49A4A50004C300 /* Mockable.swift in Sources */,
 				0AA87BC92A5DB53C00B9105B /* APICallerTest.swift in Sources */,

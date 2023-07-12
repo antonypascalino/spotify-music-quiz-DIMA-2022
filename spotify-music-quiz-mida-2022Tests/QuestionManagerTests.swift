@@ -11,28 +11,30 @@ import XCTest
 class QuestionManagerTests: XCTestCase {
     
     var questionManager: MockQuestionManager!
+    var userManager: UserManager!
     
     override func setUp() {
         super.setUp()
         // Inizializza le dipendenze necessarie
         questionManager = MockQuestionManager()
+
     }
     
     override func tearDown() {
         // Esegui operazioni di pulizia se necessario
-        apiCaller = nil
-        userManager = nil
         questionManager = nil
         super.tearDown()
     }
     
     func testGenRandomQuestions() async throws {
         // Esegui il test per il metodo genRandomQuestions
-        
         // Testa il caso "whoIsTheAuthor"
-        let whoIsTheAuthorQuestions = try await questionManager.genRandomQuestions(code: "whoIsTheAuthor", regenQuest: true)
-        // Verifica che sia stato generato un array di domande
-        XCTAssertFalse(whoIsTheAuthorQuestions.isEmpty, "Failed to generate questions for code 'whoIsTheAuthor'")
+        try await questionManager.importAllData()
+
+            let whoIsAuthorQuestions = try await questionManager.genRandomQuestions(code: "whoIsTheAuthor", regenQuest: true)
+        XCTAssertFalse(whoIsAuthorQuestions.isEmpty, "Failed to generate questions for code 'recallTheYear'")
+
+
         
         // Testa il caso "recallTheYear"
         let recallTheYearQuestions = try await questionManager.genRandomQuestions(code: "recallTheYear", regenQuest: true)
@@ -71,16 +73,15 @@ class QuestionManagerTests: XCTestCase {
     }
     
     func testGenAllQuestions() async throws {
-        // Esegui il test per il metodo genAllQuestions
         
-        // Chiamata al metodo genAllQuestions
+        try await questionManager.importAllData()
+
         let allQuestions = try await questionManager.genAllQuestions()
         
         // Verifica che sia stato generato un array di domande
         XCTAssertFalse(allQuestions.isEmpty, "Failed to generate all questions")
     }
     
-    // Aggiungi altri test se necessario per gli altri metodi del QuestionManager
-    // ...
+    
 }
 

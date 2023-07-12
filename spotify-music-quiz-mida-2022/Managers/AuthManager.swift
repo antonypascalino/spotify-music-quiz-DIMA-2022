@@ -155,6 +155,7 @@ class AuthManager : AuthManagerProtocol {
                          value : Constants.redirectURI),
             
         ]
+        print("code: \(code)")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField : "Content-Type")

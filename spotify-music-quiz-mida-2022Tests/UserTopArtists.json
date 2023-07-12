@@ -1,0 +1,740 @@
+{
+    "items": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/4gzpq5DPGxSnKTe4SA8HAU"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "permanent wave",
+          "pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/4gzpq5DPGxSnKTe4SA8HAU",
+        "id": "4gzpq5DPGxSnKTe4SA8HAU",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb989ed05e1f0570cc4726c2d3",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174989ed05e1f0570cc4726c2d3",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178989ed05e1f0570cc4726c2d3",
+            "width": 160
+          }
+        ],
+        "name": "Coldplay",
+        "popularity": 87,
+        "type": "artist",
+        "uri": "spotify:artist:4gzpq5DPGxSnKTe4SA8HAU"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/11TplWqOPQBTmg2eiSLt1m"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/11TplWqOPQBTmg2eiSLt1m",
+        "id": "11TplWqOPQBTmg2eiSLt1m",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebb472e5b7f6a6e9af70e4c497",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174b472e5b7f6a6e9af70e4c497",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178b472e5b7f6a6e9af70e4c497",
+            "width": 160
+          }
+        ],
+        "name": "Tiziano Ferro",
+        "popularity": 65,
+        "type": "artist",
+        "uri": "spotify:artist:11TplWqOPQBTmg2eiSLt1m"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1Cs0zKBU1kc0i8ypK3B9ai"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "big room",
+          "dance pop",
+          "edm",
+          "pop",
+          "pop dance"
+        ],
+        "href": "https://api.spotify.com/v1/artists/1Cs0zKBU1kc0i8ypK3B9ai",
+        "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb75348e1aade2645ad9c58829",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517475348e1aade2645ad9c58829",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17875348e1aade2645ad9c58829",
+            "width": 160
+          }
+        ],
+        "name": "David Guetta",
+        "popularity": 87,
+        "type": "artist",
+        "uri": "spotify:artist:1Cs0zKBU1kc0i8ypK3B9ai"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/7CajNmpbOovFoOoasH2HaY"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "dance pop",
+          "edm",
+          "electro house",
+          "house",
+          "pop",
+          "progressive house",
+          "uk dance"
+        ],
+        "href": "https://api.spotify.com/v1/artists/7CajNmpbOovFoOoasH2HaY",
+        "id": "7CajNmpbOovFoOoasH2HaY",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb37bff6aa1d42bede9048750f",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517437bff6aa1d42bede9048750f",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17837bff6aa1d42bede9048750f",
+            "width": 160
+          }
+        ],
+        "name": "Calvin Harris",
+        "popularity": 84,
+        "type": "artist",
+        "uri": "spotify:artist:7CajNmpbOovFoOoasH2HaY"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/04gDigrS5kc9YWfZHwBETP"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/04gDigrS5kc9YWfZHwBETP",
+        "id": "04gDigrS5kc9YWfZHwBETP",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebf8349dfb619a7f842242de77",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174f8349dfb619a7f842242de77",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178f8349dfb619a7f842242de77",
+            "width": 160
+          }
+        ],
+        "name": "Maroon 5",
+        "popularity": 83,
+        "type": "artist",
+        "uri": "spotify:artist:04gDigrS5kc9YWfZHwBETP"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/396Jr76018oUMR6QBnqT8T"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/396Jr76018oUMR6QBnqT8T",
+        "id": "396Jr76018oUMR6QBnqT8T",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebcc7117bce76f5b15bb20836d",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174cc7117bce76f5b15bb20836d",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178cc7117bce76f5b15bb20836d",
+            "width": 160
+          }
+        ],
+        "name": "Cesare Cremonini",
+        "popularity": 57,
+        "type": "artist",
+        "uri": "spotify:artist:396Jr76018oUMR6QBnqT8T"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1yxSLGMDHlW21z4YXirZDS"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "dance pop",
+          "pop",
+          "pop rap"
+        ],
+        "href": "https://api.spotify.com/v1/artists/1yxSLGMDHlW21z4YXirZDS",
+        "id": "1yxSLGMDHlW21z4YXirZDS",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebabab30b094128cf4c0f2cef1",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174abab30b094128cf4c0f2cef1",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178abab30b094128cf4c0f2cef1",
+            "width": 160
+          }
+        ],
+        "name": "Black Eyed Peas",
+        "popularity": 79,
+        "type": "artist",
+        "uri": "spotify:artist:1yxSLGMDHlW21z4YXirZDS"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1MRiIeZbc0cRuxOafDUCtH"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian hip hop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/1MRiIeZbc0cRuxOafDUCtH",
+        "id": "1MRiIeZbc0cRuxOafDUCtH",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb7ee6260543faea386101c06f",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051747ee6260543faea386101c06f",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1787ee6260543faea386101c06f",
+            "width": 160
+          }
+        ],
+        "name": "BLANCO",
+        "popularity": 70,
+        "type": "artist",
+        "uri": "spotify:artist:1MRiIeZbc0cRuxOafDUCtH"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0TnOYISbd1XYRBk9myaseg"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "dance pop",
+          "miami hip hop",
+          "pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
+        "id": "0TnOYISbd1XYRBk9myaseg",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb6761852cd2852fceb64e8cd9",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051746761852cd2852fceb64e8cd9",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1786761852cd2852fceb64e8cd9",
+            "width": 160
+          }
+        ],
+        "name": "Pitbull",
+        "popularity": 81,
+        "type": "artist",
+        "uri": "spotify:artist:0TnOYISbd1XYRBk9myaseg"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/5YFS41yoX0YuFY39fq21oN"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "disco house",
+          "filter house"
+        ],
+        "href": "https://api.spotify.com/v1/artists/5YFS41yoX0YuFY39fq21oN",
+        "id": "5YFS41yoX0YuFY39fq21oN",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb66120280e076f05720f3ed33",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517466120280e076f05720f3ed33",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17866120280e076f05720f3ed33",
+            "width": 160
+          }
+        ],
+        "name": "Bob Sinclar",
+        "popularity": 67,
+        "type": "artist",
+        "uri": "spotify:artist:5YFS41yoX0YuFY39fq21oN"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1X9iZlQXfAAx4Vvmlqeao7"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/1X9iZlQXfAAx4Vvmlqeao7",
+        "id": "1X9iZlQXfAAx4Vvmlqeao7",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb16a3601fc0a8663a38885d7b",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517416a3601fc0a8663a38885d7b",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17816a3601fc0a8663a38885d7b",
+            "width": 160
+          }
+        ],
+        "name": "Negramaro",
+        "popularity": 56,
+        "type": "artist",
+        "uri": "spotify:artist:1X9iZlQXfAAx4Vvmlqeao7"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/35V1WomiedCJeGfupcPm7s"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/35V1WomiedCJeGfupcPm7s",
+        "id": "35V1WomiedCJeGfupcPm7s",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb64db88044cd8bed3b4bb951d",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517464db88044cd8bed3b4bb951d",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17864db88044cd8bed3b4bb951d",
+            "width": 160
+          }
+        ],
+        "name": "Tananai",
+        "popularity": 65,
+        "type": "artist",
+        "uri": "spotify:artist:35V1WomiedCJeGfupcPm7s"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "detroit hip hop",
+          "hip hop",
+          "rap"
+        ],
+        "href": "https://api.spotify.com/v1/artists/7dGJo4pcD2V6oG8kP0tJRR",
+        "id": "7dGJo4pcD2V6oG8kP0tJRR",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eba00b11c129b27a88fc72f36b",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174a00b11c129b27a88fc72f36b",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178a00b11c129b27a88fc72f36b",
+            "width": 160
+          }
+        ],
+        "name": "Eminem",
+        "popularity": 88,
+        "type": "artist",
+        "uri": "spotify:artist:7dGJo4pcD2V6oG8kP0tJRR"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2ARH58Hit3yC6ziGdhma23"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/2ARH58Hit3yC6ziGdhma23",
+        "id": "2ARH58Hit3yC6ziGdhma23",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb2f152cde4f45311ff0a880c2",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab676161000051742f152cde4f45311ff0a880c2",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f1782f152cde4f45311ff0a880c2",
+            "width": 160
+          }
+        ],
+        "name": "Elisa",
+        "popularity": 60,
+        "type": "artist",
+        "uri": "spotify:artist:2ARH58Hit3yC6ziGdhma23"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/7KMqksf0UMdyA0UCf4R3ux"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "neo mellow",
+          "pop rock"
+        ],
+        "href": "https://api.spotify.com/v1/artists/7KMqksf0UMdyA0UCf4R3ux",
+        "id": "7KMqksf0UMdyA0UCf4R3ux",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb38cfff556f458c0b655761ff",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab6761610000517438cfff556f458c0b655761ff",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f17838cfff556f458c0b655761ff",
+            "width": 160
+          }
+        ],
+        "name": "James Blunt",
+        "popularity": 69,
+        "type": "artist",
+        "uri": "spotify:artist:7KMqksf0UMdyA0UCf4R3ux"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/59MLbXG0jLVwJup3KAd6m1"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/59MLbXG0jLVwJup3KAd6m1",
+        "id": "59MLbXG0jLVwJup3KAd6m1",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5eb462b783ed241c8ac38369195",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174462b783ed241c8ac38369195",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178462b783ed241c8ac38369195",
+            "width": 160
+          }
+        ],
+        "name": "Mr.Rain",
+        "popularity": 62,
+        "type": "artist",
+        "uri": "spotify:artist:59MLbXG0jLVwJup3KAd6m1"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/2iK8weavvfS2xJCmzNzNE5"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "italian adult pop",
+          "italian pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/2iK8weavvfS2xJCmzNzNE5",
+        "id": "2iK8weavvfS2xJCmzNzNE5",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebe3a531b350725827c3ed39ea",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174e3a531b350725827c3ed39ea",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178e3a531b350725827c3ed39ea",
+            "width": 160
+          }
+        ],
+        "name": "J-AX",
+        "popularity": 58,
+        "type": "artist",
+        "uri": "spotify:artist:2iK8weavvfS2xJCmzNzNE5"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0du5cEVh5yTK9QJze8zA0C"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "dance pop",
+          "pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/0du5cEVh5yTK9QJze8zA0C",
+        "id": "0du5cEVh5yTK9QJze8zA0C",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebc36dd9eb55fb0db4911f25dd",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174c36dd9eb55fb0db4911f25dd",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178c36dd9eb55fb0db4911f25dd",
+            "width": 160
+          }
+        ],
+        "name": "Bruno Mars",
+        "popularity": 86,
+        "type": "artist",
+        "uri": "spotify:artist:0du5cEVh5yTK9QJze8zA0C"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/3hYLJPJuDyblFKersEaFd6"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "canzone d'autore",
+          "classic italian pop",
+          "italian adult pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/3hYLJPJuDyblFKersEaFd6",
+        "id": "3hYLJPJuDyblFKersEaFd6",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebddbbf37c7a098f7a0e06d900",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174ddbbf37c7a098f7a0e06d900",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178ddbbf37c7a098f7a0e06d900",
+            "width": 160
+          }
+        ],
+        "name": "Antonello Venditti",
+        "popularity": 55,
+        "type": "artist",
+        "uri": "spotify:artist:3hYLJPJuDyblFKersEaFd6"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/5l4nhyz8876RhgE2d18h65"
+        },
+        "followers": {
+          "href": null,
+          "total": 0
+        },
+        "genres": [
+          "classic italian pop",
+          "italian adult pop"
+        ],
+        "href": "https://api.spotify.com/v1/artists/5l4nhyz8876RhgE2d18h65",
+        "id": "5l4nhyz8876RhgE2d18h65",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://i.scdn.co/image/ab6761610000e5ebd7b45027ca90486a5c6a7412",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url": "https://i.scdn.co/image/ab67616100005174d7b45027ca90486a5c6a7412",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url": "https://i.scdn.co/image/ab6761610000f178d7b45027ca90486a5c6a7412",
+            "width": 160
+          }
+        ],
+        "name": "Vasco Rossi",
+        "popularity": 65,
+        "type": "artist",
+        "uri": "spotify:artist:5l4nhyz8876RhgE2d18h65"
+      }
+    ],
+    "total": 50,
+    "limit": 20,
+    "offset": 0,
+    "href": "https://api.spotify.com/v1/me/top/artists",
+    "next": "https://api.spotify.com/v1/me/top/artists?limit=20&offset=20",
+    "previous": null
+  }

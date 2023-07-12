@@ -1,0 +1,650 @@
+{
+    "href": "https://api.spotify.com/v1/users/pettorrusoantonio7/playlists?offset=0&limit=20",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "Immerse yourself in the hypnotic world of the &quot;House Heaven&quot; playlist. Our expertly curated selection of deep, groovy beats and mesmerizing basslines will take you on an unforgettable sonic journey. Ideal for late-night sessions, underground parties, or simply unwinding after a long day. ",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/0VRMtDFZCD2HpaCVoyLtn0"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0VRMtDFZCD2HpaCVoyLtn0",
+        "id": "0VRMtDFZCD2HpaCVoyLtn0",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb7eb250c3f94dae2943a19df9",
+            "width": null
+          }
+        ],
+        "name": "House Heaven ",
+        "owner": {
+          "display_name": "Lucky Group",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/luckyent"
+          },
+          "href": "https://api.spotify.com/v1/users/luckyent",
+          "id": "luckyent",
+          "type": "user",
+          "uri": "spotify:user:luckyent"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjI2NyxlMjc5ZTdhMzZhOWNhZDgwMGFiMWI1NTY4YmZkMDI3ODgwMjFkZWQ5",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/0VRMtDFZCD2HpaCVoyLtn0/tracks",
+          "total": 92
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:0VRMtDFZCD2HpaCVoyLtn0"
+      },
+      {
+        "collaborative": false,
+        "description": "The best tech house and techno music in one playlist from Hugel, Mau P, Dom Dolla, Eli Brown, James Hype, Diplo, FISHER and many more! | tech house - house - techno - techno songs - party - weekend - house mix - bangers",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/7KHrowvhxZxsKIcJsGpuQq"
+        },
+        "href": "https://api.spotify.com/v1/playlists/7KHrowvhxZxsKIcJsGpuQq",
+        "id": "7KHrowvhxZxsKIcJsGpuQq",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbea5b312f0ba4461490f00b38",
+            "width": null
+          }
+        ],
+        "name": "Tech house & Techno Party 2023",
+        "owner": {
+          "display_name": "Panther's Groove",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/x43zjmj9fxfa65thdh3xeetli"
+          },
+          "href": "https://api.spotify.com/v1/users/x43zjmj9fxfa65thdh3xeetli",
+          "id": "x43zjmj9fxfa65thdh3xeetli",
+          "type": "user",
+          "uri": "spotify:user:x43zjmj9fxfa65thdh3xeetli"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjI3OCw5MjQyOTM0OWFkMTMxOWVlMDBkYjhiMzAxYzQwZDc4NGNjNWY3MmQ5",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/7KHrowvhxZxsKIcJsGpuQq/tracks",
+          "total": 128
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:7KHrowvhxZxsKIcJsGpuQq"
+      },
+      {
+        "collaborative": false,
+        "description": "wenn du  eine Motivation zum lernen brauchst hör dir diese Playlist an",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/27NqbawF2BQ0eYuWFgYPbo"
+        },
+        "href": "https://api.spotify.com/v1/playlists/27NqbawF2BQ0eYuWFgYPbo",
+        "id": "27NqbawF2BQ0eYuWFgYPbo",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb9799c1d32a10616be54c1f13",
+            "width": null
+          }
+        ],
+        "name": "Study music 🍃 🦖🐄",
+        "owner": {
+          "display_name": "paula :)",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/paula.diephausi"
+          },
+          "href": "https://api.spotify.com/v1/users/paula.diephausi",
+          "id": "paula.diephausi",
+          "type": "user",
+          "uri": "spotify:user:paula.diephausi"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NjAsNDEwYjY5MjFlMjExMTJiZWE2ODdjMzk5ZDhhNjE3MDgyMDE2ZWRiOQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/27NqbawF2BQ0eYuWFgYPbo/tracks",
+          "total": 48
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:27NqbawF2BQ0eYuWFgYPbo"
+      },
+      {
+        "collaborative": false,
+        "description": "Relaxing Music 2023 🍃  Pop Music to Relax &amp; Chill Inquiries: PlaylistPitchAgency@gmail.com",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/0n81ha8dSdYLDVc8VpCPsd"
+        },
+        "href": "https://api.spotify.com/v1/playlists/0n81ha8dSdYLDVc8VpCPsd",
+        "id": "0n81ha8dSdYLDVc8VpCPsd",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb110bc6d3e7461cd5e352584a",
+            "width": null
+          }
+        ],
+        "name": "Relaxing Music 2023 🍃  Pop Music to Relax & Chill",
+        "owner": {
+          "display_name": "Magic Records",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/magicmusicsquad"
+          },
+          "href": "https://api.spotify.com/v1/users/magicmusicsquad",
+          "id": "magicmusicsquad",
+          "type": "user",
+          "uri": "spotify:user:magicmusicsquad"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTAyNSw5OTU3ZWU3NzgyZjI5NDA2NWQ2ZDY2NTg2NmQyNjk3MDJhMGRhNGY0",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/0n81ha8dSdYLDVc8VpCPsd/tracks",
+          "total": 146
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:0n81ha8dSdYLDVc8VpCPsd"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/2WYy1URLYVqwh2Ii3JDBXT"
+        },
+        "href": "https://api.spotify.com/v1/playlists/2WYy1URLYVqwh2Ii3JDBXT",
+        "id": "2WYy1URLYVqwh2Ii3JDBXT",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebb9419b86aeb1bcedf97ffbd20",
+            "width": null
+          }
+        ],
+        "name": "Relax",
+        "owner": {
+          "display_name": "Salvatore Marragony",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/wz5ft6tn3fn3yuy6cukl4s46w"
+          },
+          "href": "https://api.spotify.com/v1/users/wz5ft6tn3fn3yuy6cukl4s46w",
+          "id": "wz5ft6tn3fn3yuy6cukl4s46w",
+          "type": "user",
+          "uri": "spotify:user:wz5ft6tn3fn3yuy6cukl4s46w"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NzcsZDBmYTQxZmQ4OGU2MzNjZTA1OThlY2RmMzA1NjY2ODkyNzliZWQ2Zg==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/2WYy1URLYVqwh2Ii3JDBXT/tracks",
+          "total": 66
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:2WYy1URLYVqwh2Ii3JDBXT"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWWMOmoXKqHTD"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWMOmoXKqHTD",
+        "id": "37i9dQZF1DWWMOmoXKqHTD",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003ffa215be1a4c64e3cbf59d1e",
+            "width": null
+          }
+        ],
+        "name": "Songs to Sing in the Car",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTY4NjkyMDg0OSwwMDAwMDAwMGExOWVmYzQwNDNmMWZhNzU4NDY5YWRiYjJkNjVlZDcz",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWMOmoXKqHTD/tracks",
+          "total": 100
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWWMOmoXKqHTD"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/3Dz70gPpwK4HBVE1r9I9RY"
+        },
+        "href": "https://api.spotify.com/v1/playlists/3Dz70gPpwK4HBVE1r9I9RY",
+        "id": "3Dz70gPpwK4HBVE1r9I9RY",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706c0000bebbf026831ed7d052a00b98b197",
+            "width": null
+          }
+        ],
+        "name": "Classici&vinili",
+        "owner": {
+          "display_name": "Riccardo",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/rickberna"
+          },
+          "href": "https://api.spotify.com/v1/users/rickberna",
+          "id": "rickberna",
+          "type": "user",
+          "uri": "spotify:user:rickberna"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTU1LDdiZGMyOGMyNDg3OGEzMGEyY2UyZTRlZDgyNmUxZTlhYmQyYjk5M2U=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/3Dz70gPpwK4HBVE1r9I9RY/tracks",
+          "total": 149
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:3Dz70gPpwK4HBVE1r9I9RY"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/6LPFua8UObbFW1gUtcRKS3"
+        },
+        "href": "https://api.spotify.com/v1/playlists/6LPFua8UObbFW1gUtcRKS3",
+        "id": "6LPFua8UObbFW1gUtcRKS3",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b27325d10f813fd1114b2bb9e39aab67616d0000b2733b9f8b18cc685e1502128aa8ab67616d0000b273a35daeab41d7d6da14cc809cab67616d0000b273f60070dce96a2c1b70cf6ff0",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b27325d10f813fd1114b2bb9e39aab67616d0000b2733b9f8b18cc685e1502128aa8ab67616d0000b273a35daeab41d7d6da14cc809cab67616d0000b273f60070dce96a2c1b70cf6ff0",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b27325d10f813fd1114b2bb9e39aab67616d0000b2733b9f8b18cc685e1502128aa8ab67616d0000b273a35daeab41d7d6da14cc809cab67616d0000b273f60070dce96a2c1b70cf6ff0",
+            "width": 60
+          }
+        ],
+        "name": "A al quadrato",
+        "owner": {
+          "display_name": "antopetto",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/7er9eh51maf1ml57dr36m94w7"
+          },
+          "href": "https://api.spotify.com/v1/users/7er9eh51maf1ml57dr36m94w7",
+          "id": "7er9eh51maf1ml57dr36m94w7",
+          "type": "user",
+          "uri": "spotify:user:7er9eh51maf1ml57dr36m94w7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjgsNWViYmQzOTExYTk1MDQ5YTYzNWNlZmMxYzFjMjRiOGRlMGZjYTAzYw==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/6LPFua8UObbFW1gUtcRKS3/tracks",
+          "total": 26
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:6LPFua8UObbFW1gUtcRKS3"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/4K3Pu6KmDmML0S3VjHT4yS"
+        },
+        "href": "https://api.spotify.com/v1/playlists/4K3Pu6KmDmML0S3VjHT4yS",
+        "id": "4K3Pu6KmDmML0S3VjHT4yS",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b273063c048e9ef6bd021b744756ab67616d0000b2734626ff0fee963da605f6aa06ab67616d0000b27350b5922bdf87ba4213b25234ab67616d0000b27380cf86df95f03361bcd6ac24",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b273063c048e9ef6bd021b744756ab67616d0000b2734626ff0fee963da605f6aa06ab67616d0000b27350b5922bdf87ba4213b25234ab67616d0000b27380cf86df95f03361bcd6ac24",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b273063c048e9ef6bd021b744756ab67616d0000b2734626ff0fee963da605f6aa06ab67616d0000b27350b5922bdf87ba4213b25234ab67616d0000b27380cf86df95f03361bcd6ac24",
+            "width": 60
+          }
+        ],
+        "name": "NUOVA20182",
+        "owner": {
+          "display_name": "antopetto",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/7er9eh51maf1ml57dr36m94w7"
+          },
+          "href": "https://api.spotify.com/v1/users/7er9eh51maf1ml57dr36m94w7",
+          "id": "7er9eh51maf1ml57dr36m94w7",
+          "type": "user",
+          "uri": "spotify:user:7er9eh51maf1ml57dr36m94w7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "OTAsZmY2NzRlNGM3MDhjNjA0YTk1NDY0ZDZiOGI4Yjc3NDA5YTIwNTgxMQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/4K3Pu6KmDmML0S3VjHT4yS/tracks",
+          "total": 86
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:4K3Pu6KmDmML0S3VjHT4yS"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/6hmZYYMWTiAIDoslMpuP9I"
+        },
+        "href": "https://api.spotify.com/v1/playlists/6hmZYYMWTiAIDoslMpuP9I",
+        "id": "6hmZYYMWTiAIDoslMpuP9I",
+        "images": [],
+        "name": "Podcast",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": true,
+        "snapshot_id": "MSw3ZmZiZWU3MjBiOTcwZjQ2ZTZkYzQ1Y2QxNDk1OTdmMzhkZGIxY2Rk",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/6hmZYYMWTiAIDoslMpuP9I/tracks",
+          "total": 0
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:6hmZYYMWTiAIDoslMpuP9I"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/41KEQqhUcwpQFXkL7yQyhk"
+        },
+        "href": "https://api.spotify.com/v1/playlists/41KEQqhUcwpQFXkL7yQyhk",
+        "id": "41KEQqhUcwpQFXkL7yQyhk",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b273280a44b1caee9f2109602c41ab67616d0000b273d5d74dc15f88ec6e02c7378dab67616d0000b273d8abb7310c55d359a6742698ab67616d0000b273fea05f39c2032bf782b8892e",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b273280a44b1caee9f2109602c41ab67616d0000b273d5d74dc15f88ec6e02c7378dab67616d0000b273d8abb7310c55d359a6742698ab67616d0000b273fea05f39c2032bf782b8892e",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b273280a44b1caee9f2109602c41ab67616d0000b273d5d74dc15f88ec6e02c7378dab67616d0000b273d8abb7310c55d359a6742698ab67616d0000b273fea05f39c2032bf782b8892e",
+            "width": 60
+          }
+        ],
+        "name": "Nuova18",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "NDQ3LDgwNmViNTc0ZjA5ZWJiODE0M2M5YWE5YzAzNTZkMWZiZWM0ZDdkNjg=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/41KEQqhUcwpQFXkL7yQyhk/tracks",
+          "total": 441
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:41KEQqhUcwpQFXkL7yQyhk"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/6x3THxnkaWsdx1VRWH27X8"
+        },
+        "href": "https://api.spotify.com/v1/playlists/6x3THxnkaWsdx1VRWH27X8",
+        "id": "6x3THxnkaWsdx1VRWH27X8",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2738bac93dae569b41cc98f2ecfab67616d0000b27398dc3e242a818007dd67b7c5ab67616d0000b273f0b8acb15163483765fe387eab67616d0000b273f45925e4e2881ead5c1a8723",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2738bac93dae569b41cc98f2ecfab67616d0000b27398dc3e242a818007dd67b7c5ab67616d0000b273f0b8acb15163483765fe387eab67616d0000b273f45925e4e2881ead5c1a8723",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2738bac93dae569b41cc98f2ecfab67616d0000b27398dc3e242a818007dd67b7c5ab67616d0000b273f0b8acb15163483765fe387eab67616d0000b273f45925e4e2881ead5c1a8723",
+            "width": 60
+          }
+        ],
+        "name": "Various Artists — Balli di gruppo 50 Top Hits",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "OCw4NzRjYjk5ZTMwOGRlNjdmMWY4YzkzOWNmNThlM2Q1MzlmYzcyMmQ3",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/6x3THxnkaWsdx1VRWH27X8/tracks",
+          "total": 55
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:6x3THxnkaWsdx1VRWH27X8"
+      },
+      {
+        "collaborative": false,
+        "description": "Il tuo mixtape settimanale di musica sempre nuova e di chicche scelte solo per te. Aggiornamenti ogni lunedì.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZEVXcEgDxClf3Dtw"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXcEgDxClf3Dtw",
+        "id": "37i9dQZEVXcEgDxClf3Dtw",
+        "images": [
+          {
+            "height": null,
+            "url": "https://newjams-images.scdn.co/image/ab676477000033ad/dt/v3/discover-weekly/ZsZpYabCtg69haxYFe1HQw==/dGl0aXRpdGl0aXRpdGl0aQ==",
+            "width": null
+          }
+        ],
+        "name": "Discover Weekly",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MCwwMDAwMDAwMDIzMzc2ZGE3ZmZmOTZjMjQzOTM1NmUyYWQ4NzE5MDMz",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZEVXcEgDxClf3Dtw/tracks",
+          "total": 30
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZEVXcEgDxClf3Dtw"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/34muIy3RPKMFtVz6isG7hs"
+        },
+        "href": "https://api.spotify.com/v1/playlists/34muIy3RPKMFtVz6isG7hs",
+        "id": "34muIy3RPKMFtVz6isG7hs",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b2732d564195ed3dd7b70d64862cab67616d0000b27392f2d790c6a97b195f66d51eab67616d0000b273c6ad2b2b62b581a23a7c1759ab67616d0000b273e363565e6fa91f0801c8d281",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b2732d564195ed3dd7b70d64862cab67616d0000b27392f2d790c6a97b195f66d51eab67616d0000b273c6ad2b2b62b581a23a7c1759ab67616d0000b273e363565e6fa91f0801c8d281",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b2732d564195ed3dd7b70d64862cab67616d0000b27392f2d790c6a97b195f66d51eab67616d0000b273c6ad2b2b62b581a23a7c1759ab67616d0000b273e363565e6fa91f0801c8d281",
+            "width": 60
+          }
+        ],
+        "name": "doccia",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTEsYmJmYzhiNTk1NjJmZWFlNTdjOGRlZmRhM2RlYmFkODRhMTAzODcxOQ==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/34muIy3RPKMFtVz6isG7hs/tracks",
+          "total": 9
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:34muIy3RPKMFtVz6isG7hs"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/1BxdQ1erM4g6ZQwZDkGaEt"
+        },
+        "href": "https://api.spotify.com/v1/playlists/1BxdQ1erM4g6ZQwZDkGaEt",
+        "id": "1BxdQ1erM4g6ZQwZDkGaEt",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b27335dfcdf13c991d6e0943b052ab67616d0000b27371d486aabf05513a7df5f300ab67616d0000b2737b9888dc365b8f957c63df14ab67616d0000b273d54c4b12c9242bda37f4bb25",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b27335dfcdf13c991d6e0943b052ab67616d0000b27371d486aabf05513a7df5f300ab67616d0000b2737b9888dc365b8f957c63df14ab67616d0000b273d54c4b12c9242bda37f4bb25",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b27335dfcdf13c991d6e0943b052ab67616d0000b27371d486aabf05513a7df5f300ab67616d0000b2737b9888dc365b8f957c63df14ab67616d0000b273d54c4b12c9242bda37f4bb25",
+            "width": 60
+          }
+        ],
+        "name": "I miei brani di Shazam",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MjI5LDkwMTkxOTYxNGUwNDY1MzMxZTIxODJjYjQ0OTdmYWRhMTQxYmE5YmE=",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/1BxdQ1erM4g6ZQwZDkGaEt/tracks",
+          "total": 231
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:1BxdQ1erM4g6ZQwZDkGaEt"
+      },
+      {
+        "collaborative": false,
+        "description": "",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/5puibpEF4Iewn3ErPmxZXr"
+        },
+        "href": "https://api.spotify.com/v1/playlists/5puibpEF4Iewn3ErPmxZXr",
+        "id": "5puibpEF4Iewn3ErPmxZXr",
+        "images": [
+          {
+            "height": 640,
+            "url": "https://mosaic.scdn.co/640/ab67616d0000b273212d776c31027c511f0ee3bcab67616d0000b273633a2d775747bccfbcb17a45ab67616d0000b2738d12bc5e3ea5c9f4a967de32ab67616d0000b2739416ed64daf84936d89e671c",
+            "width": 640
+          },
+          {
+            "height": 300,
+            "url": "https://mosaic.scdn.co/300/ab67616d0000b273212d776c31027c511f0ee3bcab67616d0000b273633a2d775747bccfbcb17a45ab67616d0000b2738d12bc5e3ea5c9f4a967de32ab67616d0000b2739416ed64daf84936d89e671c",
+            "width": 300
+          },
+          {
+            "height": 60,
+            "url": "https://mosaic.scdn.co/60/ab67616d0000b273212d776c31027c511f0ee3bcab67616d0000b273633a2d775747bccfbcb17a45ab67616d0000b2738d12bc5e3ea5c9f4a967de32ab67616d0000b2739416ed64daf84936d89e671c",
+            "width": 60
+          }
+        ],
+        "name": "a",
+        "owner": {
+          "display_name": "pettorrusoantonio7",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/pettorrusoantonio7"
+          },
+          "href": "https://api.spotify.com/v1/users/pettorrusoantonio7",
+          "id": "pettorrusoantonio7",
+          "type": "user",
+          "uri": "spotify:user:pettorrusoantonio7"
+        },
+        "primary_color": null,
+        "public": false,
+        "snapshot_id": "MTAsZTlhNjE3YmI5YzZkZjAwY2Q4MTFiNjI3ZDY5Y2FmZTAyMjU2ZTNlOA==",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/5puibpEF4Iewn3ErPmxZXr/tracks",
+          "total": 8
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:5puibpEF4Iewn3ErPmxZXr"
+      }
+    ],
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total": 16
+  }
