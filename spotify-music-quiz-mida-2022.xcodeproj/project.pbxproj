@@ -53,6 +53,12 @@
 		0AA87BCA2A5DB53C00B9105B /* MockAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BC82A5DB53C00B9105B /* MockAPICaller.swift */; };
 		0AA87BCD2A5DFF1600B9105B /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */; };
 		0AA87BD22A5E0CF500B9105B /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */; };
+		0AA87BDE2A5E1C5C00B9105B /* AddFriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BDD2A5E1C5C00B9105B /* AddFriendUITests.swift */; };
+		0AA87BE02A5E1DF800B9105B /* FriendsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BDF2A5E1DF800B9105B /* FriendsViewUITests.swift */; };
+		0AA87BE22A5E1E7600B9105B /* AuthorsScoreViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BE12A5E1E7600B9105B /* AuthorsScoreViewUITests.swift */; };
+		0AA87BE42A5E1EB200B9105B /* GameOverViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BE32A5E1EB200B9105B /* GameOverViewUITests.swift */; };
+		0AA87BE62A5E1F1700B9105B /* GameVIewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BE52A5E1F1700B9105B /* GameVIewUITests.swift */; };
+		0AA87BE82A5E1FA100B9105B /* ModeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA87BE72A5E1FA100B9105B /* ModeViewUITests.swift */; };
 		0AABD12C2A166EAA00B26479 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12B2A166EAA00B26479 /* Artists.swift */; };
 		0AABD1302A166EBC00B26479 /* ShazamLikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */; };
 		0AABD1322A166EBC00B26479 /* GuessTheSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */; };
@@ -157,6 +163,12 @@
 		0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
 		0AA87BD02A5E01F300B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spotify-music-quiz-mida-2022UITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BDD2A5E1C5C00B9105B /* AddFriendUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendUITests.swift; sourceTree = "<group>"; };
+		0AA87BDF2A5E1DF800B9105B /* FriendsViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BE12A5E1E7600B9105B /* AuthorsScoreViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsScoreViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BE32A5E1EB200B9105B /* GameOverViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewUITests.swift; sourceTree = "<group>"; };
+		0AA87BE52A5E1F1700B9105B /* GameVIewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVIewUITests.swift; sourceTree = "<group>"; };
+		0AA87BE72A5E1FA100B9105B /* ModeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeViewUITests.swift; sourceTree = "<group>"; };
 		0AABD12B2A166EAA00B26479 /* Artists.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
 		0AABD12D2A166EBB00B26479 /* ShazamLikeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShazamLikeView.swift; sourceTree = "<group>"; };
 		0AABD12F2A166EBC00B26479 /* GuessTheSongView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessTheSongView.swift; sourceTree = "<group>"; };
@@ -379,6 +391,12 @@
 				0AA87BD02A5E01F300B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */,
 				0AA87BCC2A5DFF1600B9105B /* HomeViewUITests.swift */,
 				0AA87BD12A5E0CF500B9105B /* LoginViewUITests.swift */,
+				0AA87BDD2A5E1C5C00B9105B /* AddFriendUITests.swift */,
+				0AA87BDF2A5E1DF800B9105B /* FriendsViewUITests.swift */,
+				0AA87BE12A5E1E7600B9105B /* AuthorsScoreViewUITests.swift */,
+				0AA87BE32A5E1EB200B9105B /* GameOverViewUITests.swift */,
+				0AA87BE52A5E1F1700B9105B /* GameVIewUITests.swift */,
+				0AA87BE72A5E1FA100B9105B /* ModeViewUITests.swift */,
 			);
 			path = "spotify-music-quiz-mida-2022UITests";
 			sourceTree = "<group>";
@@ -688,6 +706,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AA87BD22A5E0CF500B9105B /* LoginViewUITests.swift in Sources */,
+				0AA87BE82A5E1FA100B9105B /* ModeViewUITests.swift in Sources */,
+				0AA87BE22A5E1E7600B9105B /* AuthorsScoreViewUITests.swift in Sources */,
+				0AA87BDE2A5E1C5C00B9105B /* AddFriendUITests.swift in Sources */,
+				0AA87BE02A5E1DF800B9105B /* FriendsViewUITests.swift in Sources */,
+				0AA87BE62A5E1F1700B9105B /* GameVIewUITests.swift in Sources */,
+				0AA87BE42A5E1EB200B9105B /* GameOverViewUITests.swift in Sources */,
 				0AA87BCD2A5DFF1600B9105B /* HomeViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
