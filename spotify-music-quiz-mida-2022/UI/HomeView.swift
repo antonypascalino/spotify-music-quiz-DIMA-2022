@@ -19,7 +19,7 @@ struct HomeView: View {
     @State var showAlert = false
     @State var goLoginView = false
     
-    init() {
+    init(apiCaller: APICaller, userManager: UserManager) {
         UITableView.appearance().showsVerticalScrollIndicator = false
         self.userManager = userManager
         self.apiCaller = apiCaller

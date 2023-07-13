@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0A0FFF772A2FD93100710AFB /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0FFF762A2FD93100710AFB /* GameMode.swift */; };
+		0A11F2E42A5F796B0096B35B /* LoginViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2DA2A5F796A0096B35B /* LoginViewUITests.swift */; };
+		0A11F2E52A5F796B0096B35B /* HomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2DB2A5F796A0096B35B /* HomeViewUITests.swift */; };
+		0A11F2E62A5F796B0096B35B /* ModeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2DC2A5F796A0096B35B /* ModeViewUITests.swift */; };
+		0A11F2E72A5F796B0096B35B /* AddFriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2DE2A5F796A0096B35B /* AddFriendUITests.swift */; };
+		0A11F2E82A5F796B0096B35B /* GameOverViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2DF2A5F796A0096B35B /* GameOverViewUITests.swift */; };
+		0A11F2E92A5F796B0096B35B /* AuthorsScoreViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2E02A5F796A0096B35B /* AuthorsScoreViewUITests.swift */; };
+		0A11F2EA2A5F796B0096B35B /* FriendsViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2E12A5F796B0096B35B /* FriendsViewUITests.swift */; };
+		0A11F2EB2A5F796B0096B35B /* MockUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2E22A5F796B0096B35B /* MockUserViewModel.swift */; };
+		0A11F2EC2A5F796B0096B35B /* GameVIewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11F2E32A5F796B0096B35B /* GameVIewUITests.swift */; };
 		0A15505E2A3237FA00454F8C /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A15505D2A3237FA00454F8C /* FriendsView.swift */; };
 		0A1A55E02A0BA27F0067504D /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55DF2A0BA27F0067504D /* TestView.swift */; };
 		0A1A55E22A0BDA660067504D /* RelatedArtistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */; };
@@ -92,8 +101,6 @@
 		0AD17C512950AC3E003FEE73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C502950AC3E003FEE73 /* Assets.xcassets */; };
 		0AD17C542950AC3E003FEE73 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AD17C532950AC3E003FEE73 /* Preview Assets.xcassets */; };
 		0AD17C5E2950AC40003FEE73 /* AuthManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */; };
-		0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */; };
-		0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */; };
 		0AD8DC9329BA06FA009EE067 /* Gotham-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8929BA048F009EE067 /* Gotham-Black.otf */; };
 		0AD8DC9429BA06FD009EE067 /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */; };
 		0AD8DC9529BA06FF009EE067 /* Gotham-BookItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AD8DC9029BA0491009EE067 /* Gotham-BookItalic.otf */; };
@@ -130,6 +137,16 @@
 
 /* Begin PBXFileReference section */
 		0A0FFF762A2FD93100710AFB /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		0A11F2DA2A5F796A0096B35B /* LoginViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2DB2A5F796A0096B35B /* HomeViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2DC2A5F796A0096B35B /* ModeViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2DD2A5F796A0096B35B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "spotify-music-quiz-mida-2022UITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		0A11F2DE2A5F796A0096B35B /* AddFriendUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendUITests.swift; sourceTree = "<group>"; };
+		0A11F2DF2A5F796A0096B35B /* GameOverViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2E02A5F796A0096B35B /* AuthorsScoreViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsScoreViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2E12A5F796B0096B35B /* FriendsViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewUITests.swift; sourceTree = "<group>"; };
+		0A11F2E22A5F796B0096B35B /* MockUserViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUserViewModel.swift; sourceTree = "<group>"; };
+		0A11F2E32A5F796B0096B35B /* GameVIewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameVIewUITests.swift; sourceTree = "<group>"; };
 		0A15505D2A3237FA00454F8C /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		0A1A55DF2A0BA27F0067504D /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0A1A55E12A0BDA660067504D /* RelatedArtistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedArtistResponse.swift; sourceTree = "<group>"; };
@@ -204,8 +221,6 @@
 		0AD17C592950AC40003FEE73 /* spotify-music-quiz-mida-2022Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD17C5D2950AC40003FEE73 /* AuthManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManagerTests.swift; sourceTree = "<group>"; };
 		0AD17C632950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spotify-music-quiz-mida-2022UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITests.swift; sourceTree = "<group>"; };
-		0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotify_music_quiz_mida_2022UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0AD8DC8129BA048E009EE067 /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
 		0AD8DC8229BA048E009EE067 /* Gotham-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Light.otf"; sourceTree = "<group>"; };
 		0AD8DC8629BA048F009EE067 /* Gotham-XLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLight.otf"; sourceTree = "<group>"; };
@@ -417,18 +432,16 @@
 		0AD17C662950AC41003FEE73 /* spotify-music-quiz-mida-2022UITests */ = {
 			isa = PBXGroup;
 			children = (
-				0AA87BF02A5E973C00B9105B /* AddFriendUITests.swift */,
-				0AA87BED2A5E973B00B9105B /* AuthorsScoreViewUITests.swift */,
-				0AA87BE92A5E973B00B9105B /* FriendsViewUITests.swift */,
-				0AA87BEC2A5E973B00B9105B /* GameOverViewUITests.swift */,
-				0AA87BEF2A5E973C00B9105B /* GameVIewUITests.swift */,
-				0AA87BEE2A5E973B00B9105B /* HomeViewUITests.swift */,
-				0AA87BF12A5E973C00B9105B /* LoginViewUITests.swift */,
-				0AA87BEA2A5E973B00B9105B /* ModeViewUITests.swift */,
-				0AA87BEB2A5E973B00B9105B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */,
-				0AD17C672950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift */,
-				0AD17C692950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift */,
-				0AA87C0F2A5EA14B00B9105B /* MockUserViewModel.swift */,
+				0A11F2DE2A5F796A0096B35B /* AddFriendUITests.swift */,
+				0A11F2E02A5F796A0096B35B /* AuthorsScoreViewUITests.swift */,
+				0A11F2E12A5F796B0096B35B /* FriendsViewUITests.swift */,
+				0A11F2DF2A5F796A0096B35B /* GameOverViewUITests.swift */,
+				0A11F2E32A5F796B0096B35B /* GameVIewUITests.swift */,
+				0A11F2DB2A5F796A0096B35B /* HomeViewUITests.swift */,
+				0A11F2DA2A5F796A0096B35B /* LoginViewUITests.swift */,
+				0A11F2E22A5F796B0096B35B /* MockUserViewModel.swift */,
+				0A11F2DC2A5F796A0096B35B /* ModeViewUITests.swift */,
+				0A11F2DD2A5F796A0096B35B /* spotify-music-quiz-mida-2022UITests-Bridging-Header.h */,
 			);
 			path = "spotify-music-quiz-mida-2022UITests";
 			sourceTree = "<group>";
@@ -750,17 +763,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AD17C682950AC41003FEE73 /* spotify_music_quiz_mida_2022UITests.swift in Sources */,
-				0AA87C102A5EA14B00B9105B /* MockUserViewModel.swift in Sources */,
-				0AA87BF82A5E973C00B9105B /* AddFriendUITests.swift in Sources */,
-				0AA87BF42A5E973C00B9105B /* GameOverViewUITests.swift in Sources */,
-				0AA87BF52A5E973C00B9105B /* AuthorsScoreViewUITests.swift in Sources */,
-				0AA87BF32A5E973C00B9105B /* ModeViewUITests.swift in Sources */,
-				0AD17C6A2950AC41003FEE73 /* spotify_music_quiz_mida_2022UITestsLaunchTests.swift in Sources */,
-				0AA87BF92A5E973C00B9105B /* LoginViewUITests.swift in Sources */,
-				0AA87BF22A5E973C00B9105B /* FriendsViewUITests.swift in Sources */,
-				0AA87BF72A5E973C00B9105B /* GameVIewUITests.swift in Sources */,
-				0AA87BF62A5E973C00B9105B /* HomeViewUITests.swift in Sources */,
+				0A11F2E82A5F796B0096B35B /* GameOverViewUITests.swift in Sources */,
+				0A11F2EA2A5F796B0096B35B /* FriendsViewUITests.swift in Sources */,
+				0A11F2E72A5F796B0096B35B /* AddFriendUITests.swift in Sources */,
+				0A11F2E52A5F796B0096B35B /* HomeViewUITests.swift in Sources */,
+				0A11F2E42A5F796B0096B35B /* LoginViewUITests.swift in Sources */,
+				0A11F2EC2A5F796B0096B35B /* GameVIewUITests.swift in Sources */,
+				0A11F2E92A5F796B0096B35B /* AuthorsScoreViewUITests.swift in Sources */,
+				0A11F2E62A5F796B0096B35B /* ModeViewUITests.swift in Sources */,
+				0A11F2EB2A5F796B0096B35B /* MockUserViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

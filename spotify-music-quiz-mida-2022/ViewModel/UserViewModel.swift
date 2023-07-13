@@ -38,6 +38,8 @@ class UserViewModel : ObservableObject {
         try await userManager.addFriend(newFriendSpotifyID: newFriendSpotifyID)
     }
     
+    
+    func getUserHighscores() async throws {
         self.highscores = try await userManager.getUserHighscores()
         highscoresOrdered = self.highscores.sorted { $0.value > $1.value }
         self.isLoading = false
