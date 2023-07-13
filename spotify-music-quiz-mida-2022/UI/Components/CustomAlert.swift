@@ -10,8 +10,9 @@ import SwiftUI
 struct CustomAlert: View {
     
     let message = "Do you wanna leave the game?"
+    let userManager : UserManager
     @Binding var showAlert : Bool
-    @StateObject var gameManager = GameManager.shared
+    @EnvironmentObject var gameManager : GameManager
     
     var body: some View {
         VStack(spacing: 30) {
@@ -34,7 +35,7 @@ struct CustomAlert: View {
                 .cornerRadius(50.0)
                 
                 NavigationLink {
-                    ContentView()
+                    ContentView(userManager: userManager)
                 } label: {
                     Text("Yes")
                         .foregroundColor(Color("Black"))

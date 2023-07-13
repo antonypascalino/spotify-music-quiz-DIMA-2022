@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameControls: View {
     
+    let userManager : UserManager
     @EnvironmentObject var gameManager : GameManager
     @State var goHome = false
     @Binding var showAlert : Bool
@@ -19,7 +20,7 @@ struct GameControls: View {
             
             if goHome {
                 NavigationLink(
-                    destination: ContentView(),
+                    destination: ContentView(userManager: userManager),
                     isActive: $goHome) {
                         EmptyView()
                     }

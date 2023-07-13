@@ -9,7 +9,13 @@ import SwiftUI
 
 struct AuthorScoreView: View {
     
-    @StateObject private var model = UserViewModel()
+    
+    @ObservedObject private var model : UserViewModel
+    @State private var nameToSearch = ""
+    
+    init(userManager: UserManager) {
+        self.model = UserViewModel(userManager: userManager)
+    }
     
     var body: some View {
         
@@ -63,8 +69,8 @@ struct AuthorScoreView: View {
     }
 }
 
-struct AuthorScoreView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthorScoreView()
-    }
-}
+//struct AuthorScoreView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AuthorScoreView()
+//    }
+//}

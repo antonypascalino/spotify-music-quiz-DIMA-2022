@@ -10,14 +10,23 @@ import SwiftUI
 
 struct HomeView: View {
     
+    var apiCaller : APICaller!
+    var userManager : UserManager!
     @State var isLoading = true
-    @ObservedObject private var userModel = UserViewModel()
-    @StateObject var gameManager = GameManager.shared
+    @ObservedObject private var userModel : UserViewModel
+    @ObservedObject var gameManager : GameManager
+    @ObservedObject var questionManager : QuestionManager
     @State var showAlert = false
     @State var goLoginView = false
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
+        self.userManager = userManager
+        self.apiCaller = apiCaller
+        self.userModel = UserViewModel(userManager: userManager)
+        let qm = QuestionManager(apiCaller: apiCaller, userManager: userManager)
+        self.questionManager = qm
+        self.gameManager = GameManager(userManager: userManager, questionManager: qm)
     }
     
     var body: some View {
@@ -127,7 +136,7 @@ struct HomeView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(Mode.modes, id: \.name) { mode in
-                                        NavigationLink(destination: ModeView(mode: mode)) {
+                                        NavigationLink(destination: ModeView(mode: mode, userManager: userManager).environmentObject(questionManager).environmentObject(gameManager)) {
                                             GameMode(cover: mode.label, description: mode.description)
                                         }
                                     }
@@ -139,7 +148,7 @@ struct HomeView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(Mode.modes.prefix(3) , id: \.name) { mode in
-                                        NavigationLink(destination: ModeView(mode: mode)) {
+                                        NavigationLink(destination: ModeView(mode: mode, userManager: userManager).environmentObject(questionManager).environmentObject(gameManager)) {
                                             GameMode(cover: mode.label, description: mode.description)
                                         }
                                     }
@@ -150,7 +159,7 @@ struct HomeView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(Mode.modes.suffix(4) , id: \.name) { mode in
-                                        NavigationLink(destination: ModeView(mode: mode)) {
+                                        NavigationLink(destination: ModeView(mode: mode, userManager: userManager).environmentObject(questionManager).environmentObject(gameManager)) {
                                             GameMode(cover: mode.label, description: mode.description)
                                         }
                                     }
@@ -190,7 +199,7 @@ struct HomeView: View {
         print("LOAD DATA")
         self.isLoading = true
 
-        try await APICaller.shared.getUserProfile { result in
+        try await apiCaller.getUserProfile { result in
             switch result{
                 case .success(let model):
                     print("UserName: \(model.id)")

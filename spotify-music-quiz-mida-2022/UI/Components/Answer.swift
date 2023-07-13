@@ -47,12 +47,12 @@ struct Answer: View {
     }
 }
 
-struct Answer_Previews: PreviewProvider {
-
-    static var previews: some View {
-        
-        Answer(answer: "Pinguini Tattici Nucleari")
-            .environmentObject(GameManager())
-            .background(Color("Black"))
-    }
-}
+//struct Answer_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        
+//        Answer(answer: "Pinguini Tattici Nucleari")
+//            .environmentObject(GameManager())
+//            .background(Color("Black"))
+//    }
+//}

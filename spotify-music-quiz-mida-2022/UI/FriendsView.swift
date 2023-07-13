@@ -11,7 +11,14 @@ import SwiftUI
 //Show the list of your friends and allows to add new ones
 struct FriendsView: View {
     
-    @StateObject private var model = UserViewModel()
+    let userManager : UserManager!
+    @ObservedObject private var model : UserViewModel
+
+   
+   init(userManager: UserManager) {
+       self.userManager = userManager
+       self.model = UserViewModel(userManager: userManager)
+   }
     
     var body: some View {
         
@@ -40,7 +47,7 @@ struct FriendsView: View {
                     .offset(x: -3)
                 }
                 Spacer()
-                NavigationLink (destination: AddFriendsView() ,label: {
+                NavigationLink (destination: AddFriendsView(userManager: userManager) ,label: {
                     Image(systemName: "person.crop.circle.badge.plus")
                         .resizable()
                         .scaledToFit()
@@ -91,9 +98,9 @@ struct FriendsView: View {
         return friends.contains{ $0.display_name == user.display_name }
     }
 }
-
-struct FriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FriendsView()
-    }
-}
+//
+//struct FriendsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FriendsView()
+//    }
+//}

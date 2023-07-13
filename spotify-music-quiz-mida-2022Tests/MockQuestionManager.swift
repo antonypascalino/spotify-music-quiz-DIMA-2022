@@ -1,21 +1,15 @@
 //
-//  QuestionManager.swift
-//  spotify-music-quiz-mida-2022
+//  MockAuthManager.swift
+//  spotify-music-quiz-mida-2022Tests
 //
-//  Created by Antony Pascalino on 30/05/23.
+//  Created by Antony Pascalino on 26/06/23.
 //
 
 import Foundation
-import SwiftUI
+@testable import spotify_music_quiz_mida_2022
 
-protocol QuestionManagerProtocol {
+final class MockQuestionManager: QuestionManagerProtocol, Mockable {
     
-}
-
-class QuestionManager: ObservableObject {
-    
-    private let apiCaller : APICaller!
-    private let userManager : UserManager!
 
     private(set) var whoSingsQuestion : [Question] = []
     private(set) var yearSongQuestion : [Question] = []
@@ -43,18 +37,26 @@ class QuestionManager: ObservableObject {
     private let predSongURL = "https://p.scdn.co/mp3-preview/74698d907d114f4ba0b2c129bbf260724be80b64?cid=0b297fa8a249464ba34f5861d4140e58"
     @Published var isLoadingQuestions = true
     
-    init(apiCaller: APICaller, userManager: UserManager) {
-        self.apiCaller = apiCaller
-        self.userManager = userManager
+    init() {
+        
     }
+    
 
     func importAllData() async throws {
+        print("import")
         if !loadedData {
             importPlaylists()
+            print("import 1")
             importAlbums()
+            print("import 2")
             importTracks()
+            print("import 3")
             loadedData = true
+            print("in import")
+
         }
+        print("end import")
+
     }
     
     func genRandomQuestions(code: String, regenQuest: Bool) async throws -> [Question] {
@@ -99,10 +101,10 @@ class QuestionManager: ObservableObject {
             case "authorSong" :
                 if(regenQuest){
                     self.authorSongQuestion = genAuthorSongQuestion()
-                    self.leaderboardQuestions = try await genLeaderBoardQuestions()
+                    //self.leaderboardQuestions = try await genLeaderBoardQuestions()
                 }
                 questionsTemp.append(contentsOf: self.authorSongQuestion)
-                questionsTemp.append(contentsOf: self.leaderboardQuestions)
+                //questionsTemp.append(contentsOf: self.leaderboardQuestions)
                 print("Mode: authorSong")
                 break
             case "whichAlbum" :
@@ -159,9 +161,9 @@ class QuestionManager: ObservableObject {
         self.authorSongQuestion = genAuthorSongQuestion()
         questionsTemp.append(contentsOf: self.authorSongQuestion)
         print("Prima7")
-        self.leaderboardQuestions = try await genLeaderBoardQuestions()
-        questionsTemp.append(contentsOf:self.leaderboardQuestions)
-        print("Prima8")
+        //self.leaderboardQuestions = try await genLeaderBoardQuestions()
+        //questionsTemp.append(contentsOf:self.leaderboardQuestions)
+        //print("Prima8")
         
         questionsTemp.shuffle()
         self.allQuestions = questionsTemp
@@ -169,76 +171,13 @@ class QuestionManager: ObservableObject {
       //  return try await genLeaderBoardQuestions()
         return questionsTemp
     }
-
-    func genLeaderBoardQuestions() async throws -> [Question] {
-
-        var questions : [Question] = []
-        //recupero la lista degli id degli artisti
-        var artistsId : [String] = []
-        artistsId = try await userManager.getTopAuthorsId()
-
-        for artistId in artistsId {
-
-            self.similarArtists = []
-
-            loadArtistRelatedArtists(artistId: artistId)
-            while(isLoading) {
-                 
-            }
-            isLoading = true
-
-            if !similarArtists.isEmpty{
-                
-                self.songsBySameArtist = []
-                similarArtists.shuffle()
-                loadArtistTopTracks(originalArtist: self.similarArtists[0])
-                    while(isLoading) {
-                     
-                }
-                isLoading = true
-
-                self.songsBySameArtist.shuffle()
-                let correctAnswer = filterString(self.songsBySameArtist.first!.name)
-
-                self.similarSongs = []
-            
-                loadReccom(track: self.songsBySameArtist.first!)
-                while(isLoading) {
-                     
-                }
-                isLoading = true
-            
-                if !self.similarSongs.isEmpty{
-                    
-                    var similarSongsNames : [String] = []
-                    for i in 0...self.similarSongs.count-1{
-                        if(similarSongs[i].name != correctAnswer){
-                            similarSongsNames.append(filterString(similarSongs[i].name))
-                        }  
-                        if similarSongsNames.count == 3 {
-                            break;
-                        }
-                    }
-
-                    let question = Question(questionText: "😡 Which of these songs is of _\(filterString(self.similarArtists[0].name))_?",
-                                        correctAnswer: correctAnswer,
-                                        songUrl : self.songsBySameArtist.first!.preview_url ?? predSongURL,
-                                        author: self.similarArtists[0].name,
-                                        authorId: self.similarArtists[0].id,
-                                        songName: correctAnswer,
-                                        wrongAnswers: similarSongsNames)
-                    questions.append(question)
-                }
-            }
-        }
-        return questions
-
-
-    }
+    
+    
     
     //Functions to generate each type of questions
     
-    private func genWhoSingsQuestions() -> [Question] {
+     func genWhoSingsQuestions() -> [Question] {
+         print("1")
         var questions: [Question] = []
         
         var tempTracks : [Track] = []
@@ -276,11 +215,12 @@ class QuestionManager: ObservableObject {
             
         }
        
-      
         return questions
     }
     
-    private func genAuthorSongQuestion() -> [Question] {
+     func genAuthorSongQuestion() -> [Question] {
+         print("2")
+
         var questions: [Question] = []
         
         var tempTracks : [Track] = []
@@ -304,7 +244,7 @@ class QuestionManager: ObservableObject {
                 for i in 0...self.similarSongs.count-1{
                     if(similarSongs[i].name != correctAnswer){
                         similarSongsNames.append(filterString(similarSongs[i].name))
-                    }  
+                    }
                     if similarSongsNames.count == 3 {
                         break;
                     }
@@ -327,7 +267,9 @@ class QuestionManager: ObservableObject {
         return questions
     }
     
-    private func genYearAlbumQuestions() -> [Question] {
+     func genYearAlbumQuestions() -> [Question] {
+         print("3")
+
         var questions: [Question] = []
         
 
@@ -359,7 +301,9 @@ class QuestionManager: ObservableObject {
         return questions
     }
     
-    private func genYearSongQuestions() -> [Question] {
+     func genYearSongQuestions() -> [Question] {
+         print("4")
+
         var questions: [Question] = []
         
         
@@ -384,7 +328,7 @@ class QuestionManager: ObservableObject {
         return questions
     }
     
-    private func genShazamTitleQuestions() -> [Question]{
+     func genShazamTitleQuestions() -> [Question]{
        var questions: [Question] = []
        
         var tempTracks : [Track] = []
@@ -412,7 +356,7 @@ class QuestionManager: ObservableObject {
            return questions
        }
     
-    private func genShazamAuthorQuestions() -> [Question]{
+     func genShazamAuthorQuestions() -> [Question]{
        var questions: [Question] = []
        
         var tempTracks : [Track] = []
@@ -440,7 +384,7 @@ class QuestionManager: ObservableObject {
            return questions
        }
     
-    private func genAlbumSongQuestions() -> [Question] {
+     func genAlbumSongQuestions() -> [Question] {
             var questions: [Question] = []
 
             var tempAlbums : [SimpleAlbum] = []
@@ -465,7 +409,7 @@ class QuestionManager: ObservableObject {
                     for i in 0...reccTracks.count-1{
                         if(reccTracks[i].artists.first!.name != album.artists.first!.name){
                             similarTracksNames.append(filterString(reccTracks[i].name))
-                        }  
+                        }
                         if similarTracksNames.count == 3 {
                             break;
                         }
@@ -497,7 +441,7 @@ class QuestionManager: ObservableObject {
     //Functions for generate random number/dates
     
     
-    private func generateRandomDates(originalYear: String, originalArtist : Artist) -> [String] {
+     func generateRandomDates(originalYear: String, originalArtist : Artist) -> [String] {
                var randomYears: [String] = []
             
                guard let originalYearInt = Int(originalYear) else {
@@ -522,7 +466,7 @@ class QuestionManager: ObservableObject {
            return randomYears
        }
     
-    private func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist, years: [Int]) -> String {
+     func getRandomYearFromSameArtist(originalYear: Int, originalArtist : Artist, years: [Int]) -> String {
 
             loadArtistTopTracks(originalArtist: originalArtist)
 
@@ -543,7 +487,7 @@ class QuestionManager: ObservableObject {
         return String(getRandomYearInRange(startYear: originalYear - 10, endYear: originalYear + 10 <= Calendar.current.component(.year , from: Date()) ? originalYear + 10 : originalYear, years: years))
         }
           
-    private func getRandomYearInRange(startYear: Int, endYear: Int, years: [Int]) -> Int {
+     func getRandomYearInRange(startYear: Int, endYear: Int, years: [Int]) -> Int {
             var randInt = 0;
             repeat {
                  randInt = Int.random(in: startYear...endYear)
@@ -561,50 +505,22 @@ class QuestionManager: ObservableObject {
     //Load API Date
     
     private func loadTopTracks(){
-        
-        apiCaller.getTopTracks { result in
-            switch result{
-                case .success(let model):
-                    self.userTracks.append(contentsOf: model)
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
-            }
-            
-        }
+        self.userTracks = loadJSON(filename: "UserTopTracks", type: LibraryTrackResponse.self).items
+            self.isLoading = false
     }
     
     private func loadSavedTracks(){
         
-        apiCaller.getSavedTracks { result in
-            switch result{
-                case .success(let model):
-                    self.userTracks.append(contentsOf: model)
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
-            }
-            
-        }
+        self.userTracks = loadJSON(filename: "SavedTracks", type: LibrarySavedTrackResponse.self).items.compactMap({ $0.track })
+            self.isLoading = false
     }
     
    
     private func loadArtistRelatedArtists(artistId: String){
-        apiCaller.getArtistRelatedArtists(for : artistId) {  result in
-            switch result{
-                case .success(let model):
-                    self.similarArtists = model
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
-            }
-        }
+        
+        self.similarArtists = loadJSON(filename: "ArtistRelatedArtists", type: RelatedArtistResponse.self).artists
+            self.isLoading = false
+        
     }
     
     private func loadTracksFromPlaylists(){
@@ -645,92 +561,43 @@ class QuestionManager: ObservableObject {
     
     private func loadTracksFromPlaylist(playlist : Playlist){
         
-        apiCaller.getPlaylistsTracks(for : playlist) {  result in
-            switch result{
-                case .success(let model):
-                    self.tempTrack = model.tracks.items
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
-            }
-        }
+        self.tempTrack = loadJSON(filename: "PlaylistTracks2", type: PlaylistTracks.self).tracks.items
+            self.isLoading = false
+        
     }
     
     private func loadAlbums(){
-            
-             apiCaller.getUserAlbums {result in
-                switch result{
-                    case .success(let model):
-                        self.albums = model
-                        self.isLoading = false
-                        break
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        //self?.failedToGetProfile()
-                }
-                
-            }
-        }
+        
+        self.albums = loadJSON(filename: "UserAlbums", type: LibraryAlbumResponse.self).items.compactMap({
+            $0.album
+        })
+        self.isLoading = false
+    }
     
     private func loadRecc(track: SimpleTrack){
-            apiCaller.getRecommendation(songID: track.id) {result in
-                switch result{
-                    case .success(let model):
-                        self.reccTracks = model.tracks
-                        self.isLoading = false
-                        break
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        //self?.failedToGetProfile()
-                }
-            }
+        let reccTracks = loadJSON(filename: "ReccTracks", type: RecommendationsResponse.self)
+        self.reccTracks = reccTracks.tracks
+        self.isLoading = false
         }
     
     private func loadReccom(track: Track){
-            apiCaller.getRecommendation(songID: track.id) {result in
-                switch result{
-                    case .success(let model):
-                        self.similarSongs = model.tracks
-                        self.isLoading = false
-                        break
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        //self?.failedToGetProfile()
-                }
-            }
+            let reccTracks = loadJSON(filename: "ReccTracks", type: RecommendationsResponse.self)
+            self.similarSongs = reccTracks.tracks
+            self.isLoading = false
         }
     
     private func loadPlaylists(){
+        self.userPlaylists = loadJSON(filename: "UserPlaylist", type: LibraryPlaylistsResponse.self).items
+        self.isLoading = false
             
-             apiCaller.getCurrentUserPlaylist {result in
-                switch result{
-                    case .success(let model):
-                        self.userPlaylists = model
-                        self.isLoading = false
-                        break
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        //self?.failedToGetProfile()
-                }
-                
-            }
         }
 
     private func loadArtistTopTracks(originalArtist : Artist){
+        let artistTopTracks = loadJSON(filename: "ArtistTopTracks", type: Tracks.self).tracks
+            
+            self.songsBySameArtist = artistTopTracks
+            self.isLoading = false
 
-        apiCaller.getArtistTopTracks(for : originalArtist) {result in
-            switch result{
-                case .success(let model):
-                    self.songsBySameArtist = model
-                    self.isLoading = false
-                    break
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    //self?.failedToGetProfile()
-            }
-        }
     }
     
     
@@ -749,20 +616,21 @@ class QuestionManager: ObservableObject {
     }
     
     private func importTracks(){
-        
+        print("CIAOOOOO Top")
+
         loadTopTracks()
         
         while(isLoading) {
              
         }
         isLoading = true
-//        print("Saved Tracks Inizio")
+        print("Saved Tracks Inizio")
         loadSavedTracks()
         while(isLoading) {
              
         }
         isLoading = true
-//        print("Saved Tracks Fine")
+        print("Saved Tracks Fine")
         loadTracksFromPlaylists()
         
 
@@ -782,14 +650,14 @@ class QuestionManager: ObservableObject {
     }
     
     private func importPlaylists() {
-        
+
         let words = ["lofi", "relax", "cover", "chill"]
         loadPlaylists()
         while(isLoading){
              
         }
         isLoading = true
-        
+        print("Fine Playlist")
         self.filteredUserPlaylists = []
         self.filteredUserPlaylists = self.userPlaylists.filter{ playlist in
             return !words.contains { word in
@@ -811,5 +679,4 @@ class QuestionManager: ObservableObject {
         self.albums.shuffle()
         return Array(self.albums.prefix(self.albums.count > num ? num : self.albums.count))
     }
-    
 }

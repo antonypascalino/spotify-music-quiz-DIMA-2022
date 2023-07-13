@@ -1,26 +1,8 @@
-//
-//  AuthManager.swift
-//  spotify-music-quiz-mida-2022
-//
-//  Created by Antony Pascalino on 27/03/23.
-//
-
 import Foundation
-
-protocol AuthManagerProtocol {
-    func withValidToken(completion: @escaping ((String)->Void))
-    func refreshIfNeeded(completion: @escaping (Bool) -> Void)
-    func exchangeCodeForToken(
-        code : String,
-        completion: @escaping ((Bool)->Void)
-    )
-    func cacheToken(result: AuthResponse)
-    func signOut(completion: (Bool)-> Void)
-}
+@testable import spotify_music_quiz_mida_2022
 
 
-class AuthManager : AuthManagerProtocol {
-    
+class MockAuthManager: AuthManagerProtocol, Mockable {
     struct Constants {
         static let clientID = "a92e939475fa48619185a62b70173a45"
         static let clientSecret = "d4d235cc683942778dcd68a445935671"
@@ -48,6 +30,7 @@ class AuthManager : AuthManagerProtocol {
     }
     
     private var refreshToken: String? {
+        print("Refresh Token2: \(UserDefaults.standard.string(forKey: "refresh_token"))")
         return UserDefaults.standard.string(forKey: "refresh_token")
     }
     
@@ -67,25 +50,19 @@ class AuthManager : AuthManagerProtocol {
     private var onRefreshBlock = [((String)->Void)]()
     
     public func withValidToken(completion: @escaping ((String)->Void)) {
-        guard !refreshingToken else{
-            onRefreshBlock.append(completion)
-            return
-        }
         
-        if shouldRefreshToken{
-            refreshIfNeeded {[weak self] success in
-                if let token = self?.accessToken, success{
-                    completion(token)
-                }
-            }
-        } else if let token = accessToken{
+        
+        if let token = accessToken{
             print("token: \(token)")
             completion(token)
         }
     }
     
+    public func mustRefreshToken() {
+        refreshingToken = true
+    }
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-        
+
         guard !refreshingToken else {
             return
         }
@@ -94,7 +71,12 @@ class AuthManager : AuthManagerProtocol {
             completion(true)
             return
         }
+        
+        print("REFRESH Token: \(refreshingToken)")
+
         guard let refreshToken = self.refreshToken else { return }
+        print("REFR Token: \(refreshToken)")
+
         
         guard let url = URL(string: Constants.tokenAPIURL) else { return }
         
@@ -106,6 +88,7 @@ class AuthManager : AuthManagerProtocol {
                          value : refreshToken),
             
         ]
+
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField : "Content-Type")
@@ -118,7 +101,7 @@ class AuthManager : AuthManagerProtocol {
             completion(false)
             return
         }
-        
+        print("REFRESH")
         request.setValue("Basic \(base64String)", forHTTPHeaderField : "Authorization")
         
         let task = URLSession.shared.dataTask(with : request) { data, URLResponse, error in
@@ -155,7 +138,6 @@ class AuthManager : AuthManagerProtocol {
                          value : Constants.redirectURI),
             
         ]
-        print("code: \(code)")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField : "Content-Type")
@@ -214,3 +196,4 @@ class AuthManager : AuthManagerProtocol {
         completion(true)
     }
 }
+

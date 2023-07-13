@@ -12,7 +12,8 @@ import WebKit
 
 
 struct AuthView: View {
-    let authURL = AuthManager.shared.signInURL!
+    
+    var authManager = AuthManager()
     public var completionHandler: ((Bool) ->Void)?
     
     @State private var webView = WKWebView()
@@ -20,6 +21,8 @@ struct AuthView: View {
     @State private var error: Error?
     
     var body: some View {
+        
+        let authURL = authManager.signInURL!
         VStack {
             //            if let code = code {
             //                Button {
@@ -44,7 +47,7 @@ struct AuthView: View {
                             let components = URLComponents(string: url.absoluteString)
                             code = components?.queryItems?.first(where: { $0.name == "code" })?.value
                             //                                webView.loadHTMLString("<html><body>You have successfully authenticated with Spotify.</body></html>", baseURL: nil)
-                            AuthManager.shared.exchangeCodeForToken(code: code!) { result in
+                            authManager.exchangeCodeForToken(code: code!) { result in
                                 switch result {
                                 case true:
                                     self.completionHandler?(true)
@@ -85,10 +88,10 @@ struct WebView: UIViewRepresentable {
     }
 }
 
-struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView()
-    }
-}
+//struct AuthView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AuthView()
+//    }
+//}
 
 

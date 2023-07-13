@@ -11,10 +11,18 @@ import SwiftUI
 struct GameOverView: View {
     
     let mode : Mode
+    let userManager : UserManager
     
-    @StateObject private var model = UserViewModel()
+    @ObservedObject private var model : UserViewModel
     @EnvironmentObject var gameManager : GameManager
+    @EnvironmentObject var questionManager : QuestionManager
     @State var gameRestarted = false
+    
+    init(userManager: UserManager, mode: Mode) {
+        self.mode = mode
+        self.userManager = userManager
+        self.model = UserViewModel(userManager: userManager)
+    }
     
     var body: some View {
         
@@ -53,7 +61,7 @@ struct GameOverView: View {
                 
                 HStack(spacing: 30.0) {
                     
-                    NavigationLink(destination: GameView(mode: mode), isActive: $gameRestarted, label: {
+                    NavigationLink(destination: GameView(mode: mode, userManager: userManager).environmentObject(gameManager).environmentObject(questionManager), isActive: $gameRestarted, label: {
                         Image(systemName: "play.circle.fill")
                             .resizable()
                             .frame(width: 20, height: 20)
@@ -78,7 +86,7 @@ struct GameOverView: View {
                     })
                     
                     NavigationLink {
-                        ContentView()
+                        ContentView(userManager: userManager)
                     } label: {
                         Image(systemName: "house.fill")
                             .resizable()

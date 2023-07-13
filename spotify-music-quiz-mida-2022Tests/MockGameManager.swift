@@ -1,15 +1,16 @@
+//
+//  MockAuthManager.swift
+//  spotify-music-quiz-mida-2022Tests
+//
+//  Created by Antony Pascalino on 26/06/23.
+//
+
 import Foundation
-import SwiftUI
+@testable import spotify_music_quiz_mida_2022
 
-protocol GameManagerProtocol {
+final class MockGameManager: GameManagerProtocol, Mockable {
     
-}
-
-class GameManager: ObservableObject {
-    
-    
-    let userManager : UserManager!
-    let questionManager : QuestionManager!
+    let questionManager : MockQuestionManager!
     
      var questions: [Question] = []
      var tempQuestions: [Question] = []
@@ -23,11 +24,9 @@ class GameManager: ObservableObject {
     @Published private(set) var correctAnswersCount = 0
     @Published private(set) var answerSelected = false
     var restartGame = true
-    @State var userProfile : UserProfile?
     
     
-    init(userManager: UserManager, questionManager : QuestionManager) {
-        self.userManager = userManager
+    init(questionManager : MockQuestionManager) {
         self.questionManager = questionManager
     }
     
@@ -126,7 +125,7 @@ class GameManager: ObservableObject {
                     self.currentQuestion = self.questions[self.currentQuestionIndex]
                     self.currentAnswers = self.currentQuestion?.getAnswers()
                 }
-            }     
+            }
         }
         
     }
@@ -147,10 +146,7 @@ class GameManager: ObservableObject {
         let currentQuestion = questions[currentQuestionIndex]
         if isCorrect {
             correctAnswersCount += 1
-            Task {
-                try await userManager.setUserAuthorScore(author: currentQuestion.author!)
-                try await userManager.addAuthor(artist: currentQuestion.author!, artistId: currentQuestion.authorId!)
-            }
+            
         } else {
             playerMiss = true
         }
@@ -164,8 +160,3 @@ class GameManager: ObservableObject {
         isTimerRunning = true
     }
 }
-
-
-
-
-

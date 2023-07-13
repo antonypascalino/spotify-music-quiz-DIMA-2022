@@ -2,12 +2,32 @@ import Foundation
 import SwiftUI
 
 
+
+enum HTTPMethod: String{
+    case GET
+    case POST
+    case DELETE
+    case PUT
+}
+
+
+protocol APICallerProtocol {
+    func createRequest(with url: URL?,type: HTTPMethod,completion: @escaping ((URLRequest)->Void))
+    func getUserAlbums(completion: @escaping ((Result<[SimpleAlbum],Error>)->Void))
+}
+
 //All the function which uses SpotifyAPI to retrieve user song/author information
-final class APICaller{
-    static let shared = APICaller()
+final class APICaller {
+    
+    
+    var userManager : UserManager!
+    var authManager : AuthManagerProtocol!
     var currentUserProfile : UserProfile?
     var isLoading = true
-    private init() {
+    
+    init(userManager: UserManager, authManager: AuthManagerProtocol) {
+        self.userManager = userManager
+        self.authManager = authManager
     }
     
     struct Constants{
@@ -209,7 +229,7 @@ final class APICaller{
     
     private func loadUserManager(currentUser: User ){
         Task {
-            try await UserManager.shared.setUser(user: currentUser) { result in
+            try await userManager.setUser(user: currentUser) { result in
                     switch result {
                         case .success(let boolean):
                             self.isLoading = boolean
@@ -338,15 +358,9 @@ final class APICaller{
         
     }
     
-    enum HTTPMethod: String{
-        case GET
-        case POST
-        case DELETE
-        case PUT
-    }
     
     private func createRequest(with url: URL?,type: HTTPMethod,completion: @escaping ((URLRequest)->Void)) {
-        AuthManager.shared.withValidToken { token in
+        authManager.withValidToken { token in
             guard let apiURL = url else{
                 print("Incorrect Url")
                 return

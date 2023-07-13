@@ -11,7 +11,9 @@ import AVFoundation
 struct GameView: View {
     
     let mode : Mode
-    @StateObject var gameManager = GameManager.shared
+    let userManager : UserManager!
+    @EnvironmentObject var gameManager : GameManager
+    @EnvironmentObject var questionManager : QuestionManager
     @State private var isShowingGuessView = true
     @State private var userAnswer = ""
     @State private var isLoading = true
@@ -22,11 +24,12 @@ struct GameView: View {
         let playerMiss = gameManager.playerMiss
         let gameIsOver = gameManager.gameIsOver
         VStack {
-            if QuestionManager.shared.isLoadingQuestions {
+            if questionManager.isLoadingQuestions {
                 LoadingView()
             } else if gameIsOver {
-                GameOverView(mode: mode)
+                GameOverView(userManager: userManager, mode: mode)
                     .environmentObject(gameManager)
+                    .environmentObject(questionManager)
             } else {
                 let currentAnwers = gameManager.currentAnswers!
                 
@@ -75,7 +78,7 @@ struct GameView: View {
                         VStack {
                             TimeBar(duration: gameManager.currentQuestion!.isShazam ? 25 : 10)
                                 .environmentObject(gameManager)
-                            GameControls(showAlert: $showAlert)
+                            GameControls(userManager: userManager, showAlert: $showAlert)
                                 .environmentObject(gameManager)
                         }
                         .offset(y: -33)
@@ -98,7 +101,7 @@ struct GameView: View {
                     }
                     
                     if (showAlert) {
-                        CustomAlert(showAlert: $showAlert)
+                        CustomAlert(userManager: userManager, showAlert: $showAlert)
                     }
                 }
             }

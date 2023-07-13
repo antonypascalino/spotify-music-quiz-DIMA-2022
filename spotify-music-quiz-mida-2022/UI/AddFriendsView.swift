@@ -9,8 +9,12 @@ import SwiftUI
 
 struct AddFriendsView: View {
     
-    @StateObject private var model = UserViewModel()
+    @ObservedObject private var model : UserViewModel
     @State private var nameToSearch = ""
+    
+    init(userManager: UserManager) {
+        self.model = UserViewModel(userManager: userManager)
+    }
     
     var orderedUsers : [User] {
         if nameToSearch.isEmpty {
@@ -123,8 +127,8 @@ struct AddFriendsView: View {
     }
 }
 
-struct AddFriendsView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddFriendsView()
-    }
-}
+//struct AddFriendsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddFriendsView()
+//    }
+//}

@@ -107,12 +107,12 @@ struct TimeBar: View {
     }
 }
 
-struct TimeBar_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        TimeBar(duration: 10)
-            .environmentObject(GameManager())
-            .frame(height: 60.0)
-            .background(Color("Black")) 
-    }
-}
+//struct TimeBar_Previews: PreviewProvider {
+//    
+//    static var previews: some View {
+//        TimeBar(duration: 10)
+//            .environmentObject(GameManager())
+//            .frame(height: 60.0)
+//            .background(Color("Black")) 
+//    }
+//}

@@ -160,10 +160,10 @@ extension View {
     }
 }
 
-struct GuessTheSongView_Previews: PreviewProvider {
-    static var previews: some View {
-        GuessTheSongView(correctAnswer: "Hold On")
-            .background(Color("Black"))
-            .environmentObject(GameManager())
-    }
-}
+//struct GuessTheSongView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GuessTheSongView(correctAnswer: "Hold On")
+//            .background(Color("Black"))
+//            .environmentObject(GameManager())
+//    }
+//}
